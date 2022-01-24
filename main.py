@@ -38,7 +38,7 @@ from pyautogui import *
 __author__ = "bajsi"
 __license__ = "GPL"
 __version__ = "1.1."
-__email__ = "bajs00@gmail.com"
+__email__ = "lbaisinger@outlook.com"
 __status__ = "Working"
 
 # Add pause after each pyautogui command
