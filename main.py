@@ -173,7 +173,7 @@ while not keyboard.is_pressed('0'):
                     waypoints(wp_index)
                     continue
                 else:
-                    # Yes - wp++, go to next WP
+                    # Yes - wp++, go to next WP, I put rope and shovel under F5, F6 and wp on rope/shovel spot
                     pyautogui.press('f5')
                     pyautogui.click(character)
                     pyautogui.press('f6')
