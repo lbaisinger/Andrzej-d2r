@@ -38,7 +38,7 @@ target_list = ["troll"]
 # item_blacklsit = ['hand_axe', 'leather_boots', 'leather_helmet', 'rope', 'studded_club', 'wooden_shield', 'spear']
 # total_wp = 5  # total waypoints used in the hunt; MAKE SURE all waypoints .png are available!
 # venore trolls
-item_blacklsit = ['mouldy_chese', 'torch', 'leather_boots', 'spear']
+item_blacklsit = ['mouldy_chese', 'torch', 'leather_boots', 'spear', 'fish']
 total_wp = 6  # total waypoints used in the hunt; MAKE SURE all waypoints .png are available!
 
 ### other conf
