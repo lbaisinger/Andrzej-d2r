@@ -23,7 +23,7 @@ class Gracz:
         pyautogui.PAUSE = 0.05
 
     def get_avialable_slots(self):
-        self.backpack.get_avial_slots()
+        return len(self.backpack.get_avial_slots())
 
     def is_bije(self):
         timestamp = datetime.datetime.now()
