@@ -55,8 +55,8 @@ class Gracz:
     # todo params in config
     def is_allright(self, hplow=True, hpmid=True, manalow=True, manahigh=True):
         timestamp = datetime.datetime.now()
-        print("Status check")
-        print('eatin')
+        #print("Status check")
+        #print('eatin')
         pyautogui.press('f4')
         # Check for serious healing (potion)
         if hplow:
@@ -109,7 +109,7 @@ class Gracz:
 
     def do_loot(self):
         timestamp = datetime.datetime.now()
-        print('looting')
+        #print('looting')
         pyautogui.keyDown('Shift')
         # 1 2 3
         # 4 C 6
@@ -131,7 +131,7 @@ class Gracz:
 
     def do_bij(self):
         timestamp = datetime.datetime.now()
-        print('fight')
+        #print('fight')
         pyautogui.press('space')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
