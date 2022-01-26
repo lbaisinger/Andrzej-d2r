@@ -19,7 +19,7 @@ class Gracz:
         self.monsterlist = []
         self.backpack = Backpack()
         self.other = Other()
-        # Add pause after each p yautogui command
+        # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
 
     def get_avialable_slots(self):
@@ -175,6 +175,7 @@ class Gracz:
                     else:
                         self.do_go_wp(wp)
                         # backpack_check()
+                        self.backpack.do_drop_random_item_from_blacklist()
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()
@@ -189,6 +190,7 @@ class Gracz:
 #            print('going', nextwp)
 #            print()
             nextwp = self.go(wp=nextwp)
+
 
 
 
