@@ -1,0 +1,4 @@
+.screenshot*
+screen.png*
+inverted.png*
+__pycache__/
