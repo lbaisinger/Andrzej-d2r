@@ -8,21 +8,23 @@
 # ring slot
 # todo fill more
 ### REGIONS (1920 x 1080) ###
-bw = (1744, 454, 150, 130)
-redbox = (1744, 454, 30, 90)
+bw = (1744, 454, 160, 150)
+redbox = (1744, 474, 40, 90)
 minimap = (1750, 30, 110, 110)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
 ring = (1755, 230, 25, 25)
 default = (1550, 300)
-character = (870, 490)
-wp_center = (1806, 83)
-wp_center2 = (1806, 83)
+character = (765, 480)
+wp_center = (1804, 83)
+wp_center2 = (1805, 83)
+wp_center3 = (1806, 84)
+
 # todo fix below
-mana_pool_potek = (1480, 20)
-hp_pool_exura = (1725, 20)
-hp_pool_potek = (500, 20)
-burn_mana = (1857, 20)
+mana_pool_potek = (1676, 35)
+hp_pool_exura = (800, 35)
+hp_pool_potek = (380, 35)
+burn_mana = (830, 35)
 
 
 ### Regions puchal 4k
@@ -48,7 +50,7 @@ wp_index = 1
 # Monster list for the hunt, must match names of the .png files
 # LOWERCASE, prioritize
 # target_list = ["bloodcrab", "tortoise"]
-target_list = ["troll"]
+target_list = ["swamp_troll"]
 
 # ab trolls
 # item_blacklsit = ['hand_axe', 'leather_boots', 'leather_helmet', 'rope', 'studded_club', 'wooden_shield', 'spear']

@@ -15,7 +15,7 @@ minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
 ring = (1755, 230, 25, 25)
 default = (1550, 300)
-character = (870, 490)
+character = (765, 480)
 wp_center = (1806, 83)
 wp_center2 = (1806, 83)
 # todo fix below

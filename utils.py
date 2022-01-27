@@ -26,7 +26,7 @@ class Backpack:
         if item_cords is not None:
             print('dropping', item)
             # throw away
-            pyautogui.moveTo(item_cords[0] - 16, item_cords[1] + 8, duration=0.1)
+            pyautogui.moveTo(item_cords[0] - 8, item_cords[1] + 4, duration=0.1)
             sleep(0.1)
             # pyautogui.dragTo(character, duration=.15)
             #            pyautogui.click(item_cords[0]-17, item_cords[1]+6)
