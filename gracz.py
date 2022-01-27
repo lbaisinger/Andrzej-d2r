@@ -47,8 +47,11 @@ class Gracz:
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=bw, confidence=.8) is not None:
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
-                print('TIME is_co_bic', looptime)
+                print('TIME is_co_bic T', looptime)
                 return True
+        timestamp2 = datetime.datetime.now()
+        looptime = timestamp2 - timestamp
+        print('TIME is_co_bic F', looptime)
         return False
 
     # todo status check hotkeys config
