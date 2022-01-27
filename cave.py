@@ -22,11 +22,13 @@ class Cave:
         pass
 
     def use_rope(self):
-        pyautogui.click(hotkey_rope)
+        pyautogui.press(hotkey_rope)
         return True
 
     def use_shovel(self):
-        pyautogui.click(hotkey_shovel)
+        pyautogui.press(hotkey_shovel)
+        pyautogui.moveTo(character)
+        pyautogui.click(character)
         return True
 
     def is_has_cap(self):
