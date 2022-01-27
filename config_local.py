@@ -19,12 +19,23 @@ character = (765, 480)
 wp_center = (1804, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
+cap_region = (0, 0)
 
 # todo fix below
 mana_pool_potek = (1676, 35)
 hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
+
+
+min_cap_to_cont_hunt = 50
+
+hotkey_rope = 'f8'
+hotkey_shovel = 'f9'
+hotkey_exura = 'f3'
+hotkey_manapot = 'f2'
+hotkey_food = 'f4'
+hotkey_chase = '/'
 
 
 ### Regions puchal 4k
@@ -41,25 +52,3 @@ burn_mana = (830, 35)
 #hp_pool_exura = (2725, 20)
 #hp_pool_potek = (1500, 20)
 #burn_mana = (2857, 20)
-
-### cavebot config
-# Waypoints
-wp_index = 1
-# total_wp = 5  # total waypoints used in the hunt; MAKE SURE all waypoints .png are available!
-
-# Monster list for the hunt, must match names of the .png files
-# LOWERCASE, prioritize
-# target_list = ["bloodcrab", "tortoise"]
-target_list = ["swamp_troll"]
-
-# ab trolls
-# item_blacklsit = ['hand_axe', 'leather_boots', 'leather_helmet', 'rope', 'studded_club', 'wooden_shield', 'spear']
-# total_wp = 5  # total waypoints used in the hunt; MAKE SURE all waypoints .png are available!
-# venore trolls
-item_blacklsit = ['mouldy_chese', 'torch', 'leather_boots', 'spear', 'fish']
-total_wp = 6  # total waypoints used in the hunt; MAKE SURE all waypoints .png are available!
-
-### other conf
-
-filename = 'screen.png'
-

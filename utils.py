@@ -1,13 +1,26 @@
 import datetime
 import pyautogui
+import pytesseract
 import PIL
 from PIL import Image
-from config import *
 from random import choice
 from time import sleep
+# app default config
+from config import *
+
+try:
+    from config_local import *
+except ImportError:
+    print('no local config')
+    pass
 
 
 class Backpack:
+
+    def get_avial_cap(self):
+        Other.get_screenshoot(region=cap_region)
+        cap = pytesseract.image_to_string('inverted.png')
+        return cap
 
     def get_avial_slots(self):
         timestamp = datetime.datetime.now()

@@ -5,6 +5,7 @@ import pyautogui
 import datetime
 from utils import Backpack
 from utils import Other
+from cave import Cave
 # todo status check hotkeys config
 # todo params in config
 # todo load custom config for hunting grounds ( new class hunting grounds)
@@ -24,6 +25,7 @@ class Gracz:
         self.monsterlist = []
         self.backpack = Backpack()
         self.other = Other()
+        self.cave = Cave()
         # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
 
@@ -98,23 +100,7 @@ class Gracz:
         print('TIME is_allright', looptime)
         return True
 
-    def is_on_wp(self, wp):
-        timestamp = datetime.datetime.now()
-        # standing on wp ?
-        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
-        print(xyz)
-        if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
-            #print('did not yet reach wp', wp)
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME HAS_REACHED_WP NOK', looptime)
-            return False
-        else:
-            print('>>>> reached wp', wp)
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME HAS_REACHED_WP OK', looptime)
-            return True
+
 
     def do_loot(self):
         timestamp = datetime.datetime.now()
@@ -147,21 +133,6 @@ class Gracz:
         print('TIME do_bij', looptime)
         return True
 
-    def do_go_wp(self, wp):
-        timestamp = datetime.datetime.now()
-        wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
-        if wp_coord is not None:
-            #print('going wp', str(wp), wp_coord[0], wp_coord[1])
-            pyautogui.click(wp_coord[0], wp_coord[1])
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME GO_WP OK', looptime)
-            return True
-        else:
-            print('couldnt find wp')
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME GP_WP NOK', looptime)
 
     def go(self, wp=1):
         # main logic goes here
@@ -176,13 +147,13 @@ class Gracz:
                     self.do_loot()
                 if not jestcobic:
                     self.do_loot()
-                    if self.is_on_wp(wp):
+                    if self.cave.is_on_wp(wp):
                         if wp == total_wp:
                             wp = 1
                         else:
                             wp += 1
                     else:
-                        self.do_go_wp(wp)
+                        self.cave.do_go_wp(wp)
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
         timestamp2 = datetime.datetime.now()
