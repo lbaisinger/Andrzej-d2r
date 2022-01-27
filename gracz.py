@@ -235,6 +235,6 @@ player = Gracz()
 ## new init
 ##
 #
-pyautogui.mouseInfo()
+#pyautogui.mouseInfo()
 #
-#player.loop()
+player.loop()
