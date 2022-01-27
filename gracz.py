@@ -1,9 +1,8 @@
 #from random import choice
 #import PIL
-#from time import sleep
+from time import sleep
 import pyautogui
 import datetime
-from config import *
 from utils import Backpack
 from utils import Other
 # todo status check hotkeys config
@@ -33,15 +32,15 @@ class Gracz:
 
     def is_bije(self):
         timestamp = datetime.datetime.now()
-        if pyautogui.locateOnScreen('src/status/attacking.png', region=minimapplus, confidence=.5) is None:
+        if pyautogui.locateOnScreen('src/status/attacking.png', region=redbox, confidence=.5) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME is_bije', looptime)
+            print('TIME is_bije F', looptime)
             return False
         else:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME is_bije', looptime)
+            print('TIME is_bije T', looptime)
             return True
 
     def is_co_bic(self):
@@ -103,7 +102,8 @@ class Gracz:
         timestamp = datetime.datetime.now()
         # standing on wp ?
         xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
-        if xyz != wp_center and xyz != wp_center2:
+        print(xyz)
+        if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
             #print('did not yet reach wp', wp)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
@@ -123,15 +123,15 @@ class Gracz:
         # 1 2 3
         # 4 C 6
         # 7 8 9
-        pyautogui.rightClick(character[0] - 150, character[1] - 150 ) # 1
-        pyautogui.rightClick(character[0], character[1] - 150)        # 2
-        pyautogui.rightClick(character[0] + 150, character[1] - 150)  # 3
-        pyautogui.rightClick(character[0] - 125, character[1])        # 4
+        pyautogui.rightClick(character[0] - 75, character[1] - 75 ) # 1
+        pyautogui.rightClick(character[0], character[1] - 75)        # 2
+        pyautogui.rightClick(character[0] + 75, character[1] - 75)  # 3
+        pyautogui.rightClick(character[0] - 60, character[1])        # 4
         #                                                                       # C
-        pyautogui.rightClick(character[0] + 125, character[1])        # 6
-        pyautogui.rightClick(character[0] - 150, character[1] + 150)  # 7
-        pyautogui.rightClick(character[0], character[1] + 150)        # 8
-        pyautogui.rightClick(character[0] + 150, character[1] + 150)  # 9
+        pyautogui.rightClick(character[0] + 60, character[1])        # 6
+        pyautogui.rightClick(character[0] - 75, character[1] + 75)  # 7
+        pyautogui.rightClick(character[0], character[1] + 75)        # 8
+        pyautogui.rightClick(character[0] + 75, character[1] + 75)  # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -193,7 +193,7 @@ class Gracz:
         return wp
 
     def loop(self):
-        nextwp = 1
+        nextwp = 6
         while True:
 #            print()
 #            print('going', nextwp)
@@ -237,4 +237,7 @@ player = Gracz()
 #
 #pyautogui.mouseInfo()
 #
+#player.do_loot()
+sleep(2)
 player.loop()
+#player.other.get_screenshoot(region=redbox)
