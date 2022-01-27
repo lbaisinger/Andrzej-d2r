@@ -12,6 +12,12 @@ from utils import Other
 # todo fast working monsterlirst
 # todo rings -> class utils.py
 
+try:
+    from config_local import *
+except ImportError:
+    print('no local config')
+    pass
+
 class Gracz:
 
     def __init__(self):
@@ -228,4 +234,7 @@ player = Gracz()
 ##
 ## new init
 ##
+#
+#pyautogui.mouseInfo()
+#
 player.loop()
