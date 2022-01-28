@@ -6,10 +6,8 @@ import datetime
 from utils import Backpack
 from utils import Other
 from cave import Cave
-# todo move import cave to some param like player(cave='')
-# For newer versions, see importlib.import_module for Python 2 and Python 3.
+# import cave
 from caves.venore_swamp_trolls import *
-
 
 # todo status check hotkeys config
 # todo params in config
@@ -22,7 +20,6 @@ try:
 except ImportError:
     print('no local config')
     pass
-
 
 class Gracz:
 
@@ -176,7 +173,6 @@ class Gracz:
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
         # todo below to be configurable
-        #if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
         if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
             if not bije:
                 if jestcobic:
@@ -188,6 +184,7 @@ class Gracz:
                         if wp == list(wps.keys())[-1]:
                             wp = list(wps.keys())[0]
                         else:
+                            # poprawic next
                             wp += 1
                     else:
                         self.cave.do_go_wp(wp)
