@@ -6,6 +6,9 @@ import datetime
 from utils import Backpack
 from utils import Other
 from cave import Cave
+# import cave
+from caves.venore_swamp_trolls import *
+
 # todo status check hotkeys config
 # todo params in config
 # todo load custom config for hunting grounds ( new class hunting grounds)
@@ -148,9 +151,10 @@ class Gracz:
                 if not jestcobic:
                     self.do_loot()
                     if self.cave.is_on_wp(wp):
-                        if wp == total_wp:
-                            wp = 1
+                        if wp == wps[-1]:
+                            wp = wps[0]
                         else:
+                            # poprawic next
                             wp += 1
                     else:
                         self.cave.do_go_wp(wp)
@@ -209,6 +213,11 @@ player = Gracz()
 #pyautogui.mouseInfo()
 #
 #player.do_loot()
-sleep(2)
-player.loop()
+#sleep(2)
+#player.loop()
 #player.other.get_screenshoot(region=redbox)
+
+player.cave.use_rope()
+player.cave.use_shovel()
+player.cave.is_has_cap()
+# todo update cap_region
