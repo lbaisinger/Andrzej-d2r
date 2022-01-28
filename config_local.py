@@ -47,7 +47,7 @@ hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 
 
-min_cap_to_cont_hunt = 50
+min_cap_to_cont_hunt = 500
 
 hotkey_rope = 'f8'
 hotkey_shovel = 'f9'

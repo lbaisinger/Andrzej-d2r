@@ -175,7 +175,8 @@ class Gracz:
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
         # todo below to be configurable
-        if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
+        #if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
+        if self.is_allright(hplow=False, hpmid=False, manahigh=False, manalow=False):
             if not bije:
                 if jestcobic:
                     self.do_bij()
@@ -183,8 +184,8 @@ class Gracz:
                 if not jestcobic:
                     self.do_loot()
                     if self.cave.is_on_wp(wp):
-                        if wp == wps[-1]:
-                            wp = wps[0]
+                        if wp == list(wps.keys())[-1]:
+                            wp = list(wps.keys())[0]
                         else:
                             # poprawic next
                             wp += 1
@@ -192,28 +193,6 @@ class Gracz:
                         self.cave.do_go_wp(wp)
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
-        # check if ready go to dp and go
-        if self.cave.is_ready_to_go_to_dp() == 'dont go now dp':
-            wp = list(to_dp_wps)[0]
-            while wp is not True:
-                print('before', wp)
-                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
-                # #todo zostaje na chwile
-                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-                print('after', wp)
-                if wp is False:
-                    print('gdzies wyjebalo falsem')
-                    return False
-            # todo doing resupply
-            sleep(50)
-            self.do_ressuply()
-            # go back to cave
-            wp = list(to_cave_wps)[0]
-            while wp is not True:
-                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
-            # reset wp for cave bot
-            wp = list(wps)[0]
-
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()
@@ -269,6 +248,13 @@ player = Gracz()
 #player.do_loot()
 # Focus on the game window
 pyautogui.click(default)
+sleep(2)
+player.loop()
+#player.other.get_screenshoot(region=redbox)
+
+#player.cave.use_rope()
+#player.cave.use_shovel()
+
 sleep(2)
 #player.other.get_screenshoot(region=cap_region)
 

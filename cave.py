@@ -43,6 +43,7 @@ class Cave:
         return True
 
     def is_has_cap(self):
+        timestamp = datetime.datetime.now()
         bp = Backpack()
         cap = bp.get_avial_cap()
         if int(cap) > min_cap_to_cont_hunt:
@@ -72,28 +73,6 @@ class Cave:
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
-        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.96)
-        if xyz is not None:
-            # debug
-            print(xyz)
-            #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
-            if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
-                print('did not yet reach wp', wp)
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME is_on_wp F', looptime)
-                return False
-            else:
-                print('>>>> reached wp', wp)
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME is_on_wp T', looptime)
-                return True
-        else:
-            print('couldnt find wp', wp)
-            # #try to move minimap
-            # #add timestamp
-            return False
         xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
         if xyz is not None:
             # debug
@@ -111,7 +90,6 @@ class Cave:
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp T', looptime)
                 return True
-
 
     def do_go_wp(self, wp):
         timestamp = datetime.datetime.now()
@@ -223,7 +201,20 @@ class Cave:
 #        if not specials[currentwp] == 'LAST':
 #            # todo przeniesc to gdzies na pewno nie tu
 #            # sprawdz czy nast na horyzoncie
-#
+#            nextwp = currentwp+1
+#            print('debug', nextwp)
+#            print('debug', specials[currentwp])
+#            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
+#                                                          region=minimap,
+#                                                          confidence=.8)
+#            # jesli jest
+#            if nextwp_coord is not None:
+#                # jest nast na horyzncie, znaczy sie dotarlismy
+#                # zwroc nastepny
+#                timestamp2 = datetime.datetime.now()
+#                looptime = timestamp2 - timestamp
+#                print('TIME go_somwhere next_on_horizon', looptime)
+#                return nextwp
         # w inny wypadku
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
