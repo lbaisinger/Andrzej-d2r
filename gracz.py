@@ -7,7 +7,9 @@ from utils import Backpack
 from utils import Other
 from cave import Cave
 # todo move import cave to some param like player(cave='')
+# For newer versions, see importlib.import_module for Python 2 and Python 3.
 from caves.venore_swamp_trolls import *
+
 
 # todo status check hotkeys config
 # todo params in config
@@ -20,6 +22,7 @@ try:
 except ImportError:
     print('no local config')
     pass
+
 
 class Gracz:
 
