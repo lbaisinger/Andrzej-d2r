@@ -146,7 +146,8 @@ class Gracz:
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
         # todo below to be configurable
-        if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
+        #if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
+        if self.is_allright(hplow=False, hpmid=False, manahigh=False, manalow=False):
             if not bije:
                 if jestcobic:
                     self.do_bij()
@@ -154,15 +155,26 @@ class Gracz:
                 if not jestcobic:
                     self.do_loot()
                     if self.cave.is_on_wp(wp):
-                        if wp == wps[-1]:
-                            wp = wps[0]
+                        if wp == list(wps.keys())[-1]:
+                            wp = list(wps.keys())[0]
                         else:
-                            # poprawic next
                             wp += 1
                     else:
                         self.cave.do_go_wp(wp)
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
+        # check if ready go to dp and go
+        if self.cave.is_ready_to_go_to_dp():
+            wp = list(depo_wps)[0]
+            while wp is not True:
+                wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
+                if wp is False:
+                    print('gdzies wyjebalo falsem')
+                    return False
+                #print('generated wp', wp)
+            print('its done')
+            wp = list(wps)[0]
+        # todo here should be smth to go back
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()
@@ -260,17 +272,23 @@ depo_wps = {
     3: 'LAST'
 }
 #print(player.cave.go_somwhere(currentwp=1, specials=depo_wps))
+#
+#while True:
+#    print()
+#    print('next while true dla', wp)
+#    print()
+#    # go to cave
+#    if wp is not True:
+#        wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
+#        if wp is False:
+#            print('gdzies wyjebalo falsem')
+#            break
+#        print('generated wp', wp)
+#    else:
+#        print('its done')
+#        # loop will cave bot and check if need to go to dp
+#        wp = 1
+#        player.loop()
+#
 
-while True:
-    print()
-    print('next while true dla', wp)
-    print()
-    if wp is not True:
-        wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
-        if wp is False:
-            print('gdzies wyjebalo falsem')
-            break
-        print('generated wp', wp)
-    else:
-        print('its done')
-        break
+player.loop()

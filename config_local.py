@@ -28,7 +28,7 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 
-min_cap_to_cont_hunt = 50
+min_cap_to_cont_hunt = 500
 
 hotkey_rope = 'f8'
 hotkey_shovel = 'f9'

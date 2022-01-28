@@ -71,7 +71,7 @@ class Cave:
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
-        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
+        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.9)
         if xyz is not None:
             # debug
             print(xyz)
