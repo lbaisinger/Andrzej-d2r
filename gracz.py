@@ -6,8 +6,9 @@ import datetime
 from utils import Backpack
 from utils import Other
 from cave import Cave
-# import cave
+# todo move import cave to some param like player(cave='')
 from caves.venore_swamp_trolls import *
+
 
 # todo status check hotkeys config
 # todo params in config
@@ -20,6 +21,7 @@ try:
 except ImportError:
     print('no local config')
     pass
+
 
 class Gracz:
 
@@ -181,8 +183,8 @@ class Gracz:
                 if not jestcobic:
                     self.do_loot()
                     if self.cave.is_on_wp(wp):
-                        if wp == list(wps.keys())[-1]:
-                            wp = list(wps.keys())[0]
+                        if wp == wps[-1]:
+                            wp = wps[0]
                         else:
                             # poprawic next
                             wp += 1
@@ -334,23 +336,7 @@ to_cave_wps = {
 #from caves.rook import *
 from caves.venore_swamp_trolls import *
 
-# go to cave first time from bank
-#wp = 4
-#while wp is not True:
-#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
-#    if wp is False:
-#        print('in be4 go wywalil false')
-#        break
-#
-#player.other.get_screenshoot(region=bw)
-
-# back to regular routine with go to dp if no cap
-
-#player.loop()
-#wp = 17
-#while wp is not True:
-#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-#    if wp is False:
-#        print('in be4 go wywalil false')
-#        break
-player.do_ressuply()
+player.cave.use_rope()
+player.cave.use_shovel()
+player.cave.is_has_cap()
+# todo update cap_region

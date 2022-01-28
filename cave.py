@@ -43,24 +43,18 @@ class Cave:
         return True
 
     def is_has_cap(self):
-        timestamp = datetime.datetime.now()
         bp = Backpack()
-        try:
-            cap = bp.get_avial_cap()
-            if int(cap) > min_cap_to_cont_hunt:
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME is_has_cap T', looptime)
-                return True
-            else:
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME is_has_cap F', looptime)
-                return False
-        except ValueError:
-            # todo fix it to be sure that it can always read cap
-            print('WARNING - couldnt read cap to int')
+        cap = bp.get_avial_cap()
+        if int(cap) > min_cap_to_cont_hunt:
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('TIME is_has_cap T', looptime)
             return True
+        else:
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('TIME is_has_cap F', looptime)
+            return False
 
     def is_ready_to_go_to_dp(self):
         timestamp = datetime.datetime.now()
@@ -101,19 +95,22 @@ class Cave:
             # #add timestamp
             return False
         xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
-        print(xyz)
-        if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
-            # print('did not yet reach wp', wp)
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_on_wp F', looptime)
-            return False
-        else:
-            print('>>>> reached wp', wp)
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_on_wp T', looptime)
-            return True
+        if xyz is not None:
+            # debug
+            print(xyz)
+            if not(wp_center[0] - 1 <= xyz[0] <= wp_center[0] + 1) and not(wp_center[1] - 1 <= xyz[1] <= wp_center[1] + 1):
+            #if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
+                print('did not yet reach wp', wp)
+                timestamp2 = datetime.datetime.now()
+                looptime = timestamp2 - timestamp
+                print('TIME is_on_wp F', looptime)
+                return False
+            else:
+                print('>>>> reached wp', wp)
+                timestamp2 = datetime.datetime.now()
+                looptime = timestamp2 - timestamp
+                print('TIME is_on_wp T', looptime)
+                return True
 
 
     def do_go_wp(self, wp):
@@ -164,32 +161,6 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME do_go_wp_plus shovel', looptime)
             return True
-        if specials[wp] == 'LAST':
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus LAST', looptime)
-            return True
-        if specials[wp] == 'lvl_changing_wp':
-            # see if next in horizon
-            nextwp = wp + 1
-            print('debug', nextwp)
-            print('debug', specials[wp])
-            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                          region=minimap,
-                                                          confidence=.8)
-            while nextwp_coord is None:
-                nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                              region=minimap,
-                                                              confidence=.8)
-                self.do_go_wp(wp)
-                sleep(.5)
-                print('looking for next wp')
-
-            # jesli jest juz znajdzie
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus lvl_changer', looptime)
-            return True
         if specials[wp] == 'dosmthfancy':
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
@@ -203,6 +174,7 @@ class Cave:
         # if did not catch in any of ifs above
         return False
 
+
 # new one to go dp/bank in one
     def go_somwhere(self, currentwp, specials: {}):
         print(currentwp)
@@ -214,7 +186,7 @@ class Cave:
         if self.is_on_wp(wp=currentwp):
             print('jestem na wp!!')
             # jest to ostatni wp
-            if str(specials[currentwp]) == "LAST":
+            if specials[currentwp] == 'LAST':
                 # its done to ostatni
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -259,113 +231,5 @@ class Cave:
         return currentwp
 
 
-
-
-    def go_to_cave(self, currentwp):
-        timestamp = datetime.datetime.now()
-        #  to_cave_wps
-        # go wp
-        self.do_go_wp(currentwp)
-        # see if special moves
-        if currentwp in to_cave_special_wps:
-            print('special way point!')
-            if self.is_on_wp(currentwp):
-                print('standing on special way point!')
-                if to_cave_special_wps[currentwp] == 'rope':
-                    self.use_rope()
-                    # todo
-                    #currentwp = currentwp[#index +1]
-                    timestamp2 = datetime.datetime.now()
-                    looptime = timestamp2 - timestamp
-                    print('TIME go_to_cave', looptime)
-                    return currentwp
-                if to_cave_special_wps[currentwp] == 'shovel':
-                    self.use_shovel()
-                    # todo
-                    #currentwp = currentwp[##index +1]
-                    timestamp2 = datetime.datetime.now()
-                    looptime = timestamp2 - timestamp
-                    print('TIME go_to_cave', looptime)
-                    return currentwp
-        else:
-            # see if next wp on minimap
-            # todo index +1
-            #wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(currentwp[index+1]) + ".png", region=minimap, confidence=.8)
-            wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(currentwp) + ".png", region=minimap, confidence=.8)
-            if wp_coord is not None:
-                print('next wp in area')
-                #currentwp = currentwp[#index +1]
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_to_cave', looptime)
-                return currentwp
-            else:
-                print('cant find next wp')
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_to_cave', looptime)
-                return currentwp
-
-        first_cave_wp = pyautogui.locateCenterOnScreen("src/wp/" + str(total_wp[0]) + ".png",region=minimap, confidence=.8)
-        if first_cave_wp is not None:
-            print('seems like reached cave')
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME go_to_cave', looptime)
-            return True
-
-
-    def go_to_dp(self, currentwp):
-        timestamp = datetime.datetime.now()
-            # go wp
-        self.do_go_wp(currentwp)
-        # see if special moves
-        if currentwp in to_dp_special_wps:
-            print('special way point!')
-            if self.is_on_wp(currentwp):
-                print('standing on special way point!')
-                if to_dp_special_wps[currentwp] == 'rope':
-                    self.use_rope()
-                    # todo
-                    #currentwp = currentwp[#index +1]
-                    timestamp2 = datetime.datetime.now()
-                    looptime = timestamp2 - timestamp
-                    print('TIME go_to_dp', looptime)
-                    return currentwp
-                if to_dp_special_wps[currentwp] == 'shovel':
-                    self.use_shovel()
-                    # todo
-                    #currentwp = currentwp[##index +1]
-                    timestamp2 = datetime.datetime.now()
-                    looptime = timestamp2 - timestamp
-                    print('TIME go_to_dp', looptime)
-                    return currentwp
-        else:
-            # see if next wp on minimap
-            # todo index +1
-            #wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(currentwp[index+1]) + ".png", region=minimap, confidence=.8)
-            wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(currentwp) + ".png", region=minimap, confidence=.8)
-            if wp_coord is not None:
-                print('next wp in area')
-                #currentwp = currentwp[#index +1]
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_to_dp', looptime)
-                return currentwp
-            else:
-                print('cant find next wp')
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_to_dp', looptime)
-                return currentwp
-
-        #todo fix it to print last
-        bank = self.is_on_wp(to_dp_wps[-1])
-        if bank:
-            print('seems like reached dp')
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME go_to_dp', looptime)
-            return True
 
 
