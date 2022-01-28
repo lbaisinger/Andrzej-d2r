@@ -19,7 +19,7 @@ character = (765, 480)
 wp_center = (1804, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
-cap_region = (0, 0)
+cap_region = (1832, 274, 25, 12)
 
 # todo fix below
 mana_pool_potek = (1676, 35)

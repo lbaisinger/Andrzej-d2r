@@ -220,7 +220,57 @@ player = Gracz()
 #player.loop()
 #player.other.get_screenshoot(region=redbox)
 
-player.cave.use_rope()
-player.cave.use_shovel()
-player.cave.is_has_cap()
-# todo update cap_region
+#player.cave.use_rope()
+#player.cave.use_shovel()
+
+sleep(2)
+#player.other.get_screenshoot(region=cap_region)
+
+# tested
+#print(player.cave.is_has_cap())                #ok
+
+#print(player.backpack.get_avial_slots())       #ok
+
+#player.cave.use_rope()                         #ok
+#player.cave.use_shovel()                        #ok
+#print(player.cave.is_ready_to_go_to_dp())       #ok
+#player.cave.is_on_wp(wp=1)                     #ok
+#player.cave.do_go_wp(wp=1)                     #ok
+
+# temp specials
+
+temp_specials = {
+    1: 'rope',
+    3: 'shovel'
+}
+#print(player.cave.is_wp_fancy(wp=1, specials=temp_specials))       #ok
+#print(player.cave.do_go_wp_plus(wp=1, specials=temp_specials))     #Ok
+
+
+wp = 1
+#print(temp_specials[wp])
+#print(temp_specials[wp+1])
+
+#tm = list(temp_specials)
+#print(tm[tm.index(wp) + 1])
+
+depo_wps = {
+    1: 'rope',
+    2: None,
+    3: 'LAST'
+}
+#print(player.cave.go_somwhere(currentwp=1, specials=depo_wps))
+
+while True:
+    print()
+    print('next while true dla', wp)
+    print()
+    if wp is not True:
+        wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
+        if wp is False:
+            print('gdzies wyjebalo falsem')
+            break
+        print('generated wp', wp)
+    else:
+        print('its done')
+        break

@@ -18,8 +18,11 @@ except ImportError:
 class Backpack:
 
     def get_avial_cap(self):
-        Other.get_screenshoot(region=cap_region)
-        cap = pytesseract.image_to_string('inverted.png')
+        # returns amount of cap left based on what it can read from inverted.png
+        # tested - looks fine
+        Other().get_screenshoot(region=cap_region)
+        cap = pytesseract.image_to_string('inverted.png', config='--psm 10 --oem 3 -c tessedit_char_whitelest=0123456789')
+        print(cap.strip())
         return cap
 
     def get_avial_slots(self):
