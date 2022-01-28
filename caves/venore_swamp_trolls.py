@@ -5,7 +5,7 @@
 ### Swamp Trolls
 ###
 ### Hall of fame:
-### puchal 21 - 30+
+### puchal 21 - 31+
 
 ### Waypoints
 
@@ -13,17 +13,30 @@
 wp_index = 1
 
 # All waypoints to loop in that cave
-total_wp = [1, 2, 3, 4, 5, 6]
+wps = {'1': None,
+       '2': None,
+       '3': None,
+       '4': None,
+       '5': None,
+       '6': None}
 
 # Path to cave
 # from venore east bank
-to_cave_wps = [16, 17, 18, 19]
-to_cave_special_wps = {'17': 'shovel'}
+to_cave_wps = {'16': None,
+               '17': 'shovel',
+               '18': None,
+               '19': 'LAST'}
 
 # Path to depo
 # last one is venore east bank
 # from any in that cave
-to_dp_wps = [16, 15, 14, 13, 12, 19, 14]
+to_dp_wps = {'16': None,
+             '15': 'rope',
+             '14': 'rope',
+             '13': None,
+             '12': None,
+             '19': None,
+             '20': 'LAST'}
 to_dp_special_wps = {'15': 'rope',
                      '14': 'rope'}
 
