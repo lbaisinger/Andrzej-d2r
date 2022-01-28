@@ -90,6 +90,9 @@ class Cave:
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp T', looptime)
                 return True
+        else:
+            print('couldnt find wp', wp)
+            return False
 
     def do_go_wp(self, wp):
         timestamp = datetime.datetime.now()
@@ -139,6 +142,32 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME do_go_wp_plus shovel', looptime)
             return True
+        if specials[wp] == 'LAST':
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('TIME do_go_wp_plus LAST', looptime)
+            return True
+        if specials[wp] == 'lvl_changing_wp':
+            # see if next in horizon
+            nextwp = wp + 1
+            print('debug', nextwp)
+            print('debug', specials[wp])
+            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
+                                                          region=minimap,
+                                                          confidence=.8)
+            while nextwp_coord is None:
+                nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
+                                                              region=minimap,
+                                                              confidence=.8)
+                self.do_go_wp(wp)
+                sleep(.5)
+                print('looking for next wp')
+
+            # jesli jest juz znajdzie
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('TIME do_go_wp_plus lvl_changer', looptime)
+            return True
         if specials[wp] == 'dosmthfancy':
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
@@ -164,7 +193,7 @@ class Cave:
         if self.is_on_wp(wp=currentwp):
             print('jestem na wp!!')
             # jest to ostatni wp
-            if specials[currentwp] == 'LAST':
+            if str(specials[currentwp]) == "LAST":
                 # its done to ostatni
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -183,6 +212,8 @@ class Cave:
                 looptime = timestamp2 - timestamp
                 print('TIME go_somwhere do_go_wp_plus', looptime)
                 return currentwp
+            else:
+                return currentwp+1
             ## if not caught anything else
             print('face the thing that should not be')
             print('currentwp', currentwp)

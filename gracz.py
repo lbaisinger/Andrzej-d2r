@@ -187,12 +187,30 @@ class Gracz:
                         if wp == list(wps.keys())[-1]:
                             wp = list(wps.keys())[0]
                         else:
-                            # poprawic next
                             wp += 1
                     else:
                         self.cave.do_go_wp(wp)
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
+        # check if ready go to dp and go
+        if self.cave.is_ready_to_go_to_dp():
+            wp = list(to_dp_wps)[0]
+            while wp is not True:
+                print('before', wp)
+                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+                print('after', wp)
+                if wp is False:
+                    print('gdzies wyjebalo falsem')
+                    return False
+            # todo doing resupply
+            self.do_ressuply()
+            # go back to cave
+            wp = list(to_cave_wps)[0]
+            while wp is not True:
+                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+            # reset wp for cave bot
+            wp = list(wps)[0]
+
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()

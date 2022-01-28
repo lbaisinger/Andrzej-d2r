@@ -47,7 +47,7 @@ hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 
 
-min_cap_to_cont_hunt = 500
+min_cap_to_cont_hunt = 150
 
 hotkey_rope = 'f8'
 hotkey_shovel = 'f9'
@@ -55,6 +55,9 @@ hotkey_exura = 'f3'
 hotkey_manapot = 'f2'
 hotkey_food = 'f4'
 hotkey_chase = '/'
+hotkey_hi = 'f8'
+hotkey_deposit_all = 'f8'
+hotkey_yes = 'f8'
 
 
 ### Regions puchal 4k
