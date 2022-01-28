@@ -6,7 +6,7 @@ import datetime
 from utils import Backpack
 from utils import Other
 from cave import Cave
-# import cave
+# todo move import cave to some param like player(cave='')
 from caves.venore_swamp_trolls import *
 
 # todo status check hotkeys config
