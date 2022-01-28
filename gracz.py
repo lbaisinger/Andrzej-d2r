@@ -190,7 +190,7 @@ class Gracz:
                         else:
                             wp += 1
                     else:
-                        self.do_go_wp(wp)
+                        self.cave.do_go_wp(wp)
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
         # check if ready go to dp and go
