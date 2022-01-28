@@ -106,7 +106,19 @@ class Gracz:
         print('TIME is_allright', looptime)
         return True
 
+    def do_bank_deposit(self):
+        pyautogui.press(hotkey_hi)
+        sleep(1)
+        pyautogui.press(hotkey_deposit_all)
+        sleep(1)
+        pyautogui.press(hotkey_yes)
+        return True
 
+    def do_ressuply(self):
+        if self.do_bank_deposit():
+            return True
+        else:
+            return False
 
     def do_loot(self):
         timestamp = datetime.datetime.now()
@@ -165,16 +177,23 @@ class Gracz:
                         self.backpack.do_drop_random_item_from_blacklist()
         # check if ready go to dp and go
         if self.cave.is_ready_to_go_to_dp():
-            wp = list(depo_wps)[0]
+            wp = list(to_dp_wps)[0]
             while wp is not True:
-                wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
+                print('before', wp)
+                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+                print('after', wp)
                 if wp is False:
                     print('gdzies wyjebalo falsem')
                     return False
-                #print('generated wp', wp)
-            print('its done')
+            # todo doing resupply
+            self.do_ressuply()
+            # go back to cave
+            wp = list(to_cave_wps)[0]
+            while wp is not True:
+                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+            # reset wp for cave bot
             wp = list(wps)[0]
-        # todo here should be smth to go back
+
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()
@@ -183,7 +202,7 @@ class Gracz:
         return wp
 
     def loop(self):
-        nextwp = 6
+        nextwp = 1
         while True:
 #            print()
 #            print('going', nextwp)
@@ -290,5 +309,15 @@ depo_wps = {
 #        wp = 1
 #        player.loop()
 #
+
+to_cave_wps = {
+    1: None,
+    2: 'shovel',
+    3: None,
+    4: None,
+    5: 'LAST'
+}
+# load cave
+from caves.rook import *
 
 player.loop()
