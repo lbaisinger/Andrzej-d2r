@@ -188,7 +188,7 @@ class Gracz:
                     print('gdzies wyjebalo falsem')
                     return False
             # todo doing resupply
-            sleep(5)
+            sleep(50)
             self.do_ressuply()
             # go back to cave
             wp = list(to_cave_wps)[0]
@@ -336,4 +336,10 @@ from caves.venore_swamp_trolls import *
 
 # back to regular routine with go to dp if no cap
 
-player.loop()
+#player.loop()
+wp = 14
+while wp is not True:
+    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+    if wp is False:
+        print('in be4 go wywalil false')
+        break
