@@ -20,7 +20,8 @@ wps = {1: None,
        3: None,
        4: None,
        5: None,
-       6: None}
+       6: None,
+       7: None}
 
 # Path to cave
 # from venore east bank

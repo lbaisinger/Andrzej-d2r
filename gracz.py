@@ -108,9 +108,9 @@ class Gracz:
 
     def do_bank_deposit(self):
         pyautogui.press(hotkey_hi)
-        sleep(1)
+        sleep(2)
         pyautogui.press(hotkey_deposit_all)
-        sleep(1)
+        sleep(2)
         pyautogui.press(hotkey_yes)
         return True
 
@@ -176,7 +176,7 @@ class Gracz:
                         # backpack_check()
                         self.backpack.do_drop_random_item_from_blacklist()
         # check if ready go to dp and go
-        if self.cave.is_ready_to_go_to_dp():
+        if self.cave.is_ready_to_go_to_dp() == 'dont go now dp':
             wp = list(to_dp_wps)[0]
             while wp is not True:
                 print('before', wp)
@@ -331,15 +331,16 @@ from caves.venore_swamp_trolls import *
 #    if wp is False:
 #        print('in be4 go wywalil false')
 #        break
-
+#
 #player.other.get_screenshoot(region=bw)
 
 # back to regular routine with go to dp if no cap
 
 #player.loop()
-wp = 14
-while wp is not True:
-    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-    if wp is False:
-        print('in be4 go wywalil false')
-        break
+#wp = 17
+#while wp is not True:
+#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+#    if wp is False:
+#        print('in be4 go wywalil false')
+#        break
+player.do_ressuply()

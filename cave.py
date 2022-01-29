@@ -78,12 +78,12 @@ class Cave:
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
-        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
+        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.96)
         if xyz is not None:
             # debug
             print(xyz)
-            if not(wp_center[0]  <= xyz[0] <= wp_center[0]) and not(wp_center[1] <= xyz[1] <= wp_center[1] ):
-            #if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
+            #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
+            if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
                 print('did not yet reach wp', wp)
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -97,6 +97,8 @@ class Cave:
                 return True
         else:
             print('couldnt find wp', wp)
+            # #try to move minimap
+            # #add timestamp
             return False
 
     def do_go_wp(self, wp):
