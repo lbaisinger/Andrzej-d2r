@@ -74,7 +74,6 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME is_ready_to_go_dp T', looptime)
             return True
-            #return False # todo for now dont go back
 
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
