@@ -107,9 +107,9 @@ class Gracz:
 
     def do_bank_deposit(self):
         pyautogui.press(hotkey_hi)
-        sleep(2)
+        sleep(1)
         pyautogui.press(hotkey_deposit_all)
-        sleep(2)
+        sleep(1)
         pyautogui.press(hotkey_yes)
         return True
 
@@ -219,7 +219,7 @@ class Gracz:
         return wp
 
     def loop(self):
-        nextwp = 6
+        nextwp = 1
         while True:
 #            print()
 #            print('going', nextwp)
@@ -337,10 +337,6 @@ to_cave_wps = {
     5: 'LAST'
 }
 # load cave
-#from caves.rook import *
-from caves.venore_swamp_trolls import *
+from caves.rook import *
 
-player.cave.use_rope()
-player.cave.use_shovel()
-player.cave.is_has_cap()
-# todo update cap_region
+player.loop()

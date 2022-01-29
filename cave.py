@@ -45,17 +45,22 @@ class Cave:
     def is_has_cap(self):
         timestamp = datetime.datetime.now()
         bp = Backpack()
-        cap = bp.get_avial_cap()
-        if int(cap) > min_cap_to_cont_hunt:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_has_cap T', looptime)
+        try:
+            cap = bp.get_avial_cap()
+            if int(cap) > min_cap_to_cont_hunt:
+                timestamp2 = datetime.datetime.now()
+                looptime = timestamp2 - timestamp
+                print('TIME is_has_cap T', looptime)
+                return True
+            else:
+                timestamp2 = datetime.datetime.now()
+                looptime = timestamp2 - timestamp
+                print('TIME is_has_cap F', looptime)
+                return False
+        except ValueError:
+            # todo fix it to be sure that it can always read cap
+            print('WARNING - couldnt read cap to int')
             return True
-        else:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_has_cap F', looptime)
-            return False
 
     def is_ready_to_go_to_dp(self):
         timestamp = datetime.datetime.now()
@@ -68,7 +73,8 @@ class Cave:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('TIME is_ready_to_go_dp T', looptime)
-            return True
+            #return True # todo for now dont go back
+            return False
 
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
@@ -181,7 +187,6 @@ class Cave:
         # if did not catch in any of ifs above
         return False
 
-
 # new one to go dp/bank in one
     def go_somwhere(self, currentwp, specials: {}):
         print(currentwp)
@@ -212,8 +217,6 @@ class Cave:
                 looptime = timestamp2 - timestamp
                 print('TIME go_somwhere do_go_wp_plus', looptime)
                 return currentwp
-            else:
-                return currentwp+1
             ## if not caught anything else
             print('face the thing that should not be')
             print('currentwp', currentwp)
