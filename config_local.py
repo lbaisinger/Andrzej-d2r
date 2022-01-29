@@ -8,8 +8,8 @@
 # ring slot
 # todo fill more
 ### REGIONS (1920 x 1080) ###
-bw = (1744, 454, 160, 150)
-redbox = (1744, 474, 40, 90)
+bw = (1746, 474, 150, 150)
+redbox = (1745, 474, 40, 90)
 minimap = (1750, 30, 110, 110)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
@@ -28,7 +28,7 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 
-min_cap_to_cont_hunt = 150
+min_cap_to_cont_hunt = 15
 
 hotkey_rope = 'f8'
 hotkey_shovel = 'f9'
@@ -36,9 +36,9 @@ hotkey_exura = 'f3'
 hotkey_manapot = 'f2'
 hotkey_food = 'f4'
 hotkey_chase = '/'
-hotkey_hi = 'f8'
-hotkey_deposit_all = 'f8'
-hotkey_yes = 'f8'
+hotkey_hi = 'f10'
+hotkey_deposit_all = 'f11'
+hotkey_yes = 'f12'
 
 
 ### Regions puchal 4k

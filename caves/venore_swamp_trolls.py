@@ -6,6 +6,8 @@
 ###
 ### Hall of fame:
 ### puchal 21 - 31+
+### Cremna Nepe 8+
+
 
 ### Waypoints
 
@@ -22,21 +24,26 @@ wps = {1: None,
 
 # Path to cave
 # from venore east bank
-to_cave_wps = {16: None,
-               17: 'shovel',
-               18: None,
-               19: 'LAST'}
+# 4 na powierzchni
+to_cave_wps = {4: None,
+               5: 'lvl_changing_wp',
+               6: 'lvl_changing_wp',
+               7: 'lvl_changing_wp',
+               8: 'shovel',
+               9: 'lvl_changing_wp',
+               10: 'rope',
+               11: 'LAST'}
 
 # Path to depo
 # last one is venore east bank
 # from any in that cave
-to_dp_wps = {16: None,
-             15: 'rope',
-             14: 'rope',
-             13: None,
-             12: None,
-             19: None,
-             20: 'LAST'}
+to_dp_wps = {11: 'lvl_changing_wp',
+             12: 'rope',
+             13: 'rope',
+             14: 'lvl_changing_wp',
+             15: 'lvl_changing_wp',
+             16: 'lvl_changing_wp',
+             17: 'LAST'}
 
 # Monster list for the hunt, must match names of the .png files LOWERCASE, prioritize
 target_list = ["swamp_troll"]

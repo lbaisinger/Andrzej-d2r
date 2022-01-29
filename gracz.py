@@ -159,7 +159,7 @@ class Gracz:
         jestcobic = self.is_co_bic()
         # todo below to be configurable
         #if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
-        if self.is_allright(hplow=False, hpmid=False, manahigh=False, manalow=False):
+        if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
             if not bije:
                 if jestcobic:
                     self.do_bij()
@@ -180,12 +180,15 @@ class Gracz:
             wp = list(to_dp_wps)[0]
             while wp is not True:
                 print('before', wp)
+                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
+                # #todo zostaje na chwile
                 wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
                 print('after', wp)
                 if wp is False:
                     print('gdzies wyjebalo falsem')
                     return False
             # todo doing resupply
+            sleep(5)
             self.do_ressuply()
             # go back to cave
             wp = list(to_cave_wps)[0]
@@ -318,6 +321,19 @@ to_cave_wps = {
     5: 'LAST'
 }
 # load cave
-from caves.rook import *
+#from caves.rook import *
+from caves.venore_swamp_trolls import *
+
+# go to cave first time from bank
+#wp = 4
+#while wp is not True:
+#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+#    if wp is False:
+#        print('in be4 go wywalil false')
+#        break
+
+#player.other.get_screenshoot(region=bw)
+
+# back to regular routine with go to dp if no cap
 
 player.loop()
