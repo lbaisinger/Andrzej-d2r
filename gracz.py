@@ -107,9 +107,9 @@ class Gracz:
 
     def do_bank_deposit(self):
         pyautogui.press(hotkey_hi)
-        sleep(1)
+        sleep(2)
         pyautogui.press(hotkey_deposit_all)
-        sleep(1)
+        sleep(2)
         pyautogui.press(hotkey_yes)
         return True
 
@@ -197,12 +197,15 @@ class Gracz:
             wp = list(to_dp_wps)[0]
             while wp is not True:
                 print('before', wp)
+                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
+                # #todo zostaje na chwile
                 wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
                 print('after', wp)
                 if wp is False:
                     print('gdzies wyjebalo falsem')
                     return False
             # todo doing resupply
+            sleep(50)
             self.do_ressuply()
             # go back to cave
             wp = list(to_cave_wps)[0]
@@ -337,6 +340,25 @@ to_cave_wps = {
     5: 'LAST'
 }
 # load cave
-from caves.rook import *
+#from caves.rook import *
+from caves.venore_swamp_trolls import *
 
-player.loop()
+# go to cave first time from bank
+#wp = 4
+#while wp is not True:
+#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+#    if wp is False:
+#        print('in be4 go wywalil false')
+#        break
+
+#player.other.get_screenshoot(region=bw)
+
+# back to regular routine with go to dp if no cap
+
+#player.loop()
+wp = 14
+while wp is not True:
+    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+    if wp is False:
+        print('in be4 go wywalil false')
+        break
