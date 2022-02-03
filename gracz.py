@@ -166,8 +166,9 @@ class Gracz:
     def go(self, wp=1):
         # main logic goes here
         timestamp = datetime.datetime.now()
-        if Other.is_ring_on('sword_ring') is False:
-            Other.put_on_ring(hotkey_ring)
+        if self.other.is_ring_on() is False:
+            self.other.put_on_ring(hotkey_ring)
+            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
         # todo below to be configurable
@@ -240,6 +241,8 @@ player = Gracz()
 #pyautogui.mouseInfo()
 #
 #player.do_loot()
+# Focus on the game window
+pyautogui.click(default)
 sleep(2)
 player.loop()
 #player.other.get_screenshoot(region=redbox)

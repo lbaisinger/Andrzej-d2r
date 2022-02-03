@@ -13,7 +13,7 @@ redbox = (1744, 474, 40, 90)
 minimap = (1750, 30, 110, 110)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
-ring = (1755, 230, 25, 25)
+ring = (1755, 250, 25, 25)
 default = (1550, 300)
 character = (765, 480)
 wp_center = (1804, 83)
@@ -27,7 +27,10 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 # todo hotkeys
+# Rings
 hotkey_ring = 'f3'
+ring_to_equip = 'sword_ring'
+
 
 ### Regions puchal 4k
 # bw = (4738, 480, 150, 130)
@@ -65,4 +68,3 @@ total_wp = 6  # total waypoints used in the hunt; MAKE SURE all waypoints .png a
 
 filename = 'screen.png'
 
-ring_to_equip = 'sword_ring'
