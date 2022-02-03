@@ -14,5 +14,3 @@ wsk = Other()
 pyautogui.click(default)
 if wsk.is_ring_on() is False:
     wsk.put_on_ring(hotkey_ring)
-else:
-    print('ring equipped')

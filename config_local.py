@@ -13,7 +13,7 @@ redbox = (1745, 474, 40, 90)
 minimap = (1750, 30, 110, 110)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
-ring = (1755, 230, 25, 25)
+ring = (1755, 250, 25, 25)
 default = (1550, 300)
 character = (765, 480)
 #wp_center = (1804, 83)
@@ -29,6 +29,10 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 # todo hotkeys
+# Rings
+hotkey_ring = 'f3'
+ring_to_equip = 'sword_ring'
+
 hotkey_ring = 'f4'
 
 min_cap_to_cont_hunt = 15
@@ -45,19 +49,18 @@ hotkey_yes = 'f12'
 
 
 ### Regions puchal 4k
-#bw = (4738, 480, 150, 130)
-#redbox = (4738, 480, 50, 50)
-#minimap = (4750, 30, 110, 110)
-#minimapplus = (4740, 30, 110, 700)
-#ring = minimapplus
-#character = (2822, 1000)
-#default = character
-#wp_center = (4798, 66)
-#wp_center2 = (4799, 66)
-#mana_pool_potek = (4480, 20)
-#hp_pool_exura = (2725, 20)
-#hp_pool_potek = (1500, 20)
-#burn_mana = (2857, 20)
+# bw = (4738, 480, 150, 130)
+# redbox = (4738, 480, 50, 50)
+# minimap = (4750, 30, 110, 110)
+# minimapplus = (4740, 30, 110, 700)
+# ring = minimapplus
+# character = (2822, 1000)
+# default = character
+# wp_center = (4798, 66)
+# wp_center2 = (4799, 66)
+# mana_pool_potek = (4480, 20)
+# hp_pool_exura = (2725, 20)
+# hp_pool_potek = (1500, 20)
+# burn_mana = (2857, 20)
 
 
-ring_to_equip = 'sword_ring'

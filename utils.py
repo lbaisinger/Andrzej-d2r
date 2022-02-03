@@ -85,7 +85,6 @@ class Other:
         # todo add .png for more rings
         # available: axe_ring, sword_ring
         if pyautogui.locateOnScreen('src/items/' + ring_type + ".png", region=ring, confidence=.5) is None:
-            pyautogui.press('f4')
             print("No ring detected")
             return False
         else:
