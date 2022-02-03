@@ -14,6 +14,8 @@ except ImportError:
     print('no local config')
     pass
 
+from config_local import *
+
 
 class Backpack:
 
@@ -38,7 +40,7 @@ class Backpack:
         timestamp = datetime.datetime.now()
         item = choice(item_blacklist)
         print('checking for item', item)
-        item_cords = pyautogui.locateCenterOnScreen('src/items/'+ str(item) + '.png', region=backpack, confidence=.94)
+        item_cords = pyautogui.locateCenterOnScreen('src/items/' + str(item) + '.png', region=backpack, confidence=.94)
         if item_cords is not None:
             print('dropping', item)
             # throw away
@@ -61,6 +63,7 @@ class Backpack:
             print('TIME CHECK_BACKLISTED_ITEMS', looptime)
             return False
 
+
 class Other:
 
     def get_screenshoot(self, region=minimapplus):
@@ -78,10 +81,10 @@ class Other:
         print('TIME GET_SCREENSHOOT', looptime)
         return True
 
-    def is_ring_on(self, ring_type):
+    def is_ring_on(self, ring_type = ring_to_equip):
         # todo add .png for more rings
         # available: axe_ring, sword_ring
-        if pyautogui.locateOnScreen(ring_type + ".png", region=ring, confidence=.5) is None:
+        if pyautogui.locateOnScreen('src/items/' + ring_type + ".png", region=ring, confidence=.5) is None:
             pyautogui.press('f4')
             print("No ring detected")
             return False

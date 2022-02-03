@@ -58,3 +58,6 @@ hotkey_yes = 'f12'
 #hp_pool_exura = (2725, 20)
 #hp_pool_potek = (1500, 20)
 #burn_mana = (2857, 20)
+
+
+ring_to_equip = 'sword_ring'
