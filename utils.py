@@ -1,6 +1,7 @@
 import datetime
 import pyautogui
 import PIL
+import pytesseract
 from PIL import Image
 from config import *
 from random import choice
@@ -66,16 +67,19 @@ class Backpack:
 
 class Other:
 
-    def get_screenshoot(self, region=minimapplus):
+    def get_screenshoot(self, region=minimapplus, filename='screen'):
         timestamp = datetime.datetime.now()
         # get screen shoot
         myscreenshot = pyautogui.screenshot(region=region)
         # save it
-        myscreenshot.save('screen.png')
+        final_filename = str(region) + filename + '.png'
+        myscreenshot.save(final_filename)
+        print(final_filename)
         # invert image
-        inverted_image = PIL.ImageOps.invert(Image.open('screen.png'))
+        inverted_image = PIL.ImageOps.invert(Image.open(final_filename))
         # save it
-        inverted_image.save('inverted.png')
+        inverted_file_name = 'inverted' + str(region) + filename + '.png'
+        inverted_image.save(inverted_file_name)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME GET_SCREENSHOOT', looptime)

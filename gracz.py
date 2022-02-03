@@ -1,6 +1,9 @@
 #from random import choice
 #import PIL
+import importlib
 from time import sleep
+
+import PIL.Image
 import pyautogui
 import datetime
 from utils import Backpack
@@ -10,20 +13,14 @@ from cave import Cave
 from caves.venore_swamp_trolls import *
 
 
-# todo status check hotkeys config
-# todo params in config
-# todo load custom config for hunting grounds ( new class hunting grounds)
-# todo fast working monsterlirst
-# todo rings -> class utils.py
-
-try:
-    from config_local import *
-except ImportError:
-    print('no local config')
-    pass
-
+# import config
+# todo move confname somewhere clear
+confname = '4k'
+modulename = ('player_configs.config_' + confname)
+config = importlib.import_module('player_configs.config_' + confname)
 
 class Gracz:
+
 
     def __init__(self):
         self.gracz = {}
@@ -33,6 +30,7 @@ class Gracz:
         self.cave = Cave()
         # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
+        print('loaded with config ', confname)
 
     def get_avialable_slots(self):
         # podaje ile jest dostepynch slotow w regionie na bp
@@ -43,7 +41,13 @@ class Gracz:
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
         # dziala ok
         timestamp = datetime.datetime.now()
-        if pyautogui.locateOnScreen('src/status/attacking.png', region=redbox, confidence=.5) is None:
+
+        img = PIL.Image.open('src/status/attacking.png')
+        img_size = img.size
+        rescaled_img = img.resize((img_size[0] * config.scale,
+                             img_size[1] * config.scale))
+
+        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.51) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('TIME is_bije F', looptime)
@@ -63,7 +67,7 @@ class Gracz:
         self.monsterlist = []
         for j in target_list:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
-            if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=bw, confidence=.8) is not None:
+            if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.8) is not None:
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_co_bic T', looptime)
@@ -73,40 +77,43 @@ class Gracz:
         print('TIME is_co_bic F', looptime)
         return False
 
-    def is_allright(self, hplow=hplow, hpmid=hpmid, manalow=hpmid, manahigh=hpmid):
+    def is_allright(self, hplow=config.hplow,
+                    hpmid=config.hpmid,
+                    manalow=config.hpmid,
+                    manahigh=config.hpmid):
         # sprawdza czy pixel w odpowiednim miejscu jest szary
         # jak tak to wykonuje odpowiednia akcje
         # dziala ok
         timestamp = datetime.datetime.now()
         #print("Status check")
         #print('eatin')
-        pyautogui.press('f4')
+        pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
-            if pyautogui.pixelMatchesColor(int(hp_pool_potek[0]), int(hp_pool_potek[1]),
+            if pyautogui.pixelMatchesColor(int(config.hp_pool_potek[0]), int(config.hp_pool_potek[1]),
                                            (40, 40, 40),
                                            tolerance=10):
-                pyautogui.press('f1')
+                pyautogui.press(config.hotkey_hppot)
                 print("~~~Fully healed!~~~")
         # Check for lesser healing (exura)
         if hpmid:
-            if pyautogui.pixelMatchesColor(int(hp_pool_exura[0]), int(hp_pool_exura[1]),
+            if pyautogui.pixelMatchesColor(int(config.hp_pool_exura[0]), int(config.hp_pool_exura[1]),
                                         (40, 40, 40),
                                         tolerance=10):
-                pyautogui.press('f3')
+                pyautogui.press(config.hotkey_exura)
                 print("~~~Healed!~~~")
         # Check for mana
         if manalow:
-            if pyautogui.pixelMatchesColor(int(mana_pool_potek[0]), int(mana_pool_potek[1]),
+            if pyautogui.pixelMatchesColor(int(config.mana_pool_potek[0]), int(config.mana_pool_potek[1]),
                                            (40, 40, 40),
                                            tolerance=10):
-                pyautogui.press('f2')
+                pyautogui.press(config.hotkey_manapot)
                 print("~~~Mana restored!~~~")
         if manahigh:
-            if pyautogui.pixelMatchesColor(int(burn_mana[0]), int(burn_mana[1]),
+            if pyautogui.pixelMatchesColor(int(config.burn_mana[0]), int(config.burn_mana[1]),
                                           (0, 52, 116),
                                           tolerance=10):
-                pyautogui.press('f3')
+                pyautogui.press(config.hotkey_manaburn)
                 print("~~~Mana Burned!~~~")
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -116,11 +123,11 @@ class Gracz:
     def do_bank_deposit(self):
         # naciska 3 hotkeye w celu zdeponowac zloto
         # dziala ok
-        pyautogui.press(hotkey_hi)
+        pyautogui.press(config.hotkey_hi)
         sleep(2)
-        pyautogui.press(hotkey_deposit_all)
+        pyautogui.press(config.hotkey_deposit_all)
         sleep(2)
-        pyautogui.press(hotkey_yes)
+        pyautogui.press(config.hotkey_yes)
         return True
 
     def do_ressuply(self):
@@ -140,15 +147,15 @@ class Gracz:
         timestamp = datetime.datetime.now()
         #print('looting')
         pyautogui.keyDown('Shift')
-        pyautogui.rightClick(character[0] - 75, character[1] - 75 )     # 1
-        pyautogui.rightClick(character[0], character[1] - 75)           # 2
-        pyautogui.rightClick(character[0] + 75, character[1] - 75)      # 3
-        pyautogui.rightClick(character[0] - 60, character[1])           # 4
+        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale )     # 1
+        pyautogui.rightClick(config.character[0], config.character[1] - 75* config.scale)           # 2
+        pyautogui.rightClick(config.character[0] + 75* config.scale, config.character[1] - 75* config.scale)      # 3
+        pyautogui.rightClick(config.character[0] - 60* config.scale, config.character[1])           # 4
         #                                                               # C
-        pyautogui.rightClick(character[0] + 60, character[1])           # 6
-        pyautogui.rightClick(character[0] - 75, character[1] + 75)      # 7
-        pyautogui.rightClick(character[0], character[1] + 75)           # 8
-        pyautogui.rightClick(character[0] + 75, character[1] + 75)      # 9
+        pyautogui.rightClick(config.character[0] + 60* config.scale, config.character[1])           # 6
+        pyautogui.rightClick(config.character[0] - 75* config.scale, config.character[1] + 75* config.scale)      # 7
+        pyautogui.rightClick(config.character[0], config.character[1] + 75* config.scale)           # 8
+        pyautogui.rightClick(config.character[0] + 75* config.scale, config.character[1] + 75* config.scale)      # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -166,35 +173,16 @@ class Gracz:
         print('TIME do_bij', looptime)
         return True
 
-    def do_go_wp(self, wp):
-        # szuka wp na mapie i go naciska
-        # dziala ok
-        timestamp = datetime.datetime.now()
-        wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
-        if wp_coord is not None:
-            #print('going wp', str(wp), wp_coord[0], wp_coord[1])
-            pyautogui.click(wp_coord[0], wp_coord[1])
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME GO_WP OK', looptime)
-            return True
-        else:
-            print('couldnt find wp')
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME GP_WP NOK', looptime)
-
     def go(self, wp=1):
         # main logic goes here
         timestamp = datetime.datetime.now()
-        if self.other.is_ring_on() is False:
-            self.other.put_on_ring(hotkey_ring)
-            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+#        if self.other.is_ring_on() is False:
+#            self.other.put_on_ring(config.hotkey_ring)
+#            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
-        # todo below to be configurable
-        #if self.is_allright(hplow=False, hpmid=False, manahigh=True, manalow=False):
-        if self.is_allright(hplow=False, hpmid=False, manahigh=False, manalow=False):
+        jest_ok = self.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh, manalow=config.manalow)
+        if jest_ok:
             if not bije:
                 if jestcobic:
                     self.do_bij()
@@ -209,29 +197,31 @@ class Gracz:
                     else:
                         self.cave.do_go_wp(wp)
                         # backpack_check()
-                        self.backpack.do_drop_random_item_from_blacklist()
-        # check if ready go to dp and go
-        if self.cave.is_ready_to_go_to_dp():
-            wp = list(to_dp_wps)[0]
-            while wp is not True:
-                print('before', wp)
-                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
-                # #todo zostaje na chwile
-                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-                print('after', wp)
-                if wp is False:
-                    print('gdzies wyjebalo falsem')
-                    return False
-            # todo doing resupply
-            sleep(50)
-            self.do_ressuply()
-            # go back to cave
-            wp = list(to_cave_wps)[0]
-            while wp is not True:
-                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
-            # reset wp for cave bot
-            wp = list(wps)[0]
+                        # todo redo it as facc feature
+#                        self.backpack.do_drop_random_item_from_blacklist()
 
+        # check if ready go to dp and go
+#        if self.cave.is_ready_to_go_to_dp():
+#            wp = list(to_dp_wps)[0]
+#            while wp is not True:
+#                print('before', wp)
+#                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
+#                # #todo zostaje na chwile
+#                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+#                print('after', wp)
+#                if wp is False:
+#                    print('gdzies wyjebalo falsem')
+#                    return False
+#            # todo doing resupply
+#            sleep(50)
+#            self.do_ressuply()
+#            # go back to cave
+#            wp = list(to_cave_wps)[0]
+#            while wp is not True:
+#                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+#            # reset wp for cave bot
+#            wp = list(wps)[0]
+#
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print()
@@ -286,9 +276,9 @@ player = Gracz()
 #
 #player.do_loot()
 # Focus on the game window
-pyautogui.click(default)
-sleep(2)
-player.loop()
+#pyautogui.click(default)
+#sleep(2)
+#player.loop()
 #player.other.get_screenshoot(region=redbox)
 
 #player.cave.use_rope()
@@ -309,11 +299,11 @@ sleep(2)
 #player.cave.do_go_wp(wp=1)                     #ok
 
 # temp specials
-
 temp_specials = {
     1: 'rope',
     3: 'shovel'
 }
+
 #print(player.cave.is_wp_fancy(wp=1, specials=temp_specials))       #ok
 #print(player.cave.do_go_wp_plus(wp=1, specials=temp_specials))     #Ok
 
@@ -359,7 +349,7 @@ to_cave_wps = {
 }
 # load cave
 #from caves.rook import *
-from caves.venore_swamp_trolls import *
+#from caves.venore_swamp_trolls import *
 
 # go to cave first time from bank
 #wp = 4
@@ -374,9 +364,41 @@ from caves.venore_swamp_trolls import *
 # back to regular routine with go to dp if no cap
 
 #player.loop()
-wp = 14
-while wp is not True:
-    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-    if wp is False:
-        print('in be4 go wywalil false')
-        break
+#wp = 14
+#while wp is not True:
+#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+#    if wp is False:
+#        print('in be4 go wywalil false')
+#        break
+
+
+
+#cave = 'venore_swamp_trolls'
+
+#from caves.venore_swamp_trolls import *
+from caves.darashia_dragons import *
+
+
+#player.other.get_screenshoot(region=config.bw ,filename='bw')
+#player.other.get_screenshoot(region=config.minimap, filename='minimap')
+#player.other.get_screenshoot(region=config.backpack, filename='backpack')
+#player.other.get_screenshoot(region=config.redbox, filename='redbox')
+#player.other.get_screenshoot(region=config.cap_region, filename='cap')
+#player.other.get_screenshoot(region=(config.mana_pool_potek[0], config.mana_pool_potek[1], 5, 5), filename='manapot')
+#player.other.get_screenshoot(region=(config.hp_pool_exura[0], config.hp_pool_exura[1], 5, 5), filename='hp_pool_exura')
+#player.other.get_screenshoot(region=(config.hp_pool_potek[0], config.hp_pool_potek[1], 5, 5), filename='hp_pool_potek')
+#player.other.get_screenshoot(region=(config.burn_mana[0], config.burn_mana[1], 5, 5), filename='burn_mana')
+
+#player.do_loot()
+
+#player.is_allright()
+#wp = 19
+#player.cave.do_go_wp(wp)
+#player.cave.is_on_wwp(wp)
+player.loop()
+
+#while True:
+#    player.is_bije()
+#    player.other.get_screenshoot(region=config.redbox, filename='tetetet')
+#    sleep(1)
+

@@ -1,14 +1,15 @@
 import datetime
+import importlib
+
 import pyautogui
+import PIL.Image
 from utils import Backpack
 from time import sleep
 
+confname = '4k'
+modulename = ('player_configs.config_' + confname)
+config = importlib.import_module('player_configs.config_' + confname)
 
-try:
-    from config_local import *
-except ImportError:
-    print('no local config')
-    pass
 
 try:
     from caves.venore_swamp_trolls import *
@@ -78,12 +79,18 @@ class Cave:
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
-        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
+        img = PIL.Image.open("src/wp/" + str(wp) + ".png")
+        img_size = img.size
+        wp_img = img.resize((img_size[0] * config.scale,
+                             img_size[1] * config.scale))
+        xyz = pyautogui.locateCenterOnScreen(wp_img,
+                                             region=config.minimap,
+                                             confidence=.8)
         if xyz is not None:
             # debug
             print(xyz)
             #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
-            if xyz != wp_center and xyz != wp_center2 and xyz != wp_center3:
+            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3:
                 print('did not yet reach wp', wp)
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -102,21 +109,31 @@ class Cave:
             return False
 
     def do_go_wp(self, wp):
+        # szuka wp na mapie i go naciska
+        # dziala ok
         timestamp = datetime.datetime.now()
-        wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
+        img = PIL.Image.open("src/wp/" + str(wp) + ".png")
+        img_size = img.size
+        wp_img = img.resize((img_size[0] * config.scale,
+                             img_size[1] * config.scale))
+        wp_coord = pyautogui.locateCenterOnScreen(wp_img,
+                                                  region=config.minimap,
+                                                  confidence=.75)
+        #        wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png",
+        #                                                  region=config.minimap,
+        #                                                  confidence=.75)
         if wp_coord is not None:
             # print('going wp', str(wp), wp_coord[0], wp_coord[1])
             pyautogui.click(wp_coord[0], wp_coord[1])
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME do_go_wp T', looptime)
+            print('TIME GO_WP OK', looptime)
             return True
         else:
-            print('couldnt find wp')
+            print('couldnt find wp', wp)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME do_go_wp F', looptime)
-            return False
+            print('TIME GP_WP NOK', looptime)
 
     def is_wp_fancy(self, wp, specials: {}):
         timestamp = datetime.datetime.now()

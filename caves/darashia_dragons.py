@@ -1,14 +1,14 @@
 ##################
 ### Cavebot config
 ###
-### Venore
-### Swamp Trolls
+### Darashia
+### Dragon lair
 ###
 ### Hall of fame:
-### puchal 21 - 31+
-### Cremna Nepe 8+
+### Worril 77+
+###
 
-cave_name = "Venore Swap Trolls"
+cave_name = "Darashia Dragon Lair"
 ### Waypoints
 
 # start waypoint
@@ -21,19 +21,20 @@ wps = {1: None,
        4: None,
        5: None,
        6: None,
-       7: None}
+       7: None,
+       8: None,
+       9: None,
+       10: None,
+       11: None,
+       12: None,
+       13: None,
+       14: None,
+       15: None,
+       16: None,
+       17: None}
 
 # Path to cave
-# from venore east bank
-# 4 na powierzchni
-to_cave_wps = {4: None,
-               5: 'lvl_changing_wp',
-               6: 'lvl_changing_wp',
-               7: 'lvl_changing_wp',
-               8: 'shovel',
-               9: 'lvl_changing_wp',
-               10: 'rope',
-               11: 'LAST'}
+to_cave_wps = {}
 
 # Path to depo
 # last one is venore east bank
@@ -47,7 +48,8 @@ to_dp_wps = {11: 'lvl_changing_wp',
              17: 'LAST'}
 
 # Monster list for the hunt, must match names of the .png files LOWERCASE, prioritize
-target_list = ["swamp_troll"]
+target_list = ["dragon"]
 
 # FACC Backapck trash
-item_blacklsit = ['mouldy_chese', 'torch', 'leather_boots', 'spear', 'fish']
+#item_blacklsit = ['mouldy_chese', 'torch', 'leather_boots', 'spear', 'fish']
+
