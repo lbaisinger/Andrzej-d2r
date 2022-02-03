@@ -67,3 +67,13 @@ class Other:
         # available: axe_ring, sword_ring
         if pyautogui.locateOnScreen(ring_type + ".png", region=ring, confidence=.5) is None:
             pyautogui.press('f4')
+            print("No ring detected")
+            return False
+        else:
+            print("Ring equipped.")
+            return True
+
+    def put_on_ring(self, ring_hotkey):
+        print("Equipping ring.")
+        pyautogui.press(ring_hotkey)
+        return True

@@ -26,6 +26,8 @@ hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
+# todo hotkeys
+hotkey_ring = 'f4'
 
 ### Regions puchal 4k
 #bw = (4738, 480, 150, 130)
