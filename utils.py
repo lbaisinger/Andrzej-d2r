@@ -1,8 +1,8 @@
 import datetime
 import pyautogui
-import pytesseract
 import PIL
 from PIL import Image
+from config import *
 from random import choice
 from time import sleep
 # app default config

@@ -20,7 +20,6 @@ character = (765, 480)
 wp_center = (1805, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
-cap_region = (1832, 274, 25, 12)
 
 # todo fix below
 mana_pool_potek = (1676, 35)
@@ -48,6 +47,16 @@ hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 
 
+min_cap_to_cont_hunt = 50
+
+hotkey_rope = 'f8'
+hotkey_shovel = 'f9'
+hotkey_exura = 'f3'
+hotkey_manapot = 'f2'
+hotkey_food = 'f4'
+hotkey_chase = '/'
+
+
 ### Regions puchal 4k
 # bw = (4738, 480, 150, 130)
 # redbox = (4738, 480, 50, 50)
@@ -62,5 +71,3 @@ hotkey_yes = 'f12'
 # hp_pool_exura = (2725, 20)
 # hp_pool_potek = (1500, 20)
 # burn_mana = (2857, 20)
-
-
