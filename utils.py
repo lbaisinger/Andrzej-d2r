@@ -61,3 +61,9 @@ class Other:
         looptime = timestamp2 - timestamp
         print('TIME GET_SCREENSHOOT', looptime)
         return True
+
+    def is_ring_on(self, ring_type):
+        # todo add .png for more rings
+        # available: axe_ring, sword_ring
+        if pyautogui.locateOnScreen(ring_type + ".png", region=ring, confidence=.5) is None:
+            pyautogui.press('f4')
