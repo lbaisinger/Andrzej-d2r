@@ -27,22 +27,22 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 # todo hotkeys
-hotkey_ring = 'f4'
+hotkey_ring = 'f3'
 
 ### Regions puchal 4k
-#bw = (4738, 480, 150, 130)
-#redbox = (4738, 480, 50, 50)
-#minimap = (4750, 30, 110, 110)
-#minimapplus = (4740, 30, 110, 700)
-#ring = minimapplus
-#character = (2822, 1000)
-#default = character
-#wp_center = (4798, 66)
-#wp_center2 = (4799, 66)
-#mana_pool_potek = (4480, 20)
-#hp_pool_exura = (2725, 20)
-#hp_pool_potek = (1500, 20)
-#burn_mana = (2857, 20)
+# bw = (4738, 480, 150, 130)
+# redbox = (4738, 480, 50, 50)
+# minimap = (4750, 30, 110, 110)
+# minimapplus = (4740, 30, 110, 700)
+# ring = minimapplus
+# character = (2822, 1000)
+# default = character
+# wp_center = (4798, 66)
+# wp_center2 = (4799, 66)
+# mana_pool_potek = (4480, 20)
+# hp_pool_exura = (2725, 20)
+# hp_pool_potek = (1500, 20)
+# burn_mana = (2857, 20)
 
 ### cavebot config
 # Waypoints
@@ -65,3 +65,4 @@ total_wp = 6  # total waypoints used in the hunt; MAKE SURE all waypoints .png a
 
 filename = 'screen.png'
 
+ring_to_equip = 'sword_ring'

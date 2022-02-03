@@ -166,6 +166,8 @@ class Gracz:
     def go(self, wp=1):
         # main logic goes here
         timestamp = datetime.datetime.now()
+        if Other.is_ring_on('sword_ring') is False:
+            Other.put_on_ring(hotkey_ring)
         bije = self.is_bije()
         jestcobic = self.is_co_bic()
         # todo below to be configurable
