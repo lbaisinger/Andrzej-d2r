@@ -28,6 +28,8 @@ hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
+# todo hotkeys
+hotkey_ring = 'f4'
 
 min_cap_to_cont_hunt = 15
 
