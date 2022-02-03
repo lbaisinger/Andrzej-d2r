@@ -35,9 +35,13 @@ class Gracz:
         pyautogui.PAUSE = 0.05
 
     def get_avialable_slots(self):
+        # podaje ile jest dostepynch slotow w regionie na bp
+        # dziala ok
         return len(self.backpack.get_avial_slots())
 
     def is_bije(self):
+        # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
+        # dziala ok
         timestamp = datetime.datetime.now()
         if pyautogui.locateOnScreen('src/status/attacking.png', region=redbox, confidence=.5) is None:
             timestamp2 = datetime.datetime.now()
@@ -51,6 +55,9 @@ class Gracz:
             return True
 
     def is_co_bic(self):
+        # sprawdza czy jest ktorys z potworow z monsterlisty
+        # dziala ok
+        # mozna usprawnic szukajac a e i o u
         timestamp = datetime.datetime.now()
         # check if there is smth to figtht
         self.monsterlist = []
@@ -66,9 +73,10 @@ class Gracz:
         print('TIME is_co_bic F', looptime)
         return False
 
-    # todo status check hotkeys config
-    # todo params in config
-    def is_allright(self, hplow=True, hpmid=True, manalow=True, manahigh=True):
+    def is_allright(self, hplow=hplow, hpmid=hpmid, manalow=hpmid, manahigh=hpmid):
+        # sprawdza czy pixel w odpowiednim miejscu jest szary
+        # jak tak to wykonuje odpowiednia akcje
+        # dziala ok
         timestamp = datetime.datetime.now()
         #print("Status check")
         #print('eatin')
@@ -106,6 +114,8 @@ class Gracz:
         return True
 
     def do_bank_deposit(self):
+        # naciska 3 hotkeye w celu zdeponowac zloto
+        # dziala ok
         pyautogui.press(hotkey_hi)
         sleep(2)
         pyautogui.press(hotkey_deposit_all)
@@ -114,27 +124,31 @@ class Gracz:
         return True
 
     def do_ressuply(self):
+        # zbior mniejszych rzeczy do zrobienia jako ressuply
+        # dziala ok
         if self.do_bank_deposit():
             return True
         else:
             return False
 
     def do_loot(self):
-        timestamp = datetime.datetime.now()
-        #print('looting')
-        pyautogui.keyDown('Shift')
+        # naciska shift + prawym na pola obok gracza
         # 1 2 3
         # 4 C 6
         # 7 8 9
-        pyautogui.rightClick(character[0] - 75, character[1] - 75 ) # 1
-        pyautogui.rightClick(character[0], character[1] - 75)        # 2
-        pyautogui.rightClick(character[0] + 75, character[1] - 75)  # 3
-        pyautogui.rightClick(character[0] - 60, character[1])        # 4
-        #                                                                       # C
-        pyautogui.rightClick(character[0] + 60, character[1])        # 6
-        pyautogui.rightClick(character[0] - 75, character[1] + 75)  # 7
-        pyautogui.rightClick(character[0], character[1] + 75)        # 8
-        pyautogui.rightClick(character[0] + 75, character[1] + 75)  # 9
+        # dziala ok, chociaz jak bot zbyt zapierdala to mamy problem
+        timestamp = datetime.datetime.now()
+        #print('looting')
+        pyautogui.keyDown('Shift')
+        pyautogui.rightClick(character[0] - 75, character[1] - 75 )     # 1
+        pyautogui.rightClick(character[0], character[1] - 75)           # 2
+        pyautogui.rightClick(character[0] + 75, character[1] - 75)      # 3
+        pyautogui.rightClick(character[0] - 60, character[1])           # 4
+        #                                                               # C
+        pyautogui.rightClick(character[0] + 60, character[1])           # 6
+        pyautogui.rightClick(character[0] - 75, character[1] + 75)      # 7
+        pyautogui.rightClick(character[0], character[1] + 75)           # 8
+        pyautogui.rightClick(character[0] + 75, character[1] + 75)      # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -142,6 +156,8 @@ class Gracz:
         return True
 
     def do_bij(self):
+        # naciska spacje i atakuje nast z battle window
+        # dziala ok
         timestamp = datetime.datetime.now()
         #print('fight')
         pyautogui.press('space')
@@ -151,6 +167,8 @@ class Gracz:
         return True
 
     def do_go_wp(self, wp):
+        # szuka wp na mapie i go naciska
+        # dziala ok
         timestamp = datetime.datetime.now()
         wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=minimap, confidence=.8)
         if wp_coord is not None:

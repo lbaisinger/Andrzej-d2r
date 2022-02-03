@@ -22,20 +22,31 @@ wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
 cap_region = (0, 0)
 
-# todo fix below
 mana_pool_potek = (1676, 35)
 hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
-# todo hotkeys
+# is allright conf
+# less you turn off
+# faster it goes
+
+# heal if hp low with poton
+hplow=True
+# heal if hp moderate with exura (another hotkey)
+hpmid=True
+# see if low mana and drink potion
+manalow=True
+# see if too much mana and burn
+manahigh=True
+
+min_cap_to_cont_hunt = 15
+
+# hotkeys
 # Rings
 hotkey_ring = 'f3'
 ring_to_equip = 'sword_ring'
 
-hotkey_ring = 'f4'
-
-min_cap_to_cont_hunt = 15
 
 hotkey_rope = 'f8'
 hotkey_shovel = 'f9'
@@ -47,18 +58,6 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 
-
-min_cap_to_cont_hunt = 15
-
-hotkey_rope = 'f8'
-hotkey_shovel = 'f9'
-hotkey_exura = 'f3'
-hotkey_manapot = 'f2'
-hotkey_food = 'f4'
-hotkey_chase = '/'
-hotkey_hi = 'f10'
-hotkey_deposit_all = 'f11'
-hotkey_yes = 'f12'
 
 
 ### Regions puchal 4k
