@@ -3,3 +3,4 @@ screen.png*
 inverted.png*
 __pycache__/
 .idea/
+player_configs/__pycache__/
