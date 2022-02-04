@@ -11,13 +11,6 @@ modulename = ('player_configs.config_' + confname)
 config = importlib.import_module('player_configs.config_' + confname)
 
 
-try:
-    from caves.venore_swamp_trolls import *
-except ImportError:
-    print('no cave config')
-    pass
-
-
 class Cave:
 
     def __init__(self):
@@ -25,30 +18,32 @@ class Cave:
         pass
 
     def use_rope(self):
-        # testing
+        # works ok
         timestamp = datetime.datetime.now()
-        pyautogui.press(hotkey_rope)
+        pyautogui.press(config.hotkey_rope)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME use_rope', looptime)
         return True
 
     def use_shovel(self):
+        # works ok
         timestamp = datetime.datetime.now()
-        pyautogui.press(hotkey_shovel)
-        pyautogui.moveTo(character)
-        pyautogui.click(character)
+        pyautogui.press(config.hotkey_shovel)
+        pyautogui.moveTo(config.character)
+        pyautogui.click(config.character)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME use_shovel', looptime)
         return True
 
     def is_has_cap(self):
+        # todo fix it to be sure that it can always read cap
         timestamp = datetime.datetime.now()
         bp = Backpack()
         try:
             cap = bp.get_avial_cap()
-            if int(cap) > min_cap_to_cont_hunt:
+            if int(cap) > config.min_cap_to_cont_hunt:
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_has_cap T', looptime)
@@ -64,6 +59,7 @@ class Cave:
             return True
 
     def is_ready_to_go_to_dp(self):
+        # todo fix it to be sure that it can always read cap
         timestamp = datetime.datetime.now()
         if self.is_has_cap():
             timestamp2 = datetime.datetime.now()
@@ -84,11 +80,12 @@ class Cave:
         wp_img = img.resize((img_size[0] * config.scale,
                              img_size[1] * config.scale))
         xyz = pyautogui.locateCenterOnScreen(wp_img,
-                                             region=config.minimap,
+                                             region=config.minimap, #todo mozna by go mniejszym zrobic, ten region do jakiegos samego srodka minimapy
                                              confidence=.8)
         if xyz is not None:
             # debug
             print(xyz)
+            # to wide
             #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
             if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3:
                 print('did not yet reach wp', wp)
@@ -119,9 +116,6 @@ class Cave:
         wp_coord = pyautogui.locateCenterOnScreen(wp_img,
                                                   region=config.minimap,
                                                   confidence=.75)
-        #        wp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png",
-        #                                                  region=config.minimap,
-        #                                                  confidence=.75)
         if wp_coord is not None:
             # print('going wp', str(wp), wp_coord[0], wp_coord[1])
             pyautogui.click(wp_coord[0], wp_coord[1])
@@ -136,6 +130,7 @@ class Cave:
             print('TIME GP_WP NOK', looptime)
 
     def is_wp_fancy(self, wp, specials: {}):
+        # todo verify if rly works
         timestamp = datetime.datetime.now()
         # sprawdz czy podany wp specjalny
         if specials[wp] is not None:
@@ -177,11 +172,11 @@ class Cave:
             print('debug', nextwp)
             print('debug', specials[wp])
             nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                          region=minimap,
+                                                          region=config.minimap,
                                                           confidence=.8)
             while nextwp_coord is None:
                 nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                              region=minimap,
+                                                              region=config.minimap,
                                                               confidence=.8)
                 self.do_go_wp(wp)
                 sleep(.5)
@@ -207,6 +202,7 @@ class Cave:
 
 # new one to go dp/bank in one
     def go_somwhere(self, currentwp, specials: {}):
+        # todo need some work
         print(currentwp)
         print(specials[currentwp])
         timestamp = datetime.datetime.now()
