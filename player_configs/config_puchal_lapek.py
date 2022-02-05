@@ -27,7 +27,16 @@ hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
+# heal if hp low with poton
+hplow=False
+# heal if hp moderate with exura (another hotkey)
+hpmid=False
+# see if low mana and drink potion
+manalow=False
+# see if too much mana and burn
+manahigh=True
 
+scale = 1
 min_cap_to_cont_hunt = 15
 
 hotkey_rope = 'f8'

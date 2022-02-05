@@ -1,5 +1,5 @@
 # from random import choice
-# import PIL
+import PIL
 import importlib
 from time import sleep
 import pyautogui
@@ -8,11 +8,11 @@ from utils import Backpack
 from utils import Other
 from cave import Cave
 # todo move import cave to some param like player(cave='')
-from caves.venore_swamp_trolls import *
+from caves.venore_amazon_camp import *
 
 # import config
 # todo move confname somewhere clear
-confname = '4k'
+confname = 'puchal_lapek'
 modulename = ('player_configs.config_' + confname)
 config = importlib.import_module('player_configs.config_' + confname)
 
@@ -146,7 +146,7 @@ class Gracz:
         pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
         pyautogui.rightClick(config.character[0] - 60 * config.scale, config.character[1])  # 4
-        #                                                               # C
+        pyautogui.rightClick(config.character[0], config.character[1])  # C
         pyautogui.rightClick(config.character[0] + 60 * config.scale, config.character[1])  # 6
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
         pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
@@ -181,10 +181,12 @@ class Gracz:
         if jest_ok:
             if not bije:
                 if jestcobic:
-                    self.do_bij()
                     self.do_loot()
+                    self.do_bij()
+                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
                 if not jestcobic:
                     self.do_loot()
+                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
                     if self.cave.is_on_wp(wp):
                         if wp == list(wps.keys())[-1]:
                             wp = list(wps.keys())[0]
@@ -193,7 +195,10 @@ class Gracz:
                     else:
                         self.cave.do_go_wp(wp)
                         # backpack_check()
-                        self.backpack.do_drop_random_item_from_blacklist()
+                        self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+            # if bije
+            else:
+                self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
         # check if ready go to dp and go
         #        if self.cave.is_ready_to_go_to_dp():
         #            wp = list(to_dp_wps)[0]

@@ -1,21 +1,19 @@
 import datetime
+import importlib
 import pyautogui
 import PIL
 import pytesseract
 from PIL import Image
-from config import *
+#from config import *
 from random import choice
 from time import sleep
 # app default config
-from config import *
+#from config import *
 
-try:
-    from config_local import *
-except ImportError:
-    print('no local config')
-    pass
+confname = 'puchal_lapek'
+modulename = ('player_configs.config_' + confname)
+config = importlib.import_module('player_configs.config_' + confname)
 
-from config_local import *
 
 
 class Backpack:
@@ -23,25 +21,25 @@ class Backpack:
     def get_avial_cap(self):
         # returns amount of cap left based on what it can read from inverted.png
         # tested - looks fine
-        Other().get_screenshoot(region=cap_region)
+        Other().get_screenshoot(region=config.cap_region)
         cap = pytesseract.image_to_string('inverted.png', config='--psm 10 --oem 3 -c tessedit_char_whitelest=0123456789')
         print(cap.strip())
         return cap
 
     def get_avial_slots(self):
         timestamp = datetime.datetime.now()
-        slots = list(pyautogui.locateAllOnScreen('src/status/backpack_slot.png', region=backpack, confidence=.8))
+        slots = list(pyautogui.locateAllOnScreen('src/status/backpack_slot.png', region=config.backpack, confidence=.8))
         print(len(slots))
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME GET_AVIAL_SLOTS', looptime)
         return slots
 
-    def do_drop_random_item_from_blacklist(self, item_blacklist=item_blacklsit):
+    def do_drop_random_item_from_blacklist(self, item_blacklist):
         timestamp = datetime.datetime.now()
         item = choice(item_blacklist)
         print('checking for item', item)
-        item_cords = pyautogui.locateCenterOnScreen('src/items/' + str(item) + '.png', region=backpack, confidence=.94)
+        item_cords = pyautogui.locateCenterOnScreen('src/items/' + str(item) + '.png', region=config.backpack, confidence=.94)
         if item_cords is not None:
             print('dropping', item)
             # throw away
@@ -54,7 +52,7 @@ class Backpack:
             sleep(0.1)
             pyautogui.move(2,2)
             sleep(0.1)
-            pyautogui.moveTo(character, duration=0.2)
+            pyautogui.moveTo(config.character, duration=0.2)
             ## sleep(0.1)
             pyautogui.mouseUp(button='left')
             timestamp2 = datetime.datetime.now()
@@ -70,7 +68,7 @@ class Backpack:
 
 class Other:
 
-    def get_screenshoot(self, region=minimapplus, filename='screen'):
+    def get_screenshoot(self, region=config.minimap, filename='screen'):
         timestamp = datetime.datetime.now()
         # get screen shoot
         myscreenshot = pyautogui.screenshot(region=region)
@@ -88,10 +86,11 @@ class Other:
         print('TIME GET_SCREENSHOOT', looptime)
         return True
 
-    def is_ring_on(self, ring_type = ring_to_equip):
+    def is_ring_on(self):
         # todo add .png for more rings
+        ring_type = config.ring_to_equip
         # available: axe_ring, sword_ring
-        if pyautogui.locateOnScreen('src/items/' + ring_type + ".png", region=ring, confidence=.5) is None:
+        if pyautogui.locateOnScreen('src/items/' + ring_type + ".png", region=config.ring, confidence=.5) is None:
             print("No ring detected")
             return False
         else:
