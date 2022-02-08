@@ -47,4 +47,4 @@ to_dp_wps = {11: 'lvl_changing_wp',
 target_list = ["amazon"]
 
 # FACC Backapck trash
-item_blacklsit = ['iron_dagger', 'sabre', 'skulls', 'breads', 'torch']
+item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch']

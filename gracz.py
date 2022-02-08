@@ -9,6 +9,7 @@ from utils import Other
 from cave import Cave
 # todo move import cave to some param like player(cave='')
 from caves.venore_amazon_camp import *
+#from caves.venore_swamp_trolls import *
 
 # import config
 # todo move confname somewhere clear
