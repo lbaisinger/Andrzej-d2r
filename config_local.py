@@ -22,6 +22,7 @@ wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
 cap_region = (0, 0)
 
+# todo fix below
 mana_pool_potek = (1676, 35)
 hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
