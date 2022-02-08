@@ -20,9 +20,8 @@ character = (765, 480)
 wp_center = (1805, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
-cap_region = (0, 0)
+cap_region = (0, 0, 0, 0)
 
-# todo fix below
 mana_pool_potek = (1676, 35)
 hp_pool_exura = (800, 35)
 hp_pool_potek = (380, 35)
@@ -59,19 +58,3 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 
-
-
-### Regions puchal 4k
-#bw = (4738, 480, 150, 130)
-#redbox = (4738, 480, 50, 50)
-#minimap = (4750, 30, 110, 110)
-#minimapplus = (4740, 30, 110, 700)
-#ring = minimapplus
-#character = (2822, 1000)
-#default = character
-#wp_center = (4798, 66)
-#wp_center2 = (4799, 66)
-#mana_pool_potek = (4480, 20)
-#hp_pool_exura = (2725, 20)
-#hp_pool_potek = (1500, 20)
-#burn_mana = (2857, 20)
