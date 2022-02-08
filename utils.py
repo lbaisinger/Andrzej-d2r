@@ -1,19 +1,11 @@
 import datetime
-import importlib
 import pyautogui
 import PIL
 import pytesseract
 from PIL import Image
-#from config import *
 from random import choice
 from time import sleep
-# app default config
-#from config import *
-
-confname = 'puchal_lapek'
-modulename = ('player_configs.config_' + confname)
-config = importlib.import_module('player_configs.config_' + confname)
-
+from config_picker import *
 
 
 class Backpack:
@@ -27,6 +19,7 @@ class Backpack:
         return cap
 
     def get_avial_slots(self):
+        # works ok - no use yet
         timestamp = datetime.datetime.now()
         slots = list(pyautogui.locateAllOnScreen('src/status/backpack_slot.png', region=config.backpack, confidence=.8))
         print(len(slots))
@@ -36,6 +29,7 @@ class Backpack:
         return slots
 
     def do_drop_random_item_from_blacklist(self, item_blacklist):
+        # facc feature
         timestamp = datetime.datetime.now()
         item = choice(item_blacklist)
         print('checking for item', item)

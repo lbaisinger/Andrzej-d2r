@@ -1,14 +1,11 @@
 import datetime
-import importlib
-
 import pyautogui
 import PIL.Image
 from utils import Backpack
 from time import sleep
 
-confname = 'puchal_lapek'
-modulename = ('player_configs.config_' + confname)
-config = importlib.import_module('player_configs.config_' + confname)
+from config_picker import *
+
 
 
 class Cave:

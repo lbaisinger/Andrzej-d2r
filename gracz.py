@@ -1,21 +1,15 @@
-# from random import choice
 import PIL
-import importlib
-from time import sleep
 import pyautogui
 import datetime
+from time import sleep
 from utils import Backpack
 from utils import Other
 from cave import Cave
-# todo move import cave to some param like player(cave='')
-from caves.venore_amazon_camp import *
+# todo move
+#from caves.venore_amazon_camp import *
 #from caves.venore_swamp_trolls import *
-
 # import config
-# todo move confname somewhere clear
-confname = 'puchal_lapek'
-modulename = ('player_configs.config_' + confname)
-config = importlib.import_module('player_configs.config_' + confname)
+from config_picker import *
 
 
 class Gracz:
@@ -56,9 +50,9 @@ class Gracz:
             print('TIME is_bije T', looptime)
             return True
 
-    def is_co_bic(self):
+    def is_co_bic(self, target_list):
         # sprawdza czy jest ktorys z potworow z monsterlisty
-        # dziala ok
+        # dziala ok / nie dziala ok na 4k
         # mozna usprawnic szukajac a e i o u
         timestamp = datetime.datetime.now()
         # check if there is smth to figtht
@@ -81,7 +75,7 @@ class Gracz:
                     manahigh=config.hpmid):
         # sprawdza czy pixel w odpowiednim miejscu jest szary
         # jak tak to wykonuje odpowiednia akcje
-        # dziala ok
+        # dziala ok ale wolno
         timestamp = datetime.datetime.now()
         # print("Status check")
         # print('eatin')
@@ -169,73 +163,73 @@ class Gracz:
         print('TIME do_bij', looptime)
         return True
 
-    def go(self, wp=1):
-        # main logic goes here
-        timestamp = datetime.datetime.now()
-        #        if self.other.is_ring_on() is False:
-        #            self.other.put_on_ring(config.hotkey_ring)
-        #            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
-        bije = self.is_bije()
-        jestcobic = self.is_co_bic()
-        jest_ok = self.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
-                                   manalow=config.manalow)
-        if jest_ok:
-            if not bije:
-                if jestcobic:
-                    self.do_loot()
-                    self.do_bij()
-                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-                if not jestcobic:
-                    self.do_loot()
-                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-                    if self.cave.is_on_wp(wp):
-                        if wp == list(wps.keys())[-1]:
-                            wp = list(wps.keys())[0]
-                        else:
-                            wp += 1
-                    else:
-                        self.cave.do_go_wp(wp)
-                        # backpack_check()
-                        self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-            # if bije
-            else:
-                self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-        # check if ready go to dp and go
-        #        if self.cave.is_ready_to_go_to_dp():
-        #            wp = list(to_dp_wps)[0]
-        #            while wp is not True:
-        #                print('before', wp)
-        #                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
-        #                # #todo zostaje na chwile
-        #                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-        #                print('after', wp)
-        #                if wp is False:
-        #                    print('gdzies wyjebalo falsem')
-        #                    return False
-        #            # todo doing resupply
-        #            sleep(50)
-        #            self.do_ressuply()
-        #            # go back to cave
-        #            wp = list(to_cave_wps)[0]
-        #            while wp is not True:
-        #                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
-        #            # reset wp for cave bot
-        #            wp = list(wps)[0]
-        #
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print()
-        print('TIME FULLLOOP', looptime)
-        print()
-        return wp
-
-    def loop(self):
-        nextwp = 1
-        while True:
-#            print()
-#            print('going', nextwp)
-#            print()
-            nextwp = self.go(wp=nextwp)
+#    def go(self, wp=1):
+#        # main logic goes here
+#        timestamp = datetime.datetime.now()
+#        #        if self.other.is_ring_on() is False:
+#        #            self.other.put_on_ring(config.hotkey_ring)
+#        #            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+#        bije = self.is_bije()
+#        jestcobic = self.is_co_bic()
+#        jest_ok = self.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+#                                   manalow=config.manalow)
+#        if jest_ok:
+#            if not bije:
+#                if jestcobic:
+#                    self.do_loot()
+#                    self.do_bij()
+#                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+#                if not jestcobic:
+#                    self.do_loot()
+#                    self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+#                    if self.cave.is_on_wp(wp):
+#                        if wp == list(wps.keys())[-1]:
+#                            wp = list(wps.keys())[0]
+#                        else:
+#                            wp += 1
+#                    else:
+#                        self.cave.do_go_wp(wp)
+#                        # backpack_check()
+#                        self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+#            # if bije
+#            else:
+#                self.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+#        # check if ready go to dp and go
+#        #        if self.cave.is_ready_to_go_to_dp():
+#        #            wp = list(to_dp_wps)[0]
+#        #            while wp is not True:
+#        #                print('before', wp)
+#        #                # #todo to chyba nie powinno tak wygladac ale jest 2 w nocy wiec jebac
+#        #                # #todo zostaje na chwile
+#        #                wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+#        #                print('after', wp)
+#        #                if wp is False:
+#        #                    print('gdzies wyjebalo falsem')
+#        #                    return False
+#        #            # todo doing resupply
+#        #            sleep(50)
+#        #            self.do_ressuply()
+#        #            # go back to cave
+#        #            wp = list(to_cave_wps)[0]
+#        #            while wp is not True:
+#        #                wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+#        #            # reset wp for cave bot
+#        #            wp = list(wps)[0]
+#        #
+#        timestamp2 = datetime.datetime.now()
+#        looptime = timestamp2 - timestamp
+#        print()
+#        print('TIME FULLLOOP', looptime)
+#        print()
+#        return wp
+#
+#    def loop(self):
+#        nextwp = 1
+#        while True:
+##            print()
+##            print('going', nextwp)
+##            print()
+#            nextwp = self.go(wp=nextwp)
 
 
 
@@ -243,7 +237,7 @@ class Gracz:
 ###
 # init gracza
 ###
-player = Gracz()
+#player = Gracz()
 
 
 
@@ -282,7 +276,7 @@ player = Gracz()
 #player.cave.use_rope()
 #player.cave.use_shovel()
 
-sleep(2)
+#sleep(2)
 #player.other.get_screenshoot(region=cap_region)
 
 # tested
@@ -298,74 +292,75 @@ sleep(2)
 
 # temp specials
 
-temp_specials = {
-    1: 'rope',
-    3: 'shovel'
-}
-#print(player.cave.is_wp_fancy(wp=1, specials=temp_specials))       #ok
-#print(player.cave.do_go_wp_plus(wp=1, specials=temp_specials))     #Ok
-
-
-wp = 1
-#print(temp_specials[wp])
-#print(temp_specials[wp+1])
-
-#tm = list(temp_specials)
-#print(tm[tm.index(wp) + 1])
-
-depo_wps = {
-    1: 'rope',
-    2: None,
-    3: 'LAST'
-}
-#print(player.cave.go_somwhere(currentwp=1, specials=depo_wps))
+#temp_specials = {
+#    1: 'rope',
+#    3: 'shovel'
+#}
+##print(player.cave.is_wp_fancy(wp=1, specials=temp_specials))       #ok
+##print(player.cave.do_go_wp_plus(wp=1, specials=temp_specials))     #Ok
 #
-#while True:
-#    print()
-#    print('next while true dla', wp)
-#    print()
-#    # go to cave
-#    if wp is not True:
-#        wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
-#        if wp is False:
-#            print('gdzies wyjebalo falsem')
-#            break
-#        print('generated wp', wp)
-#    else:
-#        print('its done')
-#        # loop will cave bot and check if need to go to dp
-#        wp = 1
-#        player.loop()
 #
-
-to_cave_wps = {
-    1: None,
-    2: 'shovel',
-    3: None,
-    4: None,
-    5: 'LAST'
-}
-# load cave
-# from caves.rook import *
-# from caves.venore_swamp_trolls import *
-
-# go to cave first time from bank
-#wp = 4
-#while wp is not True:
-#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
-#    if wp is False:
-#        print('in be4 go wywalil false')
-#        break
+#wp = 1
+##print(temp_specials[wp])
+##print(temp_specials[wp+1])
 #
-#player.other.get_screenshoot(region=bw)
-
-# back to regular routine with go to dp if no cap
-
-player.loop()
-#wp = 17
-#while wp is not True:
-#    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
-#    if wp is False:
-#        print('in be4 go wywalil false')
-#        break
-#player.do_ressuply()
+##tm = list(temp_specials)
+##print(tm[tm.index(wp) + 1])
+#
+#depo_wps = {
+#    1: 'rope',
+#    2: None,
+#    3: 'LAST'
+#}
+##print(player.cave.go_somwhere(currentwp=1, specials=depo_wps))
+##
+##while True:
+##    print()
+##    print('next while true dla', wp)
+##    print()
+##    # go to cave
+##    if wp is not True:
+##        wp = player.cave.go_somwhere(currentwp=wp, specials=depo_wps)
+##        if wp is False:
+##            print('gdzies wyjebalo falsem')
+##            break
+##        print('generated wp', wp)
+##    else:
+##        print('its done')
+##        # loop will cave bot and check if need to go to dp
+##        wp = 1
+##        player.loop()
+##
+#
+#to_cave_wps = {
+#    1: None,
+#    2: 'shovel',
+#    3: None,
+#    4: None,
+#    5: 'LAST'
+#}
+## load cave
+## from caves.rook import *
+## from caves.venore_swamp_trolls import *
+#
+## go to cave first time from bank
+##wp = 4
+##while wp is not True:
+##    wp = player.cave.go_somwhere(currentwp=wp, specials=to_cave_wps)
+##    if wp is False:
+##        print('in be4 go wywalil false')
+##        break
+##
+##player.other.get_screenshoot(region=bw)
+#
+## back to regular routine with go to dp if no cap
+#
+##player.loop()
+##wp = 17
+##while wp is not True:
+##    wp = player.cave.go_somwhere(currentwp=wp, specials=to_dp_wps)
+##    if wp is False:
+##        print('in be4 go wywalil false')
+##        break
+##player.do_ressuply()
+#
