@@ -20,10 +20,10 @@ class Gracz:
         pyautogui.PAUSE = 0.05
         print('loaded with config ', confname)
 
-    def get_avialable_slots(self):
-        # podaje ile jest dostepynch slotow w regionie na bp
-        # dziala ok
-        return len(self.backpack.get_avial_slots())
+    # def get_avialable_slots(self):
+    #     # podaje ile jest dostepynch slotow w regionie na bp
+    #     # dziala ok
+    #     return len(self.backpack.get_avial_slots())
 
     def is_bije(self):
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
@@ -65,6 +65,7 @@ class Gracz:
         looptime = timestamp2 - timestamp
         print('TIME is_co_bic F', looptime)
         return False
+
 
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
