@@ -6,6 +6,8 @@ from gracz import *
 
 
 player = Gracz()
+pyautogui.click(default)   # focus on game window
+
 
 def go(player=player, wp=1, ring=False):
     # main logic goes here
@@ -16,7 +18,8 @@ def go(player=player, wp=1, ring=False):
             sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
 
     bije = player.is_bije()
-    jestcobic = player.is_co_bic(target_list=target_list)
+    if not bije:    # check only if not attacking, otherwise waste of time
+        jestcobic = player.is_co_bic(target_list=target_list)
     jest_ok = player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                                  manalow=config.manalow)
     if jest_ok:

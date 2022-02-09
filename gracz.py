@@ -56,6 +56,7 @@ class Gracz:
         for j in target_list:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=bw, confidence=.8) is not None:
+                pyautogui.press('Esc')  # co by sie nie wpierdalal w 20 mobow zanim zacznie atakowac
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_co_bic T', looptime)
