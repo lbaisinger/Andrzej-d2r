@@ -34,7 +34,6 @@ class Gracz:
         img_size = img.size
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
-
         if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.3) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp

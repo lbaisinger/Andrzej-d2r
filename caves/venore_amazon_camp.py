@@ -19,6 +19,7 @@ wps = {1: None,
        3: None,
        4: None,
        5: None}
+wp_val = list(wps.values())
 
 # Path to cave
 # from venore east bank
@@ -48,4 +49,8 @@ to_dp_wps = {11: 'lvl_changing_wp',
 target_list = ["any"]
 
 # FACC Backapck trash
-item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch']
+# ground level
+# item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch']
+# -1 level
+
+item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch', 'meat', 'hunting_spear', 'chain_armor', 'apples','spear']

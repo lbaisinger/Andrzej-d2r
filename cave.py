@@ -3,7 +3,7 @@ import pyautogui
 import PIL.Image
 from utils import Backpack
 from time import sleep
-from caves.any_5 import *
+#from caves.any_5 import *
 from config_picker import *
 
 
@@ -74,7 +74,7 @@ class Cave:
             print('TIME is_ready_to_go_dp T', looptime)
             return True
 
-    def is_on_wp(self, wp):
+    def is_on_wp(self, wp, wp_val):
         timestamp = datetime.datetime.now()
         # standing on wp ?
         img = PIL.Image.open("src/wp/" + str(wp) + ".png")
