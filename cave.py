@@ -3,7 +3,7 @@ import pyautogui
 import PIL.Image
 from utils import Backpack
 from time import sleep
-
+from caves.any_5 import *
 from config_picker import *
 
 
@@ -17,7 +17,10 @@ class Cave:
     def use_rope(self):
         # works ok
         timestamp = datetime.datetime.now()
+        sleep(0.1)
         pyautogui.press(config.hotkey_rope)
+        sleep(0.1)
+        pyautogui.click(config.character)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME use_rope', looptime)
@@ -26,8 +29,10 @@ class Cave:
     def use_shovel(self):
         # works ok
         timestamp = datetime.datetime.now()
+        sleep(0.1)
         pyautogui.press(config.hotkey_shovel)
-        pyautogui.moveTo(config.character)
+        sleep(0.1)
+        # pyautogui.moveTo(config.character)
         pyautogui.click(config.character)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -85,13 +90,20 @@ class Cave:
             # to wide
             #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
             if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3:
-                print('did not yet reach wp', wp)
+                print('did not yet reach wp', wp, 'coords:', str(xyz))
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp F', looptime)
                 return False
             else:
-                print('>>>> reached wp', wp)
+                print('>>>> reached wp', wp, 'coords:', str(xyz))
+                if wp_val[wp-1] == 'special':
+                    print('wp: lopata & lina')
+                    self.use_rope()
+                    sleep(0.2)
+                    self.use_shovel()
+                else:
+                    print('wp pospolity')
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp T', looptime)
