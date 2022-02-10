@@ -32,7 +32,7 @@ hplow=True
 # heal if hp moderate with exura (another hotkey)
 hpmid=False
 # see if low mana and drink potion
-manalow=False
+manalow=True
 # see if too much mana and burn
 manahigh=True
 
