@@ -128,6 +128,7 @@ class Cave:
         if wp_coord is not None:
             # print('going wp', str(wp), wp_coord[0], wp_coord[1])
             pyautogui.click(wp_coord[0], wp_coord[1])
+            pyautogui.moveTo(config.default)  # Added moveto default (otherwise sometime mouse stays on wp and cannot detect)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('TIME GO_WP OK', looptime)
