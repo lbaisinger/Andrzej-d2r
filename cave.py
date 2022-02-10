@@ -38,6 +38,15 @@ class Cave:
         print('TIME use_shovel', looptime)
         return True
 
+    def use_ladder(self):
+        timestamp = datetime.datetime.now()
+        sleep(0.1)
+        pyautogui.click(config.character, button='right')
+        timestamp2 = datetime.datetime.now()
+        looptime = timestamp2 - timestamp
+        print('TIME use_ladder', looptime)
+        return True
+
     def is_has_cap(self):
         # todo fix it to be sure that it can always read cap
         timestamp = datetime.datetime.now()
