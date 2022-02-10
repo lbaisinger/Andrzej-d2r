@@ -22,9 +22,9 @@ wp_center3 = (1806, 84)
 cap_region = (1832, 274, 25, 12)
 
 # todo fix below
-mana_pool_potek = (1676, 35)
-hp_pool_exura = (800, 35)
-hp_pool_potek = (380, 35)
+mana_pool_potek = (1270, 35)
+hp_pool_exura = (574, 35)
+hp_pool_potek = (360, 35)
 burn_mana = (830, 35)
 
 # heal if hp low with poton
