@@ -3,9 +3,9 @@ from gracz import *
 
 # Facc rycek od one shotowania itemow do imbuli
 
-
+sleep(2)
 player = Gracz()
-pyautogui.click(default)  # focus on game window
+pyautogui.click(config.default)  # focus on game window
 
 
 def go(player=player, wp=1, ring=False):
@@ -59,4 +59,4 @@ def loop():
         nextwp = go(wp=nextwp)
 
 
-player.loop()
+loop()
