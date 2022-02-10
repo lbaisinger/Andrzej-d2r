@@ -1,4 +1,3 @@
-import config
 from caves.any_5 import *
 from gracz import *
 
@@ -9,7 +8,7 @@ from gracz import *
 player = Gracz()
 pyautogui.click(config.default)
 
-def go(player=player, wp=1, ring=False):
+def go(player=player, wp=1, ring=True):
     # main logic goes here
     timestamp = datetime.datetime.now()
     if ring:
@@ -52,7 +51,7 @@ def go(player=player, wp=1, ring=False):
 
 
 def loop():
-    nextwp = 2
+    nextwp = 3
     while True:
          print()
          print('going', nextwp)

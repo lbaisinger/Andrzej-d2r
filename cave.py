@@ -90,13 +90,13 @@ class Cave:
             # to wide
             #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
             if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3:
-                print('did not yet reach wp', wp, 'coords:', xyz)
+                print('did not yet reach wp', wp, 'coords:', str(xyz))
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp F', looptime)
                 return False
             else:
-                print('>>>> reached wp', wp, 'coords:', xyz)
+                print('>>>> reached wp', wp, 'coords:', str(xyz))
                 if wp_val[wp-1] == 'special':
                     print('wp: lopata & lina')
                     self.use_rope()
