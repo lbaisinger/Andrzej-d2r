@@ -3,7 +3,6 @@ import pyautogui
 import PIL.Image
 from utils import Backpack
 from time import sleep
-#from caves.any_5 import *
 from config_picker import *
 
 
