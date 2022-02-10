@@ -38,9 +38,9 @@ def go(player=player, wp=1, ring=False):
                 else:
                     player.cave.do_go_wp(wp)
                     player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-        # if bije
-        # else:
-        #     player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+#  czyli jesli bije //   if bije
+        else:
+            player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
 
     timestamp2 = datetime.datetime.now()
     looptime = timestamp2 - timestamp
