@@ -44,7 +44,8 @@ to_dp_wps = {11: 'lvl_changing_wp',
              17: 'LAST'}
 
 # Monster list for the hunt, must match names of the .png files LOWERCASE, prioritize
-target_list = ["amazon"]
+#target_list = ["amazon"]
+target_list = ["any"]
 
 # FACC Backapck trash
 item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch']

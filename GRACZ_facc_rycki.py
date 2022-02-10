@@ -1,4 +1,4 @@
-from caves.any_5 import *
+from caves.venore_amazon_camp import *
 from gracz import *
 
 # Facc rycek od one shotowania itemow do imbuli
