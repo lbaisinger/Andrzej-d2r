@@ -53,4 +53,4 @@ target_list = ["any"]
 # item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch']
 # -1 level
 
-item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch', 'meat', 'hunting_spear', 'chain_armor', 'apples','spear','cape','cookies','wolf_tooth_chain', 'plate_armor','double_axe','coat','leather_boots']
+item_blacklsit = ['iron_dagger', 'iron_dagger', 'sabre', 'skulls', 'breads', 'torch', 'meat', 'hunting_spear', 'chain_armor', 'apples','spear','cape','cookies','wolf_tooth_chain', 'plate_armor','double_axe','coat','leather_boots','gold_sickle']
