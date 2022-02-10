@@ -1,4 +1,4 @@
-from caves.any_5 import *
+from caves.venore_amazon_camp import *
 from gracz import *
 
 # Facc rycek od one shotowania itemow do imbuli
@@ -26,18 +26,18 @@ def go(player=player, wp=1, ring=False):
             if jestcobic:
                 player.do_loot()
                 player.do_bij()
-                # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+                player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
             if not jestcobic:
                 player.do_loot()
-                # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-                if player.cave.is_on_wp(wp):
+                player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+                if player.cave.is_on_wp(wp, wp_val):
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                     else:
                         wp += 1
                 else:
                     player.cave.do_go_wp(wp)
-                    # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+                    player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
         # if bije
         # else:
         #     player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)

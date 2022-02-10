@@ -28,7 +28,7 @@ hp_pool_potek = (380, 35)
 burn_mana = (830, 35)
 
 # heal if hp low with poton
-hplow=False
+hplow=True
 # heal if hp moderate with exura (another hotkey)
 hpmid=False
 # see if low mana and drink potion
@@ -44,7 +44,8 @@ hotkey_shovel = 'f9'
 hotkey_exura = 'f3'
 hotkey_manapot = 'f2'
 hotkey_manaburn = hotkey_exura
-hotkey_hppot = 'f1'
+#hotkey_hppot = 'f1'
+hotkey_hppot = hotkey_exura
 hotkey_food = 'f4'
 hotkey_chase = '/'
 hotkey_hi = 'f10'
