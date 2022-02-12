@@ -82,7 +82,5 @@ def go_exp_yourself(player=player):
     go_depo()
 
 
-
-go_exp_yourself()
-go_exp_yourself()
-go_exp_yourself()
+go_hunt()
+loop()
