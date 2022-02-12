@@ -151,7 +151,7 @@ class Cave:
         # todo verify if rly works
         timestamp = datetime.datetime.now()
         # sprawdz czy podany wp specjalny
-        if specials[wp] is not None:
+        if specials[wp] in ['rope','shovel']:
             # to bedzie specjalyn wp
             print('am special')
             timestamp2 = datetime.datetime.now()
@@ -184,50 +184,86 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME do_go_wp_plus LAST', looptime)
             return True
-        if specials[wp] == 'lvl_changing_wp':
-            # see if next in horizon
-            nextwp = wp + 1
-            print('debug', nextwp)
-            print('debug', specials[wp])
-            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                          region=config.minimap,
-                                                          confidence=.8)
-            while nextwp_coord is None:
-                nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                              region=config.minimap,
-                                                              confidence=.8)
-                self.do_go_wp(wp)
-                sleep(.5)
-                print('looking for next wp')
-
-            # jesli jest juz znajdzie
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus lvl_changer', looptime)
-            return True
-        if specials[wp] == 'dosmthfancy':
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus dosmthfancy', looptime)
-            return True
-        if specials[wp] is None:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus None', looptime)
-            return True
+#        if specials[wp] == 'lvl_changing_wp':
+#            # see if next in horizon
+#            nextwp = wp + 1
+#            print('debug', nextwp)
+#            print('debug', specials[wp])
+#            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
+#                                                          region=config.minimap,
+#                                                          confidence=.8)
+#            while nextwp_coord is None:
+#                nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
+#                                                              region=config.minimap,
+#                                                              confidence=.8)
+#                self.do_go_wp(wp)
+#                sleep(.5)
+#                print('looking for next wp')
+#
+#            # jesli jest juz znajdzie
+#            timestamp2 = datetime.datetime.now()
+#            looptime = timestamp2 - timestamp
+#            print('TIME do_go_wp_plus lvl_changer', looptime)
+#            return True
+#        if specials[wp] == 'dosmthfancy':
+#            timestamp2 = datetime.datetime.now()
+#            looptime = timestamp2 - timestamp
+#            print('TIME do_go_wp_plus dosmthfancy', looptime)
+#            return True
+#        if specials[wp] is None:
+#            timestamp2 = datetime.datetime.now()
+#            looptime = timestamp2 - timestamp
+#            print('TIME do_go_wp_plus None', looptime)
+#            return True
         # if did not catch in any of ifs above
         return False
+    
+    def is_wp_in_range(self, wp):
+        wp_cords = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=config.minimap, confidence=.8)
+        if wp_cords is not None:
+            return True
+        else:
+            return False
+
+
+    def go_somewhere(self, wp, specials: {}):
+        nextwp = wp+1
+
+        # sprawdz czy nie wszedl po shcodach/wszedl w dziure
+        if specials[wp] == 'lvl_changing_wp':
+            print('to level changer')
+            if self.is_wp_in_range(nextwp):
+                return nextwp
+
+        # sprawdz czy stoje na wp      
+        if self.is_on_wp(wp=wp, wp_val=list(specials.values())):
+            # sprawdz czy to nie koniec
+            if specials[wp] == 'LAST':
+                print('done! im there')
+                return True
+
+            # jak fancy to zrob cos 
+            if self.is_wp_fancy(wp=wp, specials=specials):
+                self.do_go_wp_plus(wp, specials)
+            # i dawaj na next
+            return nextwp    
+        
+        # w kazdym innym wypadku
+        self.do_go_wp(wp)
+        return wp
+
+
 
 # new one to go dp/bank in one
     def go_somwhere(self, currentwp, specials: {}):
         # todo need some work
-        print(currentwp)
-        print(specials[currentwp])
+        #print(currentwp)
+        #print(specials[currentwp])
         timestamp = datetime.datetime.now()
         # idz do wp
         self.do_go_wp(currentwp)
         # sprawdz czy doszedles do wp
-        if self.is_on_wp(wp=currentwp):
+        if self.is_on_wp(wp=currentwp, wp_val=list(specials.values())):
             print('jestem na wp!!')
             # jest to ostatni wp
             if str(specials[currentwp]) == "LAST":
@@ -237,7 +273,7 @@ class Cave:
                 print('TIME go_somwhere LAST', looptime)
                 return True
             # jesli nie jest ostatni
-            # czy to jest fancy wp
+            # czy stoisz na fancy wp
             if self.is_wp_fancy(wp=currentwp, specials=specials):
                 # jesli tak to zrob fancy rzeczy
                 if self.do_go_wp_plus(wp=currentwp, specials=specials):
@@ -255,10 +291,16 @@ class Cave:
             nextwp = currentwp+1
             print('nextwp', nextwp)
             return nextwp
-        elif not self.is_on_wp(wp=currentwp):
+        elif not self.is_on_wp(wp=currentwp, wp_val=list(specials.values())):
+            # sprawdz czy to nie fancy lvl chaning wp
+            if specials[currentwp] == 'lvl_changing_wp':
+                self.do_go_wp_plus(wp=currentwp, specials=specials)
+                nextwp = currentwp+1
+                return nextwp
+
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print(self.is_on_wp(wp=currentwp))
+            print(self.is_on_wp(wp=currentwp, wp_val=list(specials.values())))
             print(currentwp)
             print('TIME go_somwhere not standing on wp', looptime)
             return currentwp
@@ -286,7 +328,6 @@ class Cave:
         looptime = timestamp2 - timestamp
         print('TIME go_somwhere False', looptime)
         return currentwp
-
 
 
 
