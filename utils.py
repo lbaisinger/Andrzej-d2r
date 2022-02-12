@@ -14,7 +14,7 @@ class Backpack:
         # returns amount of cap left based on what it can read from inverted.png
         # tested - looks fine
         Other().get_screenshoot(region=config.cap_region)
-        cap = pytesseract.image_to_string('inverted.png', config='--psm 10 --oem 3 -c tessedit_char_whitelest=0123456789')
+        cap = pytesseract.image_to_string('inverted.png', config='--psm 13 --oem 3 -c tessedit_char_whitelest=0123456789')
         print(cap.strip())
         return cap
 
@@ -72,8 +72,11 @@ class Other:
         print(final_filename)
         # invert image
         inverted_image = PIL.ImageOps.invert(Image.open(final_filename))
+        # gray scale 
+        inverted_image = PIL.ImageOps.grayscale(inverted_image)
         # save it
-        inverted_file_name = 'inverted' + str(region) + filename + '.png'
+        #inverted_file_name = 'inverted' + str(region) + filename + '.png'
+        inverted_file_name = 'inverted.png' 
         inverted_image.save(inverted_file_name)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp

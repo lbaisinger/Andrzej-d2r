@@ -48,7 +48,8 @@ def go(player=player, wp=1):
 
 def loop():
     nextwp = 1
-    while True:
+#    while True:
+    while player.cave.is_has_cap():
         print()
         print('going', nextwp)
         print()
@@ -68,13 +69,20 @@ def go_hunt(player=player):
 def go_depo(player=player):
     wp = list(to_dp_wps.keys())[0]
     while wp is not True:
-        if wp is not True:
-            wp = player.cave.go_somewhere(wp, to_dp_wps)
-            sleep(3)
-    print('reached dp')
-
-#go_hunt()
-
-go_depo()
+        wp = player.cave.go_somewhere(wp, to_dp_wps)
+        sleep(3)
+    print('reached bank')
+    player.do_bank_deposit()
 
 
+
+def go_exp_yourself(player=player):
+    go_hunt()
+    loop()
+    go_depo()
+
+
+
+go_exp_yourself()
+go_exp_yourself()
+go_exp_yourself()

@@ -7,6 +7,7 @@
 ### Hall of fame:
 ### Cremna Nepe 2-8
 ### Thor Teik 2-8
+###
 ### Waypoints
 
 # start waypoint
@@ -37,4 +38,4 @@ to_dp_wps = {11: 'lvl_changing_wp',
 target_list = ["any"]
 
 # FACC Backapck trash
-item_blacklsit = ['leather_armor', 'bone_club', 'hand_axe', 'torch', 'leather_boots', 'spear', 'rope']
+item_blacklsit = ['leather_armor', 'bone_club', 'hand_axe', 'torch', 'leather_boots', 'spear', 'rope', 'meat']
