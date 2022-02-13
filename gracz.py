@@ -120,6 +120,8 @@ class Gracz:
         return True
 
     def do_ressuply(self):
+        # zagregowana funkcja ressuply
+        # mozna tu dolozyc wiecej akcji jak potrzeba
         if self.do_bank_deposit():
             return True
         else:

@@ -53,6 +53,7 @@ class Cave:
         bp = Backpack()
         try:
             cap = bp.get_avial_cap()
+            print('cap' ,cap)
             if int(cap) > config.min_cap_to_cont_hunt:
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -97,7 +98,7 @@ class Cave:
             print(xyz)
             # to wide
             #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
-            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3:
+            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4:
                 print('did not yet reach wp', wp, 'coords:', str(xyz))
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -105,13 +106,6 @@ class Cave:
                 return False
             else:
                 print('>>>> reached wp', wp, 'coords:', str(xyz))
-                if wp_val[wp-1] == 'special':
-                    print('wp: lopata & lina')
-                    self.use_rope()
-                    sleep(0.2)
-                    self.use_shovel()
-                else:
-                    print('wp pospolity')
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp T', looptime)
@@ -151,7 +145,7 @@ class Cave:
         # todo verify if rly works
         timestamp = datetime.datetime.now()
         # sprawdz czy podany wp specjalny
-        if specials[wp] is not None:
+        if specials[wp] in ['rope','shovel', 'ladder']:
             # to bedzie specjalyn wp
             print('am special')
             timestamp2 = datetime.datetime.now()
@@ -179,114 +173,52 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME do_go_wp_plus shovel', looptime)
             return True
-        if specials[wp] == 'LAST':
+        if specials[wp] == 'ladder':
+            self.use_ladder()
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus LAST', looptime)
+            print('TIME do_go_wp_plus use_ladder', looptime)
             return True
-        if specials[wp] == 'lvl_changing_wp':
-            # see if next in horizon
-            nextwp = wp + 1
-            print('debug', nextwp)
-            print('debug', specials[wp])
-            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                          region=config.minimap,
-                                                          confidence=.8)
-            while nextwp_coord is None:
-                nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-                                                              region=config.minimap,
-                                                              confidence=.8)
-                self.do_go_wp(wp)
-                sleep(.5)
-                print('looking for next wp')
-
-            # jesli jest juz znajdzie
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus lvl_changer', looptime)
-            return True
-        if specials[wp] == 'dosmthfancy':
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus dosmthfancy', looptime)
-            return True
-        if specials[wp] is None:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME do_go_wp_plus None', looptime)
-            return True
+#        if specials[wp] is None:
+#            timestamp2 = datetime.datetime.now()
+#            looptime = timestamp2 - timestamp
+#            print('TIME do_go_wp_plus None', looptime)
+#            return True
         # if did not catch in any of ifs above
         return False
+    
+    def is_wp_in_range(self, wp):
+        wp_cords = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=config.minimap, confidence=.8)
+        if wp_cords is not None:
+            return True
+        else:
+            return False
 
-# new one to go dp/bank in one
-    def go_somwhere(self, currentwp, specials: {}):
-        # todo need some work
-        print(currentwp)
-        print(specials[currentwp])
-        timestamp = datetime.datetime.now()
-        # idz do wp
-        self.do_go_wp(currentwp)
-        # sprawdz czy doszedles do wp
-        if self.is_on_wp(wp=currentwp):
-            print('jestem na wp!!')
-            # jest to ostatni wp
-            if str(specials[currentwp]) == "LAST":
-                # its done to ostatni
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_somwhere LAST', looptime)
+
+    def go_somewhere(self, wp, specials: {}):
+        nextwp = wp+1
+
+        # sprawdz czy nie wszedl po shcodach/wszedl w dziure
+        if specials[wp] == 'lvl_changing_wp':
+            print('to level changer')
+            if self.is_wp_in_range(nextwp):
+                return nextwp
+
+        # sprawdz czy stoje na wp      
+        if self.is_on_wp(wp=wp, wp_val=list(specials.values())):
+            # sprawdz czy to nie koniec
+            if specials[wp] == 'LAST':
+                print('done! im there')
                 return True
-            # jesli nie jest ostatni
-            # czy to jest fancy wp
-            if self.is_wp_fancy(wp=currentwp, specials=specials):
-                # jesli tak to zrob fancy rzeczy
-                if self.do_go_wp_plus(wp=currentwp, specials=specials):
-                    # dawaj na nast wp
-                    nextwp = currentwp+1
-                    print(nextwp)
-                    return nextwp
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME go_somwhere do_go_wp_plus', looptime)
-                return currentwp
-            ## if not caught anything else
-            print('face the thing that should not be')
-            print('currentwp', currentwp)
-            nextwp = currentwp+1
-            print('nextwp', nextwp)
-            return nextwp
-        elif not self.is_on_wp(wp=currentwp):
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print(self.is_on_wp(wp=currentwp))
-            print(currentwp)
-            print('TIME go_somwhere not standing on wp', looptime)
-            return currentwp
 
-        # #jesli nie ostatni
-#        if not specials[currentwp] == 'LAST':
-#            # todo przeniesc to gdzies na pewno nie tu
-#            # sprawdz czy nast na horyzoncie
-#            nextwp = currentwp+1
-#            print('debug', nextwp)
-#            print('debug', specials[currentwp])
-#            nextwp_coord = pyautogui.locateCenterOnScreen("src/wp/" + str(nextwp) + ".png",
-#                                                          region=minimap,
-#                                                          confidence=.8)
-#            # jesli jest
-#            if nextwp_coord is not None:
-#                # jest nast na horyzncie, znaczy sie dotarlismy
-#                # zwroc nastepny
-#                timestamp2 = datetime.datetime.now()
-#                looptime = timestamp2 - timestamp
-#                print('TIME go_somwhere next_on_horizon', looptime)
-#                return nextwp
-        # w inny wypadku
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME go_somwhere False', looptime)
-        return currentwp
-
-
+            # jak fancy to zrob cos 
+            if self.is_wp_fancy(wp=wp, specials=specials):
+                self.do_go_wp_plus(wp, specials)
+            # i dawaj na next
+            return nextwp    
+        
+        # w kazdym innym wypadku
+        self.do_go_wp(wp)
+        return wp
 
 
