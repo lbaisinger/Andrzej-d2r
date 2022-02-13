@@ -7,6 +7,7 @@
 ### Hall of fame:
 ### Cremna Nepe 2-8
 ### Thor Teik 2-8
+### Benjamin Hatchet 2-8
 ###
 ### Waypoints
 
