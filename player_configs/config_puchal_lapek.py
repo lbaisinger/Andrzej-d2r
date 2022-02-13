@@ -19,6 +19,7 @@ character = (765, 480)
 wp_center = (1805, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
+wp_center4 = (1804, 83)
 cap_region = (1832, 274, 25, 12)
 
 # todo fix below
