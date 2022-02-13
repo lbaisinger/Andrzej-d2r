@@ -13,8 +13,8 @@ class Backpack:
     def get_avial_cap(self):
         # returns amount of cap left based on what it can read from inverted.png
         # tested - looks fine
-        Other().get_screenshoot(region=config.cap_region)
-        cap = pytesseract.image_to_string('inverted.png', config='--psm 13 --oem 3 -c tessedit_char_whitelest=0123456789')
+        Other().get_screenshoot(region=config.cap_region, filename='bp')
+        cap = pytesseract.image_to_string('inverted_bp.png', config='--psm 13 --oem 3 -c tessedit_char_whitelest=0123456789')
         print(cap.strip())
         return cap
 
@@ -30,6 +30,8 @@ class Backpack:
 
     def do_drop_random_item_from_blacklist(self, item_blacklist):
         # facc feature
+        # z listy itemy w caves, wybiera losowy itemy i probuje go wywalic
+        # sprawdzanie calej listy za dlugo trwa
         timestamp = datetime.datetime.now()
         item = choice(item_blacklist)
         print('checking for item', item)
@@ -63,6 +65,7 @@ class Backpack:
 class Other:
 
     def get_screenshoot(self, region=config.minimap, filename='screen'):
+        # self explainatory
         timestamp = datetime.datetime.now()
         # get screen shoot
         myscreenshot = pyautogui.screenshot(region=region)
@@ -76,7 +79,7 @@ class Other:
         inverted_image = PIL.ImageOps.grayscale(inverted_image)
         # save it
         #inverted_file_name = 'inverted' + str(region) + filename + '.png'
-        inverted_file_name = 'inverted.png' 
+        inverted_file_name = 'inverted_' + filename + '.png' 
         inverted_image.save(inverted_file_name)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp

@@ -22,13 +22,13 @@ wps = {1: None,
 wp_val = list(wps.values())
 
 # Path to cave
-# from venore east bank
+# from bank on the floor
 to_cave_wps = {14: 'lvl_changing_wp',
                15: 'lvl_changing_wp',
                16: 'LAST'}
 
 # Path to depo
-# last one is venore east bank
+# from dawnport surroundings
 # from any in that cave
 to_dp_wps = {11: 'lvl_changing_wp',
              12: 'lvl_changing_wp',

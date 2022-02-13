@@ -8,7 +8,7 @@ player = Gracz()
 pyautogui.click(config.default)  # focus on game window
 
 
-def go(player=player, wp=1):
+def go(player=player, wp=1, specials=specials):
     # main logic goes here
     timestamp = datetime.datetime.now()
 
@@ -27,6 +27,8 @@ def go(player=player, wp=1):
                 player.do_loot()
                 player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
                 if player.cave.is_on_wp(wp, wp_val):
+                    if player.cave.is_wp_fancy(wp, specials):
+                        player.cave.do_go_wp_plus(wp, specials)
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                     else:
@@ -82,5 +84,10 @@ def go_exp_yourself(player=player):
     go_depo()
 
 
+
+# only go hunt 
 go_hunt()
 hunt()
+
+# go hunt and deposit gold
+go_exp_yourself()
