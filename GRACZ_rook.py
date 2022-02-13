@@ -48,8 +48,8 @@ def go(player=player, wp=1):
 
 def loop():
     nextwp = 1
-#    while True:
-    while player.cave.is_has_cap():
+    while True:
+#    while player.cave.is_has_cap():
         print()
         print('going', nextwp)
         print()
