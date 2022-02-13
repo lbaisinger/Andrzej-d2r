@@ -46,7 +46,7 @@ def go(player=player, wp=1):
     return wp
 
 
-def loop():
+def hunt():
     nextwp = 1
     while True:
 #    while player.cave.is_has_cap():
@@ -78,9 +78,9 @@ def go_depo(player=player):
 
 def go_exp_yourself(player=player):
     go_hunt()
-    loop()
+    hunt()
     go_depo()
 
 
 go_hunt()
-loop()
+hunt()
