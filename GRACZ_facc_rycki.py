@@ -8,10 +8,13 @@ player = Gracz()
 pyautogui.click(config.default)  # focus on game window
 
 
-def go(player=player, wp=1, specials= {}):
+def go(player=player, wp=1, specials= {}, ring=False):
     # main logic goes here
     timestamp = datetime.datetime.now()
-
+    if ring:
+        if player.other.is_ring_on() is False:
+            player.other.put_on_ring(config.hotkey_ring)
+            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     bije = player.is_bije()
     if not bije:  # check only if not attacking, otherwise waste of time
         jestcobic = player.is_co_bic(target_list=target_list)
