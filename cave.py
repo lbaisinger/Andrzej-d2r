@@ -106,13 +106,6 @@ class Cave:
                 return False
             else:
                 print('>>>> reached wp', wp, 'coords:', str(xyz))
-#                if wp_val[wp-1] == 'special':
-#                    print('wp: lopata & lina')
-#                    self.use_rope()
-#                    sleep(0.2)
-#                    self.use_shovel()
-#                else:
-#                    print('wp pospolity')
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_on_wp T', looptime)
