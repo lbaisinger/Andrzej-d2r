@@ -1,4 +1,4 @@
-from caves.venore_amazon_camp import *
+from caves.venore_swamp_trolls import *
 from gracz import *
 
 # Facc rycek od one shotowania itemow do imbuli
@@ -8,13 +8,9 @@ player = Gracz()
 pyautogui.click(config.default)  # focus on game window
 
 
-def go(player=player, wp=1, ring=False):
+def go(player=player, wp=1, specials= {}):
     # main logic goes here
     timestamp = datetime.datetime.now()
-    if ring:
-        if player.other.is_ring_on() is False:
-            player.other.put_on_ring(config.hotkey_ring)
-            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
 
     bije = player.is_bije()
     if not bije:  # check only if not attacking, otherwise waste of time
@@ -31,6 +27,8 @@ def go(player=player, wp=1, ring=False):
                 player.do_loot()
                 player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
                 if player.cave.is_on_wp(wp, wp_val):
+                    if player.cave.is_wp_fancy(wp, specials):
+                        player.cave.do_go_wp_plus(wp, specials)
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                     else:
@@ -50,13 +48,48 @@ def go(player=player, wp=1, ring=False):
     return wp
 
 
-def loop():
+def hunt():
     nextwp = 1
-    while True:
+#    while True:
+    while player.cave.is_has_cap():
         print()
         print('going', nextwp)
         print()
-        nextwp = go(wp=nextwp)
+        nextwp = go(wp=nextwp, specials=wps)
 
 
-loop()
+
+def go_hunt(player=player):
+    wp = list(to_cave_wps.keys())[0]
+    while wp is not True:
+        wp = player.cave.go_somewhere(wp=wp, specials=to_cave_wps)
+        sleep(3)
+    print('reached hunting ground')
+
+
+
+def go_depo(player=player):
+    wp = list(to_dp_wps.keys())[0]
+    while wp is not True:
+        wp = player.cave.go_somewhere(wp, to_dp_wps)
+        sleep(3)
+    print('reached bank')
+    player.do_bank_deposit()
+
+
+
+def go_exp_yourself(player=player):
+    go_hunt()
+    hunt()
+    go_depo()
+
+
+
+# only go hunt 
+#go_hunt()
+hunt()
+go_depo()
+
+# go hunt and deposit gold
+go_exp_yourself()
+
