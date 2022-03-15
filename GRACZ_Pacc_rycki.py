@@ -1,8 +1,6 @@
 from caves.any_5 import *
 from gracz import *
 
-# Facc rycek od one shotowania itemow do imbuli
-
 
 player = Gracz()
 pyautogui.click(config.default)
@@ -55,7 +53,7 @@ def go(player=player, wp=1, ring=True):
 
 
 def loop():
-    nextwp = 3
+    nextwp = 2
     iteration = 1
     while True:
         print()
