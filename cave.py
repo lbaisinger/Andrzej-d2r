@@ -6,11 +6,10 @@ from time import sleep
 from config_picker import *
 
 
-
 class Cave:
 
     def __init__(self):
-        #self.current_waypoint =
+        # self.current_waypoint =
         pass
 
     def use_rope(self):
@@ -53,7 +52,7 @@ class Cave:
         bp = Backpack()
         try:
             cap = bp.get_avial_cap()
-            print('cap' ,cap)
+            print('cap', cap)
             if int(cap) > config.min_cap_to_cont_hunt:
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
@@ -77,13 +76,13 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME is_ready_to_go_dp F', looptime)
             return False
-        elif not(self.is_has_cap()):
+        elif not (self.is_has_cap()):
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('TIME is_ready_to_go_dp T', looptime)
             return True
 
-    def is_on_wp(self, wp, wp_val):
+    def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
         img = PIL.Image.open("src/wp/" + str(wp) + ".png")
@@ -91,13 +90,15 @@ class Cave:
         wp_img = img.resize((img_size[0] * config.scale,
                              img_size[1] * config.scale))
         xyz = pyautogui.locateCenterOnScreen(wp_img,
-                                             region=config.minimap, #todo mozna by go mniejszym zrobic, ten region do jakiegos samego srodka minimapy
+                                             region=config.minimap,
+                                             # todo mozna by go mniejszym zrobic, ten region do jakiegos samego
+                                             #  srodka minimapy
                                              confidence=.8)
         if xyz is not None:
             # debug
             print(xyz)
             # to wide
-            #if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
+            # if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
             if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4:
                 print('did not yet reach wp', wp, 'coords:', str(xyz))
                 timestamp2 = datetime.datetime.now()
@@ -130,7 +131,8 @@ class Cave:
         if wp_coord is not None:
             # print('going wp', str(wp), wp_coord[0], wp_coord[1])
             pyautogui.click(wp_coord[0], wp_coord[1])
-            pyautogui.moveTo(config.default)  # Added moveto default (otherwise sometime mouse stays on wp and cannot detect)
+            pyautogui.moveTo(
+                config.default)  # Added moveto default (otherwise sometime mouse stays on wp and cannot detect)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('TIME GO_WP OK', looptime)
@@ -145,7 +147,7 @@ class Cave:
         # todo verify if rly works
         timestamp = datetime.datetime.now()
         # sprawdz czy podany wp specjalny
-        if specials[wp] in ['rope','shovel', 'ladder']:
+        if specials[wp] in ['rope', 'shovel', 'ladder']:
             # to bedzie specjalyn wp
             print('am special')
             timestamp2 = datetime.datetime.now()
@@ -158,8 +160,8 @@ class Cave:
             print('TIME is_wp_fancy F', looptime)
             return False
 
-    def do_go_wp_plus(self, wp, specials:{}):
-        #todo timestamps
+    def do_go_wp_plus(self, wp, specials: {}):
+        # todo timestamps
         timestamp = datetime.datetime.now()
         if specials[wp] == 'rope':
             self.use_rope()
@@ -179,14 +181,14 @@ class Cave:
             looptime = timestamp2 - timestamp
             print('TIME do_go_wp_plus use_ladder', looptime)
             return True
-#        if specials[wp] is None:
-#            timestamp2 = datetime.datetime.now()
-#            looptime = timestamp2 - timestamp
-#            print('TIME do_go_wp_plus None', looptime)
-#            return True
+        #        if specials[wp] is None:
+        #            timestamp2 = datetime.datetime.now()
+        #            looptime = timestamp2 - timestamp
+        #            print('TIME do_go_wp_plus None', looptime)
+        #            return True
         # if did not catch in any of ifs above
         return False
-    
+
     def is_wp_in_range(self, wp):
         wp_cords = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png", region=config.minimap, confidence=.8)
         if wp_cords is not None:
@@ -194,9 +196,8 @@ class Cave:
         else:
             return False
 
-
     def go_somewhere(self, wp, specials: {}):
-        nextwp = wp+1
+        nextwp = wp + 1
 
         # sprawdz czy nie wszedl po shcodach/wszedl w dziure
         if specials[wp] == 'lvl_changing_wp':
@@ -215,10 +216,8 @@ class Cave:
             if self.is_wp_fancy(wp=wp, specials=specials):
                 self.do_go_wp_plus(wp, specials)
             # i dawaj na next
-            return nextwp    
-        
-        # w kazdym innym wypadku
+            return nextwp
+
+            # w kazdym innym wypadku
         self.do_go_wp(wp)
         return wp
-
-
