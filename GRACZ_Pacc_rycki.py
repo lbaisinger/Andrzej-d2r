@@ -1,12 +1,12 @@
 from caves.any_5 import *
 from gracz import *
 
-
 # Facc rycek od one shotowania itemow do imbuli
 
 
 player = Gracz()
 pyautogui.click(config.default)
+
 
 def go(player=player, wp=1, ring=True):
     # main logic goes here
@@ -19,6 +19,8 @@ def go(player=player, wp=1, ring=True):
     bije = player.is_bije()
     if not bije:
         jestcobic = player.is_co_bic(target_list=target_list)
+    else:
+        pgmode = player.pg_mode()
     jest_ok = player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                                  manalow=config.manalow)
     if jest_ok:
@@ -26,24 +28,26 @@ def go(player=player, wp=1, ring=True):
             if jestcobic:
                 player.do_loot()
                 player.do_bij()
-                # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
             if not jestcobic:
                 player.do_loot()
-                # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
                 if player.cave.is_on_wp(wp):
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                     else:
                         wp += 1
                 else:
-                    player.cave.do_go_wp(wp)
-                    # player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
-        # if bije
-        # else:
-        #     player.backpack.do_drop_random_item_from_blacklist(item_blacklist=item_blacklsit)
+                    walk = player.cave.do_go_wp(wp)
+                    if not walk:
+                        if wp == list(wps.keys())[-1]:
+                            wp = list(wps.keys())[0]
+                        else:
+                            wp += 1
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+        else:
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
 
-    timestamp2 = datetime.datetime.now()
-    looptime = timestamp2 - timestamp
     print()
     print('TIME FULLLOOP', looptime)
     print()
@@ -52,14 +56,13 @@ def go(player=player, wp=1, ring=True):
 
 def loop():
     nextwp = 3
+    iteration = 1
     while True:
-         print()
-         print('going', nextwp)
-         print()
-         nextwp = go(wp=nextwp)
-
-
-
+        print()
+        print('Starting loop:', iteration)
+        print('going', nextwp)
+        print()
+        nextwp = go(wp=nextwp)
 
 
 loop()

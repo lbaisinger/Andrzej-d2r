@@ -45,17 +45,30 @@ class Gracz:
             print('TIME is_bije T', looptime)
             return True
 
+    # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)
+    def pg_mode(self):
+        # check if there's monster to exeta res
+        # todo monsters_to_exeta[] as argument
+        if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
+            pyautogui.press('x')
+            sleep(0.2)
+        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.9) is not None:
+            pyautogui.press(config.hotkey_pg_area_spell_1)
+            sleep(0.2)
+            pyautogui.press(config.hotkey_pg_area_spell_2)
+        else:
+            pyautogui.press(config.hotkey_pg_single_spell_1)
+            sleep(0.2)
+            pyautogui.press(config.hotkey_pg_single_spell_2)
+
     def is_co_bic(self, target_list):
-        # sprawdza czy jest ktorys z potworow z monsterlisty
-        # dziala ok / nie dziala ok na 4k
-        # mozna usprawnic szukajac a e i o u
         timestamp = datetime.datetime.now()
         # check if there is smth to figtht
-        self.monsterlist = []
+        # self.monsterlist = []
         for j in target_list:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
-                pyautogui.press('Esc')  # co by sie nie wpierdalal w 20 mobow zanim zacznie atakowac
+                pyautogui.press('Esc')  # safety net
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('TIME is_co_bic T', looptime)
@@ -64,7 +77,6 @@ class Gracz:
         looptime = timestamp2 - timestamp
         print('TIME is_co_bic F', looptime)
         return False
-
 
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
