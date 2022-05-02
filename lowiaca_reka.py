@@ -6,14 +6,11 @@ from time import sleep
 startsqm = [2107, 231]
 sqmsize = 128
 endsqm = [3900, 620]
-tries = 3
+tries = 6
 rod_hotkey = 'F5'
 newsqm = [0,0]
 
 def do_fish(sqm=startsqm):
-    print(sqm)
-    print(sqm[0])
-    print(sqm[1])
     for x in range(tries):
         pyautogui.press(rod_hotkey)
         pyautogui.click(sqm)
