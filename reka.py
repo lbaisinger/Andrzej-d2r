@@ -6,7 +6,7 @@ confname = '4k'
 modulename = ('player_configs.config_' + confname)
 config = import_module('player_configs.config_' + confname)
 
-pyautogui.PAUSE = 0.05
+pyautogui.PAUSE = 0.005
 
 
 def do_loot():
