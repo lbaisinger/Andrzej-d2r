@@ -1,5 +1,6 @@
 import pyautogui
 from time import sleep
+from random import uniform, randint
 
 # fish north
 
@@ -11,10 +12,12 @@ rod_hotkey = 'F5'
 newsqm = [0,0]
 
 def do_fish(sqm=startsqm):
-    for x in range(tries):
+    randdelay = uniform(1, 2)
+    randtries = randint(tries, tries+2)
+    for x in range(randtries):
         pyautogui.press(rod_hotkey)
         pyautogui.click(sqm)
-        sleep(1)
+        sleep(randdelay)
     # next sqm x row
     if sqm[0] + sqmsize < endsqm[0]:
         newsqm[0] = sqm[0] + sqmsize
@@ -36,3 +39,5 @@ newsqm = startsqm
 
 while newsqm is not False:
     newsqm = do_fish(newsqm)
+
+
