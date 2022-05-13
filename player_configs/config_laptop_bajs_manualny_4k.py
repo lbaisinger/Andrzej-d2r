@@ -3,26 +3,23 @@
 ################################
 #           REGIONS            #
 ################################
+# wmctrl -r Tibia -e 0,0,0,2200,1369
 scale = 1
 bw = (1747, 352, 120, 100)
-bw_2nd = (1770, 377, 10, 10)
+bw_2nd = (1770, 377, 50, 50)
 redbox = (1740, 350, 40, 100)
 minimap = (1745, 35, 120, 120)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
-ring = (1755, 240, 30, 30)
-default = (1550, 300)
-character = (870, 485)
+ring = (2035, 240, 25, 25)
+default = (1835, 300)
+character = (870, 495)
 ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
-mana_pool_potek = (1100, 40)
-# mana_pool_potek = (1300, 45)
-hp_pool_exura = (750, 43)
-# hp_pool_exura = (650, 43)
-hp_pool_potek = (475, 43)
-# burn_mana = (1450, 40)
-burn_mana = (900, 43)
-
+mana_pool_potek = (1200, 43)
+hp_pool_exura = (870, 43)
+hp_pool_potek = (475, 45)
+burn_mana = (1640, 40)
 ################################
 #           WP CENTERS         #
 ################################
@@ -38,28 +35,28 @@ wp_center = (1806, 89)
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
 
+
 ################################
 #           BATTLE             #
 ################################
+ring_to_equip = 'sword_ring'  # it uses any ring, just assign whichever you want to the hotkey in the client
 use_ring = False
-ring_to_equip = 'sword_ring'
-
 pg_mode = False
 
 ################################
-#           HEAL & MANA        #
+#           HEAL & MANA `      #
 ################################
 # heal if hp low with poton
 hplow = False
 # heal if hp moderate with exura
-hpmid = True
+hpmid = False
 # see if low mana and drink potion
-manalow = True
+manalow = False
 # see if too much mana and burn
 manahigh = True
 
 ################################
-#           HOTKEYS     `      #
+#           HOTKEYS            #
 ################################
 hotkey_ring = 'f3'
 hotkey_shovel = 'f7'
@@ -80,9 +77,9 @@ hotkey_yes = 'f12'
 ################################
 #  Statistical Process Control #
 ################################
-# Andrew performance data, define what data to collect
 filename = 'testing_1'
 ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
+# Andrzej performance data, define what data to collect
 SPC_time_is_bije = False
 SPC_time_is_co_bic = False
 SPC_time_is_alright = False
@@ -96,6 +93,7 @@ SPC_time_FULLOOP_manual = False
 SPC_time_ring = False
 SPC_time_pg_mode = False
 SPC_time_statistics = False
+# Server log data
 server_log_scrapping = False
 SPC_dmg_total = False
 

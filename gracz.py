@@ -51,14 +51,14 @@ class Gracz:
         # todo monsters_to_exeta[] as argument
         if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
             pyautogui.press('x')
-            sleep(0.2)
+            sleep(0.1)
         if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.9) is not None:
             pyautogui.press(config.hotkey_pg_area_spell_1)
-            sleep(0.2)
+            # sleep(0.1)
             pyautogui.press(config.hotkey_pg_area_spell_2)
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
-            sleep(0.2)
+            # sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
     def is_co_bic(self, target_list):
