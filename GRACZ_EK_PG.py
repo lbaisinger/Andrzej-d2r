@@ -2,6 +2,8 @@
 # RYCERZ WPIERDALA SIE PO SAME KULE I KRECI MIECZEM MLYNKI #
 ############################################################
 
+# VERSION IN PROGRESS, NOT USABLE YET #
+
 from caves.any_9 import *
 from gracz import *
 
@@ -15,16 +17,22 @@ def go(player=player, wp=1):
     if config.use_ring:
         if player.other.is_ring_on() is False:
             player.other.put_on_ring(config.hotkey_ring)
-            sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+            sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
 
-    # TIMING TEST
-    timestamp2 = datetime.datetime.now()
-    looptime1 = timestamp2 - timestamp
-    looptime_full1 = looptime.total_seconds()
-    print('{:<30} {:<20.2f}'.format('Timestamp ring:', looptime_f2))
+    # TIMING TEST #
+    timestamp_2 = datetime.datetime.now()
+    looptime_1 = timestamp_2 - timestamp
+    looptime_full_1 = looptime_1.total_seconds()
+    print('{:<30} {:<20.2f}'.format('Timestamp ring:', looptime_full_1))
 
     if player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                           manalow=config.manalow):
+        # TIMING TEST #
+        timestamp_2 = datetime.datetime.now()
+        looptime_1 = timestamp_2 - timestamp
+        looptime_full_1 = looptime_1.total_seconds()
+        # todo if less then 1 s here
+        print('{:<30} {:<20.2f}'.format('Timestamp ring:', looptime_full_1))
         if player.is_bije():
             player.pg_mode(exeta=False)
             timestamp3 = datetime.datetime.now()

@@ -37,16 +37,17 @@ class Gracz:
         if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.3) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME is_bije F', looptime)
+            print('{:<30} {:<20.2f}'.format('TIME is_bije F:', looptime.total_seconds()))
             return False
         else:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME is_bije T', looptime)
+            print('{:<30} {:<20.2f}'.format('TIME is_bije T:', looptime.total_seconds()))
             return True
 
     # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)
     def pg_mode(self):
+        timestamp = datetime.datetime.now()
         # check if there's monster to exeta res
         # todo monsters_to_exeta[] as argument
         if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
@@ -60,6 +61,9 @@ class Gracz:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             # sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
+        timestamp2 = datetime.datetime.now()
+        looptime = timestamp2 - timestamp
+        print('{:<30} {:<20.2f}'.format('TIME pg_mode:', looptime.total_seconds()))
 
     def is_co_bic(self, target_list):
         timestamp = datetime.datetime.now()

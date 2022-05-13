@@ -25,16 +25,12 @@ burn_mana = (1640, 40)
 ################################
 # # WP Center at zoom 1
 # wp_center = (xxxx, yy)
-
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
-
 # # WP Center at zoom 3
 wp_center = (1806, 89)
-
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
-
 
 ################################
 #           BATTLE             #
@@ -77,25 +73,26 @@ hotkey_yes = 'f12'
 ################################
 #  Statistical Process Control #
 ################################
-filename = 'testing_1'
-ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
 # Andrzej performance data, define what data to collect
-SPC_time_is_bije = False
-SPC_time_is_co_bic = False
-SPC_time_is_alright = False
-SPC_time_is_on_WP = False
-SPC_time_do_loot = False
-SPC_time_do_bij = False
-SPC_time_do_go_WP = False
-SPC_time_FULLLOOP_bije = False
-SPC_time_FULLLOOP_wp = False
-SPC_time_FULLOOP_manual = False
-SPC_time_ring = False
-SPC_time_pg_mode = False
-SPC_time_statistics = False
-# Server log data
-server_log_scrapping = False
-SPC_dmg_total = False
+# SPC_enabled = False
+# filename = 'testing_1'
+# ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
+# SPC_time_is_bije = False
+# SPC_time_is_co_bic = False
+# SPC_time_is_alright = False
+# SPC_time_is_on_WP = False
+# SPC_time_do_loot = False
+# SPC_time_do_bij = False
+# SPC_time_do_go_WP = False
+# SPC_time_FULLLOOP_bije = False
+# SPC_time_FULLLOOP_wp = False
+# SPC_time_FULLOOP_manual = False
+# SPC_time_ring = False
+# SPC_time_pg_mode = False
+# SPC_time_statistics = False
+# # Server log data
+# server_log_scrapping = False
+# SPC_dmg_total = False
 
 ################################
 #           MISC        `      #

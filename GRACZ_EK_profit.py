@@ -1,7 +1,6 @@
 from caves.any_5 import *
 from gracz import *
 
-
 player = Gracz()
 pyautogui.click(config.default)
 
@@ -23,7 +22,8 @@ def go(player=player, wp=1, ring=True):
                                  manalow=config.manalow)
     if jest_ok:
         if not bije:
-            if jestcobic:
+            if jestcobic:  # is there an issue here? in the time between is_co_bic() check (line 19) until now (line
+                # 26) some monsters could already apper on the screen, but maybe for this EXP mode it's no problem
                 player.do_loot()
                 player.do_bij()
             if not jestcobic:
