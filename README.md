@@ -6,6 +6,9 @@ The aim of this branch is to introduce an optimized script for efficient and dea
 
 ![a](/src/img/flowchart_idea.jpg)
 
+flowchart LR
+    id
+
 To achieve this the main loop must be short enough to not extend any ability/spell CDs.
 - [] total loop duration must be 2-2.1 s (maybe 2.1 even better to ensure the EK hits with meelee first?)
 
