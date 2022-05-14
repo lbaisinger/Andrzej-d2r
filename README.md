@@ -1,18 +1,11 @@
 # Andrzej
 Andrzej BEDZIE walczyl z potworami, obecnie szykuje mikstury
 # DEFINITION #
+
+![](src/img/transparent_flowchart.svg)
+
 The aim of this branch is to introduce an optimized script for efficient and deadly hunting with maximum dmg output.
-- add flowchart_idea.img
-
-
-![](src/img/Untitled Diagram.drawio.svg)
-
-
-'''mermaid
-graph TD
-A-->B;
-B-->C;
-'''
+- [ ] add flowchart_idea.img
 
 To achieve this the main loop must be short enough to not extend any ability/spell CDs.
 - [ ] total loop duration must be 2-2.1 s (maybe 2.1 even better to ensure the EK hits with meelee first?)
