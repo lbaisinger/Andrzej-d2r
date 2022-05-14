@@ -1,5 +1,5 @@
 # Andrzej
-Andrzej BEDZIE walczyl z potworami, obecnie przygotowuje się do walki
+Andrzej BEDZIE walczyl z potworami, obecnie przygotowuje się do walki. In this hunting style Andrew runs to the WP igoring (luring?) monster and once reached WP starts exoring the shit out of them.
 # DEFINITION #
 The aim of this branch is to introduce an optimized script for efficient and deadly hunting with maximum dmg output.
 To achieve this the main loop must be short enough to not extend any ability/spell CDs.
@@ -11,6 +11,7 @@ Andrew must ensure appropriate timing between each status check (hplow check, ma
 - [ ] total loop duration must be 2-2.1 s (maybe 2.1 even better to ensure the EK hits with meelee first?)
 - [ ] 1 s CD for healing spells, so ideally the main loop will contain 2x status checks (is_allright() method)
 - [ ] datetime checks for each module duration, make sure status checks are once every ~1.1 s
+- [ ] in case monster is on WP, expand WP check to 1 surrounding SQM (+/- 1 px)
 
 ![](src/img/updated_flowchart.svg)
 
