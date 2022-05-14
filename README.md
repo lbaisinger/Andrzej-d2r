@@ -2,7 +2,7 @@
 Andrzej BEDZIE walczyl z potworami, obecnie szykuje mikstury
 # DEFINITION #
 
-![](src/img/transparent_flowchart.svg)
+![](src/img/updated_flowchart.svg)
 
 The aim of this branch is to introduce an optimized script for efficient and deadly hunting with maximum dmg output.
 - [ ] add flowchart_idea.img
