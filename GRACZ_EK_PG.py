@@ -1,10 +1,11 @@
 ############################################################
 # RYCERZ WPIERDALA SIE PO SAME KULE I KRECI MIECZEM MLYNKI #
+# WORK STILL IN PROGRESS!                                  #
+# USE AT OWN RISK!!!                                       #
 ############################################################
 
-# VERSION IN PROGRESS, NOT USABLE YET #
 
-from caves.any_9 import *
+from caves.any_2 import *
 from gracz import *
 
 player = Gracz()
@@ -14,10 +15,10 @@ pyautogui.click(config.default)
 def go(player=player, wp=1):
     # LOOP START #
     timestamp = datetime.datetime.now()
-    if config.use_ring:
-        if player.other.is_ring_on() is False:
-            player.other.put_on_ring(config.hotkey_ring)
-            sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+    # if config.use_ring:
+    #     if player.other.is_ring_on() is False:
+    #         player.other.put_on_ring(config.hotkey_ring)
+    #         sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     # TIMING CHECK 1 #
     timestamp_1 = datetime.datetime.now()
     looptime_1 = timestamp_1 - timestamp
@@ -77,7 +78,7 @@ def go(player=player, wp=1):
                     looptime_9 = timestamp_9 - timestamp
                     print('{:<30} {:<20.2f}'.format('Timestamp WP-ATTACK:', looptime_9.total_seconds()))
                     # PG MODE #
-                    player.pg_mode()
+                    player.pg_mode(exeta=False)
                     # TIMING CHECK 10 #
                     timestamp_10 = datetime.datetime.now()
                     looptime_10 = timestamp_10 - timestamp

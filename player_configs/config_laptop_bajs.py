@@ -5,7 +5,7 @@
 ################################
 scale = 1
 bw = (1747, 352, 120, 100)
-bw_2nd = (1770, 377, 10, 10)
+bw_2nd = (1770, 374, 10, 10)
 redbox = (1740, 350, 40, 100)
 minimap = (1745, 35, 120, 120)
 minimapplus = (1750, 30, 110, 700)
@@ -27,32 +27,32 @@ burn_mana = (900, 43)
 #           WP CENTERS         #
 ################################
 # # WP Center at zoom 1
-# wp_center = (xxxx, yy)
+wp_center = (1805, 89)
 # # WP Center at zoom 2
-# wp_center = (1805, 89)
+wp_center2 = (1805, 89)
 # # WP Center at zoom 3
-wp_center = (1806, 89)
+wp_center3 = (1806, 89)
 # # WP Center at zoom 4
-# wp_center = (xxxx, yy)
+wp_center4 = (1805, 89)
 
 ################################
 #           BATTLE             #
 ################################
-use_ring = False
+use_ring = True
 ring_to_equip = 'sword_ring'
-pg_mode = False
+pg_mode = True
 
 ################################
 #           HEAL & MANA        #
 ################################
 # heal if hp low with poton
-hplow = False
+hplow = True
 # heal if hp moderate with exura
 hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = True
+manahigh = False
 
 ################################
 #           HOTKEYS     `      #

@@ -46,14 +46,15 @@ class Gracz:
             return True
 
     # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)
-    def pg_mode(self):
+    def pg_mode(self, exeta=False):
         timestamp = datetime.datetime.now()
         # check if there's monster to exeta res
         # todo monsters_to_exeta[] as argument
-        if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
-            pyautogui.press('x')
-            sleep(0.1)
-        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.9) is not None:
+        if exeta:
+            if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
+                pyautogui.press('x')
+                sleep(0.1)
+        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.8) is not None:
             pyautogui.press(config.hotkey_pg_area_spell_1)
             # sleep(0.1)
             pyautogui.press(config.hotkey_pg_area_spell_2)
@@ -94,35 +95,35 @@ class Gracz:
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_hppot)
-                timestamp_1 = datetime.datetime.now()
-                looptime_1 = timestamp_1 - timestamp
-                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
+            timestamp_1 = datetime.datetime.now()
+            looptime_1 = timestamp_1 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
             if pyautogui.pixelMatchesColor(int(config.hp_pool_exura[0]), int(config.hp_pool_exura[1]),
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_exura)
-                timestamp_2 = datetime.datetime.now()
-                looptime_2 = timestamp_2 - timestamp
-                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
+            timestamp_2 = datetime.datetime.now()
+            looptime_2 = timestamp_2 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
             if pyautogui.pixelMatchesColor(int(config.mana_pool_potek[0]), int(config.mana_pool_potek[1]),
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_manapot)
-                timestamp_3 = datetime.datetime.now()
-                looptime_3 = timestamp_3 - timestamp
-                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
+            timestamp_3 = datetime.datetime.now()
+            looptime_3 = timestamp_3 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
         if manahigh:
             if pyautogui.pixelMatchesColor(int(config.burn_mana[0]), int(config.burn_mana[1]),
                                            (0, 52, 116),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_manaburn)
-                timestamp_4 = datetime.datetime.now()
-                looptime_4 = timestamp_4 - timestamp
-                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
+            timestamp_4 = datetime.datetime.now()
+            looptime_4 = timestamp_4 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
         timestamp_5 = datetime.datetime.now()
         looptime = timestamp_5 - timestamp
         print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT:', looptime.total_seconds()))
@@ -167,7 +168,7 @@ class Gracz:
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
-        print('TIME LOOTING', looptime)
+        print('{:<30} {:<20.2f}'.format('TIME LOOT:', looptime.total_seconds()))
         return True
 
     def do_bij(self):
@@ -178,5 +179,5 @@ class Gracz:
         pyautogui.press('space')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
-        print('TIME do_bij', looptime)
+        print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
