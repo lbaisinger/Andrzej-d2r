@@ -63,7 +63,7 @@ class Gracz:
             pyautogui.press(config.hotkey_pg_single_spell_2)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
-        print('{:<30} {:<20.2f}'.format('TIME pg_mode:', looptime.total_seconds()))
+        print('{:<30} {:<20.2f}'.format('Duration PG_MODE:', looptime.total_seconds()))
 
     def is_co_bic(self, target_list):
         timestamp = datetime.datetime.now()
@@ -86,12 +86,7 @@ class Gracz:
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
-        # sprawdza czy pixel w odpowiednim miejscu jest szary
-        # jak tak to wykonuje odpowiednia akcje
-        # dziala ok ale wolno
         timestamp = datetime.datetime.now()
-        # print("Status check")
-        # print('eatin')
         pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
@@ -99,30 +94,38 @@ class Gracz:
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_hppot)
-                print("~~~Fully healed!~~~")
+                timestamp_1 = datetime.datetime.now()
+                looptime_1 = timestamp_1 - timestamp
+                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
             if pyautogui.pixelMatchesColor(int(config.hp_pool_exura[0]), int(config.hp_pool_exura[1]),
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_exura)
-                print("~~~Healed!~~~")
+                timestamp_2 = datetime.datetime.now()
+                looptime_2 = timestamp_2 - timestamp
+                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
             if pyautogui.pixelMatchesColor(int(config.mana_pool_potek[0]), int(config.mana_pool_potek[1]),
                                            (40, 40, 40),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_manapot)
-                print("~~~Mana restored!~~~")
+                timestamp_3 = datetime.datetime.now()
+                looptime_3 = timestamp_3 - timestamp
+                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
         if manahigh:
             if pyautogui.pixelMatchesColor(int(config.burn_mana[0]), int(config.burn_mana[1]),
                                            (0, 52, 116),
                                            tolerance=10):
                 pyautogui.press(config.hotkey_manaburn)
-                print("~~~Mana Burned!~~~")
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME is_allright', looptime)
+                timestamp_4 = datetime.datetime.now()
+                looptime_4 = timestamp_4 - timestamp
+                print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
+        timestamp_5 = datetime.datetime.now()
+        looptime = timestamp_5 - timestamp
+        print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT:', looptime.total_seconds()))
         return True
 
     def do_bank_deposit(self):
