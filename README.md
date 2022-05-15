@@ -8,9 +8,10 @@ Andrew must ensure appropriate timing between each status check (hplow check, ma
 
 #### To-do:
 - [x] add flowchart_idea.img
+- [x] datetime checks for each module duration
 - [ ] total loop duration must be 2-2.1 s (maybe 2.1 even better to ensure the EK hits with meelee first?)
 - [ ] 1 s CD for healing spells, so ideally the main loop will contain 2x status checks (is_allright() method)
-- [ ] datetime checks for each module duration, make sure status checks are once every ~1.1 s
+- [ ] make sure status checks are once every ~1.1 s
 - [ ] in case monster is on WP, expand WP check to 1 surrounding SQM (+/- 1 px)
 
 ![](src/img/updated_flowchart.svg)
