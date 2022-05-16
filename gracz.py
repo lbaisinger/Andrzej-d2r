@@ -54,7 +54,7 @@ class Gracz:
             if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
                 pyautogui.press('x')
                 sleep(0.1)
-        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.8) is not None:
+        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.6) is not None:
             pyautogui.press(config.hotkey_pg_area_spell_1)
             # sleep(0.1)
             pyautogui.press(config.hotkey_pg_area_spell_2)
@@ -73,7 +73,7 @@ class Gracz:
         for j in target_list:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
-                pyautogui.press('Esc')  # safety net
+                # pyautogui.press('Esc')  # safety net
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC T:', looptime.total_seconds()))
