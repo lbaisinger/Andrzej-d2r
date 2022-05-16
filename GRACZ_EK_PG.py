@@ -12,13 +12,15 @@ player = Gracz()
 pyautogui.click(config.default)
 
 
-def go(player=player, wp=1):
+def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
     # LOOP START #
     timestamp = datetime.datetime.now()
-    # if config.use_ring:
-    #     if player.other.is_ring_on() is False:
-    #         player.other.put_on_ring(config.hotkey_ring)
-    #         sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+    if ring:
+        player.ring_control()
+        # sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+    if amulet:
+        player.amulet_control()
+        # sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     # TIMING CHECK 1 #
     timestamp_1 = datetime.datetime.now()
     looptime_1 = timestamp_1 - timestamp
