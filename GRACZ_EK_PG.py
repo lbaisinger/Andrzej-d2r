@@ -5,7 +5,7 @@
 ############################################################
 
 
-from caves.any_8 import *
+from caves.any_9 import *
 from gracz import *
 
 player = Gracz()
@@ -107,6 +107,8 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                     looptime_13 = timestamp_13 - timestamp
                     print('{:<30} {:<20.2f}'.format('Timestamp WP-LOOT:', looptime_13.total_seconds()))
                     # todo is there enough time here for additional STATUS CHECK?
+                    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                                       manalow=config.manalow)
                     # GO TO NEXT WP #
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
@@ -130,6 +132,8 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                 looptime_16 = timestamp_16 - timestamp
                 print('{:<30} {:<20.2f}'.format('Timestamp GO TO WP:', looptime_16.total_seconds()))
                 # todo is there enough time here for additional STATUS CHECK?
+                player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                                   manalow=config.manalow)
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
     print('{:<30} {:<20.2f}'.format('Total loop time:', looptime_end.total_seconds()))
