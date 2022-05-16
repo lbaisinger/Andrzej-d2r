@@ -13,7 +13,7 @@ Andrew must ensure appropriate timing between each status check (hplow check, ma
 - attacking new monster loop is ~ 2.7 s (with 2 status checks! OK but room for improvement)
 - continuing attacking loop is ... (probably around 2 s, so on target!, but check status timing!)
 - on WP, no monsters and LOOT loop is 3 s (OK)
-- 
+ 
 ### To-do:
 - [x] add flowchart_idea.img
 - [x] datetime checks for each module duration
@@ -21,3 +21,4 @@ Andrew must ensure appropriate timing between each status check (hplow check, ma
 - [x] 1 s CD for healing spells, so ideally the main loop will contain 2x status checks (is_allright() method)
 - [x] make sure status checks are once every ~1.1 s
 - [ ] in case monster is standing on WP, expand WP check to 1 adjacent SQM (+/- 1 px?)
+- [ ] add rush_wp - utani hur after finished killing/looting to rush to next WP

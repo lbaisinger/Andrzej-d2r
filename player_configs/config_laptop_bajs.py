@@ -11,6 +11,7 @@ minimap = (1745, 35, 120, 120)
 minimapplus = (1750, 30, 110, 700)
 backpack = (1566, 26, 160, 700)
 ring = (1755, 240, 30, 30)
+amulet = (1753, 162, 35, 35)
 default = (1550, 300)
 character = (870, 485)
 ServerLog_rightclick = (350, 963)
@@ -39,6 +40,7 @@ wp_center4 = (1805, 89)
 #           BATTLE             #
 ################################
 use_ring = True
+use_amulet = True
 ring_to_equip = 'sword_ring'
 pg_mode = True
 
@@ -58,6 +60,7 @@ manahigh = False
 #           HOTKEYS     `      #
 ################################
 hotkey_ring = 'f3'
+hotkey_amulet = 'f9'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'

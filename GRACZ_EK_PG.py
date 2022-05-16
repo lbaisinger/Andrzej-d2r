@@ -39,7 +39,8 @@ def go(player=player, wp=1):
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING True:', looptime_3.total_seconds()))
             # PG MODE #
-            player.pg_mode(exeta=False)
+            if config.pg_mode:
+                player.pg_mode(exeta=False)
             # TIMING CHECK 4 #
             timestamp_4 = datetime.datetime.now()
             looptime_4 = timestamp_4 - timestamp
@@ -78,7 +79,8 @@ def go(player=player, wp=1):
                     looptime_9 = timestamp_9 - timestamp
                     print('{:<30} {:<20.2f}'.format('Timestamp WP-ATTACK:', looptime_9.total_seconds()))
                     # PG MODE #
-                    player.pg_mode(exeta=False)
+                    if config.pg_mode:
+                        player.pg_mode(exeta=False)
                     # TIMING CHECK 10 #
                     timestamp_10 = datetime.datetime.now()
                     looptime_10 = timestamp_10 - timestamp

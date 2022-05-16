@@ -34,7 +34,7 @@ class Gracz:
         img_size = img.size
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
-        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.3) is None:
+        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.25) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
             print('{:<30} {:<20.2f}'.format('TIME is_bije F:', looptime.total_seconds()))
@@ -76,11 +76,11 @@ class Gracz:
                 pyautogui.press('Esc')  # safety net
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
-                print('TIME is_co_bic T', looptime)
+                print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC T:', looptime.total_seconds()))
                 return True
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
-        print('TIME is_co_bic F', looptime)
+        print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
         return False
 
     def is_allright(self, hplow=config.hplow,
@@ -181,3 +181,23 @@ class Gracz:
         looptime = timestamp2 - timestamp
         print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
+
+    def ring_control(self, ring_hotkey=config.hotkey_ring):
+        if pyautogui.locateOnScreen('src/items/ring_empty.png', region=config.ring, confidence=.5) is not None:
+            print("No ring, equipping new one.")
+            pyautogui.press(ring_hotkey)
+            return False
+        else:
+            print("Ring equipped.")
+            return True
+
+    def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
+        if pyautogui.locateOnScreen('src/items/amulet_empty.png', region=config.amulet, confidence=.5) is not None:
+            print("No Amulet, equipping new one.")
+            pyautogui.press(amulet_hotkey)
+            return False
+        else:
+            print("Amulet equipped.")
+            return True
+
+

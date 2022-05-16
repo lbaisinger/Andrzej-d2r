@@ -86,18 +86,3 @@ class Other:
         print('TIME GET_SCREENSHOOT', looptime)
         return True
 
-    def is_ring_on(self):
-        # todo add .png for more rings
-        ring_type = config.ring_to_equip
-        # available: axe_ring, sword_ring
-        if pyautogui.locateOnScreen('src/items/' + ring_type + ".png", region=config.ring, confidence=.5) is None:
-            print("No ring detected")
-            return False
-        else:
-            print("Ring equipped.")
-            return True
-
-    def put_on_ring(self, ring_hotkey):
-        print("Equipping ring.")
-        pyautogui.press(ring_hotkey)
-        return True
