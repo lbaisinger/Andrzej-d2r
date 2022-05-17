@@ -53,14 +53,15 @@ class Gracz:
         if exeta:
             if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
                 pyautogui.press('x')
+                print('exeta!')
                 sleep(0.1)
         if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.6) is not None:
             pyautogui.press(config.hotkey_pg_area_spell_1)
-            # sleep(0.1)
+            sleep(0.1)
             pyautogui.press(config.hotkey_pg_area_spell_2)
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
-            # sleep(0.1)
+            sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp

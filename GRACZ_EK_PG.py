@@ -5,7 +5,7 @@
 ############################################################
 
 
-from caves.any_9 import *
+from caves.any_8 import *
 from gracz import *
 
 player = Gracz()
@@ -42,7 +42,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
             print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING True:', looptime_3.total_seconds()))
             # PG MODE #
             if config.pg_mode:
-                player.pg_mode(exeta=False)
+                player.pg_mode(exeta=config.exeta)
             # TIMING CHECK 4 #
             timestamp_4 = datetime.datetime.now()
             looptime_4 = timestamp_4 - timestamp
@@ -82,7 +82,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                     print('{:<30} {:<20.2f}'.format('Timestamp WP-ATTACK:', looptime_9.total_seconds()))
                     # PG MODE #
                     if config.pg_mode:
-                        player.pg_mode(exeta=False)
+                        player.pg_mode(exeta=config.exeta)
                     # TIMING CHECK 10 #
                     timestamp_10 = datetime.datetime.now()
                     looptime_10 = timestamp_10 - timestamp
@@ -115,6 +115,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                     else:
                         wp += 1
                     player.cave.do_go_wp(wp)
+                    pyautogui.press(config.hotkey_haste)
                     # TIMING CHECK 14 #
                     timestamp_14 = datetime.datetime.now()
                     looptime_14 = timestamp_14 - timestamp
@@ -142,7 +143,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
 
 
 def loop():
-    nextwp = 1
+    nextwp = 6
     iteration = 1
     while True:
         print()

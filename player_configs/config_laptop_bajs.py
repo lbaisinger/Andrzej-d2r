@@ -18,7 +18,7 @@ ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
 mana_pool_potek = (1100, 40)
 # mana_pool_potek = (1300, 45)
-hp_pool_exura = (750, 43)
+hp_pool_exura = (800, 43)
 # hp_pool_exura = (650, 43)
 hp_pool_potek = (475, 43)
 # burn_mana = (1450, 40)
@@ -43,6 +43,7 @@ use_ring = True
 use_amulet = True
 ring_to_equip = 'sword_ring'
 pg_mode = True
+exeta = True
 
 ################################
 #           HEAL & MANA        #
@@ -75,7 +76,7 @@ hotkey_pg_area_spell_2 = 'f'
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
-
+hotkey_haste = 'v'
 ################################
 #  Statistical Process Control #
 ################################
