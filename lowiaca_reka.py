@@ -5,7 +5,7 @@ from random import uniform, randint
 # general
 
 sqmsize = 128
-tries = 5
+tries = 4
 rod_hotkey = 'F5'
 
 # fish north
@@ -17,6 +17,7 @@ newsqm = [0, 0]
 
 
 def do_fish(sqm=startsqm):
+    sleep(1) # time to move to game window
     randdelay = uniform(1, 1.61)
     randtries = randint(tries-1, tries+1)
     for x in range(randtries):
