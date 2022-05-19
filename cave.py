@@ -85,31 +85,31 @@ class Cave:
     def is_on_wp(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
-        img = PIL.Image.open("src/wp/" + str(wp) + ".png")
-        img_size = img.size
-        wp_img = img.resize((img_size[0] * config.scale,
-                             img_size[1] * config.scale))
-        xyz = pyautogui.locateCenterOnScreen(wp_img,
+        # img = PIL.Image.open("src/wp/" + str(wp) + ".png")
+        # img_size = img.size
+        # wp_img = img.resize((img_size[0] * config.scale,
+        #                      img_size[1] * config.scale))
+        xyz = pyautogui.locateCenterOnScreen("src/wp/" + str(wp) + ".png",#wp_img,
                                              region=config.minimap,
                                              # todo mozna by go mniejszym zrobic, ten region do jakiegos samego
                                              #  srodka minimapy
                                              confidence=.8)
         if xyz is not None:
             # debug
-            print(xyz)
+            # print(xyz)
             # to wide
             # if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
-            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4:
-                print('did not yet reach wp', wp, 'coords:', str(xyz))
+            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4 and xyz != config.wp_center5 and xyz != config.wp_center6 and xyz != config.wp_center7 and xyz != config.wp_center8 and xyz != config.wp_center9:
+                print('not yet on wp', xyz)
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
-                print('TIME is_on_wp F', looptime)
+                print('{:<30} {:<20.2f}'.format('TIME IS_ON_WP F:', looptime.total_seconds()))
                 return False
             else:
-                print('>>>> reached wp', wp, 'coords:', str(xyz))
+                print('>>>> reached wp', wp, 'at', xyz)
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
-                print('TIME is_on_wp T', looptime)
+                print('{:<30} {:<20.2f}'.format('TIME IS_ON_WP T:', looptime.total_seconds()))
                 return True
         else:
             print('couldnt find wp', wp)
@@ -135,13 +135,13 @@ class Cave:
                 config.default)  # Added moveto default (otherwise sometime mouse stays on wp and cannot detect)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME GO_WP OK', looptime)
+            print('{:<30} {:<20.2f}'.format('TIME GO TO WP:', looptime.total_seconds()))
             return True
         else:
             print('couldnt find wp', wp)
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('TIME GP_WP NOK', looptime)
+            print('TIME GP_WP NOT_OK', looptime)
 
     def is_wp_fancy(self, wp, specials: {}):
         # todo verify if rly works
