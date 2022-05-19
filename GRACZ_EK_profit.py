@@ -57,7 +57,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
 
 
 def loop():
-    nextwp = 1
+    nextwp = 5
     iteration = 1
     while True:
         print()

@@ -99,8 +99,8 @@ class Cave:
             # print(xyz)
             # to wide
             # if not(wp_center[0] -1 <= xyz[0] <= wp_center[0] +1) and not(wp_center[1] <= xyz[1] <= wp_center[1] +1):
-            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4:
-                # print('not yet on wp', wp)
+            if xyz != config.wp_center and xyz != config.wp_center2 and xyz != config.wp_center3 and xyz != config.wp_center4 and xyz != config.wp_center5 and xyz != config.wp_center6 and xyz != config.wp_center7 and xyz != config.wp_center8 and xyz != config.wp_center9:
+                print('not yet on wp', xyz)
                 timestamp2 = datetime.datetime.now()
                 looptime = timestamp2 - timestamp
                 print('{:<30} {:<20.2f}'.format('TIME IS_ON_WP F:', looptime.total_seconds()))

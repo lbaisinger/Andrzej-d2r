@@ -20,7 +20,7 @@ mana_pool_potek = (1100, 40)
 # mana_pool_potek = (1300, 45)
 hp_pool_exura = (800, 43)
 # hp_pool_exura = (650, 43)
-hp_pool_potek = (475, 43)
+hp_pool_potek = (570, 43)
 # burn_mana = (1450, 40)
 burn_mana = (900, 43)
 
@@ -28,13 +28,18 @@ burn_mana = (900, 43)
 #           WP CENTERS         #
 ################################
 # # WP Center at zoom 1
-wp_center = (1805, 89)
+wp_center = (1807, 88)
 # # WP Center at zoom 2
-wp_center2 = (1805, 89)
+wp_center2 = (1807, 89)
 # # WP Center at zoom 3
-wp_center3 = (1806, 89)
+wp_center3 = (1807, 90)
 # # WP Center at zoom 4
-wp_center4 = (1805, 89)
+wp_center4 = (1806, 88)
+wp_center5 = (1806, 89)
+wp_center6 = (1806, 90)
+wp_center7 = (1805, 88)
+wp_center8 = (1805, 89)
+wp_center9 = (1805, 90)
 
 ################################
 #           BATTLE             #
