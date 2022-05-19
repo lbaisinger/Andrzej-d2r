@@ -2,18 +2,24 @@ import pyautogui
 from time import sleep
 from random import uniform, randint
 
-# fish north
+# general
 
-startsqm = [2107, 231]
 sqmsize = 128
-endsqm = [3900, 620]
-tries = 6
+tries = 4
 rod_hotkey = 'F5'
-newsqm = [0,0]
+
+# fish north
+startsqm = [2107, 231]
+endsqm = [3900, 620]
+
+# helper
+newsqm = [0, 0]
+
 
 def do_fish(sqm=startsqm):
-    randdelay = uniform(1, 2)
-    randtries = randint(tries, tries+2)
+    sleep(1) # time to move to game window
+    randdelay = uniform(1, 1.61)
+    randtries = randint(tries-1, tries+1)
     for x in range(randtries):
         pyautogui.press(rod_hotkey)
         pyautogui.click(sqm)
