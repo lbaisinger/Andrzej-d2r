@@ -45,8 +45,7 @@ wp_center9 = (1805, 90)
 #           BATTLE             #
 ################################
 use_ring = True
-use_amulet = True
-ring_to_equip = 'sword_ring'
+use_amulet = False
 pg_mode = True
 exeta = True
 

@@ -1,8 +1,7 @@
-from caves.any_9 import *
+from caves.any_6 import *
 from gracz import *
 
 player = Gracz()
-pyautogui.click(config.default)
 
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
@@ -49,7 +48,6 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
         else:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-
     print()
     print('{:<30} {:<20.2f}'.format('Total loop time:', looptime.total_seconds()))
     print()
@@ -57,7 +55,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
 
 
 def loop():
-    nextwp = 5
+    nextwp = 1
     iteration = 1
     while True:
         print()
@@ -68,4 +66,5 @@ def loop():
         iteration += 1
 
 
+pyautogui.click(config.default)
 loop()

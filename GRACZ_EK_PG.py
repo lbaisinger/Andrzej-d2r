@@ -2,7 +2,6 @@ from caves.any_8 import *
 from gracz import *
 
 player = Gracz()
-pyautogui.click(config.default)
 
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
@@ -133,7 +132,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
 
 
 def loop():
-    nextwp = 7
+    nextwp = 1
     iteration = 1
     while True:
         print()
@@ -143,4 +142,5 @@ def loop():
         iteration += 1
 
 
+pyautogui.click(config.default)
 loop()
