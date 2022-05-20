@@ -1,24 +1,15 @@
 # Andrzej
-Andrzej BEDZIE walczyl z potworami, obecnie przygotowuje się do walki. In this hunting style Andrew runs to the WP igoring (luring?) monster and once reached WP starts exoring the shit out of them.
+Andrzej walczy z potworami!
 ### DEFINITION #
-The aim of this branch is to introduce an optimized script for efficient and deadly hunting with maximum dmg output.
-To achieve this the main loop must be short enough to not extend any ability/spell CDs.
-Since deadly hunting is a two-edged sword, healing must also be maximized. 
-Andrew must ensure appropriate timing between each status check (hplow check, manahigh etc.)
-
-![](src/img/updated_flowchart.svg)
-
-### Overview:
-- so far each status check is about 0.25-0.35 s long... (less spread would be great)
-- attacking new monster loop is ~ 2.7 s (with 2 status checks! OK but room for improvement)
-- continuing attacking loop is ... (probably around 2 s, so on target!, but check status timing!)
-- on WP, no monsters and LOOT loop is 3 s (OK)
+Andrzej może działać na dwa sposoby - profit i PG.
+1. Profit - Andrzej stale sprawdza, czy na BW są jakieś potwory. Jeśli tak to atakuje, po zabiciu każdego potwora (znika 'czerwony kwadracik' otaczający atakowanego potwora na BW) lootuje, powtarza do póki nie zabije wszystkich potworów na ekranie. Jeśli niebezpieczeństwo zostało wyeliminowane, idzie do WP. Wymaga follow monster.
+2. PG - Andrzej ZAPIERDALA do WP, staje na środku jak kamień i zaczyna kręcić młynki bronią + rotacja (póki co Exori/Exori Gran). Jeśli wymaga tego konieczność rzuca Exeta Res aby moby nie uciekały. Po wyeliminowaniu zagrożenia lootuje i idzie do następnego WP. Wymaga not-follow.
  
 ### To-do:
-- [x] add flowchart_idea.img
-- [x] datetime checks for each module duration
-- [x] total attacking loop duration must be 2-2.1 s (maybe 2.1 even better to ensure the EK hits with meelee first?)
-- [x] 1 s CD for healing spells, so ideally the main loop will contain 2x status checks (is_allright() method)
-- [x] make sure status checks are once every ~1.1 s
-- [ ] in case monster is standing on WP, expand WP check to 1 adjacent SQM (+/- 1 px?)
-- [ ] add rush_wp - utani hur after finished killing/looting to rush to next WP
+- [ ] Algorytm 'Profit'
+- [ ] Zamienić szukanie WP w centrum minimapy na szukanie w obszarze dookoła centrum (+/- 2-3 px), aby akceptował też sąsiednie SQMy - potrzebne na wypadek kiedy potwór stoi na WP i nie chce się przesunąć.
+- [ ] Zmienić pyautogui.locateonscreen na funkcję opencv2 (15x szybszciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
+
+
+### Algorytm 'PG'
+![](src/img/updated_flowchart.svg)
