@@ -1,4 +1,7 @@
 import PIL
+from PIL import ImageGrab, Image
+import numpy as np
+import cv2 as cv
 import pyautogui
 import datetime
 from time import sleep
@@ -88,6 +91,63 @@ class Gracz:
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
+        # todo load id as global before, not every time function runs
+        empty_bar = cv.imread("./src/status/empty-bar.png")
+        # possible methods:
+        # ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+        method = eval("cv.TM_CCORR")
+        timestamp = datetime.datetime.now()
+        pyautogui.press(config.hotkey_food)
+        # Check for serious healing (potion)
+        if hplow:
+            # img = ImageGrab.grab(bbox=config.hp_pool_potek_cv)
+            # img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+            # res = cv.matchTemplate(img_cv, empty_bar, method)
+            # if (res >= 0.8).any():
+            #     pyautogui.press(config.hotkey_hppot)
+            Other.szukaj_andrzeju(config.hp_pool_potek_cv, "./src/status/empty-bar.png")
+            timestamp_1 = datetime.datetime.now()
+            looptime_1 = timestamp_1 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
+        # Check for lesser healing (exura)
+        if hpmid:
+            img = ImageGrab.grab(bbox=config.hp_pool_exura_cv)
+            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+            res = cv.matchTemplate(img_cv, empty_bar, method)
+            if (res >= 0.8).any():
+                pyautogui.press(config.hotkey_exura)
+            timestamp_2 = datetime.datetime.now()
+            looptime_2 = timestamp_2 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
+        # Check for mana
+        if manalow:
+            img = ImageGrab.grab(bbox=config.mana_pool_potek_cv)
+            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+            res = cv.matchTemplate(img_cv, empty_bar, method)
+            if (res >= 0.8).any():
+                pyautogui.press(config.hotkey_manapot)
+            timestamp_3 = datetime.datetime.now()
+            looptime_3 = timestamp_3 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
+        if manahigh:
+            # todo
+            img = ImageGrab.grab(bbox=config.burn_mana_cv)
+            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+            res = cv.matchTemplate(img_cv, empty_bar, method)
+            if (res >= 0.8).any():
+                pyautogui.press(config.hotkey_manaburn)
+            timestamp_4 = datetime.datetime.now()
+            looptime_4 = timestamp_4 - timestamp
+            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
+        timestamp_5 = datetime.datetime.now()
+        looptime = timestamp_5 - timestamp
+        print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT:', looptime.total_seconds()))
+        return True
+
+    def is_allright_legacy(self, hplow=config.hplow,
+                           hpmid=config.hpmid,
+                           manalow=config.hpmid,
+                           manahigh=config.hpmid):
         timestamp = datetime.datetime.now()
         pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)

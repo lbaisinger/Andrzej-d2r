@@ -1,8 +1,10 @@
 import datetime
+import cv2 as cv
 import pyautogui
 import PIL
 import pytesseract
-from PIL import Image
+from PIL import Image, ImageGrab
+import numpy as np
 from random import choice
 from time import sleep
 from config_picker import *
@@ -85,4 +87,20 @@ class Other:
         looptime = timestamp2 - timestamp
         print('TIME GET_SCREENSHOOT', looptime)
         return True
+
+    def szukaj_andrzeju(self, region, image_path):
+        image = cv.imread(image_path)
+        # possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
+        # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+        method = eval("cv.TM_CCORR")
+        img = ImageGrab.grab(bbox=region)
+        img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+        res = cv.matchTemplate(img_cv, image, method)
+        if (res >= 0.8).any():
+            print('True')
+            return True
+        else:
+            print('False')
+            return False
+
 
