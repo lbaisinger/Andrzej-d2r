@@ -11,5 +11,7 @@ Andrzej może działać na dwa sposoby - profit i PG.
 - [x] Zmienić pyautogui.locateonscreen na własną funkcję opencv2 (6+ razy szybciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
 
 
-### Algorytm
-![](src/img/flowchart_logika_andrzeja.svg)
+
+| Algorytm 'PG'                      | Algorytm 'Profit                        |
+|------------------------------------|-----------------------------------------|
+| ![](src/img/flowchart_logika_andrzeja_pg.svg) | ![](src/img/flowchart_logika_andrzeja_profitujacego.svg) |
