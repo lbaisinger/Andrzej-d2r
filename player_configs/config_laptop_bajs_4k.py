@@ -20,6 +20,7 @@ mana_pool_potek = (1200, 43)
 hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
 burn_mana = (1640, 40)
+
 ################################
 #           WP CENTERS         #
 ################################
@@ -35,26 +36,28 @@ wp_center = (1806, 89)
 ################################
 #           BATTLE             #
 ################################
-ring_to_equip = 'sword_ring'  # it uses any ring, just assign whichever you want to the hotkey in the client
-use_ring = False
+use_ring = True
+use_amulet = False
 pg_mode = False
+exeta = True
 
 ################################
-#           HEAL & MANA `      #
+#           HEAL & MANA        #
 ################################
 # heal if hp low with poton
-hplow = False
+hplow = True
 # heal if hp moderate with exura
-hpmid = False
+hpmid = True
 # see if low mana and drink potion
-manalow = False
+manalow = True
 # see if too much mana and burn
 manahigh = True
 
 ################################
-#           HOTKEYS            #
+#           HOTKEYS     `      #
 ################################
 hotkey_ring = 'f3'
+hotkey_amulet = 'f9'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'
@@ -69,32 +72,4 @@ hotkey_pg_area_spell_2 = 'f'
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
-
-################################
-#  Statistical Process Control #
-################################
-# Andrzej performance data, define what data to collect
-# SPC_enabled = False
-# filename = 'testing_1'
-# ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
-# SPC_time_is_bije = False
-# SPC_time_is_co_bic = False
-# SPC_time_is_alright = False
-# SPC_time_is_on_WP = False
-# SPC_time_do_loot = False
-# SPC_time_do_bij = False
-# SPC_time_do_go_WP = False
-# SPC_time_FULLLOOP_bije = False
-# SPC_time_FULLLOOP_wp = False
-# SPC_time_FULLOOP_manual = False
-# SPC_time_ring = False
-# SPC_time_pg_mode = False
-# SPC_time_statistics = False
-# # Server log data
-# server_log_scrapping = False
-# SPC_dmg_total = False
-
-################################
-#           MISC        `      #
-################################
-min_cap_to_cont_hunt = 15
+hotkey_haste = 'v'
