@@ -1,8 +1,7 @@
 # Andrzej
-Andrzej walczy z potworami!
-### DEFINITION #
-Teraz Andrzej może działać na dwa sposoby - profit i PG.
- 
+Andrzej walczy z potworami! Teraz może działać na dwa sposoby - profit i PG.
+
+### FLOWCHART 
 | Algorytm 'PG'                      | Algorytm 'Profit                        |
 |------------------------------------|-----------------------------------------|
 | Andrzej stale sprawdza, czy na BW są jakieś potwory. Jeśli tak to atakuje, po zabiciu każdego potwora lootuje. Jeśli niebezpieczeństwo zostało wyeliminowane, idzie do WP. Wymaga follow-mode. | Andrzej ZAPIERDALA do WP, staje na środku i zaczyna wywijać bronią + rotacja czarów. Jeśli wymaga tego konieczność, rzuca Exeta Res aby moby nie uciekały. Po wyeliminowaniu zagrożenia lootuje i idzie do następnego WP. Wymaga no-follow-mode. |
