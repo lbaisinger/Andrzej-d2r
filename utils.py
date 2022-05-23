@@ -22,7 +22,8 @@ class Backpack:
         # returns amount of cap left based on what it can read from inverted.png
         # tested - looks fine
         Other().get_screenshoot(region=config.cap_region, filename='bp')
-        cap = pytesseract.image_to_string('inverted_bp.png', config='--psm 13 --oem 3 -c tessedit_char_whitelest=0123456789')
+        cap = pytesseract.image_to_string('inverted_bp.png',
+                                          config='--psm 13 --oem 3 -c tessedit_char_whitelest=0123456789')
         print(cap.strip())
         return cap
 
@@ -43,7 +44,8 @@ class Backpack:
         timestamp = datetime.datetime.now()
         item = choice(item_blacklist)
         print('checking for item', item)
-        item_cords = pyautogui.locateCenterOnScreen('src/items/' + str(item) + '.png', region=config.backpack, confidence=.94)
+        item_cords = pyautogui.locateCenterOnScreen('src/items/' + str(item) + '.png', region=config.backpack,
+                                                    confidence=.94)
         if item_cords is not None:
             print('dropping', item)
             # throw away
@@ -54,7 +56,7 @@ class Backpack:
             pyautogui.click()
             pyautogui.mouseDown(button='left')
             sleep(0.1)
-            pyautogui.move(2,2)
+            pyautogui.move(2, 2)
             sleep(0.1)
             pyautogui.moveTo(config.character, duration=0.2)
             ## sleep(0.1)
@@ -90,8 +92,8 @@ class Other:
         # gray scale 
         inverted_image = PIL.ImageOps.grayscale(inverted_image)
         # save it
-        #inverted_file_name = 'inverted' + str(region) + filename + '.png'
-        inverted_file_name = 'inverted_' + filename + '.png' 
+        # inverted_file_name = 'inverted' + str(region) + filename + '.png'
+        inverted_file_name = 'inverted_' + filename + '.png'
         inverted_image.save(inverted_file_name)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -108,17 +110,15 @@ class Other:
         img = ImageGrab.grab(bbox=region)
         img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
         res = cv.matchTemplate(img_cv, template, method)
-        # print('res = ', res)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
         print()
-        print('min val: ', min_val,'max val:', max_val,'min loc:', min_loc,'max loc:', max_loc)
+        print('min val: ', min_val, 'max val:', max_val, 'min loc:', min_loc, 'max loc:', max_loc)
         # if res.any() >= 1.0:
+
         if max_val >= 0.95:
-            # print('True')
+            print('True')
             sleep(0.1)
             return True
         else:
-            # print('False')
+            print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)
             return False
-
-

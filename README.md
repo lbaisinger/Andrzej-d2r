@@ -6,10 +6,10 @@ Andrzej może działać na dwa sposoby - profit i PG.
 2. PG - Andrzej ZAPIERDALA do WP, staje na środku jak kamień i zaczyna kręcić młynki bronią + rotacja (póki co Exori/Exori Gran). Jeśli wymaga tego konieczność rzuca Exeta Res aby moby nie uciekały. Po wyeliminowaniu zagrożenia lootuje i idzie do następnego WP. Wymaga not-follow.
  
 ### To-do:
-- [ ] Algorytm 'Profit'
+- [x] Algorytm 'Profit'
 - [ ] Zamienić szukanie WP w centrum minimapy na szukanie w obszarze dookoła centrum (+/- 2-3 px), aby akceptował też sąsiednie SQMy - potrzebne na wypadek kiedy potwór stoi na WP i nie chce się przesunąć.
-- [ ] Zmienić pyautogui.locateonscreen na własną funkcję opencv2 (15x szybciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
+- [x] Zmienić pyautogui.locateonscreen na własną funkcję opencv2 (6+ razy szybciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
 
 
-### Algorytm 'PG'
-![](src/img/updated_flowchart.svg)
+### Algorytm
+![](src/img/flowchart_logika_andrzeja.svg)

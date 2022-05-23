@@ -22,10 +22,10 @@ hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
 burn_mana = (1640, 40)
 # openCV
-mana_pool_potek_cv = (1200, 30, 1225, 50)
+mana_pool_potek_cv = (1640, 30, 1665, 50)
 hp_pool_exura_cv = (880, 30, 905, 50)
 hp_pool_potek_cv = (650, 30, 675, 50)
-burn_mana_cv = (1640, 30, 1665, 50)
+burn_mana_cv = (1200, 30, 1225, 50)
 
 
 ################################
@@ -33,6 +33,7 @@ burn_mana_cv = (1640, 30, 1665, 50)
 ################################
 # # WP Center at zoom 1
 # wp_center = (xxxx, yy)
+wp_center_cv = (2082, 85, 2092, 95)
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
 # # WP Center at zoom 3

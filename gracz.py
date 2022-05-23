@@ -74,6 +74,7 @@ class Gracz:
         timestamp = datetime.datetime.now()
         # check if there is smth to figtht
         # self.monsterlist = []
+        # if self.other.szukaj_andrzeju(region=config.bw, )
         for j in target_list:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
@@ -96,39 +97,27 @@ class Gracz:
         # Check for serious healing (potion)
         if hplow:
             if self.other.szukaj_andrzeju(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
-                # pyautogui.press(config.hotkey_hppot)
-                print('hplow True')
-            else:
-                print('hplow False')
+                pyautogui.press(config.hotkey_hppot)
             timestamp_1 = datetime.datetime.now()
             looptime_1 = timestamp_1 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
             if self.other.szukaj_andrzeju(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
-                # pyautogui.press(config.hotkey_exura)
-                print('hpmid True')
-            else:
-                print('hpmid False')
+                pyautogui.press(config.hotkey_exura)
             timestamp_2 = datetime.datetime.now()
             looptime_2 = timestamp_2 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
             if self.other.szukaj_andrzeju(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
-                # pyautogui.press(config.hotkey_manapot)
-                print('manalow True')
-            else:
-                print('manalow False')
+                pyautogui.press(config.hotkey_manapot)
             timestamp_3 = datetime.datetime.now()
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
-        if manahigh:
-            if self.other.szukaj_andrzeju(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
-                # pyautogui.press(config.hotkey_manaburn)
-                print('manahigh True')
-            else:
-                print('manahigh False')
+        if manahigh: # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
+            if not self.other.szukaj_andrzeju(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
+                pyautogui.press(config.hotkey_manaburn)
             timestamp_4 = datetime.datetime.now()
             looptime_4 = timestamp_4 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
