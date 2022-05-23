@@ -91,51 +91,44 @@ class Gracz:
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
-        # todo load id as global before, not every time function runs
-        empty_bar = cv.imread("./src/status/empty-bar.png")
-        # possible methods:
-        # ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
-        method = eval("cv.TM_CCORR")
         timestamp = datetime.datetime.now()
         pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
-            # img = ImageGrab.grab(bbox=config.hp_pool_potek_cv)
-            # img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-            # res = cv.matchTemplate(img_cv, empty_bar, method)
-            # if (res >= 0.8).any():
-            #     pyautogui.press(config.hotkey_hppot)
-            Other.szukaj_andrzeju(config.hp_pool_potek_cv, "./src/status/empty-bar.png")
+            if self.other.szukaj_andrzeju(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+                # pyautogui.press(config.hotkey_hppot)
+                print('hplow True')
+            else:
+                print('hplow False')
             timestamp_1 = datetime.datetime.now()
             looptime_1 = timestamp_1 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
-            img = ImageGrab.grab(bbox=config.hp_pool_exura_cv)
-            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-            res = cv.matchTemplate(img_cv, empty_bar, method)
-            if (res >= 0.8).any():
-                pyautogui.press(config.hotkey_exura)
+            if self.other.szukaj_andrzeju(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
+                # pyautogui.press(config.hotkey_exura)
+                print('hpmid True')
+            else:
+                print('hpmid False')
             timestamp_2 = datetime.datetime.now()
             looptime_2 = timestamp_2 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
-            img = ImageGrab.grab(bbox=config.mana_pool_potek_cv)
-            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-            res = cv.matchTemplate(img_cv, empty_bar, method)
-            if (res >= 0.8).any():
-                pyautogui.press(config.hotkey_manapot)
+            if self.other.szukaj_andrzeju(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+                # pyautogui.press(config.hotkey_manapot)
+                print('manalow True')
+            else:
+                print('manalow False')
             timestamp_3 = datetime.datetime.now()
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
         if manahigh:
-            # todo
-            img = ImageGrab.grab(bbox=config.burn_mana_cv)
-            img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-            res = cv.matchTemplate(img_cv, empty_bar, method)
-            if (res >= 0.8).any():
-                pyautogui.press(config.hotkey_manaburn)
+            if self.other.szukaj_andrzeju(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
+                # pyautogui.press(config.hotkey_manaburn)
+                print('manahigh True')
+            else:
+                print('manahigh False')
             timestamp_4 = datetime.datetime.now()
             looptime_4 = timestamp_4 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))

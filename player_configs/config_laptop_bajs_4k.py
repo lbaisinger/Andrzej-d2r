@@ -16,10 +16,17 @@ default = (1835, 300)
 character = (870, 495)
 ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
+# Legacy pyautogui
 mana_pool_potek = (1200, 43)
 hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
 burn_mana = (1640, 40)
+# openCV
+mana_pool_potek_cv = (1200, 30, 1225, 50)
+hp_pool_exura_cv = (880, 30, 905, 50)
+hp_pool_potek_cv = (650, 30, 675, 50)
+burn_mana_cv = (1640, 30, 1665, 50)
+
 
 ################################
 #           WP CENTERS         #

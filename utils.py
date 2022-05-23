@@ -1,4 +1,6 @@
 import datetime
+
+import cv2
 import cv2 as cv
 import pyautogui
 import PIL
@@ -11,6 +13,10 @@ from config_picker import *
 
 
 class Backpack:
+
+    def __init__(self):
+        # self.current_waypoint =
+        pass
 
     def get_avial_cap(self):
         # returns amount of cap left based on what it can read from inverted.png
@@ -66,6 +72,10 @@ class Backpack:
 
 class Other:
 
+    def __init__(self):
+        # self.current_waypoint =
+        pass
+
     def get_screenshoot(self, region=config.minimap, filename='screen'):
         # self explainatory
         timestamp = datetime.datetime.now()
@@ -89,18 +99,26 @@ class Other:
         return True
 
     def szukaj_andrzeju(self, region, image_path):
+        # todo load id as global before, not every time function runs
         image = cv.imread(image_path)
+        template = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         # possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
         # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
-        method = eval("cv.TM_CCORR")
+        method = eval("cv.TM_CCORR_NORMED")
         img = ImageGrab.grab(bbox=region)
         img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-        res = cv.matchTemplate(img_cv, image, method)
-        if (res >= 0.8).any():
-            print('True')
+        res = cv.matchTemplate(img_cv, template, method)
+        # print('res = ', res)
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+        print()
+        print('min val: ', min_val,'max val:', max_val,'min loc:', min_loc,'max loc:', max_loc)
+        # if res.any() >= 1.0:
+        if max_val >= 0.95:
+            # print('True')
+            sleep(0.1)
             return True
         else:
-            print('False')
+            # print('False')
             return False
 
 
