@@ -1,5 +1,5 @@
 import datetime
-import cv2
+import time
 import cv2 as cv
 import pyautogui
 import PIL
@@ -16,6 +16,19 @@ class Utils:
     def __init__(self):
         pass
 
+    def timing(f):
+        def wrap(*args, **kwargs):
+            time1 = time.time()
+            ret = f(*args, **kwargs)
+            time2 = time.time()
+            print('DURATION {:<20s} {:.1f} ms'.format(
+                f.__name__, (time2 - time1) * 1000.0))
+
+            return ret
+
+        return wrap
+
+    @timing
     def andrzej_szuka(self, region, image_path):
         # todo load id as global before, not every time function runs
         template = cv.imread(image_path)

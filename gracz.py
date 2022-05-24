@@ -122,6 +122,7 @@ class Gracz:
         print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
         return False
 
+    @timing
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
