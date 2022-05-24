@@ -22,14 +22,14 @@ rotation_iteration = 1
 print('openCV')
 # player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
 #                                    manalow=config.manalow)
-# player.is_bije()
-# player.is_co_bic()
+player.is_bije()
+player.is_co_bic()
 # player.pg_mode(exeta=config.exeta, rotation_iteration=rotation_iteration)
 # while True:
-player.cave.is_on_wp(wp=1)
+# player.cave.is_on_wp(wp=1)
 # player.cave.is_on_wp_legacy(wp=1)
 sleep(1)
-player.cave.do_go_wp(wp=1)
+# player.cave.do_go_wp(wp=1)
 
 print()
 print('legacy/pyautogui')

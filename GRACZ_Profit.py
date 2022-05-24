@@ -1,4 +1,4 @@
-from caves.any_2 import *
+from caves.any_5 import *
 from gracz import *
 
 player = Gracz()
@@ -80,6 +80,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, atk=
         sleep(2.1 - looptime_end.total_seconds())
         print('Sleeping {:.3f} seconds...'.format(2.1 - looptime_end.total_seconds()))
     print()
+    # LOOP END #
     return wp
 
 
