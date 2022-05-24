@@ -7,6 +7,7 @@ import datetime
 from time import sleep
 from utils import Backpack
 from utils import Other
+from utils import Utils
 from cave import Cave
 from config_picker import *
 
@@ -19,6 +20,7 @@ class Gracz:
         self.backpack = Backpack()
         self.other = Other()
         self.cave = Cave()
+        self.utils = Utils()
         # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
         print('loaded with config ', confname)
@@ -28,7 +30,7 @@ class Gracz:
         # dziala ok
         return len(self.backpack.get_avial_slots())
 
-    def is_bije(self):
+    def is_bije_legacy(self):
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
         # dziala ok
         timestamp = datetime.datetime.now()
@@ -54,7 +56,8 @@ class Gracz:
         # check if there's monster to exeta res
         # todo monsters_to_exeta[] as argument
         if exeta:
-            if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw, confidence=.8) is not None:
+            if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw,
+                                        confidence=.8) is not None:
                 pyautogui.press('x')
                 print('exeta!')
                 sleep(0.1)
@@ -96,27 +99,27 @@ class Gracz:
         pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
-            if self.other.szukaj_andrzeju(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_hppot)
             timestamp_1 = datetime.datetime.now()
             looptime_1 = timestamp_1 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
-            if self.other.szukaj_andrzeju(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_exura)
             timestamp_2 = datetime.datetime.now()
             looptime_2 = timestamp_2 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
-            if self.other.szukaj_andrzeju(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_manapot)
             timestamp_3 = datetime.datetime.now()
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
-        if manahigh: # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
-            if not self.other.szukaj_andrzeju(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
+        if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
+            if not self.utils.andrzej_szuka(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_manaburn)
             timestamp_4 = datetime.datetime.now()
             looptime_4 = timestamp_4 - timestamp
@@ -242,5 +245,3 @@ class Gracz:
         else:
             print("Amulet equipped.")
             return True
-
-

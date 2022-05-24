@@ -16,7 +16,6 @@ default = (1835, 300)
 character = (870, 495)
 ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
-# Legacy pyautogui
 mana_pool_potek = (1200, 43)
 hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
@@ -26,14 +25,13 @@ mana_pool_potek_cv = (1640, 30, 1665, 50)
 hp_pool_exura_cv = (880, 30, 905, 50)
 hp_pool_potek_cv = (650, 30, 675, 50)
 burn_mana_cv = (1200, 30, 1225, 50)
-
+wp_center_cv = (2082, 85, 2092, 95)
 
 ################################
 #           WP CENTERS         #
 ################################
 # # WP Center at zoom 1
 # wp_center = (xxxx, yy)
-wp_center_cv = (2082, 85, 2092, 95)
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
 # # WP Center at zoom 3

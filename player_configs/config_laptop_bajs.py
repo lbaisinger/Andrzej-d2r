@@ -16,14 +16,15 @@ default = (1550, 300)
 character = (870, 485)
 ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
+# Legacy
 mana_pool_potek = (1100, 40)
-# mana_pool_potek = (1300, 45)
 hp_pool_exura = (800, 43)
-# hp_pool_exura = (650, 43)
 hp_pool_potek = (570, 43)
-# burn_mana = (1450, 40)
 burn_mana = (900, 43)
-
+hp_pool_potek_cv = (450, 30, 470, 50)
+hp_pool_exura_cv = (700, 30,720, 50)
+mana_pool_potek_cv = (1350, 30, 1370, 50)
+burn_mana_cv = (930, 30, 950, 50)
 ################################
 #           WP CENTERS         #
 ################################
@@ -59,7 +60,7 @@ hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = False
+manahigh = True
 
 ################################
 #           HOTKEYS     `      #

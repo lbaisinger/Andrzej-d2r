@@ -1,5 +1,4 @@
 import datetime
-
 import cv2
 import cv2 as cv
 import pyautogui
@@ -10,6 +9,34 @@ import numpy as np
 from random import choice
 from time import sleep
 from config_picker import *
+
+
+class Utils:
+
+    def __init__(self):
+        pass
+
+    def andrzej_szuka(self, region, image_path):
+        # todo load id as global before, not every time function runs
+        image = cv.imread(image_path)
+        template = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        img = ImageGrab.grab(bbox=region)
+        img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+        # openCV possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
+        # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+        method = eval("cv.TM_CCOEFF_NORMED")
+        res = cv.matchTemplate(img_cv, template, method)
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+        print('{:<30}{:<20.3f}'.format('Best match:', max_val))
+        # if res.any() >= 1.0:
+        sleep(0.05)
+        if max_val >= 0.95:
+            print('True')
+            return True
+        else:
+            print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)
+            return False
+
 
 
 class Backpack:
@@ -100,25 +127,3 @@ class Other:
         print('TIME GET_SCREENSHOOT', looptime)
         return True
 
-    def szukaj_andrzeju(self, region, image_path):
-        # todo load id as global before, not every time function runs
-        image = cv.imread(image_path)
-        template = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        # possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
-        # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
-        method = eval("cv.TM_CCORR_NORMED")
-        img = ImageGrab.grab(bbox=region)
-        img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
-        res = cv.matchTemplate(img_cv, template, method)
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-        print()
-        print('min val: ', min_val, 'max val:', max_val, 'min loc:', min_loc, 'max loc:', max_loc)
-        # if res.any() >= 1.0:
-
-        if max_val >= 0.95:
-            print('True')
-            sleep(0.1)
-            return True
-        else:
-            print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)
-            return False
