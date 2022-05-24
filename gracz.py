@@ -2,6 +2,7 @@ import PIL
 from PIL import ImageGrab, Image
 import numpy as np
 import cv2 as cv
+import time
 import pyautogui
 import datetime
 from time import sleep
@@ -25,41 +26,59 @@ class Gracz:
         pyautogui.PAUSE = 0.05
         print('loaded with config ', confname)
 
+    def timing(f):
+        def wrap(*args, **kwargs):
+            time1 = time.time()
+            ret = f(*args, **kwargs)
+            time2 = time.time()
+            print('DURATION {:<20s} {:.1f} ms'.format(
+                f.__name__, (time2 - time1) * 1000.0))
+
+            return ret
+
+        return wrap
+
     def get_avialable_slots(self):
         # podaje ile jest dostepynch slotow w regionie na bp
         # dziala ok
         return len(self.backpack.get_avial_slots())
 
+    @timing
     def is_bije(self):
         timestamp = datetime.datetime.now()
         if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png"):
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
+            print('is_bije True')
+            # timestamp2 = datetime.datetime.now()
+            # looptime = timestamp2 - timestamp
+            # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
         else:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
+            print('is_bije False')
+            # timestamp2 = datetime.datetime.now()
+            # looptime = timestamp2 - timestamp
+            # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
 
+    @timing
     def is_bije_legacy(self):
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
         # dziala ok
-        timestamp = datetime.datetime.now()
+        # timestamp = datetime.datetime.now()
         img = PIL.Image.open('src/status/attacking.png')
         img_size = img.size
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
         if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.5) is None:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
+            print('is_bije True')
+            # timestamp2 = datetime.datetime.now()
+            # looptime = timestamp2 - timestamp
+            # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
         else:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
+            print('is_bije False')
+            # timestamp2 = datetime.datetime.now()
+            # looptime = timestamp2 - timestamp
+            # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
 
     # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)

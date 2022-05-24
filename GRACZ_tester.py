@@ -15,11 +15,11 @@ sleep(1)
 sleep(1)
 
 print('openCV')
-player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
-                                   manalow=config.manalow)
+# player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+#                                    manalow=config.manalow)
 player.is_bije()
 print()
 print('legacy/pyautogui')
-player.is_allright_legacy(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
-                                   manalow=config.manalow)
+# player.is_allright_legacy(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+#                                    manalow=config.manalow)
 player.is_bije_legacy()
