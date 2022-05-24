@@ -69,13 +69,13 @@ class Gracz:
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
         if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.5) is None:
-            print('is_bije True')
+            print('is_bije False')
             # timestamp2 = datetime.datetime.now()
             # looptime = timestamp2 - timestamp
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
         else:
-            print('is_bije False')
+            print('is_bije True')
             # timestamp2 = datetime.datetime.now()
             # looptime = timestamp2 - timestamp
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
