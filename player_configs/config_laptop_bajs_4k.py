@@ -9,7 +9,7 @@ bw = (2055, 355, 50, 50)
 bw_2nd = (2055, 370, 50, 50)
 redbox = (2020, 340, 40, 100)
 minimap = (1745, 35, 120, 120)
-minimapplus = (1750, 30, 110, 700)
+minimap_center = (2080, 84, 15, 15)
 backpack = (1566, 26, 160, 700)
 ring = (2035, 240, 25, 25)
 default = (1835, 300)
@@ -29,7 +29,8 @@ bw_cv = (2055, 355, 2105, 365)
 bw_2nd_cv = (2055, 370, 2105, 400)
 bw_full = (2045, 350, 2175, 480)
 redbox_cv = (2020, 340, 2060, 440)
-wp_center_cv = (2082, 85, 2092, 95)
+# wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
+minimap_center_cv = (2079, 82, 2094, 97)
 
 ################################
 #           WP CENTERS         #
@@ -39,7 +40,10 @@ wp_center_cv = (2082, 85, 2092, 95)
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
 # # WP Center at zoom 3
-wp_center = (1806, 89)
+wp_center = (2086, 89)
+# +/- 2 SQM on zoom 2
+# top-left corner = (2090, 93)
+# bot-right corner = (2082, 85)
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
 

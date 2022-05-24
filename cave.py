@@ -1,7 +1,9 @@
 import datetime
 import pyautogui
+import time
 import PIL.Image
 from utils import Backpack
+from utils import Utils
 from time import sleep
 from config_picker import *
 
@@ -10,7 +12,20 @@ class Cave:
 
     def __init__(self):
         # self.current_waypoint =
+        self.utils = Utils()
         pass
+
+    def timing(f):
+        def wrap(*args, **kwargs):
+            time1 = time.time()
+            ret = f(*args, **kwargs)
+            time2 = time.time()
+            print('DURATION {:<20s} {:.1f} ms'.format(
+                f.__name__, (time2 - time1) * 1000.0))
+
+            return ret
+
+        return wrap
 
     def use_rope(self):
         # works ok
@@ -82,7 +97,16 @@ class Cave:
             print('TIME is_ready_to_go_dp T', looptime)
             return True
 
+    @timing
     def is_on_wp(self, wp):
+        # todo minimap center coords
+        if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
+            print('is on wp')
+        else:
+            print('not on wp')
+
+    @timing
+    def is_on_wp_legacy(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
         # img = PIL.Image.open("src/wp/" + str(wp) + ".png")
