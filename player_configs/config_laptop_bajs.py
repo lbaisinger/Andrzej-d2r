@@ -16,15 +16,20 @@ default = (1550, 300)
 character = (870, 485)
 ServerLog_rightclick = (350, 963)
 ServerLog_SaveWnd = (390, 1004)
-# Legacy
 mana_pool_potek = (1100, 40)
 hp_pool_exura = (800, 43)
 hp_pool_potek = (570, 43)
 burn_mana = (900, 43)
+# openCV
 hp_pool_potek_cv = (450, 30, 470, 50)
 hp_pool_exura_cv = (700, 30,720, 50)
 mana_pool_potek_cv = (1350, 30, 1370, 50)
 burn_mana_cv = (930, 30, 950, 50)
+bw_cv = (1770, 355, 1820, 365)
+bw_2nd_cv = (1770, 370, 1820, 400)
+bw_full = (1770, 355, 1820, 475)
+redbox_cv = (1740, 350, 1780, 470)
+wp_center_cv = (2082, 85, 2092, 95)
 ################################
 #           WP CENTERS         #
 ################################
@@ -49,6 +54,7 @@ use_ring = True
 use_amulet = False
 pg_mode = True
 exeta = True
+rotation = ['r', 'f', 'g']
 
 ################################
 #           HEAL & MANA        #

@@ -74,36 +74,48 @@ class Gracz:
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
 
-    # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)
-    def pg_mode(self, exeta=False):
-        timestamp = datetime.datetime.now()
-        # check if there's monster to exeta res
-        # todo monsters_to_exeta[] as argument
+    @timing
+    def pg_mode(self, exeta=config.exeta, rotation_iteration=1):
         if exeta:
-            if pyautogui.locateOnScreen("src/monsters/young_sea_serpent.png", region=config.bw,
-                                        confidence=.8) is not None:
+            if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/any.png'):
                 pyautogui.press('x')
-                print('exeta!')
-                sleep(0.1)
-        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.6) is not None:
-            pyautogui.press(config.hotkey_pg_area_spell_1)
-            sleep(0.1)
-            pyautogui.press(config.hotkey_pg_area_spell_2)
+                sleep(0.05)
+        if self.utils.andrzej_szuka(region=config.bw_2nd_cv, image_path='./src/monsters/any.png'):
+            pyautogui.press(config.rotation[rotation_iteration-1])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('{:<30} {:<20.2f}'.format('Duration PG_MODE:', looptime.total_seconds()))
+
+
+    @timing
+    def pg_mode_legacy(self, exeta=config.exeta, rotation_iteration=1):
+        # check if there's monster to exeta res
+        # todo monsters_to_exeta[] as argument
+        if exeta:
+            if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw,
+                                        confidence=.8) is not None:
+                pyautogui.press('x')
+                print('exeta!')
+                sleep(0.1)
+        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.8) is not None:
+            pyautogui.press(config.hotkey_pg_area_spell_1)
+            print('manymonsters')
+            sleep(0.1)
+            pyautogui.press(config.hotkey_pg_area_spell_2)
+        else:
+            pyautogui.press(config.hotkey_pg_single_spell_1)
+            print('onemonster')
+            sleep(0.1)
+            pyautogui.press(config.hotkey_pg_single_spell_2)
 
     @timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv, image_path='./src/monsters/any.png'):
-            print('True')
+            print('is_co_bic True')
             return True
         else:
-            print('False')
+            print('is_co_bic False')
             return False
 
     @timing
