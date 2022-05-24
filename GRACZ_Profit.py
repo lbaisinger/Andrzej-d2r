@@ -2,7 +2,8 @@ from caves.any_5 import *
 from gracz import *
 
 player = Gracz()
-
+# tryb_walki = False  # todo move to config?
+global tryb_walki
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rotation_iteration=1):
     # LOOP START #
@@ -13,11 +14,10 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                        manalow=config.manalow)
-
+    global tryb_walki
     # ATTACKING? #
     if player.is_bije():
         # YES #
-        global tryb_walki
         if not tryb_walki:
             tryb_walki = True
         # PG MODE #
@@ -26,7 +26,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
     else:
         # NOT ATTACKING #
         # JUST FINISED ATTACKING?
-        global tryb_walki
+        # global tryb_walki
         if tryb_walki:
             # YES - LOOT #
             player.do_loot()
@@ -41,7 +41,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
                 player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
         else:
             # NO MONSTERS #
-            global tryb_walki
+            # global tryb_walki
             tryb_walki = False
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
@@ -99,6 +99,6 @@ def loop():
         iteration += 1
 
 
-tryb_walki = False  # todo move to config?
+tryb_walki = False
 pyautogui.click(config.default)
 loop()

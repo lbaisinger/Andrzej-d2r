@@ -42,7 +42,7 @@ class Utils:
         method = eval("cv.TM_CCOEFF_NORMED")
         res = cv.matchTemplate(img_cv, template, method)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-        print('{:<30}{:<20.3f}'.format('Best match:', max_val))
+        # print('{:<30}{:<20.3f}'.format('Best match:', max_val))
         sleep(0.05)
         # cv.imshow('desc', img_cv)
         # cv.waitKey(0)
@@ -51,7 +51,7 @@ class Utils:
         # cv.waitKey(0)
         # cv.destroyAllWindows()
         if max_val >= confidence:
-            print('True')
+            # print('True')
             return True
         else:
             # print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)

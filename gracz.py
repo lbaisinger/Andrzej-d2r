@@ -45,11 +45,11 @@ class Gracz:
 
     # @timing
     def is_bije(self):
-        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png", confidence=0.6):
-            print('is_bije True')
+        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png", confidence=0.35):
+            print('STATUS - Bije')
             return True
         else:
-            print('is_bije False')
+            # print('is_bije False')
             return False
 
     @timing
@@ -62,13 +62,13 @@ class Gracz:
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
         if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.5) is None:
-            print('is_bije False')
+            # print('is_bije False')
             # timestamp2 = datetime.datetime.now()
             # looptime = timestamp2 - timestamp
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
         else:
-            print('is_bije True')
+            # print('is_bije True')
             # timestamp2 = datetime.datetime.now()
             # looptime = timestamp2 - timestamp
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
@@ -112,10 +112,10 @@ class Gracz:
     # @timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv, image_path='./src/monsters/any.png'):
-            print('is_co_bic True')
+            print('is_co_bic')
             return True
         else:
-            print('is_co_bic False')
+            # print('is_co_bic False')
             return False
 
     @timing
@@ -252,12 +252,12 @@ class Gracz:
     def do_bij(self):
         # naciska spacje i atakuje nast z battle window
         # dziala ok
-        timestamp = datetime.datetime.now()
+        # timestamp = datetime.datetime.now()
         # print('fight')
         pyautogui.press('space')
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
+        # timestamp2 = datetime.datetime.now()
+        # looptime = timestamp2 - timestamp
+        # print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
 
     def ring_control(self, ring_hotkey=config.hotkey_ring):

@@ -4,7 +4,7 @@
 #           REGIONS            #
 ################################
 # todo remove obsolete
-# scale = 1
+scale = 1
 # bw = (1747, 352, 120, 100)
 # bw_2nd = (1770, 374, 15, 15)
 # redbox = (1740, 350, 40, 100)
@@ -30,7 +30,7 @@ bw_2nd_cv = (1770, 370, 1820, 400)
 bw_full = (1770, 355, 1820, 475)
 redbox_cv = (1740, 350, 1780, 470)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
-minimap_center_cv = (2085, 76, 2097, 88)
+minimap_center_cv = (1800, 83, 1812, 95)
 minimap_cv = (1745, 35, 1865, 155)
 
 ################################
@@ -51,9 +51,9 @@ minimap_cv = (1745, 35, 1865, 155)
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = True
+pg_mode = False
 exeta = True
-rush = True
+rush = False
 rotation = ['r', 'f', 'g']
 
 ################################
