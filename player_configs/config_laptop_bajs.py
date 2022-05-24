@@ -3,6 +3,7 @@
 ################################
 #           REGIONS            #
 ################################
+# todo remove obsolete
 # scale = 1
 # bw = (1747, 352, 120, 100)
 # bw_2nd = (1770, 374, 15, 15)
@@ -14,6 +15,7 @@ ring = (1755, 240, 30, 30)
 amulet = (1753, 162, 35, 35)
 default = (1550, 300)
 character = (870, 485)
+# todo remove obsolete
 # mana_pool_potek = (1100, 40)
 # hp_pool_exura = (800, 43)
 # hp_pool_potek = (570, 43)
@@ -34,6 +36,7 @@ minimap_cv = (1745, 35, 1865, 155)
 ################################
 #           WP CENTERS         #
 ################################
+# todo delete - obsolete
 # # WP Center at zoom 1
 # wp_center = (1807, 88)
 # # # WP Center at zoom 2
@@ -42,11 +45,6 @@ minimap_cv = (1745, 35, 1865, 155)
 # wp_center3 = (1807, 90)
 # # # WP Center at zoom 4
 # wp_center4 = (1806, 88)
-# wp_center5 = (1806, 89)
-# wp_center6 = (1806, 90)
-# wp_center7 = (1805, 88)
-# wp_center8 = (1805, 89)
-# wp_center9 = (1805, 90)
 
 ################################
 #           BATTLE             #
@@ -90,30 +88,3 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 hotkey_haste = 'v'
-################################
-#  Statistical Process Control #
-################################
-# Andrew performance data, define what data to collect
-# SPC_enabled = False
-# filename = 'testing_1'
-# ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
-# SPC_time_is_bije = False
-# SPC_time_is_co_bic = False
-# SPC_time_is_alright = False
-# SPC_time_is_on_WP = False
-# SPC_time_do_loot = False
-# SPC_time_do_bij = False
-# SPC_time_do_go_WP = False
-# SPC_time_FULLLOOP_bije = False
-# SPC_time_FULLLOOP_wp = False
-# SPC_time_FULLOOP_manual = False
-# SPC_time_ring = False
-# SPC_time_pg_mode = False
-# SPC_time_statistics = False
-# server_log_scrapping = False
-# SPC_dmg_total = False
-
-################################
-#           MISC        `      #
-################################
-min_cap_to_cont_hunt = 15

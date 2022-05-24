@@ -40,9 +40,6 @@ minimap_cv = (1745, 35, 1865, 155)
 # wp_center = (1805, 89)
 # # WP Center at zoom 3
 wp_center = (2086, 89)
-# +/- 2 SQM on zoom 2
-# top-left corner = (2090, 93)
-# bot-right corner = (2082, 85)
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
 

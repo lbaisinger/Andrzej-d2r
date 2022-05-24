@@ -75,13 +75,13 @@ class Gracz:
             return True
 
     # @timing
-    def pg_mode(self, exeta=config.exeta, rotation_iteration=1):
+    def pg_mode(self, exeta=config.exeta, rotation_spell=1):
         if exeta:
             if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/any.png'):
                 pyautogui.press('x')
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv, image_path='./src/monsters/any.png'):
-            pyautogui.press(config.rotation[rotation_iteration-1])
+            pyautogui.press(config.rotation[rotation_spell-1])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             sleep(0.1)

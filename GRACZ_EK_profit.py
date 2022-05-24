@@ -6,6 +6,7 @@ player = Gracz()
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
     # main logic goes here
+
     timestamp = datetime.datetime.now()
     if ring:
         player.ring_control()
