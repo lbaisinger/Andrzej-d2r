@@ -45,18 +45,11 @@ class Gracz:
 
     @timing
     def is_bije(self):
-        timestamp = datetime.datetime.now()
         if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png"):
             print('is_bije True')
-            # timestamp2 = datetime.datetime.now()
-            # looptime = timestamp2 - timestamp
-            # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
         else:
             print('is_bije False')
-            # timestamp2 = datetime.datetime.now()
-            # looptime = timestamp2 - timestamp
-            # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
 
     @timing
@@ -104,8 +97,17 @@ class Gracz:
         looptime = timestamp2 - timestamp
         print('{:<30} {:<20.2f}'.format('Duration PG_MODE:', looptime.total_seconds()))
 
-    def is_co_bic(self, target_list):
-        timestamp = datetime.datetime.now()
+    @timing
+    def is_co_bic(self):
+        if self.utils.andrzej_szuka(region=config.bw_cv, image_path='./src/monsters/any.png'):
+            print('True')
+            return True
+        else:
+            print('False')
+            return False
+
+    @timing
+    def is_co_bic_legacy(self, target_list):
         # check if there is smth to figtht
         # self.monsterlist = []
         # if self.other.szukaj_andrzeju(region=config.bw, )
@@ -113,13 +115,15 @@ class Gracz:
             # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
             if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
                 # pyautogui.press('Esc')  # safety net
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC T:', looptime.total_seconds()))
+                # timestamp2 = datetime.datetime.now()
+                # looptime = timestamp2 - timestamp
+                # print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC T:', looptime.total_seconds()))
+                print('True')
                 return True
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
+        # timestamp2 = datetime.datetime.now()
+        print('False')
+        # looptime = timestamp2 - timestamp
+        # print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
         return False
 
     @timing
@@ -127,38 +131,22 @@ class Gracz:
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
-        timestamp = datetime.datetime.now()
         pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
             if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_hppot)
-            timestamp_1 = datetime.datetime.now()
-            looptime_1 = timestamp_1 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
         # Check for lesser healing (exura)
         if hpmid:
             if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_exura)
-            timestamp_2 = datetime.datetime.now()
-            looptime_2 = timestamp_2 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
         # Check for mana
         if manalow:
             if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_manapot)
-            timestamp_3 = datetime.datetime.now()
-            looptime_3 = timestamp_3 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
         if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
             if not self.utils.andrzej_szuka(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
                 pyautogui.press(config.hotkey_manaburn)
-            timestamp_4 = datetime.datetime.now()
-            looptime_4 = timestamp_4 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
-        timestamp_5 = datetime.datetime.now()
-        looptime = timestamp_5 - timestamp
-        print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT:', looptime.total_seconds()))
         return True
 
     def is_allright_legacy(self, hplow=config.hplow,

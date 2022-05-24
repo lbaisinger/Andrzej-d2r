@@ -25,6 +25,7 @@ mana_pool_potek_cv = (1640, 30, 1665, 50)
 hp_pool_exura_cv = (880, 30, 905, 50)
 hp_pool_potek_cv = (650, 30, 675, 50)
 burn_mana_cv = (1200, 30, 1225, 50)
+bw_cv = (2055, 355, 2105, 365)
 redbox_cv = (2020, 340, 2060, 440)
 wp_center_cv = (2082, 85, 2092, 95)
 

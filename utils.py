@@ -1,5 +1,6 @@
 import datetime
 import time
+# import inspect
 import cv2 as cv
 import pyautogui
 import PIL
@@ -21,9 +22,9 @@ class Utils:
             time1 = time.time()
             ret = f(*args, **kwargs)
             time2 = time.time()
+            duration = (time2 - time1) * 1000.0
             print('DURATION {:<20s} {:.1f} ms'.format(
-                f.__name__, (time2 - time1) * 1000.0))
-
+                f.__name__, duration))
             return ret
 
         return wrap
@@ -31,6 +32,7 @@ class Utils:
     @timing
     def andrzej_szuka(self, region, image_path):
         # todo load id as global before, not every time function runs
+        # print('Andrzej szuka', region)
         template = cv.imread(image_path)
         # template = cv2.cvtColor(np.array(image))#, cv2.COLOR_RGB2BGR)
         img = ImageGrab.grab(bbox=region)
