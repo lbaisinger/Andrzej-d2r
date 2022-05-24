@@ -4,7 +4,7 @@ from gracz import *
 player = Gracz()
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, atk=0, rotation_iteration=1):
+def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rotation_iteration=1):
     # LOOP START #
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
@@ -17,29 +17,32 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, atk=
     # ATTACKING? #
     if player.is_bije():
         # YES #
-        if atk == 0:
-            atk = 1
+        global tryb_walki
+        if not tryb_walki:
+            tryb_walki = True
         # PG MODE #
         if config.pg_mode:
             player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
     else:
         # NOT ATTACKING #
         # JUST FINISED ATTACKING?
-        if atk == 1:
+        global tryb_walki
+        if tryb_walki:
             # YES - LOOT #
             player.do_loot()
         # JEST CO BIĆ?
         if player.is_co_bic():
             # YES #
             player.do_bij()
-            if atk == 0:
-                atk = 1
+            if not tryb_walki:
+                tryb_walki = True
             # PG MODE #
             if config.pg_mode:
                 player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
         else:
             # NO MONSTERS #
-            atk = 0
+            global tryb_walki
+            tryb_walki = False
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
                 # YES #
@@ -96,5 +99,6 @@ def loop():
         iteration += 1
 
 
+tryb_walki = False  # todo move to config?
 pyautogui.click(config.default)
 loop()

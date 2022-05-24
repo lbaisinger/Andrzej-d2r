@@ -45,7 +45,7 @@ class Gracz:
 
     # @timing
     def is_bije(self):
-        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png"):
+        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png", confidence=0.6):
             print('is_bije True')
             return True
         else:
