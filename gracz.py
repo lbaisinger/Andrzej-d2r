@@ -30,24 +30,36 @@ class Gracz:
         # dziala ok
         return len(self.backpack.get_avial_slots())
 
+    def is_bije(self):
+        timestamp = datetime.datetime.now()
+        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png"):
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
+            return True
+        else:
+            timestamp2 = datetime.datetime.now()
+            looptime = timestamp2 - timestamp
+            print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
+            return False
+
     def is_bije_legacy(self):
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
         # dziala ok
         timestamp = datetime.datetime.now()
-
         img = PIL.Image.open('src/status/attacking.png')
         img_size = img.size
         rescaled_img = img.resize((img_size[0] * config.scale,
                                    img_size[1] * config.scale))
-        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.25) is None:
+        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.5) is None:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('TIME is_bije F:', looptime.total_seconds()))
+            print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
             return False
         else:
             timestamp2 = datetime.datetime.now()
             looptime = timestamp2 - timestamp
-            print('{:<30} {:<20.2f}'.format('TIME is_bije T:', looptime.total_seconds()))
+            print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
 
     # todo wrzucic tablce 'hotkeys' z wybranymi skillami do rotacji (e.g. exori hur/ exori min)

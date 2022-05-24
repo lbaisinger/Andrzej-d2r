@@ -12,7 +12,7 @@ Andrzej walczy z potworami! Teraz może działać na dwa sposoby - profit i PG.
 - [ ] Zamienić szukanie WP w centrum minimapy na szukanie w obszarze dookoła centrum (+/- 2-3 px), aby akceptował też sąsiednie SQMy - potrzebne na wypadek kiedy potwór stoi na WP i nie chce się przesunąć.
 - [x] Zmienić pyautogui.locateonscreen na własną funkcję opencv2 (6+ razy szybciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
 - [x] is_allright_opencv - 6+ razy szybciej, nawet na 4k!
-- [ ] is_bije_opencv
+- [x] is_bije_opencv
 - [ ] is_co_bic_opencv
 - [ ] pg_mode_opencv
 - [ ] is_on_wp_opencv

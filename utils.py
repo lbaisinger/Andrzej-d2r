@@ -18,8 +18,8 @@ class Utils:
 
     def andrzej_szuka(self, region, image_path):
         # todo load id as global before, not every time function runs
-        image = cv.imread(image_path)
-        template = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        template = cv.imread(image_path)
+        # template = cv2.cvtColor(np.array(image))#, cv2.COLOR_RGB2BGR)
         img = ImageGrab.grab(bbox=region)
         img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
         # openCV possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
@@ -30,7 +30,13 @@ class Utils:
         print('{:<30}{:<20.3f}'.format('Best match:', max_val))
         # if res.any() >= 1.0:
         sleep(0.05)
-        if max_val >= 0.95:
+        # cv.imshow('desc', img_cv)
+        # cv.waitKey(0)
+        # cv.destroyAllWindows()
+        # cv.imshow('desc', template)
+        # cv.waitKey(0)
+        # cv.destroyAllWindows()
+        if max_val >= 0.8:
             print('True')
             return True
         else:
