@@ -3,23 +3,21 @@
 ################################
 #           REGIONS            #
 ################################
-scale = 1
-bw = (1747, 352, 120, 100)
-bw_2nd = (1770, 374, 15, 15)
-redbox = (1740, 350, 40, 100)
-minimap = (1745, 35, 120, 120)
-minimapplus = (1750, 30, 110, 700)
-backpack = (1566, 26, 160, 700)
+# scale = 1
+# bw = (1747, 352, 120, 100)
+# bw_2nd = (1770, 374, 15, 15)
+# redbox = (1740, 350, 40, 100)
+# minimap = (1745, 35, 120, 120)
+# minimapplus = (1750, 30, 110, 700)
+# backpack = (1566, 26, 160, 700)
 ring = (1755, 240, 30, 30)
 amulet = (1753, 162, 35, 35)
 default = (1550, 300)
 character = (870, 485)
-ServerLog_rightclick = (350, 963)
-ServerLog_SaveWnd = (390, 1004)
-mana_pool_potek = (1100, 40)
-hp_pool_exura = (800, 43)
-hp_pool_potek = (570, 43)
-burn_mana = (900, 43)
+# mana_pool_potek = (1100, 40)
+# hp_pool_exura = (800, 43)
+# hp_pool_potek = (570, 43)
+# burn_mana = (900, 43)
 # openCV
 hp_pool_potek_cv = (450, 30, 470, 50)
 hp_pool_exura_cv = (700, 30,720, 50)
@@ -29,23 +27,26 @@ bw_cv = (1770, 355, 1820, 365)
 bw_2nd_cv = (1770, 370, 1820, 400)
 bw_full = (1770, 355, 1820, 475)
 redbox_cv = (1740, 350, 1780, 470)
+# wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 minimap_center_cv = (2085, 76, 2097, 88)
+minimap_cv = (1745, 35, 1865, 155)
+
 ################################
 #           WP CENTERS         #
 ################################
 # # WP Center at zoom 1
-wp_center = (1807, 88)
-# # WP Center at zoom 2
-wp_center2 = (1807, 89)
-# # WP Center at zoom 3
-wp_center3 = (1807, 90)
-# # WP Center at zoom 4
-wp_center4 = (1806, 88)
-wp_center5 = (1806, 89)
-wp_center6 = (1806, 90)
-wp_center7 = (1805, 88)
-wp_center8 = (1805, 89)
-wp_center9 = (1805, 90)
+# wp_center = (1807, 88)
+# # # WP Center at zoom 2
+# wp_center2 = (1807, 89)
+# # # WP Center at zoom 3
+# wp_center3 = (1807, 90)
+# # # WP Center at zoom 4
+# wp_center4 = (1806, 88)
+# wp_center5 = (1806, 89)
+# wp_center6 = (1806, 90)
+# wp_center7 = (1805, 88)
+# wp_center8 = (1805, 89)
+# wp_center9 = (1805, 90)
 
 ################################
 #           BATTLE             #
@@ -54,6 +55,7 @@ use_ring = True
 use_amulet = False
 pg_mode = True
 exeta = True
+rush = True
 rotation = ['r', 'f', 'g']
 
 ################################

@@ -28,6 +28,7 @@ print('openCV')
 # while True:
 #     player.cave.is_on_wp(wp=1)
 #     sleep(1)
+player.cave.do_go_wp(wp=1)
 
 print()
 print('legacy/pyautogui')
@@ -37,3 +38,4 @@ print('legacy/pyautogui')
 # player.is_co_bic_legacy(target_list=['any'])
 # player.pg_mode_legacy(exeta=config.exeta)
 # player.cave.is_on_wp_legacy(wp=1)
+player.cave.do_go_wp_legacy(wp=1)

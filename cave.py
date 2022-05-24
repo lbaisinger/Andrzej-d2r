@@ -1,4 +1,6 @@
 import datetime
+
+import cv2 as cv
 import pyautogui
 import time
 import PIL.Image
@@ -97,7 +99,7 @@ class Cave:
             print('TIME is_ready_to_go_dp T', looptime)
             return True
 
-    @timing
+    # @timing
     def is_on_wp(self, wp):
         # todo minimap center coords
         if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
@@ -105,7 +107,7 @@ class Cave:
         else:
             print('not on wp')
 
-    @timing
+    # @timing
     def is_on_wp_legacy(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
@@ -141,7 +143,19 @@ class Cave:
             # #add timestamp
             return False
 
+    # @timing
     def do_go_wp(self, wp):
+        image = cv.imread('./src/wp/' + str(wp) + '.png')
+        (h, w) = image.shape[:2]  # w:image-width and h:image-height
+        if self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png'):
+            print('going to wp', wp)
+            pyautogui.click(config.minimap_cv[0]+w/2, config.minimap_cv[1]+h/2)
+            pyautogui.moveTo(config.default)
+        else:
+            print('Couldnt find wp', wp)
+
+    # @timing
+    def do_go_wp_legacy(self, wp):
         # szuka wp na mapie i go naciska
         # dziala ok
         timestamp = datetime.datetime.now()

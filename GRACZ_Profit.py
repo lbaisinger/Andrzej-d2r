@@ -2,11 +2,17 @@ from caves.any_8 import *
 from gracz import *
 
 player = Gracz()
-rotation_iteration = 1
+
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
     # LOOP START #
     timestamp = datetime.datetime.now()
+    if ring:
+        player.ring_control()
+        # sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+    if amulet:
+        player.amulet_control()
+        # sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     # TIMING CHECK 1 #
     # timestamp_1 = datetime.datetime.now()
     # looptime_1 = timestamp_1 - timestamp
@@ -27,7 +33,14 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
             # print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING True:', looptime_3.total_seconds()))
             # PG MODE #
             if config.pg_mode:
-                player.pg_mode(exeta=config.exeta, rotation_iteration=rotation_iteration)
+                player.pg_mode(exeta=config.exeta)
+            # TIMING CHECK 4 #
+            # timestamp_4 = datetime.datetime.now()
+            # looptime_4 = timestamp_4 - timestamp
+            # print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING-PG MODE:', looptime_4.total_seconds()))
+            # STATUS CHECK #
+            player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                               manalow=config.manalow)
             # TIMING CHECK 5 #
             # timestamp_5 = datetime.datetime.now()
             # looptime_5 = timestamp_5 - timestamp
@@ -65,6 +78,13 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                     # timestamp_10 = datetime.datetime.now()
                     # looptime_10 = timestamp_10 - timestamp
                     # print('{:<30} {:<20.2f}'.format('Timestamp WP-PG MODE:', looptime_10.total_seconds()))
+                    # STATUS CHECK #
+                    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                                       manalow=config.manalow)
+                    # TIMING CHECK 11 #
+                    # timestamp_11 = datetime.datetime.now()
+                    # looptime_11 = timestamp_11 - timestamp
+                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-STATUS CHECK:', looptime_11.total_seconds()))
                 else:
                     # NO MONSTERS #
                     # TIMING CHECK 12 #
@@ -77,14 +97,15 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                     # timestamp_13 = datetime.datetime.now()
                     # looptime_13 = timestamp_13 - timestamp
                     # print('{:<30} {:<20.2f}'.format('Timestamp WP-LOOT:', looptime_13.total_seconds()))
+                    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                                       manalow=config.manalow)
                     # GO TO NEXT WP #
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                     else:
                         wp += 1
                     player.cave.do_go_wp(wp)
-                    if config.rush:
-                        pyautogui.press(config.hotkey_haste)
+                    pyautogui.press(config.hotkey_haste)
                     # TIMING CHECK 14 #
                     # timestamp_14 = datetime.datetime.now()
                     # looptime_14 = timestamp_14 - timestamp
@@ -97,29 +118,15 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):
                 # print('{:<30} {:<20.2f}'.format('Timestamp NOT ON WP:', looptime_15.total_seconds()))
                 # GO TO WP #
                 player.cave.do_go_wp(wp)
-    # MID-TIMING CHECK #
-    timestamp_4 = datetime.datetime.now()
-    looptime_4 = timestamp_4 - timestamp
-    print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_4.total_seconds()))
-    if looptime_4.total_seconds() < 1.1:
-        sleep(1.1 - looptime_4.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(1.1-looptime_4.total_seconds(), ''))
-    # STATUS CHECK 2 #
-    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
-                       manalow=config.manalow)
-    if ring:
-        player.ring_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
-    if amulet:
-        player.amulet_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
-    # END-TIMING CHECK #
+                # TIMING CHECK 16 #
+                # timestamp_16 = datetime.datetime.now()
+                # looptime_16 = timestamp_16 - timestamp
+                # print('{:<30} {:<20.2f}'.format('Timestamp GO TO WP:', looptime_16.total_seconds()))
+                player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                                   manalow=config.manalow)
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
-    print('{:<30} {:<20.2f}'.format('END-TIMING CHECK:', looptime_end.total_seconds()))
-    if looptime_end.total_seconds() < 2.1:
-        sleep(2.1 - looptime_end.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(2.1-looptime_end.total_seconds()))
+    print('{:<30} {:<20.2f}'.format('Total loop time:', looptime_end.total_seconds()))
     print()
     return wp
 

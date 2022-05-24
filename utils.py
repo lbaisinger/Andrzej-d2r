@@ -29,7 +29,7 @@ class Utils:
 
         return wrap
 
-    @timing
+    # @timing
     def andrzej_szuka(self, region, image_path):
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
@@ -42,8 +42,7 @@ class Utils:
         method = eval("cv.TM_CCOEFF_NORMED")
         res = cv.matchTemplate(img_cv, template, method)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-        print('{:<30}{:<20.3f}'.format('Best match:', max_val))
-        # if res.any() >= 1.0:
+        # print('{:<30}{:<20.3f}'.format('Best match:', max_val))
         sleep(0.05)
         # cv.imshow('desc', img_cv)
         # cv.waitKey(0)
@@ -125,26 +124,26 @@ class Other:
     def __init__(self):
         # self.current_waypoint =
         pass
-
-    def get_screenshoot(self, region=config.minimap, filename='screen'):
-        # self explainatory
-        timestamp = datetime.datetime.now()
-        # get screen shoot
-        myscreenshot = pyautogui.screenshot(region=region)
-        # save it
-        final_filename = str(region) + filename + '.png'
-        myscreenshot.save(final_filename)
-        print(final_filename)
-        # invert image
-        inverted_image = PIL.ImageOps.invert(Image.open(final_filename))
-        # gray scale 
-        inverted_image = PIL.ImageOps.grayscale(inverted_image)
-        # save it
-        # inverted_file_name = 'inverted' + str(region) + filename + '.png'
-        inverted_file_name = 'inverted_' + filename + '.png'
-        inverted_image.save(inverted_file_name)
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME GET_SCREENSHOOT', looptime)
-        return True
-
+    #
+    # def get_screenshoot(self, region=config.minimap, filename='screen'):
+    #     # self explainatory
+    #     timestamp = datetime.datetime.now()
+    #     # get screen shoot
+    #     myscreenshot = pyautogui.screenshot(region=region)
+    #     # save it
+    #     final_filename = str(region) + filename + '.png'
+    #     myscreenshot.save(final_filename)
+    #     print(final_filename)
+    #     # invert image
+    #     inverted_image = PIL.ImageOps.invert(Image.open(final_filename))
+    #     # gray scale
+    #     inverted_image = PIL.ImageOps.grayscale(inverted_image)
+    #     # save it
+    #     # inverted_file_name = 'inverted' + str(region) + filename + '.png'
+    #     inverted_file_name = 'inverted_' + filename + '.png'
+    #     inverted_image.save(inverted_file_name)
+    #     timestamp2 = datetime.datetime.now()
+    #     looptime = timestamp2 - timestamp
+    #     print('TIME GET_SCREENSHOOT', looptime)
+    #     return True
+    #

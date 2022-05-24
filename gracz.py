@@ -43,7 +43,7 @@ class Gracz:
         # dziala ok
         return len(self.backpack.get_avial_slots())
 
-    @timing
+    # @timing
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png"):
             print('is_bije True')
@@ -74,7 +74,7 @@ class Gracz:
             # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
             return True
 
-    @timing
+    # @timing
     def pg_mode(self, exeta=config.exeta, rotation_iteration=1):
         if exeta:
             if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/any.png'):
@@ -109,7 +109,7 @@ class Gracz:
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
-    @timing
+    # @timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv, image_path='./src/monsters/any.png'):
             print('is_co_bic True')
@@ -138,7 +138,7 @@ class Gracz:
         # print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
         return False
 
-    @timing
+    # @timing
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
