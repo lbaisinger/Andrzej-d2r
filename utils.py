@@ -51,7 +51,7 @@ class Utils:
         # cv.waitKey(0)
         # cv.destroyAllWindows()
         if max_val >= 0.8:
-            # print('True')
+            print('True')
             return True
         else:
             # print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)

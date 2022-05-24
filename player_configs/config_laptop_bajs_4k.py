@@ -13,7 +13,7 @@ minimap_center = (2080, 84, 15, 15)
 backpack = (1566, 26, 160, 700)
 ring = (2035, 240, 25, 25)
 default = (1835, 300)
-character = (870, 495)
+character = (1000, 640)
 mana_pool_potek = (1200, 43)
 hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
@@ -29,7 +29,7 @@ bw_full = (2045, 350, 2175, 480)
 redbox_cv = (2020, 340, 2060, 440)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 minimap_center_cv = (2079, 82, 2094, 97)
-minimap_cv = (1745, 35, 1865, 155)
+minimap_cv = (2020, 30, 2140, 145)
 
 ################################
 #           WP CENTERS         #
@@ -39,7 +39,7 @@ minimap_cv = (1745, 35, 1865, 155)
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
 # # WP Center at zoom 3
-wp_center = (2086, 89)
+# wp_center = (2086, 89)
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
 
@@ -48,9 +48,9 @@ wp_center = (2086, 89)
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = True
+pg_mode = False
 exeta = True
-rush = True
+rush = False
 rotation = ['r', 'f', 'g']
 
 ################################

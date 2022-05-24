@@ -1,4 +1,4 @@
-from caves.any_8 import *
+from caves.any_2 import *
 from gracz import *
 
 player = Gracz()

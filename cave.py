@@ -4,7 +4,7 @@ import cv2 as cv
 import pyautogui
 import time
 import PIL.Image
-from utils import Backpack
+from utils import *
 from utils import Utils
 from time import sleep
 from config_picker import *
@@ -103,9 +103,11 @@ class Cave:
     def is_on_wp(self, wp):
         # todo minimap center coords
         if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
-            print('is on wp')
+            # print('is on wp')
+            return True
         else:
-            print('not on wp')
+            # print('not on wp')
+            return False
 
     # @timing
     def is_on_wp_legacy(self, wp):
@@ -145,11 +147,18 @@ class Cave:
 
     # @timing
     def do_go_wp(self, wp):
-        image = cv.imread('./src/wp/' + str(wp) + '.png')
-        (h, w) = image.shape[:2]  # w:image-width and h:image-height
+
+        print('going to wp', wp)
         if self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png'):
-            print('going to wp', wp)
-            pyautogui.click(config.minimap_cv[0]+w/2, config.minimap_cv[1]+h/2)
+            template = cv.imread('./src/wp/' + str(wp) + '.png')
+            image = ImageGrab.grab(bbox=config.minimap_cv)
+            img_cv = cv.cvtColor(np.array(image), cv.COLOR_RGB2BGR)
+            # image = cv.imread('./src/wp/' + str(wp) + '.png')
+            method = eval("cv.TM_CCOEFF_NORMED")
+            res = cv.matchTemplate(img_cv, template, method)
+            min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+            # print(max_loc)
+            pyautogui.click(config.minimap_cv[0]+max_loc[0], config.minimap_cv[1]+max_loc[1])
             pyautogui.moveTo(config.default)
         else:
             print('Couldnt find wp', wp)
