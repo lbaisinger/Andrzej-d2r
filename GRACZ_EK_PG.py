@@ -9,97 +9,45 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
         rotation_iteration = 1
-    # TIMING CHECK 1 #
-    # timestamp_1 = datetime.datetime.now()
-    # looptime_1 = timestamp_1 - timestamp
-    # print('{:<30} {:<20.2f}'.format('Timestamp ring:', looptime_1.total_seconds()))
     # STATUS CHECK 1 #
-    if player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
-                          manalow=config.manalow):
-        # TIMING CHECK 2 #
-        # timestamp_2 = datetime.datetime.now()
-        # looptime_2 = timestamp_2 - timestamp
-        # print('{:<30} {:<20.2f}'.format('Timestamp STATUS CHECK 1:', looptime_2.total_seconds()))
-        # ATTACKING? #
-        if player.is_bije():
+    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+                       manalow=config.manalow)
+    # ATTACKING? #
+    if player.is_bije():
+        # YES #
+        # PG MODE #
+        if config.pg_mode:
+            player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+    else:
+        # NOT ATTACKING #
+        # IS ON WP? #
+        if player.cave.is_on_wp(wp):
             # YES #
-            # TIMING CHECK 3 #
-            # timestamp_3 = datetime.datetime.now()
-            # looptime_3 = timestamp_3 - timestamp
-            # print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING True:', looptime_3.total_seconds()))
-            # PG MODE #
-            if config.pg_mode:
-                player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
-            # TIMING CHECK 5 #
-            # timestamp_5 = datetime.datetime.now()
-            # looptime_5 = timestamp_5 - timestamp
-            # print('{:<30} {:<20.2f}'.format('Timestamp ATTACKING-PG MODE:', looptime_5.total_seconds()))
-        else:
-            # NOT ATTACKING #
-            # TIMING CHECK 6 #
-            # timestamp_6 = datetime.datetime.now()
-            # looptime_6 = timestamp_6 - timestamp
-            # print('{:<30} {:<20.2f}'.format('Timestamp NOT ATTACKING:', looptime_6.total_seconds()))
-            # IS ON WP? #
-            if player.cave.is_on_wp(wp):
+            # ARE THERE MOSNTERS? #
+            if player.is_co_bic():
                 # YES #
-                # TIMING CHECK 7 #
-                # timestamp_7 = datetime.datetime.now()
-                # looptime_7 = timestamp_7 - timestamp
-                # print('{:<30} {:<20.2f}'.format('Timestamp IS ON WP?:', looptime_7.total_seconds()))
-                # ARE THERE MOSNTERS? #
-                if player.is_co_bic():
-                    # YES #
-                    # TIMING CHECK 8 #
-                    # timestamp_8 = datetime.datetime.now()
-                    # looptime_8 = timestamp_8 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-MONSTERS:', looptime_8.total_seconds()))
-                    # ATTACK #
-                    player.do_bij()
-                    # TIMING CHECK 9 #
-                    # timestamp_9 = datetime.datetime.now()
-                    # looptime_9 = timestamp_9 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-ATTACK:', looptime_9.total_seconds()))
-                    # PG MODE #
-                    if config.pg_mode:
-                        player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
-                    # TIMING CHECK 10 #
-                    # timestamp_10 = datetime.datetime.now()
-                    # looptime_10 = timestamp_10 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-PG MODE:', looptime_10.total_seconds()))
-                else:
-                    # NO MONSTERS #
-                    # TIMING CHECK 12 #
-                    # timestamp_12 = datetime.datetime.now()
-                    # looptime_12 = timestamp_12 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-NO MONSTERS:', looptime_12.total_seconds()))
-                    # LOOT #
-                    player.do_loot()
-                    rotation_iteration = 1
-                    # TIMING CHECK 13 #
-                    # timestamp_13 = datetime.datetime.now()
-                    # looptime_13 = timestamp_13 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-LOOT:', looptime_13.total_seconds()))
-                    # GO TO NEXT WP #
-                    if wp == list(wps.keys())[-1]:
-                        wp = list(wps.keys())[0]
-                    else:
-                        wp += 1
-                    player.cave.do_go_wp(wp)
-                    if config.rush:
-                        pyautogui.press(config.hotkey_haste)
-                    # TIMING CHECK 14 #
-                    # timestamp_14 = datetime.datetime.now()
-                    # looptime_14 = timestamp_14 - timestamp
-                    # print('{:<30} {:<20.2f}'.format('Timestamp WP-GO TO NEXT WP:', looptime_14.total_seconds()))
+                # ATTACK #
+                player.do_bij()
+                # PG MODE #
+                if config.pg_mode:
+                    player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
             else:
-                # NOT ON WP #
-                # TIMING CHECK 15 #
-                # timestamp_15 = datetime.datetime.now()
-                # looptime_15 = timestamp_15 - timestamp
-                # print('{:<30} {:<20.2f}'.format('Timestamp NOT ON WP:', looptime_15.total_seconds()))
-                # GO TO WP #
+                # NO MONSTERS #
+                # LOOT #
+                player.do_loot()
+                rotation_iteration = 1
+                # GO TO NEXT WP #
+                if wp == list(wps.keys())[-1]:
+                    wp = list(wps.keys())[0]
+                else:
+                    wp += 1
                 player.cave.do_go_wp(wp)
+                if config.rush:
+                    pyautogui.press(config.hotkey_haste)
+        else:
+            # NOT ON WP #
+            # GO TO WP #
+            player.cave.do_go_wp(wp)
     # MID-TIMING CHECK #
     timestamp_4 = datetime.datetime.now()
     looptime_4 = timestamp_4 - timestamp
