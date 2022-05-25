@@ -1,7 +1,11 @@
 import datetime
+
+import cv2 as cv
 import pyautogui
+import time
 import PIL.Image
-from utils import Backpack
+from utils import *
+from utils import Utils
 from time import sleep
 from config_picker import *
 
@@ -10,7 +14,20 @@ class Cave:
 
     def __init__(self):
         # self.current_waypoint =
+        self.utils = Utils()
         pass
+
+    def timing(f):
+        def wrap(*args, **kwargs):
+            time1 = time.time()
+            ret = f(*args, **kwargs)
+            time2 = time.time()
+            print('DURATION {:<20s} {:.1f} ms'.format(
+                f.__name__, (time2 - time1) * 1000.0))
+
+            return ret
+
+        return wrap
 
     def use_rope(self):
         # works ok
@@ -82,7 +99,18 @@ class Cave:
             print('TIME is_ready_to_go_dp T', looptime)
             return True
 
+    # @timing
     def is_on_wp(self, wp):
+        # todo minimap center coords
+        if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
+            # print('is on wp')
+            return True
+        else:
+            # print('not on wp')
+            return False
+
+    # @timing
+    def is_on_wp_legacy(self, wp):
         timestamp = datetime.datetime.now()
         # standing on wp ?
         # img = PIL.Image.open("src/wp/" + str(wp) + ".png")
@@ -117,7 +145,26 @@ class Cave:
             # #add timestamp
             return False
 
+    # @timing
     def do_go_wp(self, wp):
+
+        print('going to wp', wp)
+        if self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png'):
+            template = cv.imread('./src/wp/' + str(wp) + '.png')
+            image = ImageGrab.grab(bbox=config.minimap_cv)
+            img_cv = cv.cvtColor(np.array(image), cv.COLOR_RGB2BGR)
+            # image = cv.imread('./src/wp/' + str(wp) + '.png')
+            method = eval("cv.TM_CCOEFF_NORMED")
+            res = cv.matchTemplate(img_cv, template, method)
+            min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+            # print(max_loc)
+            pyautogui.click(config.minimap_cv[0]+max_loc[0], config.minimap_cv[1]+max_loc[1])
+            pyautogui.moveTo(config.default)
+        else:
+            print('Couldnt find wp', wp)
+
+    # @timing
+    def do_go_wp_legacy(self, wp):
         # szuka wp na mapie i go naciska
         # dziala ok
         timestamp = datetime.datetime.now()

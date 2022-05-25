@@ -1,15 +1,14 @@
 # Andrzej
-Andrzej walczy z potworami!
-### DEFINITION #
-Andrzej może działać na dwa sposoby - profit i PG.
-1. Profit - Andrzej stale sprawdza, czy na BW są jakieś potwory. Jeśli tak to atakuje, po zabiciu każdego potwora (znika 'czerwony kwadracik' otaczający atakowanego potwora na BW) lootuje, powtarza do póki nie zabije wszystkich potworów na ekranie. Jeśli niebezpieczeństwo zostało wyeliminowane, idzie do WP. Wymaga follow monster.
-2. PG - Andrzej ZAPIERDALA do WP, staje na środku jak kamień i zaczyna kręcić młynki bronią + rotacja (póki co Exori/Exori Gran). Jeśli wymaga tego konieczność rzuca Exeta Res aby moby nie uciekały. Po wyeliminowaniu zagrożenia lootuje i idzie do następnego WP. Wymaga not-follow.
- 
-### To-do:
-- [ ] Algorytm 'Profit'
-- [ ] Zamienić szukanie WP w centrum minimapy na szukanie w obszarze dookoła centrum (+/- 2-3 px), aby akceptował też sąsiednie SQMy - potrzebne na wypadek kiedy potwór stoi na WP i nie chce się przesunąć.
-- [ ] Zmienić pyautogui.locateonscreen na własną funkcję opencv2 (15x szybciej). Umożliwi to maksymalną optymalizację leczenia (status checks) i rotacji (exori/exori gran/exori mas).
+Andrzej walczy z potworami! Teraz może działać na dwa sposoby - profit i PG.
 
+- Zmiana szukania z pyautogui() na openCV() - kilkukrotnie szybszy Andrzej! Teraz cała pętla spokojnie mieści się w 2 sekundowym CD na czary ofensywne i zawiera 2 sprawdzenia (co 1 sek) stanu zdrowia Andrzeja (HP/MP)
+- Zmodyfikowane pg_mode() - teraz przyjmuje listę hotkeyów z czarami do rotacji (póki co na AOE, tj. +2+ potwory)
+- Zmodyfikowane szukanie WP w centrum - szuka w obszarze +/-2 SQM od środka, więc nawet jak potwór stanie na WP to nie przeszkadza
+- Dodany GRACZ_Profit (patrz logika poniżej), GRACZ_EK_PG.py zmienione na GRACZ_PG.py
 
-### Algorytm 'PG'
-![](src/img/updated_flowchart.svg)
+### LOGIKA 
+| Algorytm 'PG'                      | Algorytm 'Profit                        |
+|------------------------------------|-----------------------------------------|
+| Andrzej ZAPIERDALA do WP, staje na środku i zaczyna wywijać bronią + rotacja czarów. Jeśli wymaga tego konieczność, rzuca Exeta Res aby moby nie uciekały. Po wyeliminowaniu zagrożenia lootuje i idzie do następnego WP. Wymaga no-follow-mode. | Andrzej stale sprawdza, czy na BW są jakieś potwory. Jeśli tak to atakuje, po zabiciu każdego potwora lootuje. Jeśli niebezpieczeństwo zostało wyeliminowane, idzie do WP. Wymaga follow-mode. |
+| ![](src/img/flowchart_logika_andrzeja_pg.svg) | ![](src/img/flowchart_logika_andrzeja_profitujacego.svg) |
+

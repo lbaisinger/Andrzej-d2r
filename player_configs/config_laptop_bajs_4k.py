@@ -5,21 +5,34 @@
 ################################
 # wmctrl -r Tibia -e 0,0,0,2200,1369
 scale = 1
-bw = (1747, 352, 120, 100)
-bw_2nd = (1770, 377, 50, 50)
-redbox = (1740, 350, 40, 100)
+bw = (2055, 355, 50, 50)
+bw_2nd = (2055, 370, 50, 50)
+redbox = (2020, 340, 40, 100)
 minimap = (1745, 35, 120, 120)
-minimapplus = (1750, 30, 110, 700)
+minimap_center = (2080, 84, 15, 15)
 backpack = (1566, 26, 160, 700)
 ring = (2035, 240, 25, 25)
+amulet = (2030, 160, 40, 40)
 default = (1835, 300)
-character = (870, 495)
-ServerLog_rightclick = (350, 963)
-ServerLog_SaveWnd = (390, 1004)
+character = (1000, 640)
 mana_pool_potek = (1200, 43)
 hp_pool_exura = (870, 43)
 hp_pool_potek = (475, 45)
 burn_mana = (1640, 40)
+# openCV
+mana_pool_potek_cv = (1640, 30, 1665, 50)
+hp_pool_exura_cv = (880, 30, 905, 50)
+hp_pool_potek_cv = (650, 30, 675, 50)
+burn_mana_cv = (1200, 30, 1225, 50)
+bw_cv = (2055, 355, 2105, 365)
+bw_2nd_cv = (2055, 370, 2105, 400)
+bw_full = (2045, 350, 2175, 480)
+redbox_cv = (2020, 340, 2060, 480)
+# wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
+minimap_center_cv = (2079, 82, 2094, 97)
+minimap_cv = (2020, 30, 2140, 145)
+ring_cv = (2030, 230, 2070, 265)
+amulet_cv = (2030, 160, 2070, 200)
 ################################
 #           WP CENTERS         #
 ################################
@@ -28,33 +41,37 @@ burn_mana = (1640, 40)
 # # WP Center at zoom 2
 # wp_center = (1805, 89)
 # # WP Center at zoom 3
-wp_center = (1806, 89)
+# wp_center = (2086, 89)
 # # WP Center at zoom 4
 # wp_center = (xxxx, yy)
 
 ################################
 #           BATTLE             #
 ################################
-ring_to_equip = 'sword_ring'  # it uses any ring, just assign whichever you want to the hotkey in the client
-use_ring = False
+use_ring = True
+use_amulet = False
 pg_mode = False
+exeta = True
+rush = False
+rotation = ['r', 'f', 'g']
 
 ################################
-#           HEAL & MANA `      #
+#           HEAL & MANA        #
 ################################
 # heal if hp low with poton
-hplow = False
+hplow = True
 # heal if hp moderate with exura
-hpmid = False
+hpmid = True
 # see if low mana and drink potion
-manalow = False
+manalow = True
 # see if too much mana and burn
 manahigh = True
 
 ################################
-#           HOTKEYS            #
+#           HOTKEYS     `      #
 ################################
 hotkey_ring = 'f3'
+hotkey_amulet = 'f5'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'
@@ -69,32 +86,4 @@ hotkey_pg_area_spell_2 = 'f'
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
-
-################################
-#  Statistical Process Control #
-################################
-# Andrzej performance data, define what data to collect
-# SPC_enabled = False
-# filename = 'testing_1'
-# ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
-# SPC_time_is_bije = False
-# SPC_time_is_co_bic = False
-# SPC_time_is_alright = False
-# SPC_time_is_on_WP = False
-# SPC_time_do_loot = False
-# SPC_time_do_bij = False
-# SPC_time_do_go_WP = False
-# SPC_time_FULLLOOP_bije = False
-# SPC_time_FULLLOOP_wp = False
-# SPC_time_FULLOOP_manual = False
-# SPC_time_ring = False
-# SPC_time_pg_mode = False
-# SPC_time_statistics = False
-# # Server log data
-# server_log_scrapping = False
-# SPC_dmg_total = False
-
-################################
-#           MISC        `      #
-################################
-min_cap_to_cont_hunt = 15
+hotkey_haste = 'v'
