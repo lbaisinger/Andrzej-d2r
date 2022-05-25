@@ -12,6 +12,7 @@ minimap = (1745, 35, 120, 120)
 minimap_center = (2080, 84, 15, 15)
 backpack = (1566, 26, 160, 700)
 ring = (2035, 240, 25, 25)
+amulet = (2030, 160, 40, 40)
 default = (1835, 300)
 character = (1000, 640)
 mana_pool_potek = (1200, 43)
@@ -30,7 +31,8 @@ redbox_cv = (2020, 340, 2060, 480)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 minimap_center_cv = (2079, 82, 2094, 97)
 minimap_cv = (2020, 30, 2140, 145)
-
+ring_cv = (2030, 230, 2070, 265)
+amulet_cv = (2030, 160, 2070, 200)
 ################################
 #           WP CENTERS         #
 ################################
@@ -69,7 +71,7 @@ manahigh = True
 #           HOTKEYS     `      #
 ################################
 hotkey_ring = 'f3'
-hotkey_amulet = 'f9'
+hotkey_amulet = 'f5'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'

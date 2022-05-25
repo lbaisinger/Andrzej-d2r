@@ -260,7 +260,18 @@ class Gracz:
         # print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
 
+    @timing
     def ring_control(self, ring_hotkey=config.hotkey_ring):
+        if self.utils.andrzej_szuka(region=config.ring_cv, image_path='./src/items/ring_empty.png'):
+            print("No ring, equipping new one.")
+            pyautogui.press(ring_hotkey)
+            return False
+        else:
+            print("Ring equipped.")
+            return True
+
+    @timing
+    def ring_control_legacy(self, ring_hotkey=config.hotkey_ring):
         if pyautogui.locateOnScreen('src/items/ring_empty.png', region=config.ring, confidence=.5) is not None:
             print("No ring, equipping new one.")
             pyautogui.press(ring_hotkey)
@@ -269,7 +280,18 @@ class Gracz:
             print("Ring equipped.")
             return True
 
+    @timing
     def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
+        if self.utils.andrzej_szuka(region=config.amulet_cv, image_path='./src/items/amulet_empty.png'):
+            print("No Amulet, equipping new one.")
+            pyautogui.press(amulet_hotkey)
+            return False
+        else:
+            print("Amulet equipped.")
+            return True
+
+    @timing
+    def amulet_control_legacy(self, amulet_hotkey=config.hotkey_amulet):
         if pyautogui.locateOnScreen('src/items/amulet_empty.png', region=config.amulet, confidence=.5) is not None:
             print("No Amulet, equipping new one.")
             pyautogui.press(amulet_hotkey)

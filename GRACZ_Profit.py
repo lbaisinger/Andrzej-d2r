@@ -1,9 +1,10 @@
-from caves.any_5 import *
+from caves.any_7 import *
 from gracz import *
 
 player = Gracz()
 # tryb_walki = False  # todo move to config?
 global tryb_walki
+
 
 def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rotation_iteration=1):
     # LOOP START #
@@ -70,10 +71,10 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
 
     if ring:
         player.ring_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     if amulet:
         player.amulet_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
 
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
@@ -88,7 +89,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
 
 
 def loop():
-    nextwp = 1
+    nextwp = 5
     iteration = 1
     rot_iter = 1
     while True:

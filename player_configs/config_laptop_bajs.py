@@ -11,8 +11,8 @@ scale = 1
 # minimap = (1745, 35, 120, 120)
 # minimapplus = (1750, 30, 110, 700)
 # backpack = (1566, 26, 160, 700)
-ring = (1755, 240, 30, 30)
-amulet = (1753, 162, 35, 35)
+ring = (1745, 230, 45, 45)
+amulet = (1745, 155, 45, 45)
 default = (1550, 300)
 character = (870, 485)
 # todo remove obsolete
@@ -22,9 +22,9 @@ character = (870, 485)
 # burn_mana = (900, 43)
 # openCV
 hp_pool_potek_cv = (450, 30, 470, 50)
-hp_pool_exura_cv = (700, 30,720, 50)
-mana_pool_potek_cv = (1350, 30, 1370, 50)
-burn_mana_cv = (930, 30, 950, 50)
+hp_pool_exura_cv = (780, 30, 800, 50)
+mana_pool_potek_cv = (1130, 30, 1150, 50)
+burn_mana_cv = (890, 30, 915, 50)
 bw_cv = (1770, 355, 1820, 365)
 bw_2nd_cv = (1770, 370, 1820, 400)
 bw_full = (1770, 355, 1820, 475)
@@ -32,6 +32,8 @@ redbox_cv = (1740, 350, 1780, 470)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 minimap_center_cv = (1800, 83, 1812, 95)
 minimap_cv = (1745, 35, 1865, 155)
+ring_cv = (1745, 230, 1790, 275)
+amulet_cv = (1745, 155, 1790, 200)
 
 ################################
 #           WP CENTERS         #
@@ -50,11 +52,14 @@ minimap_cv = (1745, 35, 1865, 155)
 #           BATTLE             #
 ################################
 use_ring = True
-use_amulet = False
-pg_mode = False
-exeta = True
-rush = False
-rotation = ['r', 'f', 'g']
+use_amulet = True
+pg_mode = True
+# exeta any monster?
+exeta = False
+# rush from wp to wp
+rush = True
+# can have any number of spells, just like rotation, e.g. exori/exori gran/exori/exori mas
+rotation = ['r', 'f', 'r', 'g']
 
 ################################
 #           HEAL & MANA        #
@@ -66,13 +71,13 @@ hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = True
+manahigh = False
 
 ################################
 #           HOTKEYS     `      #
 ################################
 hotkey_ring = 'f3'
-hotkey_amulet = 'f9'
+hotkey_amulet = 'f5'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'

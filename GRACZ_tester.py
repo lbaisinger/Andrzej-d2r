@@ -3,8 +3,8 @@ from gracz import *
 player = Gracz()
 
 sleep(2)
-# pyautogui.click(config.default)
-rotation_iteration = 1
+pyautogui.click(config.default)
+# rotation_iteration = 1
 
 
 print('openCV')
@@ -17,6 +17,8 @@ print('openCV')
 # player.cave.is_on_wp(wp=1)
 # player.cave.is_on_wp_legacy(wp=1)
 # player.cave.do_go_wp(wp=1)
+# player.ring_control()
+# player.amulet_control()
 
 
 sleep(1)
@@ -31,3 +33,5 @@ print('legacy/pyautogui')
 # player.pg_mode_legacy(exeta=config.exeta)
 # player.cave.is_on_wp_legacy(wp=1)
 # player.cave.do_go_wp_legacy(wp=1)
+# player.ring_control_legacy()
+# player.amulet_control_legacy()

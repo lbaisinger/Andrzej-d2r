@@ -2,12 +2,15 @@ from caves.any_8 import *
 from gracz import *
 
 player = Gracz()
+global rotation_iteration
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rotation_iteration=1):
+def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):  # , rotation_iteration=1
     # LOOP START #
+    global rotation_iteration
     timestamp = datetime.datetime.now()
-    if rotation_iteration == 4:
+    if rotation_iteration == len(config.rotation)+1:
+        print(rotation_iteration)
         rotation_iteration = 1
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
@@ -17,7 +20,14 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
         # YES #
         # PG MODE #
         if config.pg_mode:
+            timestamp_3 = datetime.datetime.now()
+            looptime_3 = timestamp_3 - timestamp
+            print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
+            if looptime_3.total_seconds() < 0.5:
+                sleep(1.1 - looptime_3.total_seconds())
+                print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_3.total_seconds(), ''))
             player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+            rotation_iteration += 1
     else:
         # NOT ATTACKING #
         # IS ON WP? #
@@ -31,6 +41,13 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
                 # PG MODE #
                 if config.pg_mode:
                     player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+                    timestamp_4 = datetime.datetime.now()
+                    looptime_4 = timestamp_4 - timestamp
+                    print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_4.total_seconds()))
+                    if looptime_4.total_seconds() < 0.5:
+                        sleep(1.1 - looptime_4.total_seconds())
+                        print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_4.total_seconds(), ''))
+                    rotation_iteration += 1
             else:
                 # NO MONSTERS #
                 # LOOT #
@@ -49,21 +66,21 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
             # GO TO WP #
             player.cave.do_go_wp(wp)
     # MID-TIMING CHECK #
-    timestamp_4 = datetime.datetime.now()
-    looptime_4 = timestamp_4 - timestamp
-    print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_4.total_seconds()))
-    if looptime_4.total_seconds() < 1.1:
-        sleep(1.1 - looptime_4.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_4.total_seconds(), ''))
+    timestamp_2 = datetime.datetime.now()
+    looptime_2 = timestamp_2 - timestamp
+    print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_2.total_seconds()))
+    if looptime_2.total_seconds() < 1.1:
+        sleep(1.1 - looptime_2.total_seconds())
+        print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_2.total_seconds(), ''))
     # STATUS CHECK 2 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                        manalow=config.manalow)
     if ring:
         player.ring_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     if amulet:
         player.amulet_control()
-        sleep(0.1)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
@@ -76,16 +93,17 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
 
 
 def loop():
-    nextwp = 1
+    nextwp = 8
     iteration = 1
     rot_iter = 1
     while True:
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
-        nextwp = go(wp=nextwp, rotation_iteration=rot_iter)
+        nextwp = go(wp=nextwp)  # , rotation_iteration=rot_iter
         iteration += 1
 
 
+rotation_iteration = 1
 pyautogui.click(config.default)
 loop()
