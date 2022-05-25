@@ -33,7 +33,10 @@ class Utils:
     def andrzej_szuka(self, region, image_path, confidence=0.8):
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
-        template = cv.imread(image_path)
+        template_tmp = cv.imread(image_path)
+        up_points = (template_tmp.shape[0] * config.scale,
+                     template_tmp.shape[1] * config.scale)
+        template = cv.resize(template_tmp, up_points, interpolation=cv.INTER_LINEAR)
         # template = cv2.cvtColor(np.array(image))#, cv2.COLOR_RGB2BGR)
         img = ImageGrab.grab(bbox=region)
         img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
@@ -42,14 +45,14 @@ class Utils:
         method = eval("cv.TM_CCOEFF_NORMED")
         res = cv.matchTemplate(img_cv, template, method)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-        # print('{:<30}{:<20.3f}'.format('Best match:', max_val))
+        #print('{:<30}{:<20.3f}'.format('Best match:', max_val))
         sleep(0.05)
-        # cv.imshow('desc', img_cv)
-        # cv.waitKey(0)
-        # cv.destroyAllWindows()
-        # cv.imshow('desc', template)
-        # cv.waitKey(0)
-        # cv.destroyAllWindows()
+        #cv.imshow('desc', img_cv)
+        #cv.waitKey(0)
+        #cv.destroyAllWindows()
+        #cv.imshow('desc', template)
+        #cv.waitKey(0)
+        #cv.destroyAllWindows()
         if max_val >= confidence:
             # print('True')
             return True
