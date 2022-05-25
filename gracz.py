@@ -45,7 +45,9 @@ class Gracz:
 
     # @timing
     def is_bije(self):
-        if self.utils.andrzej_szuka(region=config.redbox_cv, image_path="./src/status/attacking.png", confidence=0.35):
+        if self.utils.andrzej_szuka(region=config.redbox_cv,
+                                    image_path="./src/status/attacking.png",
+                                    confidence=0.35) is not False:
             print('STATUS - Bije')
             return True
         else:
@@ -77,10 +79,12 @@ class Gracz:
     # @timing
     def pg_mode(self, exeta=config.exeta, rotation_spell=1):
         if exeta:
-            if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/young_sea_serpent.png'):
+            if self.utils.andrzej_szuka(region=config.bw_full,
+                                        image_path='./src/monsters/young_sea_serpent.png') is not False:
                 pyautogui.press('x')
                 sleep(0.05)
-        if self.utils.andrzej_szuka(region=config.bw_2nd_cv, image_path='./src/monsters/any.png'):
+        if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
+                                    image_path='./src/monsters/any.png') is not False:
             pyautogui.press(config.rotation[rotation_spell - 1])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
@@ -92,7 +96,8 @@ class Gracz:
         # check if there's monster to exeta res
         # todo monsters_to_exeta[] as argument
         if exeta:
-            if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw,
+            if pyautogui.locateOnScreen("src/monsters/any.png",
+                                        region=config.bw,
                                         confidence=.8) is not None:
                 pyautogui.press('x')
                 print('exeta!')
@@ -110,7 +115,8 @@ class Gracz:
 
     # @timing
     def is_co_bic(self):
-        if self.utils.andrzej_szuka(region=config.bw_cv, image_path='./src/monsters/any.png'):
+        if self.utils.andrzej_szuka(region=config.bw_cv,
+                                    image_path='./src/monsters/any.png') is not False:
             print('is_co_bic')
             return True
         else:
@@ -145,18 +151,22 @@ class Gracz:
         # pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
-            if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
+                                        image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
         # Check for lesser healing (exura)
         if hpmid:
-            if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv,
+                                        image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_exura)
         # Check for mana
         if manalow:
-            if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv, image_path="./src/status/empty-bar.png"):
+            if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
+                                        image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_manapot)
         if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
-            if not self.utils.andrzej_szuka(region=config.burn_mana_cv, image_path="./src/status/empty-bar.png"):
+            if not self.utils.andrzej_szuka(region=config.burn_mana_cv,
+                                            image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_manaburn)
         return True
 
@@ -266,7 +276,8 @@ class Gracz:
 
     @timing
     def ring_control(self, ring_hotkey=config.hotkey_ring):
-        if self.utils.andrzej_szuka(region=config.ring_cv, image_path='./src/items/ring_empty.png'):
+        if self.utils.andrzej_szuka(region=config.ring_cv,
+                                    image_path='./src/items/ring_empty.png') is not False:
             print("No ring, equipping new one.")
             pyautogui.press(ring_hotkey)
             return False
@@ -286,7 +297,8 @@ class Gracz:
 
     @timing
     def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
-        if self.utils.andrzej_szuka(region=config.amulet_cv, image_path='./src/items/amulet_empty.png'):
+        if self.utils.andrzej_szuka(region=config.amulet_cv,
+                                    image_path='./src/items/amulet_empty.png') is not False:
             print("No Amulet, equipping new one.")
             pyautogui.press(amulet_hotkey)
             return False
