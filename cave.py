@@ -151,8 +151,8 @@ class Cave:
         print('going to wp', wp)
         try:
             x,y = self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png')
-            print(x,y)
-            pyautogui.click(x,y)
+            #print(x,y)
+            pyautogui.click(x+3,y+3)
             pyautogui.moveTo(config.default)
         except TypeError:
             print('Couldnt find wp', wp)
