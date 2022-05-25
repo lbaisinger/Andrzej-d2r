@@ -19,7 +19,8 @@ print('openCV')
 # player.cave.do_go_wp(wp=1)
 # player.ring_control()
 # player.amulet_control()
-
+iter = 1
+player.eat_food(loop_count=iter)
 
 sleep(1)
 

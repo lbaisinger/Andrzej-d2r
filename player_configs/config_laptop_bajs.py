@@ -21,7 +21,7 @@ character = (870, 485)
 # hp_pool_potek = (570, 43)
 # burn_mana = (900, 43)
 # openCV
-hp_pool_potek_cv = (450, 30, 470, 50)
+hp_pool_potek_cv = (570, 30, 590, 50)
 hp_pool_exura_cv = (780, 30, 800, 50)
 mana_pool_potek_cv = (1130, 30, 1150, 50)
 burn_mana_cv = (890, 30, 915, 50)

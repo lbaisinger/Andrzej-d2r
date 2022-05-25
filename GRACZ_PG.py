@@ -1,11 +1,11 @@
-from caves.any_8 import *
+from caves.any_9 import *
 from gracz import *
 
 player = Gracz()
 global rotation_iteration
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):  # , rotation_iteration=1
+def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amulet):  # , rotation_iteration=1
     # LOOP START #
     global rotation_iteration
     timestamp = datetime.datetime.now()
@@ -23,9 +23,9 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):  # 
             timestamp_3 = datetime.datetime.now()
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
-            if looptime_3.total_seconds() < 0.5:
-                sleep(1.1 - looptime_3.total_seconds())
-                print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_3.total_seconds(), ''))
+            if looptime_3.total_seconds() < 0.6:
+                sleep(0.6 - looptime_3.total_seconds())
+                print('Sleeping {:.3f} seconds...'.format(0.6 - looptime_3.total_seconds(), ''))
             player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
             rotation_iteration += 1
     else:
@@ -40,13 +40,13 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):  # 
                 player.do_bij()
                 # PG MODE #
                 if config.pg_mode:
-                    player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
                     timestamp_4 = datetime.datetime.now()
                     looptime_4 = timestamp_4 - timestamp
                     print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_4.total_seconds()))
                     if looptime_4.total_seconds() < 0.5:
-                        sleep(1.1 - looptime_4.total_seconds())
+                        sleep(0.5 - looptime_4.total_seconds())
                         print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_4.total_seconds(), ''))
+                    player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
                     rotation_iteration += 1
             else:
                 # NO MONSTERS #
@@ -65,13 +65,14 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet):  # 
             # NOT ON WP #
             # GO TO WP #
             player.cave.do_go_wp(wp)
+            player.eat_food(loop_count=iter)
     # MID-TIMING CHECK #
     timestamp_2 = datetime.datetime.now()
     looptime_2 = timestamp_2 - timestamp
     print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_2.total_seconds()))
-    if looptime_2.total_seconds() < 1.1:
+    if looptime_2.total_seconds() < 1.2:
         sleep(1.1 - looptime_2.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_2.total_seconds(), ''))
+        print('Sleeping {:.3f} seconds...'.format(1.2 - looptime_2.total_seconds(), ''))
     # STATUS CHECK 2 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                        manalow=config.manalow)
@@ -100,7 +101,7 @@ def loop():
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
-        nextwp = go(wp=nextwp)  # , rotation_iteration=rot_iter
+        nextwp = go(wp=nextwp, iter=iteration)  # , rotation_iteration=rot_iter
         iteration += 1
 
 

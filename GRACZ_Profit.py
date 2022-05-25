@@ -6,7 +6,7 @@ player = Gracz()
 global tryb_walki
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rotation_iteration=1):
+def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter=1, rotation_iteration=1):
     # LOOP START #
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
@@ -56,6 +56,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
             player.cave.do_go_wp(wp)
             if config.rush:
                 pyautogui.press(config.hotkey_haste)
+            player.eat_food(iteration=iter)
 
     # MID-TIMING CHECK #
     timestamp_4 = datetime.datetime.now()
@@ -89,14 +90,14 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, rota
 
 
 def loop():
-    nextwp = 5
+    nextwp = 1
     iteration = 1
     rot_iter = 1
     while True:
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
-        nextwp = go(wp=nextwp, rotation_iteration=rot_iter)
+        nextwp = go(wp=nextwp, iter=iteration, rotation_iteration=rot_iter)
         iteration += 1
 
 

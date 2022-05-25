@@ -81,12 +81,11 @@ class Gracz:
                 pyautogui.press('x')
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv, image_path='./src/monsters/any.png'):
-            pyautogui.press(config.rotation[rotation_spell-1])
+            pyautogui.press(config.rotation[rotation_spell - 1])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
-
 
     @timing
     def pg_mode_legacy(self, exeta=config.exeta, rotation_iteration=1):
@@ -143,7 +142,7 @@ class Gracz:
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
-        pyautogui.press(config.hotkey_food)
+        # pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
             if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv, image_path="./src/status/empty-bar.png"):
@@ -161,12 +160,17 @@ class Gracz:
                 pyautogui.press(config.hotkey_manaburn)
         return True
 
+    def eat_food(self, loop_count=1):
+        if loop_count % 3 == 0:
+            pyautogui.press(config.hotkey_food)
+            print('munch')
+            return True
+
     def is_allright_legacy(self, hplow=config.hplow,
                            hpmid=config.hpmid,
                            manalow=config.hpmid,
                            manahigh=config.hpmid):
         timestamp = datetime.datetime.now()
-        pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
         if hplow:
             if pyautogui.pixelMatchesColor(int(config.hp_pool_potek[0]), int(config.hp_pool_potek[1]),
