@@ -27,7 +27,7 @@ mana_pool_potek_cv = (1130, 30, 1150, 50)
 burn_mana_cv = (890, 30, 915, 50)
 bw_cv = (1770, 355, 1820, 365)
 bw_2nd_cv = (1770, 370, 1820, 400)
-bw_full = (1770, 355, 1820, 475)
+bw_full = (1760, 345, 1820, 475)
 redbox_cv = (1740, 350, 1780, 470)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 minimap_center_cv = (1800, 83, 1812, 95)
@@ -52,10 +52,10 @@ amulet_cv = (1745, 155, 1790, 200)
 #           BATTLE             #
 ################################
 use_ring = True
-use_amulet = True
+use_amulet = False
 pg_mode = True
 # exeta any monster?
-exeta = False
+exeta = True
 # rush from wp to wp
 rush = True
 # can have any number of spells, just like rotation, e.g. exori/exori gran/exori/exori mas

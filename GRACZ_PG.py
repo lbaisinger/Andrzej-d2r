@@ -1,4 +1,4 @@
-from caves.any_9 import *
+from caves.any_8 import *
 from gracz import *
 
 player = Gracz()
@@ -94,7 +94,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
 
 
 def loop():
-    nextwp = 8
+    nextwp = 1
     iteration = 1
     rot_iter = 1
     while True:

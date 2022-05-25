@@ -77,7 +77,7 @@ class Gracz:
     # @timing
     def pg_mode(self, exeta=config.exeta, rotation_spell=1):
         if exeta:
-            if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/any.png'):
+            if self.utils.andrzej_szuka(region=config.bw_full, image_path='./src/monsters/young_sea_serpent.png'):
                 pyautogui.press('x')
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv, image_path='./src/monsters/any.png'):

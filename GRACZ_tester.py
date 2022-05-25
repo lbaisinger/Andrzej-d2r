@@ -4,7 +4,7 @@ player = Gracz()
 
 sleep(2)
 pyautogui.click(config.default)
-# rotation_iteration = 1
+rotation_iteration = 1
 
 
 print('openCV')
@@ -12,7 +12,7 @@ print('openCV')
 #                                    manalow=config.manalow)
 # player.is_bije()
 # player.is_co_bic()
-# player.pg_mode(exeta=config.exeta, rotation_iteration=rotation_iteration)
+# player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
 # while True:
 # player.cave.is_on_wp(wp=1)
 # player.cave.is_on_wp_legacy(wp=1)
