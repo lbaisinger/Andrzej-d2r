@@ -30,7 +30,7 @@ class Utils:
         return wrap
 
     # @timing
-    def andrzej_szuka(self, region, image_path, confidence=0.8):
+    def andrzej_szuka(self, region, image_path, confidence=0.75):
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
         template_tmp = cv.imread(image_path)
@@ -55,7 +55,8 @@ class Utils:
         #cv.destroyAllWindows()
         if max_val >= confidence:
             # print('True')
-            return True
+            #return True
+            return config.minimap_cv[0]+max_loc[0], config.minimap_cv[1]+max_loc[1]
         else:
             # print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)
             return False

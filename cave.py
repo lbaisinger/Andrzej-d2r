@@ -149,19 +149,15 @@ class Cave:
     def do_go_wp(self, wp):
 
         print('going to wp', wp)
-        if self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png'):
-            template = cv.imread('./src/wp/' + str(wp) + '.png')
-            image = ImageGrab.grab(bbox=config.minimap_cv)
-            img_cv = cv.cvtColor(np.array(image), cv.COLOR_RGB2BGR)
-            # image = cv.imread('./src/wp/' + str(wp) + '.png')
-            method = eval("cv.TM_CCOEFF_NORMED")
-            res = cv.matchTemplate(img_cv, template, method)
-            min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-            # print(max_loc)
-            pyautogui.click(config.minimap_cv[0]+max_loc[0], config.minimap_cv[1]+max_loc[1])
+        try:
+            x,y = self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png')
+            #print(x,y)
+            pyautogui.click(x+3,y+3)
             pyautogui.moveTo(config.default)
-        else:
+        except TypeError:
             print('Couldnt find wp', wp)
+            return False
+
 
     # @timing
     def do_go_wp_legacy(self, wp):
