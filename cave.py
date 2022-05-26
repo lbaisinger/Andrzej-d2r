@@ -102,11 +102,12 @@ class Cave:
     # @timing
     def is_on_wp(self, wp):
         # todo minimap center coords
-        if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
-            # print('is on wp')
+        if self.utils.andrzej_szuka(region=config.minimap_center_cv,
+                                    image_path='./src/wp/' + str(wp) + '.png') is not False:
+            #print('is on wp')
             return True
         else:
-            # print('not on wp')
+            #print('not on wp')
             return False
 
     # @timing
