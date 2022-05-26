@@ -1,4 +1,3 @@
-from caves.any_7 import *
 from gracz import *
 
 player = Gracz()
@@ -56,7 +55,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
             player.cave.do_go_wp(wp)
             if config.rush:
                 pyautogui.press(config.hotkey_haste)
-            player.eat_food(iteration=iter)
+            player.eat_food(loop_count=iter)
 
     # MID-TIMING CHECK #
     timestamp_4 = datetime.datetime.now()
