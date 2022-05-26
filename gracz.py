@@ -1,7 +1,4 @@
 import PIL
-from PIL import ImageGrab, Image
-import numpy as np
-import cv2 as cv
 import time
 import pyautogui
 import datetime
@@ -48,10 +45,10 @@ class Gracz:
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
                                     confidence=0.35) is not False:
-            print('STATUS - Bije')
+            #print('STATUS - Bije')
             return True
         else:
-            # print('is_bije False')
+            #print('is_bije False')
             return False
 
     @timing
@@ -116,11 +113,13 @@ class Gracz:
     # @timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv,
-                                    image_path='./src/monsters/any.png') is not False:
+                                    image_path='./src/monsters/any.png',
+                                    confidence=.999,
+                                    scale=False) is not False:
             print('is_co_bic')
             return True
         else:
-            # print('is_co_bic False')
+            print('is_co_bic False')
             return False
 
     @timing
