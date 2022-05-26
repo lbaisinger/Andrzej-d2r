@@ -1,9 +1,7 @@
 import datetime
 import time
-# import inspect
 import cv2 as cv
 import pyautogui
-import PIL
 import pytesseract
 from PIL import Image, ImageGrab
 import numpy as np
@@ -30,13 +28,16 @@ class Utils:
         return wrap
 
     # @timing
-    def andrzej_szuka(self, region, image_path, confidence=0.75):
+    def andrzej_szuka(self, region, image_path, confidence=0.75, scale=True):
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
         template_tmp = cv.imread(image_path)
-        up_points = (template_tmp.shape[0] * config.scale,
-                     template_tmp.shape[1] * config.scale)
-        template = cv.resize(template_tmp, up_points, interpolation=cv.INTER_LINEAR)
+        if scale:
+            up_points = (template_tmp.shape[0] * config.scale,
+                         template_tmp.shape[1] * config.scale)
+            template = cv.resize(template_tmp, up_points, interpolation=cv.INTER_LINEAR)
+        else:
+            template = template_tmp
         # template = cv2.cvtColor(np.array(image))#, cv2.COLOR_RGB2BGR)
         img = ImageGrab.grab(bbox=region)
         img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)

@@ -102,11 +102,13 @@ class Cave:
     # @timing
     def is_on_wp(self, wp):
         # todo minimap center coords
-        if self.utils.andrzej_szuka(region=config.minimap_center_cv, image_path='./src/wp/' + str(wp) + '.png'):
-            # print('is on wp')
+        if self.utils.andrzej_szuka(region=config.minimap_center_cv,
+                                    image_path='./src/wp/' + str(wp) + '.png',
+                                    confidence=.75) is not False:
+            #print('is on wp')
             return True
         else:
-            # print('not on wp')
+            #print('not on wp')
             return False
 
     # @timing
@@ -150,7 +152,9 @@ class Cave:
 
         print('going to wp', wp)
         try:
-            x,y = self.utils.andrzej_szuka(region=config.minimap_cv, image_path='./src/wp/' + str(wp) + '.png')
+            x,y = self.utils.andrzej_szuka(region=config.minimap_cv,
+                                           image_path='./src/wp/' + str(wp) + '.png',
+                                           confidence=0.69)
             #print(x,y)
             pyautogui.click(x+3,y+3)
             pyautogui.moveTo(config.default)

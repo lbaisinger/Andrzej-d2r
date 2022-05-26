@@ -26,15 +26,16 @@ hp_pool_exura_cv = hp_pool_exura
 hp_pool_potek_cv = hp_pool_potek
 burn_mana_cv = burn_mana
 bw_cv = (4572, 887, 4572+150, 887+130)
-bw_2nd_cv = bw_2nd = (4572, 928, 4572+50, 928+50)
+bw_2nd_cv = (4572, 928, 4572+50, 928+50)
 bw_full = (4572, 928, 4572+130, 928+130) # 130
-redbox_cv = (4572, 887, 4572+75, 887+150)
+redbox_cv = (4567, 882, 4567+50, 882+150)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
-minimap_center_cv = (4580+60, 21+62, 4580+60+40, 21+62+40)
+minimap_center_cv = (4675, 115, 4675+20, 120+20)
+#minimap_center_cv = (4580+60, 21+62, 4580+60+40, 21+62+40)
 minimap_cv = (4580, 21, 4580+225, 21+210)
-ring_cv = (4583, 424, 4583+40, 424+35) # 40 35
-amulet_cv = (4598, 440, 4598+40, 440+40) # 40 40
-
+ring_cv = (4583, 424, 4583+70, 424+70) # 40 35
+amulet_cv = (4598, 440, 4598+70, 440+70) # 40 40
+rush=False
 
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 #minimap_center_cv = (2079, 82, 2094, 97)
