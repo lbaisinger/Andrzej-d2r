@@ -55,11 +55,13 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                 # GO TO NEXT WP #
                 if wp == list(wps.keys())[-1]:
                     wp = list(wps.keys())[0]
+                    if config.rush:
+                        pyautogui.press(config.hotkey_haste)
                 else:
                     wp += 1
+                    if config.rush:
+                        pyautogui.press(config.hotkey_haste)
                 player.cave.do_go_wp(wp)
-                if config.rush:
-                    pyautogui.press(config.hotkey_haste)
         else:
             # NOT ON WP #
             # GO TO WP #
