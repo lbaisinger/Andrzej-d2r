@@ -81,7 +81,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
     looptime_end = timestamp_end - timestamp
     print('{:<30} {:<20.2f}'.format('END-TIMING CHECK:', looptime_end.total_seconds()))
     if looptime_end.total_seconds() < 2.1:
-        sleep(2.1 - looptime_end.total_seconds())
+        sleep (2.1 - looptime_end.total_seconds())
         print('Sleeping {:.3f} seconds...'.format(2.1 - looptime_end.total_seconds()))
     print()
     # LOOP END #
@@ -89,7 +89,7 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
 
 
 def loop():
-    nextwp = 1
+    nextwp = 3
     iteration = 1
     rot_iter = 1
     while True:
