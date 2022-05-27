@@ -19,7 +19,7 @@ mana_pool_potek = (3850, 13, 3850+32, 13+32)
 hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
-rotation = ['r', 'f', 'g']
+rotation = ['r', 'f','r', 'g']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
 hp_pool_exura_cv = hp_pool_exura
@@ -35,7 +35,7 @@ minimap_center_cv = (4675, 115, 4675+20, 120+20)
 minimap_cv = (4580, 21, 4580+225, 21+210)
 ring_cv = (4583, 424, 4583+70, 424+70) # 40 35
 amulet_cv = (4598, 440, 4598+70, 440+70) # 40 40
-rush=False
+rush = True
 
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 #minimap_center_cv = (2079, 82, 2094, 97)
@@ -79,7 +79,7 @@ wp_center9 = wp_center
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = True
+pg_mode = False
 exeta = False
 
 
@@ -112,7 +112,7 @@ hotkey_pg_single_spell_1 = '3'
 hotkey_pg_single_spell_2 = '4'
 hotkey_pg_area_spell_1 = 'r'
 hotkey_pg_area_spell_2 = 'f'
-hotkey_haste = 'f7'
+hotkey_haste = 'f9'
 
 # hotkey_chase = '/'    # OBSOLETE?
 
