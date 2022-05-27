@@ -49,12 +49,14 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
                 # GO TO NEXT WP #
                 if wp == list(wps.keys())[-1]:
                     wp = list(wps.keys())[0]
+                    if config.rush:
+                        pyautogui.press(config.hotkey_haste)
                 else:
                     wp += 1
+                    if config.rush:
+                        pyautogui.press(config.hotkey_haste)
             # GO TO WP #
             player.cave.do_go_wp(wp)
-            if config.rush:
-                pyautogui.press(config.hotkey_haste)
             player.eat_food(loop_count=iter)
 
     # MID-TIMING CHECK #
