@@ -4,6 +4,8 @@ import cv2 as cv
 import pyautogui
 import time
 import PIL.Image
+
+import config_4k
 from utils import *
 from utils import Utils
 from time import sleep
@@ -32,9 +34,10 @@ class Cave:
     def use_rope(self):
         # works ok
         timestamp = datetime.datetime.now()
-        sleep(0.1)
+        sleep(0.15)
         pyautogui.press(config.hotkey_rope)
-        sleep(0.1)
+        sleep(0.15)
+        pyautogui.moveTo(config.character)
         pyautogui.click(config.character)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -44,11 +47,11 @@ class Cave:
     def use_shovel(self):
         # works ok
         timestamp = datetime.datetime.now()
-        sleep(0.1)
+        #sleep(0.1)
         pyautogui.press(config.hotkey_shovel)
-        sleep(0.1)
-        # pyautogui.moveTo(config.character)
+        sleep(0.15)
         pyautogui.click(config.character)
+        sleep(0.15) #otherwise its too fast
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
         print('TIME use_shovel', looptime)
