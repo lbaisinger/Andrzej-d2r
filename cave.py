@@ -25,7 +25,7 @@ class Cave:
 
         return wrap
 
-    @timing()
+    @timing
     def use_rope(self):
         # works ok
         time.sleep(0.15)
@@ -34,7 +34,7 @@ class Cave:
         pyautogui.click(config.character)
         return True
 
-    @timing()
+    @timing
     def use_shovel(self):
         # works ok
         pyautogui.press(config.hotkey_shovel)
@@ -43,13 +43,13 @@ class Cave:
         time.sleep(0.15) # otherwise its too fast
         return True
 
-    @timing()
+    @timing
     def use_ladder(self):
         time.sleep(0.1)
         pyautogui.click(config.character, button='right')
         return True
 
-    @timing()
+    @timing
     def is_on_wp(self, wp):
         # todo minimap center coords
         if self.utils.andrzej_szuka(region=config.minimap_center_cv,
@@ -61,7 +61,7 @@ class Cave:
             #print('not on wp')
             return False
 
-    @timing()
+    @timing
     def do_go_wp(self, wp):
 
         print('going to wp', wp)
@@ -76,7 +76,7 @@ class Cave:
             print('Couldnt find wp', wp)
             return False
 
-    @timing()
+    @timing
     def is_wp_fancy(self, wp, specials: {}):
         # todo verify if rly works
         # sprawdz czy podany wp specjalny
@@ -87,7 +87,7 @@ class Cave:
         else:
             return False
 
-    @timing()
+    @timing
     def do_go_wp_plus(self, wp, specials: {}):
         # todo timestamps
         if specials[wp] == 'rope':
@@ -106,7 +106,7 @@ class Cave:
         # if did not catch in any of ifs above
         return False
 
-    @timing()
+    @timing
     def is_wp_in_range(self, wp):
         try:
             self.utils.andrzej_szuka(region=config.minimap_cv,
@@ -119,28 +119,28 @@ class Cave:
 #
 # todo needs rework
 #
-    def is_has_cap(self):
-        # todo fix it to be sure that it can always read cap
-        # todo atm it happens that it sometimes print incorret values
-        bp = utils.Backpack()
-        try:
-            cap = bp.get_avial_cap()
-            print('cap', cap)
-            if int(cap) > config.min_cap_to_cont_hunt:
-                return True
-            else:
-                return False
-        except ValueError:
-            # todo fix it to be sure that it can always read cap
-            print('WARNING - couldnt read cap to int')
-            return True
-
-    def is_ready_to_go_to_dp(self):
-        # todo fix it to be sure that it can always read cap
-        if self.is_has_cap():
-            return False
-        elif not (self.is_has_cap()):
-            return True
+#    def is_has_cap(self):
+#        # todo fix it to be sure that it can always read cap
+#        # todo atm it happens that it sometimes print incorret values
+#        bp = utils.Backpack()
+#        try:
+#            cap = bp.get_avial_cap()
+#            print('cap', cap)
+#            if int(cap) > config.min_cap_to_cont_hunt:
+#                return True
+#            else:
+#                return False
+#        except ValueError:
+#            # todo fix it to be sure that it can always read cap
+#            print('WARNING - couldnt read cap to int')
+#            return True
+#
+#    def is_ready_to_go_to_dp(self):
+#        # todo fix it to be sure that it can always read cap
+#        if self.is_has_cap():
+#            return False
+#        elif not (self.is_has_cap()):
+#            return True
 
 
 #
