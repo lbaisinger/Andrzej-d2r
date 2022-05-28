@@ -158,12 +158,8 @@ class Gracz:
     def do_bij(self):
         # naciska spacje i atakuje nast z battle window
         # dziala ok
-        # timestamp = datetime.datetime.now()
         # print('fight')
         pyautogui.press('space')
-        # timestamp2 = datetime.datetime.now()
-        # looptime = timestamp2 - timestamp
-        # print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
 
     #@timing
