@@ -1,11 +1,8 @@
 import datetime
-
 import cv2 as cv
 import pyautogui
 import time
 import PIL.Image
-
-import config_4k
 from utils import *
 from utils import Utils
 from time import sleep
