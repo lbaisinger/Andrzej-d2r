@@ -1,12 +1,11 @@
+# global pkgs
 import PIL
 import time
 import pyautogui
 import datetime
-from time import sleep
-from utils import Backpack
-from utils import Other
-from utils import Utils
-from cave import Cave
+# andrew pkgs
+import utils
+import cave
 from config_picker import *
 
 
@@ -15,10 +14,10 @@ class Gracz:
     def __init__(self):
         self.gracz = {}
         self.monsterlist = []
-        self.backpack = Backpack()
-        self.other = Other()
-        self.cave = Cave()
-        self.utils = Utils()
+        self.backpack = utils.Backpack()
+        self.other = utils.Other()
+        self.cave = cave.Cave()
+        self.utils = utils.Utils()
         # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
         print('loaded with config ', confname)
@@ -51,7 +50,7 @@ class Gracz:
             #print('is_bije False')
             return False
 
-    @timing
+    @timing()
     def is_bije_legacy(self):
         # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
         # dziala ok
@@ -79,13 +78,13 @@ class Gracz:
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/young_sea_serpent.png') is not False:
                 pyautogui.press('x')
-                sleep(0.05)
+                time.sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png') is not False:
             pyautogui.press(config.rotation[rotation_spell - 1])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
-            sleep(0.1)
+            time.sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
     @timing
@@ -98,16 +97,16 @@ class Gracz:
                                         confidence=.8) is not None:
                 pyautogui.press('x')
                 print('exeta!')
-                sleep(0.1)
+                time.sleep(0.1)
         if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.8) is not None:
             pyautogui.press(config.hotkey_pg_area_spell_1)
             print('manymonsters')
-            sleep(0.1)
+            time.sleep(0.1)
             pyautogui.press(config.hotkey_pg_area_spell_2)
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             print('onemonster')
-            sleep(0.1)
+            time.sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
     # @timing
@@ -224,9 +223,9 @@ class Gracz:
         # naciska 3 hotkeye w celu zdeponowac zloto
         # dziala ok
         pyautogui.press(config.hotkey_hi)
-        sleep(2)
+        time.sleep(2)
         pyautogui.press(config.hotkey_deposit_all)
-        sleep(2)
+        time.sleep(2)
         pyautogui.press(config.hotkey_yes)
         return True
 
