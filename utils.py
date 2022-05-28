@@ -61,13 +61,13 @@ class Utils:
 
 
 
-class Backpack:
-
-    def __init__(self):
-        # self.current_waypoint =
-        pass
-
-# import pytesseract
+# todo needs rework
+# import pytesseract if needed to get sting from bp.png
+#class Backpack:
+#
+#    def __init__(self):
+#        pass
+#
 #    def get_avial_cap(self):
 #        # returns amount of cap left based on what it can read from inverted.png
 #        # tested - looks fine
@@ -83,6 +83,8 @@ class Backpack:
 #        print(len(slots))
 #        return slots
 #
+
+#todo if needed it needs to be redone with opencv
 #from random import choice
 #    def do_drop_random_item_from_blacklist(self, item_blacklist):
 #        # facc feature
@@ -110,33 +112,3 @@ class Backpack:
 #            return True
 #        else:
 #            return False
-
-
-class Other:
-
-    def __init__(self):
-        # self.current_waypoint =
-        pass
-    #
-    # def get_screenshoot(self, region=config.minimap, filename='screen'):
-    #     # self explainatory
-    #     timestamp = datetime.datetime.now()
-    #     # get screen shoot
-    #     myscreenshot = pyautogui.screenshot(region=region)
-    #     # save it
-    #     final_filename = str(region) + filename + '.png'
-    #     myscreenshot.save(final_filename)
-    #     print(final_filename)
-    #     # invert image
-    #     inverted_image = PIL.ImageOps.invert(Image.open(final_filename))
-    #     # gray scale
-    #     inverted_image = PIL.ImageOps.grayscale(inverted_image)
-    #     # save it
-    #     # inverted_file_name = 'inverted' + str(region) + filename + '.png'
-    #     inverted_file_name = 'inverted_' + filename + '.png'
-    #     inverted_image.save(inverted_file_name)
-    #     timestamp2 = datetime.datetime.now()
-    #     looptime = timestamp2 - timestamp
-    #     print('TIME GET_SCREENSHOOT', looptime)
-    #     return True
-    #
