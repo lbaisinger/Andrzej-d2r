@@ -33,8 +33,7 @@ class Cave:
         timestamp = datetime.datetime.now()
         sleep(0.15)
         pyautogui.press(config.hotkey_rope)
-        sleep(0.15)
-        pyautogui.moveTo(config.character)
+        sleep(0.15) #otherwise its too fast
         pyautogui.click(config.character)
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
