@@ -24,7 +24,7 @@ class Utils:
 
         return wrap
 
-    # @timing
+    #@timing
     def andrzej_szuka(self, region, image_path, confidence=0.75, scale=True):
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
