@@ -32,7 +32,7 @@ class Utils:
         # todo load id as global before, not every time function runs
         # print('Andrzej szuka', region)
         template_tmp = cv.imread(image_path)
-        if scale:
+        if scale and config.scale != 1:
             up_points = (template_tmp.shape[0] * config.scale,
                          template_tmp.shape[1] * config.scale)
             template = cv.resize(template_tmp, up_points, interpolation=cv.INTER_LINEAR)
