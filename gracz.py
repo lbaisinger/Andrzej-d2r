@@ -1,33 +1,28 @@
-import PIL
-import time
+# global pkgs
+from time import time, sleep
 import pyautogui
 import datetime
-from time import sleep
-from utils import Backpack
-from utils import Other
-from utils import Utils
-from cave import Cave
+# andrew pkgs
+import utils
+import cave
 from config_picker import *
 
 
 class Gracz:
 
     def __init__(self):
-        self.gracz = {}
-        self.monsterlist = []
-        self.backpack = Backpack()
-        self.other = Other()
-        self.cave = Cave()
-        self.utils = Utils()
+        #self.backpack = utils.Backpack()
+        self.cave = cave.Cave()
+        self.utils = utils.Utils()
         # Add pause after each pyautogui commands
         pyautogui.PAUSE = 0.05
         print('loaded with config ', confname)
 
     def timing(f):
         def wrap(*args, **kwargs):
-            time1 = time.time()
+            time1 = time()
             ret = f(*args, **kwargs)
-            time2 = time.time()
+            time2 = time()
             print('DURATION {:<20s} {:.1f} ms'.format(
                 f.__name__, (time2 - time1) * 1000.0))
 
@@ -35,12 +30,8 @@ class Gracz:
 
         return wrap
 
-    def get_avialable_slots(self):
-        # podaje ile jest dostepynch slotow w regionie na bp
-        # dziala ok
-        return len(self.backpack.get_avial_slots())
 
-    # @timing
+    #@timing
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
@@ -51,29 +42,8 @@ class Gracz:
             #print('is_bije False')
             return False
 
-    @timing
-    def is_bije_legacy(self):
-        # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
-        # dziala ok
-        # timestamp = datetime.datetime.now()
-        img = PIL.Image.open('src/status/attacking.png')
-        img_size = img.size
-        rescaled_img = img.resize((img_size[0] * config.scale,
-                                   img_size[1] * config.scale))
-        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.5) is None:
-            # print('is_bije False')
-            # timestamp2 = datetime.datetime.now()
-            # looptime = timestamp2 - timestamp
-            # print('{:<30} {:<20.2f}'.format('DURATION is_bije F:', looptime.total_seconds()))
-            return False
-        else:
-            # print('is_bije True')
-            # timestamp2 = datetime.datetime.now()
-            # looptime = timestamp2 - timestamp
-            # print('{:<30} {:<20.2f}'.format('DURATION is_bije T:', looptime.total_seconds()))
-            return True
 
-    # @timing
+    #@timing
     def pg_mode(self, exeta=config.exeta, rotation_spell=1):
         if exeta:
             if self.utils.andrzej_szuka(region=config.bw_full,
@@ -88,29 +58,8 @@ class Gracz:
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
-    @timing
-    def pg_mode_legacy(self, exeta=config.exeta, rotation_iteration=1):
-        # check if there's monster to exeta res
-        # todo monsters_to_exeta[] as argument
-        if exeta:
-            if pyautogui.locateOnScreen("src/monsters/any.png",
-                                        region=config.bw,
-                                        confidence=.8) is not None:
-                pyautogui.press('x')
-                print('exeta!')
-                sleep(0.1)
-        if pyautogui.locateOnScreen("src/monsters/any.png", region=config.bw_2nd, confidence=.8) is not None:
-            pyautogui.press(config.hotkey_pg_area_spell_1)
-            print('manymonsters')
-            sleep(0.1)
-            pyautogui.press(config.hotkey_pg_area_spell_2)
-        else:
-            pyautogui.press(config.hotkey_pg_single_spell_1)
-            print('onemonster')
-            sleep(0.1)
-            pyautogui.press(config.hotkey_pg_single_spell_2)
 
-    # @timing
+    #@timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv,
                                     image_path='./src/monsters/any.png',
@@ -122,27 +71,8 @@ class Gracz:
             print('is_co_bic False')
             return False
 
-    @timing
-    def is_co_bic_legacy(self, target_list):
-        # check if there is smth to figtht
-        # self.monsterlist = []
-        # if self.other.szukaj_andrzeju(region=config.bw, )
-        for j in target_list:
-            # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
-            if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
-                # pyautogui.press('Esc')  # safety net
-                # timestamp2 = datetime.datetime.now()
-                # looptime = timestamp2 - timestamp
-                # print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC T:', looptime.total_seconds()))
-                print('True')
-                return True
-        # timestamp2 = datetime.datetime.now()
-        print('False')
-        # looptime = timestamp2 - timestamp
-        # print('{:<30} {:<20.2f}'.format('Duration IS_CO_BIC F:', looptime.total_seconds()))
-        return False
 
-    # @timing
+    #@timing
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
@@ -169,57 +99,14 @@ class Gracz:
                 pyautogui.press(config.hotkey_manaburn)
         return True
 
+    #@timing
     def eat_food(self, loop_count=1):
         if loop_count % 3 == 0:
             pyautogui.press(config.hotkey_food)
             print('munch')
             return True
 
-    def is_allright_legacy(self, hplow=config.hplow,
-                           hpmid=config.hpmid,
-                           manalow=config.hpmid,
-                           manahigh=config.hpmid):
-        timestamp = datetime.datetime.now()
-        # Check for serious healing (potion)
-        if hplow:
-            if pyautogui.pixelMatchesColor(int(config.hp_pool_potek[0]), int(config.hp_pool_potek[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
-                pyautogui.press(config.hotkey_hppot)
-            timestamp_1 = datetime.datetime.now()
-            looptime_1 = timestamp_1 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hplow:', looptime_1.total_seconds()))
-        # Check for lesser healing (exura)
-        if hpmid:
-            if pyautogui.pixelMatchesColor(int(config.hp_pool_exura[0]), int(config.hp_pool_exura[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
-                pyautogui.press(config.hotkey_exura)
-            timestamp_2 = datetime.datetime.now()
-            looptime_2 = timestamp_2 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-hpmid:', looptime_2.total_seconds()))
-        # Check for mana
-        if manalow:
-            if pyautogui.pixelMatchesColor(int(config.mana_pool_potek[0]), int(config.mana_pool_potek[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
-                pyautogui.press(config.hotkey_manapot)
-            timestamp_3 = datetime.datetime.now()
-            looptime_3 = timestamp_3 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manalow:', looptime_3.total_seconds()))
-        if manahigh:
-            if pyautogui.pixelMatchesColor(int(config.burn_mana[0]), int(config.burn_mana[1]),
-                                           (0, 52, 116),
-                                           tolerance=10):
-                pyautogui.press(config.hotkey_manaburn)
-            timestamp_4 = datetime.datetime.now()
-            looptime_4 = timestamp_4 - timestamp
-            print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT-manahigh:', looptime_4.total_seconds()))
-        timestamp_5 = datetime.datetime.now()
-        looptime = timestamp_5 - timestamp
-        print('{:<30} {:<20.2f}'.format('Duration IS_ALLRIGHT:', looptime.total_seconds()))
-        return True
-
+    #@timing
     def do_bank_deposit(self):
         # naciska 3 hotkeye w celu zdeponowac zloto
         # dziala ok
@@ -230,6 +117,7 @@ class Gracz:
         pyautogui.press(config.hotkey_yes)
         return True
 
+    #@timing
     def do_ressuply(self):
         # zagregowana funkcja ressuply
         # mozna tu dolozyc wiecej akcji jak potrzeba
@@ -238,6 +126,7 @@ class Gracz:
         else:
             return False
 
+    #@timing
     def do_loot(self):
         # naciska shift + prawym na pola obok gracza
         # 1 2 3
@@ -262,18 +151,15 @@ class Gracz:
         print('{:<30} {:<20.2f}'.format('TIME LOOT:', looptime.total_seconds()))
         return True
 
+    #@timing
     def do_bij(self):
         # naciska spacje i atakuje nast z battle window
         # dziala ok
-        # timestamp = datetime.datetime.now()
         # print('fight')
         pyautogui.press('space')
-        # timestamp2 = datetime.datetime.now()
-        # looptime = timestamp2 - timestamp
-        # print('{:<30} {:<20.2f}'.format('TIME BIJ:', looptime.total_seconds()))
         return True
 
-    @timing
+    #@timing
     def ring_control(self, ring_hotkey=config.hotkey_ring):
         if self.utils.andrzej_szuka(region=config.ring_cv,
                                     image_path='./src/items/ring_empty.png') is not False:
@@ -284,17 +170,7 @@ class Gracz:
             print("Ring equipped.")
             return True
 
-    @timing
-    def ring_control_legacy(self, ring_hotkey=config.hotkey_ring):
-        if pyautogui.locateOnScreen('src/items/ring_empty.png', region=config.ring, confidence=.5) is not None:
-            print("No ring, equipping new one.")
-            pyautogui.press(ring_hotkey)
-            return False
-        else:
-            print("Ring equipped.")
-            return True
-
-    @timing
+    #@timing
     def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
         if self.utils.andrzej_szuka(region=config.amulet_cv,
                                     image_path='./src/items/amulet_empty.png') is not False:
@@ -305,12 +181,3 @@ class Gracz:
             print("Amulet equipped.")
             return True
 
-    @timing
-    def amulet_control_legacy(self, amulet_hotkey=config.hotkey_amulet):
-        if pyautogui.locateOnScreen('src/items/amulet_empty.png', region=config.amulet, confidence=.5) is not None:
-            print("No Amulet, equipping new one.")
-            pyautogui.press(amulet_hotkey)
-            return False
-        else:
-            print("Amulet equipped.")
-            return True

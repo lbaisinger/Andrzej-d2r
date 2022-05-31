@@ -45,6 +45,8 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
             tryb_walki = False
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
+                if player.cave.is_wp_fancy(wp, wps):
+                    player.cave.do_go_wp_plus(wp, wps)
                 # YES #
                 # GO TO NEXT WP #
                 if wp == list(wps.keys())[-1]:

@@ -30,15 +30,12 @@ wps = {1: None,
        13: None,
        14: None,
        15: None,
-       16: None,
-       17: None}
+       16: None}
 
 # Path to cave
 to_cave_wps = {}
 
 # Path to depo
-# last one is venore east bank
-# from any in that cave
 to_dp_wps = {11: 'lvl_changing_wp',
              12: 'rope',
              13: 'rope',
