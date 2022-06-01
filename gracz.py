@@ -65,10 +65,10 @@ class Gracz:
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
-            print('is_co_bic')
+            #print('is_co_bic')
             return True
         else:
-            print('is_co_bic False')
+            #print('is_co_bic False')
             return False
 
     #@timing
@@ -176,7 +176,7 @@ class Gracz:
             pyautogui.press(ring_hotkey)
             return False
         else:
-            print("Ring equipped.")
+            #print("Ring equipped.")
             return True
 
     #@timing
@@ -187,5 +187,5 @@ class Gracz:
             pyautogui.press(amulet_hotkey)
             return False
         else:
-            print("Amulet equipped.")
+            #print("Amulet equipped.")
             return True

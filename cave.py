@@ -24,7 +24,7 @@ class Cave:
 
         return wrap
 
-    @timing
+    #@timing
     def use_rope(self):
         # works ok
         sleep(0.15)
@@ -33,7 +33,7 @@ class Cave:
         pyautogui.click(config.character)
         return True
 
-    @timing
+    #@timing
     def use_shovel(self):
         # works ok
         pyautogui.press(config.hotkey_shovel)
@@ -42,13 +42,13 @@ class Cave:
         sleep(0.15) # otherwise its too fast
         return True
 
-    @timing
+    #@timing
     def use_ladder(self):
         sleep(0.1)
         pyautogui.click(config.character, button='right')
         return True
 
-    @timing
+    #@timing
     def is_on_wp(self, wp):
         # todo minimap center coords
         if self.utils.andrzej_szuka(region=config.minimap_center_cv,
@@ -60,10 +60,10 @@ class Cave:
             #print('not on wp')
             return False
 
-    @timing
+    #@timing
     def do_go_wp(self, wp):
 
-        print('going to wp', wp)
+        #print('going to wp', wp)
         try:
             x, y = self.utils.andrzej_szuka(region=config.minimap_cv,
                                            image_path='./src/wp/' + str(wp) + '.png',
@@ -75,7 +75,7 @@ class Cave:
             print('Couldnt find wp', wp)
             return False
 
-    @timing
+    #@timing
     def is_wp_fancy(self, wp, specials: {}):
         # todo verify if rly works
         # sprawdz czy podany wp specjalny
@@ -86,7 +86,7 @@ class Cave:
         else:
             return False
 
-    @timing
+    #@timing
     def do_go_wp_plus(self, wp, specials: {}):
         # todo timestamps
         if specials[wp] == 'rope':
@@ -105,7 +105,7 @@ class Cave:
         # if did not catch in any of ifs above
         return False
 
-    @timing
+    #@timing
     def is_wp_in_range(self, wp):
         try:
             self.utils.andrzej_szuka(region=config.minimap_cv,
