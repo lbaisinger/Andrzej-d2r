@@ -5,10 +5,13 @@ Table of content:
 | Cave                                  |    City     | Lvl | exp/h | gp/h | Mode   |
 |---------------------------------------|:-----------:|----:|------:|-----:|--------|
 | [Swamp Trolls](#venore_swamp_trolls)  |   Venore    |   8 |    ?? |   ?? | Profit |
-| [Turtles](#Turtles)                   | Liberty bay |  30 |    ?? |   ?? | Profit |
+| [Turtles](#Turtles)                   | Liberty bay |  30 |  100k |  80k | Profit |
 | [Banuta monkeys](#banuta-2)           |  Port Hope  |  35 |    ?? |   ?? | Profit |
 | [Darashia Dragons](#darashia_dragons) |  Darashia   |  60 |  200k |   ?? | Profit |
+| [Pirates](#yala_pirates)              |   Yalahar   |  80 |  150k | 100k | Profit+PG|
 | [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
+| [Vampire crypt](#vampire_crypt)       | Edron | 120 | 600k | 150k | PG |
+
 
 
 > Note: lets keep it sorted by level.
