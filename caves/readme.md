@@ -5,10 +5,11 @@
 
 | Cave                                  |    City     | Lvl | exp/h | gp/h | Mode   |
 |---------------------------------------|:-----------:|----:|------:|-----:|--------|
+| [Swamp Trolls](#venore_swamp_trolls)  |   Venore    |   8 |    ?? |   ?? | Profit |
 | [Turtles](#Turtles)                   | Liberty bay |  30 |    ?? |   ?? | Profit |
+| [Banuta monkeys](#banuta-2)           |  Port Hope  |  35 |    ?? |   ?? | Profit |
 | [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
-| [Banuta monkeys](#banuta-2)           |  Port Hope  |  ?? |    ?? |   ?? | Profit |
-| [Darashia Dragons](#darashia_dragons) |  Darashia   |  ?? |  200k |   ?? | Profit |
+| [Darashia Dragons](#darashia_dragons) |  Darashia   |  60 |  200k |   ?? | Profit |
 
 ---
 
@@ -47,3 +48,12 @@ File: [any_8.py](any_8.py)
 File: [any_7.py](any_7.py)
 
 >Note:
+
+
+<h3 id="venore_swamp_trolls">Swamp Trolls @ Venore</h3>
+
+<img src="maps/venore_swamp_trolls.png" alt="veno-swampy"/>
+
+File: [venore_swamp_trolls.py](venore_swamp_trolls.py)
+
+>Note: Drop items from bp for FACC supported 
