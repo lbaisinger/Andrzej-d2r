@@ -3,10 +3,12 @@ from gracz import *
 player = Gracz()
 # tryb_walki = False  # todo move to config?
 global tryb_walki
+global rotation_iteration
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter=1, rotation_iteration=1):
+def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter=1):
     # LOOP START #
+    global rotation_iteration
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
         rotation_iteration = 1
@@ -22,7 +24,8 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
             tryb_walki = True
         # PG MODE #
         if config.pg_mode:
-            player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+            player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration, iteration=iter)
+            rotation_iteration += 1
     else:
         # NOT ATTACKING #
         # JUST FINISED ATTACKING?
@@ -38,11 +41,13 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
                 tryb_walki = True
             # PG MODE #
             if config.pg_mode:
-                player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+                player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration, iteration=iter)
+                rotation_iteration += 1
         else:
             # NO MONSTERS #
             # global tryb_walki
             tryb_walki = False
+            rotation_iteration = 1
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
                 if player.cave.is_wp_fancy(wp, wps):
@@ -100,10 +105,10 @@ def loop():
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
-        nextwp = go(wp=nextwp, iter=iteration, rotation_iteration=rot_iter)
+        nextwp = go(wp=nextwp, iter=iteration)
         iteration += 1
 
-
+rotation_iteration = 1
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
