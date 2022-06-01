@@ -118,7 +118,7 @@ File: [any_8.py](any_8.py)
 
 <h3 id="sea_serpents">Sea Serpents @ Svargrond</h3>
 
-<img src="maps/sea_serpents.png.png" alt="sea-serpenty"/>
+<img src="maps/sea_serpents.png" alt="sea-serpenty"/>
 
 File: [any_8.py](any_8.py)
 
