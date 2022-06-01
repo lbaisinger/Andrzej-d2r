@@ -7,8 +7,11 @@ Table of content:
 | [Swamp Trolls](#venore_swamp_trolls)  |   Venore    |   8 |    ?? |   ?? | Profit |
 | [Turtles](#Turtles)                   | Liberty bay |  30 |    ?? |   ?? | Profit |
 | [Banuta monkeys](#banuta-2)           |  Port Hope  |  35 |    ?? |   ?? | Profit |
-| [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
 | [Darashia Dragons](#darashia_dragons) |  Darashia   |  60 |  200k |   ?? | Profit |
+| [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
+
+
+> Note: lets keep it sorted by level.
 
 ***
 ***
