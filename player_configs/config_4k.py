@@ -19,7 +19,7 @@ mana_pool_potek = (3850, 13, 3850+32, 13+32)
 hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
-rotation = ['r', 'f','r', 'g']
+rotation = ['r', 'f', 'r', '4']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
 hp_pool_exura_cv = hp_pool_exura
@@ -80,7 +80,7 @@ wp_center9 = wp_center
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = False
+pg_mode = True
 exeta = False
 
 
@@ -114,6 +114,7 @@ hotkey_pg_single_spell_2 = '4'
 hotkey_pg_area_spell_1 = 'r'
 hotkey_pg_area_spell_2 = 'f'
 hotkey_haste = 'f9'
+hotkey_exeta = 'x'
 
 # hotkey_chase = '/'    # OBSOLETE?
 
@@ -127,3 +128,4 @@ cap_region = (4737, 510, 40, 20)
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
+is_co_bic_custom_confidence = 0.999
