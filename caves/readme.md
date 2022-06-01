@@ -130,7 +130,7 @@ File: [any_8.py](any_8.py)
 
 <h3 id="mutated_tigers"> Mutated Tigers @ Zao</h3>
 
-<img src="mutated_tigers_zao.png" alt="mutated-tigery"/>
+<img src="maps/mutated_tigers_zao.png" alt="mutated-tigery"/>
 
 File: [any_9.py](any_9.py)
 
