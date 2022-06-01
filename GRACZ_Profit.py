@@ -1,20 +1,24 @@
 from gracz import *
 
 player = Gracz()
-# tryb_walki = False  # todo move to config?
 global tryb_walki
-global rotation_iteration
 
 
-def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter=1):
+def go(player=player,
+       wp=1,
+       ring=config.use_ring,
+       amulet=config.use_amulet,
+       iter=1,
+       rotation_iteration=1):
     # LOOP START #
-    global rotation_iteration
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
         rotation_iteration = 1
 
     # STATUS CHECK 1 #
-    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+    player.is_allright(hplow=config.hplow,
+                       hpmid=config.hpmid,
+                       manahigh=config.manahigh,
                        manalow=config.manalow)
     global tryb_walki
     # ATTACKING? #
@@ -24,7 +28,9 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
             tryb_walki = True
         # PG MODE #
         if config.pg_mode:
-            player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration, iteration=iter)
+            player.pg_mode(exeta=config.exeta,
+                           rotation_spell=rotation_iteration,
+                           iteration=iter)
             rotation_iteration += 1
     else:
         # NOT ATTACKING #
@@ -41,7 +47,9 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
                 tryb_walki = True
             # PG MODE #
             if config.pg_mode:
-                player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration, iteration=iter)
+                player.pg_mode(exeta=config.exeta,
+                               rotation_spell=rotation_iteration,
+                               iteration=iter)
                 rotation_iteration += 1
         else:
             # NO MONSTERS #
@@ -75,7 +83,9 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
         print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_4.total_seconds(), ''))
 
     # STATUS CHECK 2 #
-    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+    player.is_allright(hplow=config.hplow,
+                       hpmid=config.hpmid,
+                       manahigh=config.manahigh,
                        manalow=config.manalow)
 
     if ring:
@@ -89,9 +99,9 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
     print('{:<30} {:<20.2f}'.format('END-TIMING CHECK:', looptime_end.total_seconds()))
-    if looptime_end.total_seconds() < 2.1:
-        sleep(2.1 - looptime_end.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(2.1 - looptime_end.total_seconds()))
+    if looptime_end.total_seconds() < 2.16:
+        sleep(2.16 - looptime_end.total_seconds())
+        print('Sleeping {:.3f} seconds...'.format(2.16 - looptime_end.total_seconds()))
     print()
     # LOOP END #
     return wp
@@ -100,15 +110,17 @@ def go(player=player, wp=1, ring=config.use_ring, amulet=config.use_amulet, iter
 def loop():
     nextwp = 1
     iteration = 1
-    rot_iter = 1
+    rotation_iteration = 1
     while True:
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
-        nextwp = go(wp=nextwp, iter=iteration)
+        nextwp = go(wp=nextwp,
+                    iter=iteration,
+                    rotation_iteration=rotation_iteration)
         iteration += 1
 
-rotation_iteration = 1
+
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
