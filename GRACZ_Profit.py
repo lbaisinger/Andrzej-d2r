@@ -1,16 +1,16 @@
 from gracz import *
 
 player = Gracz()
-global tryb_walki
 
 
 def go(player=player,
        wp=1,
        ring=config.use_ring,
        amulet=config.use_amulet,
-       iter=1,
-       rotation_iteration=1):
+       iter=1):
     # LOOP START #
+    global tryb_walki
+    global rotation_iteration
     timestamp = datetime.datetime.now()
     if rotation_iteration == 4:
         rotation_iteration = 1
@@ -110,17 +110,16 @@ def go(player=player,
 def loop():
     nextwp = 1
     iteration = 1
-    rotation_iteration = 1
     while True:
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
         nextwp = go(wp=nextwp,
-                    iter=iteration,
-                    rotation_iteration=rotation_iteration)
+                    iter=iteration)
         iteration += 1
 
 
+rotation_iteration = 1
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
