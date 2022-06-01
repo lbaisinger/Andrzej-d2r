@@ -93,3 +93,5 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 hotkey_haste = 'v'
+hotkey_exeta = 'x'
+is_co_bic_custom_confidence = 0.75

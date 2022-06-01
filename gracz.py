@@ -30,7 +30,7 @@ class Gracz:
 
         return wrap
 
-    # @timing
+    #@timing
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
@@ -41,13 +41,15 @@ class Gracz:
             # print('is_bije False')
             return False
 
-    # @timing
-    def pg_mode(self, exeta=config.exeta, rotation_spell=1, iteration=1):
+    #@timing
+    def pg_mode(self, exeta=config.exeta,
+                rotation_spell=1,
+                iteration=1):
         # exeta every 2nd turn, change modulo divider (default '2') to change number of turns (e. g. % 3 == 0)
         if exeta and iteration % 2 == 0:
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png') is not False:
-                pyautogui.press('x')
+                pyautogui.press(config.hotkey_exeta)
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png') is not False:
@@ -57,11 +59,11 @@ class Gracz:
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
 
-    # @timing
+    #@timing
     def is_co_bic(self):
         if self.utils.andrzej_szuka(region=config.bw_cv,
                                     image_path='./src/monsters/any.png',
-                                    # confidence=.999,
+                                    confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
             print('is_co_bic')
             return True
@@ -69,7 +71,7 @@ class Gracz:
             print('is_co_bic False')
             return False
 
-    # @timing
+    #@timing
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
@@ -106,14 +108,14 @@ class Gracz:
                 # print('Mana burned!')
         return True
 
-    # @timing
+    #@timing
     def eat_food(self, loop_count=1):
         if loop_count % 3 == 0:
             pyautogui.press(config.hotkey_food)
             print('munch')
             return True
 
-    # @timing
+    #@timing
     def do_bank_deposit(self):
         # naciska 3 hotkeye w celu zdeponowac zloto
         # dziala ok
@@ -124,7 +126,7 @@ class Gracz:
         pyautogui.press(config.hotkey_yes)
         return True
 
-    # @timing
+    #@timing
     def do_ressuply(self):
         # zagregowana funkcja ressuply
         # mozna tu dolozyc wiecej akcji jak potrzeba
@@ -133,7 +135,7 @@ class Gracz:
         else:
             return False
 
-    # @timing
+    #@timing
     def do_loot(self):
         # naciska shift + prawym na pola obok gracza
         # 1 2 3
@@ -158,7 +160,7 @@ class Gracz:
         print('{:<30} {:<20.2f}'.format('TIME LOOT:', looptime.total_seconds()))
         return True
 
-    # @timing
+    #@timing
     def do_bij(self):
         # naciska spacje i atakuje nast z battle window
         # dziala ok
@@ -166,7 +168,7 @@ class Gracz:
         pyautogui.press('space')
         return True
 
-    # @timing
+    #@timing
     def ring_control(self, ring_hotkey=config.hotkey_ring):
         if self.utils.andrzej_szuka(region=config.ring_cv,
                                     image_path='./src/items/ring_empty.png') is not False:
@@ -177,7 +179,7 @@ class Gracz:
             print("Ring equipped.")
             return True
 
-    # @timing
+    #@timing
     def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
         if self.utils.andrzej_szuka(region=config.amulet_cv,
                                     image_path='./src/items/amulet_empty.png') is not False:
