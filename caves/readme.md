@@ -7,10 +7,13 @@ Table of content:
 | [Swamp Trolls](#venore_swamp_trolls)  |   Venore    |   8 |    ?? |   ?? | Profit |
 | [Turtles](#Turtles)                   | Liberty bay |  30 |  100k |  80k | Profit |
 | [Banuta monkeys](#banuta-2)           |  Port Hope  |  35 |    ?? |   ?? | Profit |
+| [Cult cave](#cult_cave)               | Liberty bay |  40 |  120k | 100k | Profit |  
 | [Darashia Dragons](#darashia_dragons) |  Darashia   |  60 |  200k |   ?? | Profit |
 | [Pirates](#yala_pirates)              |   Yalahar   |  80 |  150k | 100k | Profit+PG|
 | [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
-| [Vampire crypt](#vampire_crypt)       | Edron | 120 | 600k | 150k | PG |
+| [Vampire crypt](#vampire_crypt)       | Edron | 120 | 800k | 150k | PG |
+| [Sea Serpents](#sea_serpents) | Svargrond | 130 | 1kk | 0 | PG |
+
 
 
 
@@ -63,3 +66,10 @@ File: [any_7.py](any_7.py)
 File: [venore_swamp_trolls.py](venore_swamp_trolls.py)
 
 >Note: Drop items from bp for FACC supported 
+
+---
+<h3 id="cult_cave">Cult Cave @ Liberty Bay</h3>
+
+<img src="maps/liberty_cults.png" alt="liberty-culty"/>
+
+>Note: 2x basic life/mana leech imbu enough for healing + utani hur manaburn to speed up
