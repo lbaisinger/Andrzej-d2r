@@ -72,4 +72,6 @@ File: [venore_swamp_trolls.py](venore_swamp_trolls.py)
 
 <img src="maps/liberty_cults.png" alt="liberty-culty"/>
 
+File: [any_7.py](any_7.py)
+
 >Note: 2x basic life/mana leech imbu enough for healing + utani hur manaburn to speed up
