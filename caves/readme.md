@@ -12,8 +12,8 @@ Table of content:
 | [Pirates](#yala_pirates)              |   Yalahar   |  80 |  150k | 100k | Profit+PG|
 | [Mutated Tigers](#mutated_tigers) | Zao | 80 | 400k | 100k | Profit+PG |
 | [Crystal spiders](#crystal_spiders)   |  Svargrond  |  90 |  200k |  30k | Profit |
-| [Vampire crypt](#vampire_crypt)       | Edron | 120 | 800k | 150k | Full PG |
-| [Sea Serpents](#sea_serpents) | Svargrond | 130 | 1kk | 0 | Full PG |
+| [Vampire crypt](#vampire_crypt)       | Edron | 120 | 600k | 150k | Full PG |
+| [Sea Serpents](#sea_serpents) | Svargrond | 130 | 800k | 0 | Full PG |
 
 
 
