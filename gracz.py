@@ -15,7 +15,7 @@ class Gracz:
         self.cave = cave.Cave()
         self.utils = utils.Utils()
         # Add pause after each pyautogui commands
-        pyautogui.PAUSE = 0.05
+        pyautogui.PAUSE = 0.005
         print('loaded with config ', confname)
 
     def timing(f):
