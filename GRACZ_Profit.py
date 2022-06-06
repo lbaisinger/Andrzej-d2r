@@ -12,8 +12,6 @@ def go(player=player,
     global tryb_walki
     global rotation_iteration
     timestamp = datetime.datetime.now()
-    if rotation_iteration == 4:
-        rotation_iteration = 1
 
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow,
@@ -88,6 +86,10 @@ def go(player=player,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
 
+    if rotation_iteration == len(config.rotation)+1:
+        print(rotation_iteration)
+        rotation_iteration = 1
+
     if ring:
         player.ring_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
@@ -119,7 +121,7 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 1
+rotation_iteration = 4
 tryb_walki = False
 pyautogui.click(config.default)
 loop()

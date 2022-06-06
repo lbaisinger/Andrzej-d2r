@@ -8,9 +8,6 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
     # LOOP START #
     global rotation_iteration
     timestamp = datetime.datetime.now()
-    if rotation_iteration == len(config.rotation)+1:
-        print(rotation_iteration)
-        rotation_iteration = 1
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                        manalow=config.manalow)
@@ -85,6 +82,10 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
     if amulet:
         player.amulet_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+
+    if rotation_iteration == len(config.rotation)+1:
+        print(rotation_iteration)
+        rotation_iteration = 1
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
