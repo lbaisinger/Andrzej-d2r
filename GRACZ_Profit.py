@@ -120,7 +120,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 4
+    nextwp = 1
     iteration = 1
     while True:
         print()
