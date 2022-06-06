@@ -59,7 +59,7 @@ def go(player=player,
             tryb_walki = False
             rotation_iteration = 0
 
-            # IF NOT ON WP CUZ ITS LVL CHANGER
+            # IF NOT ON2 WP CUZ ITS LVL CHANGER
             if wps[wp] == 'lvl_changing_wp':
                 # CHEK IF NEXT ONE IS IN RANGE
                 if player.cave.is_wp_in_range(wp+1):
@@ -133,9 +133,7 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 2
+rotation_iteration = 0
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
-
-#print(len(config.rotation))

@@ -107,12 +107,11 @@ class Cave:
 
     #@timing
     def is_wp_in_range(self, wp):
-        try:
-            self.utils.andrzej_szuka(region=config.minimap_cv,
-                                     image_path='./src/wp/' + str(wp) + '.png',
-                                     confidence=0.69)
+        if self.utils.andrzej_szuka(region=config.minimap_cv,
+                                    image_path='./src/wp/' + str(wp) + '.png',
+                                    confidence=0.69) is not False:
             return True
-        except TypeError:
+        else:
             return False
 
 #
