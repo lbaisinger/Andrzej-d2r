@@ -54,6 +54,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                 rotation_iteration = 1
                 # GO TO NEXT WP #
                 if player.cave.is_wp_fancy(wp, wps):
+                    player.cave.do_go_wp(wp) # to be extra sure
                     player.cave.do_go_wp_plus(wp, wps)
                 if wp == list(wps.keys())[-1]:
                     wp = list(wps.keys())[0]
