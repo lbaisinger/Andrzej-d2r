@@ -13,6 +13,10 @@ def go(player=player,
     global rotation_iteration
     timestamp = datetime.datetime.now()
 
+    if rotation_iteration >= len(config.rotation):
+        print(rotation_iteration)
+        rotation_iteration = 0
+
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow,
                        hpmid=config.hpmid,
@@ -25,6 +29,7 @@ def go(player=player,
         if not tryb_walki:
             tryb_walki = True
         # PG MODE #
+        print(rotation_iteration)
         if config.pg_mode:
             player.pg_mode(exeta=config.exeta,
                            rotation_spell=rotation_iteration,
@@ -44,6 +49,7 @@ def go(player=player,
             if not tryb_walki:
                 tryb_walki = True
             # PG MODE #
+            print(rotation_iteration)
             if config.pg_mode:
                 player.pg_mode(exeta=config.exeta,
                                rotation_spell=rotation_iteration,
@@ -53,7 +59,7 @@ def go(player=player,
             # NO MONSTERS #
             # global tryb_walki
             tryb_walki = False
-            rotation_iteration = 1
+            rotation_iteration = 0
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
                 if player.cave.is_wp_fancy(wp, wps):
@@ -86,10 +92,6 @@ def go(player=player,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
 
-    if rotation_iteration == len(config.rotation)+1:
-        print(rotation_iteration)
-        rotation_iteration = 0
-
     if ring:
         player.ring_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
@@ -110,7 +112,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 1
+    nextwp = 4
     iteration = 1
     while True:
         print()
@@ -121,7 +123,9 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 0
+rotation_iteration = 2
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
+
+#print(len(config.rotation))
