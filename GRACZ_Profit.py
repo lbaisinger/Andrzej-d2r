@@ -61,6 +61,7 @@ def go(player=player,
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
                 if player.cave.is_wp_fancy(wp, wps):
+                    player.cave.do_go_wp(wp) # to be extra sure
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
                 # GO TO NEXT WP #
