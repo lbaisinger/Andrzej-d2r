@@ -8,6 +8,9 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
     # LOOP START #
     global rotation_iteration
     timestamp = datetime.datetime.now()
+    if rotation_iteration >= len(config.rotation):
+        #print(rotation_iteration)
+        rotation_iteration = 0
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
                        manalow=config.manalow)
@@ -48,9 +51,10 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                 # NO MONSTERS #
                 # LOOT #
                 player.do_loot()
-                rotation_iteration = 1
+                rotation_iteration = 0
                 # GO TO NEXT WP #
                 if player.cave.is_wp_fancy(wp, wps):
+                    player.cave.do_go_wp(wp) # to be extra sure
                     player.cave.do_go_wp_plus(wp, wps)
                 if wp == list(wps.keys())[-1]:
                     wp = list(wps.keys())[0]
@@ -83,9 +87,6 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
         player.amulet_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
 
-    if rotation_iteration == len(config.rotation)+1:
-        print(rotation_iteration)
-        rotation_iteration = 0
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp

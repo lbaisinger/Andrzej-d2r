@@ -51,9 +51,10 @@ class Cave:
     #@timing
     def is_on_wp(self, wp):
         # todo minimap center coords
-        if self.utils.andrzej_szuka(region=config.minimap_center_cv,
-                                    image_path='./src/wp/' + str(wp) + '.png',
-                                    confidence=.7) is not False:
+        if self.utils.andrzej_szuka(debug=True,
+                region=config.minimap_center_cv,
+                image_path='./src/wp/' + str(wp) + '.png',
+                confidence=.7) is not False:
             #print('is on wp')
             return True
         else:
@@ -98,21 +99,19 @@ class Cave:
         if specials[wp] == 'ladder':
             self.use_ladder()
             return True
-        # todo test this boi
         if specials[wp] == 'lvl_changing_wp':
             if self.is_wp_in_range(wp+1):
-                return wp+1
+                return True
         # if did not catch in any of ifs above
         return False
 
     #@timing
     def is_wp_in_range(self, wp):
-        try:
-            self.utils.andrzej_szuka(region=config.minimap_cv,
-                                     image_path='./src/wp/' + str(wp) + '.png',
-                                     confidence=0.69)
+        if self.utils.andrzej_szuka(region=config.minimap_cv,
+                                    image_path='./src/wp/' + str(wp) + '.png',
+                                    confidence=0.69) is not False:
             return True
-        except TypeError:
+        else:
             return False
 
 #

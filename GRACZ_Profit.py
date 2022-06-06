@@ -13,6 +13,10 @@ def go(player=player,
     global rotation_iteration
     timestamp = datetime.datetime.now()
 
+    if rotation_iteration >= len(config.rotation):
+        print(rotation_iteration)
+        rotation_iteration = 0
+
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow,
                        hpmid=config.hpmid,
@@ -53,10 +57,22 @@ def go(player=player,
             # NO MONSTERS #
             # global tryb_walki
             tryb_walki = False
-            rotation_iteration = 1
+            rotation_iteration = 0
+
+            # IF NOT ON2 WP CUZ ITS LVL CHANGER
+            if wps[wp] == 'lvl_changing_wp':
+                # CHEK IF NEXT ONE IS IN RANGE
+                if player.cave.is_wp_in_range(wp+1):
+                    # INCREMENT
+                    wp += 1
             # IS ON WP? #
             if player.cave.is_on_wp(wp):
-                if player.cave.is_wp_fancy(wp, wps):
+                # DOES WP NEEDS EXTRA ACTION?
+                if wps[wp] in ['rope', 'shovel', 'ladder']:
+                    # IF SO GO WP TO BE EXTRA SURE
+                    player.cave.do_go_wp(wp) # to be extra sure
+                    sleep(1) # give some time to go
+                    # DO CUSTOM ACTION
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
                 # GO TO NEXT WP #
@@ -85,10 +101,6 @@ def go(player=player,
                        hpmid=config.hpmid,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
-
-    if rotation_iteration == len(config.rotation)+1:
-        print(rotation_iteration)
-        rotation_iteration = 0
 
     if ring:
         player.ring_control()
