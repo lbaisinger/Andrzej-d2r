@@ -6,8 +6,8 @@ Andrzej walczy z potworami! Teraz może działać na dwa sposoby - profit i PG.
 - Zmodyfikowane szukanie WP w centrum - szuka w obszarze +/-2 SQM od środka, więc nawet jak potwór stanie na WP to nie przeszkadza
 - Dodany GRACZ_Profit (patrz logika poniżej), GRACZ_EK_PG.py zmienione na GRACZ_PG.py
 
-### TO-Do
-- [ ] WP_specjal - potrzebne szczególnie do zaminy poziomów, żeby wykonywał określoną akcję (rope/shovel/ladder) oraz zapewnić, żeby Andrzej stawał DOKŁADNIE NA ŚRODKU WP (dokładnie na rope/shovel/ladder spocie)
+### To-Do
+- [x] WP_specjal - potrzebne szczególnie do zaminy poziomów, żeby wykonywał określoną akcję (rope/shovel/ladder) oraz zapewnić, żeby Andrzej stawał DOKŁADNIE NA ŚRODKU WP (dokładnie na rope/shovel/ladder spocie)
 - [ ] Generator listy waypointów (wps) - przy inicjowaniu Andrzeja zadać mu ile WP ma obecny hunt i niech robi swoje
 
 ### LOGIKA 
