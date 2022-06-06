@@ -9,7 +9,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
     global rotation_iteration
     timestamp = datetime.datetime.now()
     if rotation_iteration >= len(config.rotation):
-        print(rotation_iteration)
+        #print(rotation_iteration)
         rotation_iteration = 0
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
@@ -51,7 +51,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                 # NO MONSTERS #
                 # LOOT #
                 player.do_loot()
-                rotation_iteration = 1
+                rotation_iteration = 0
                 # GO TO NEXT WP #
                 if player.cave.is_wp_fancy(wp, wps):
                     player.cave.do_go_wp(wp) # to be extra sure

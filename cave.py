@@ -98,10 +98,9 @@ class Cave:
         if specials[wp] == 'ladder':
             self.use_ladder()
             return True
-        # todo test this boi
         if specials[wp] == 'lvl_changing_wp':
             if self.is_wp_in_range(wp+1):
-                return wp+1
+                return True
         # if did not catch in any of ifs above
         return False
 
