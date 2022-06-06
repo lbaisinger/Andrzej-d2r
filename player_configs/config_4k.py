@@ -15,11 +15,11 @@ character = (3000, 870)
 #ServerLog_rightclick = (350, 963)  #todo ask
 #ServerLog_SaveWnd = (390, 1004)    #todo ask
 #REGION = (3130, 19, 3130+90, 19+30)
-mana_pool_potek = (3850, 13, 3850+32, 13+32)
+mana_pool_potek = (3350, 13, 3350+32, 13+32)
 hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
-rotation = ['r', 'f', 'r', '4']
+rotation = ['r', 'f', 'r', 'g']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
 hp_pool_exura_cv = hp_pool_exura
