@@ -53,7 +53,7 @@ class Gracz:
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png') is not False:
-            pyautogui.press(config.rotation[rotation_spell - 1])
+            pyautogui.press(config.rotation[rotation_spell])
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
             sleep(0.1)

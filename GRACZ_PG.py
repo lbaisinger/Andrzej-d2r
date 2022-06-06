@@ -85,7 +85,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
 
     if rotation_iteration == len(config.rotation)+1:
         print(rotation_iteration)
-        rotation_iteration = 1
+        rotation_iteration = 0
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp

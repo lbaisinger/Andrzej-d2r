@@ -88,7 +88,7 @@ def go(player=player,
 
     if rotation_iteration == len(config.rotation)+1:
         print(rotation_iteration)
-        rotation_iteration = 1
+        rotation_iteration = 0
 
     if ring:
         player.ring_control()
@@ -121,7 +121,7 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 4
+rotation_iteration = 0
 tryb_walki = False
 pyautogui.click(config.default)
 loop()
