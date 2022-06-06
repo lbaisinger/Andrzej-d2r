@@ -29,7 +29,6 @@ def go(player=player,
         if not tryb_walki:
             tryb_walki = True
         # PG MODE #
-        print(rotation_iteration)
         if config.pg_mode:
             player.pg_mode(exeta=config.exeta,
                            rotation_spell=rotation_iteration,
@@ -49,7 +48,6 @@ def go(player=player,
             if not tryb_walki:
                 tryb_walki = True
             # PG MODE #
-            print(rotation_iteration)
             if config.pg_mode:
                 player.pg_mode(exeta=config.exeta,
                                rotation_spell=rotation_iteration,
