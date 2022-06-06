@@ -58,20 +58,22 @@ def go(player=player,
             # global tryb_walki
             tryb_walki = False
             rotation_iteration = 0
-            # IS ON WP? #
-            if player.cave.is_on_wp(wp):
-                # DOES WP NEEDS EXTRA ACTION?
-                if wps[wp] in ['rope', 'shovel', 'ladder']:
-                    # IF SO GO WP TO BE EXTRA SURE
-                    player.cave.do_go_wp(wp) # to be extra sure
-                    # DO CUSTOM ACTION
-                    player.cave.do_go_wp_plus(wp, wps)
+
             # IF NOT ON WP CUZ ITS LVL CHANGER
             if wps[wp] == 'lvl_changing_wp':
                 # CHEK IF NEXT ONE IS IN RANGE
                 if player.cave.is_wp_in_range(wp+1):
                     # INCREMENT
                     wp += 1
+            # IS ON WP? #
+            if player.cave.is_on_wp(wp):
+                # DOES WP NEEDS EXTRA ACTION?
+                if wps[wp] in ['rope', 'shovel', 'ladder']:
+                    # IF SO GO WP TO BE EXTRA SURE
+                    player.cave.do_go_wp(wp) # to be extra sure
+                    sleep(1) # give some time to go
+                    # DO CUSTOM ACTION
+                    player.cave.do_go_wp_plus(wp, wps)
                 # YES #
                 # GO TO NEXT WP #
                 if wp == list(wps.keys())[-1]:
