@@ -82,8 +82,8 @@ class Gracz:
             if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
-                sleep(.1)
-                print('Healed!')
+                sleep(.15)
+                print('>>>Healed!')
             # else:
                 # print('Low HP ok.')
         # Check for lesser healing (exura)
@@ -91,7 +91,7 @@ class Gracz:
             if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv,
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_exura)
-                print('Exura')
+                print('>>>Exura')
             # else:
                 # print('Mid HP ok.')
         # Check for mana
@@ -99,15 +99,15 @@ class Gracz:
             if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_manapot)
-                sleep(.1)
-                print('Mana potion!')
+                sleep(.15)
+                print('>>>Mana potion!')
             # else:
                 # print('MP ok.')
         if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
             if not self.utils.andrzej_szuka(region=config.burn_mana_cv,
                                             image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_manaburn)
-                print('Mana burned!')
+                print('>>>Mana burned!')
         return True
 
     #@timing
