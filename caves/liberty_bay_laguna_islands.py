@@ -4,6 +4,12 @@
 ### Liberty Bay
 ### Laguna Islands
 ###
+### Sugeested settings:
+### use_ring = False
+### use_amulet = False
+### pg_mode = False
+### exeta = False
+###
 ### Hall of fame:
 ###
 ###
