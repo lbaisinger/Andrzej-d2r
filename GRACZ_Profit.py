@@ -24,7 +24,7 @@ def go(player=player,
                        manalow=config.manalow)
     global tryb_walki
 
-    # check if next wp event exists
+    # check if next wp even exists
     if wp+1 in wps.keys():
         # if so check if next wp is turtle one and if standing on it
         if wps[wp + 1] == 'turtle' and player.cave.is_on_wp(wp + 1):
