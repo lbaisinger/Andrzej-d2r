@@ -99,6 +99,9 @@ class Cave:
         if specials[wp] == 'ladder':
             self.use_ladder()
             return True
+        if specials[wp] == 'turtle':
+            pyautogui.press('s')
+            return True
         if specials[wp] == 'lvl_changing_wp':
             if self.is_wp_in_range(wp+1):
                 return True

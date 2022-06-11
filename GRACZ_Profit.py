@@ -23,6 +23,21 @@ def go(player=player,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
     global tryb_walki
+
+    # check if next wp event exists
+    if wp+1 in wps.keys():
+        # if so check if next wp is turtle one and if standing on it
+        if wps[wp + 1] == 'turtle' and player.cave.is_on_wp(wp + 1):
+            #print('looks like it was turtle ride')
+            # if so wait a moment to avoid coming back
+            sleep(1)
+            # increment wp
+            wp += 1
+            # handle leaving turtle raft
+            player.cave.do_go_wp_plus(wp, wps)
+            # increment wp
+            wp += 1
+
     # ATTACKING? #
     if player.is_bije():
         # YES #
