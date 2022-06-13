@@ -23,6 +23,22 @@ def go(player=player,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
     global tryb_walki
+
+    # check if next wp even exists
+    if wp + 1 in wps.keys():
+        # if so check if next wp is turtle one and if standing on it
+        if (wps[wp + 1] == 'turtle' and player.cave.is_on_wp(wp + 1)) or \
+                (wps[wp] == 'turtle' and player.cave.is_on_wp(wp)):
+            # print('looks like it was turtle ride')
+            # if so wait a moment to avoid coming back
+            sleep(1)
+            # increment wp
+            wp += 1
+            # handle leaving turtle raft
+            player.cave.do_go_wp_plus(wp, wps)
+            # increment wp
+            wp += 1
+
     # ATTACKING? #
     if player.is_bije():
         # YES #
@@ -62,7 +78,7 @@ def go(player=player,
             # IF NOT ON2 WP CUZ ITS LVL CHANGER
             if wps[wp] == 'lvl_changing_wp':
                 # CHEK IF NEXT ONE IS IN RANGE
-                if player.cave.is_wp_in_range(wp+1):
+                if player.cave.is_wp_in_range(wp + 1):
                     # INCREMENT
                     wp += 1
             # IS ON WP? #
@@ -70,8 +86,8 @@ def go(player=player,
                 # DOES WP NEEDS EXTRA ACTION?
                 if wps[wp] in ['rope', 'shovel', 'ladder']:
                     # IF SO GO WP TO BE EXTRA SURE
-                    player.cave.do_go_wp(wp) # to be extra sure
-                    sleep(1) # give some time to go
+                    player.cave.do_go_wp(wp)  # to be extra sure
+                    sleep(1)  # give some time to go
                     # DO CUSTOM ACTION
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
@@ -122,7 +138,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 1
+    nextwp = 5
     iteration = 1
     while True:
         print()
