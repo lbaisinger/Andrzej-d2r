@@ -19,7 +19,8 @@ mana_pool_potek = (3350, 13, 3350+32, 13+32)
 hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
-rotation = ['r', 'f', 'r', 'g']
+rotation = ['3', 'r', '4', 'r']
+#rotation = ['r', 'f', 'r', 'g']
 #rotation = ['3', '4', '3', '4']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
@@ -82,7 +83,7 @@ wp_center9 = wp_center
 use_ring = True
 use_amulet = False
 pg_mode = True
-exeta = True
+exeta = False
 
 
 ################################
