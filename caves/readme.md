@@ -5,6 +5,7 @@ Table of content:
 | Cave                                  |    City     | Lvl | exp/h | gp/h | Mode      | Loot                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |---------------------------------------|:-----------:|----:|------:|-----:|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Swamp Trolls](#venore_swamp_trolls)  |   Venore    |   8 |    ?? |   ?? | Profit    | [![Medicine Pouch](items_imgs/Medicine_Pouch.gif)](https://tibia.fandom.com/wiki/Medicine_Pouch)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| [Frogs](#laguna_frogs)                | Liberty Bay |   8 |    ?? |   ?? | Profit    | [![Gp](items_imgs/Gold_Coin.gif)](https://tibia.fandom.com/wiki/Gold_Coin)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | [Turtles](#Turtles)                   | Liberty bay |  30 |  100k |  80k | Profit    | [![Bloody Pincers](items_imgs/Bloody_Pincers.gif)](https://tibia.fandom.com/wiki/Bloody_Pincers) [![Turtle Shell](items_imgs/Turtle_Shell.gif)](https://tibia.fandom.com/wiki/Turtle_Shell)                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | [Banuta monkeys](#banuta-2)           |  Port Hope  |  35 |    ?? |   ?? | Profit    | [![Coconut](items_imgs/Coconut.gif)](https://tibia.fandom.com/wiki/Coconut) [![Ape Fur](items_imgs/Ape_Fur.gif)](https://tibia.fandom.com/wiki/Ape_Fur)                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | [Cult cave](#cult_cave)               | Liberty bay |  40 |  120k | 100k | Profit    | [![alt_text](items_imgs/)]() #todo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 
@@ -154,7 +155,7 @@ File: [svargrond_okolnir.py](svargrond_okolnir.py)
 ---
 [Back to Caves](#caves)
 
-<h3 id="drefia_wyrms"> Frost dragons @ okolnir west</h3>
+<h3 id="drefia_wyrms"> Drefia Wyrms -1</h3>
 
 <img src="maps/drefia_0.png" alt="Drefia ground level"/>
 <img src="maps/drefia_hills.png" alt="Drefia hills"/>
@@ -163,4 +164,17 @@ File: [svargrond_okolnir.py](svargrond_okolnir.py)
 File: [darashia_wyrms.py](darashia_wyrms.py)
 
 >Note: Loot there its either 0, or +25k if u got composite hornbow. Know issue: Adnrew my stuck during often going uphill/downhill.
-> 
+
+---
+[Back to Caves](#caves)
+
+<h3 id="laguna_frogs"> Frogs @ laguna island</h3>
+
+<img src="maps/laguna_frogs.png" alt="Laguna islands"/>
+
+
+
+File: [liberty_bay_laguna_islands.py](liberty_bay_laguna_islands.py)
+
+>Note: Needs to be supervised cuz its follow seagulls and green frogs. Rather for bestiary only.
+
