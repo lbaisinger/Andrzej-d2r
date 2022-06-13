@@ -36,6 +36,8 @@ def go(player=player,
             wp += 1
             # handle leaving turtle raft
             player.cave.do_go_wp_plus(wp, wps)
+            # give andrew some time to do that
+            sleep(1)
             # increment wp
             wp += 1
 
@@ -87,7 +89,7 @@ def go(player=player,
                 if wps[wp] in ['rope', 'shovel', 'ladder']:
                     # IF SO GO WP TO BE EXTRA SURE
                     player.cave.do_go_wp(wp)  # to be extra sure
-                    sleep(1)  # give some time to go
+                    sleep(0.5)  # give some time to go
                     # DO CUSTOM ACTION
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
@@ -138,7 +140,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 5
+    nextwp = 1
     iteration = 1
     while True:
         print()
