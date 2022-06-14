@@ -19,8 +19,8 @@ mana_pool_potek = (3350, 13, 3350+32, 13+32)
 hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
-rotation = ['3', 'r', '4', 'r']
-#rotation = ['r', 'f', 'r', 'g']
+#rotation = ['3', 'r', '4', 'r']
+rotation = ['r', 'f', 'r', 'g']
 #rotation = ['3', '4', '3', '4']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
@@ -28,7 +28,7 @@ hp_pool_exura_cv = hp_pool_exura
 hp_pool_potek_cv = hp_pool_potek
 burn_mana_cv = burn_mana
 bw_cv = (4572, 887, 4572+150, 887+130)
-bw_2nd_cv = (4572, 928, 4572+50, 928+50)
+bw_2nd_cv = (4572, 928, 4572+150, 928+130)
 bw_full = (4572, 928, 4572+130, 928+130) # 130
 redbox_cv = (4567, 882, 4567+50, 882+150)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)

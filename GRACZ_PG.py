@@ -29,6 +29,12 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
             rotation_iteration += 1
     else:
         # NOT ATTACKING #
+        # IF NOT ON2 WP CUZ ITS LVL CHANGER
+        if wps[wp] == 'lvl_changing_wp':
+            # CHEK IF NEXT ONE IS IN RANGE
+            if player.cave.is_wp_in_range(wp + 1):
+                # INCREMENT
+                wp += 1
         # IS ON WP? #
         if player.cave.is_on_wp(wp):
             # YES #
@@ -52,18 +58,26 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                 # LOOT #
                 player.do_loot()
                 rotation_iteration = 0
+                # IS ON WP? #
+                if player.cave.is_on_wp(wp):
+                    # DOES WP NEEDS EXTRA ACTION?
+                    if wps[wp] in ['rope', 'shovel', 'ladder']:
+                        # IF SO GO WP TO BE EXTRA SURE
+                        player.cave.do_go_wp(wp)  # to be extra sure
+                        sleep(0.5)  # give some time to go
+                        # DO CUSTOM ACTION
+                        player.cave.do_go_wp_plus(wp, wps)
+                    # YES #
+                    # GO TO NEXT WP #
+                    if wp == list(wps.keys())[-1]:
+                        wp = list(wps.keys())[0]
+                        if config.rush:
+                            pyautogui.press(config.hotkey_haste)
+                    else:
+                        wp += 1
+                        if config.rush:
+                            pyautogui.press(config.hotkey_haste)
                 # GO TO NEXT WP #
-                if player.cave.is_wp_fancy(wp, wps):
-                    player.cave.do_go_wp(wp) # to be extra sure
-                    player.cave.do_go_wp_plus(wp, wps)
-                if wp == list(wps.keys())[-1]:
-                    wp = list(wps.keys())[0]
-                    if config.rush:
-                        pyautogui.press(config.hotkey_haste)
-                else:
-                    wp += 1
-                    if config.rush:
-                        pyautogui.press(config.hotkey_haste)
                 player.cave.do_go_wp(wp)
         else:
             # NOT ON WP #
@@ -101,7 +115,6 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
 def loop():
     nextwp = 1
     iteration = 1
-    rot_iter = 1
     while True:
         print()
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
@@ -110,6 +123,6 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 1
+rotation_iteration = 0
 pyautogui.click(config.default)
 loop()

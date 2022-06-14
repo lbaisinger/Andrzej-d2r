@@ -52,12 +52,17 @@ class Gracz:
                 pyautogui.press(config.hotkey_exeta)
                 sleep(0.05)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
-                                    image_path='./src/monsters/any.png') is not False:
+                                    image_path='./src/monsters/any.png',
+                                    confidence=config.is_co_bic_custom_confidence,
+                                    scale=False) is not False:
             pyautogui.press(config.rotation[rotation_spell])
+            #print('aoe' + str(rotation_spell))
         else:
             pyautogui.press(config.hotkey_pg_single_spell_1)
+            #print('single spell 1')
             sleep(0.1)
             pyautogui.press(config.hotkey_pg_single_spell_2)
+            #print('single spell 2')
 
     #@timing
     def is_co_bic(self):
@@ -83,6 +88,8 @@ class Gracz:
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
                 sleep(.15)
+                # to be double sure that hp pot is used
+                pyautogui.press(config.hotkey_hppot)
                 print('>>>Healed!')
             # else:
                 # print('Low HP ok.')
