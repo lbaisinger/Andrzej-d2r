@@ -53,6 +53,7 @@ manahigh = True
 ################################
 hotkey_ring = 'f3'
 hotkey_runemaker = 'f12'
+hotkey_bloodrage = 'b'
 hotkey_antidote = ''
 hotkey_paralyze = '1'
 hotkey_amulet = 'f5'

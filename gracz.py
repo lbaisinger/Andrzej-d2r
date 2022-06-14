@@ -46,8 +46,8 @@ class Gracz:
                 bloodrage=config.bloodrage,
                 rotation_spell=1,
                 iteration=1):
-        # exeta every 2nd turn, change modulo divider (default '2') to change number of turns (e. g. % 3 == 0)
-        if exeta and iteration % 2 == 0:
+        # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
+        if exeta and (iteration == 1 or iteration == 3):
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png') is not False:
                 pyautogui.press(config.hotkey_exeta)
@@ -56,6 +56,10 @@ class Gracz:
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
+            # Case bloodrage only when multiple targets, waste to bloodrage single mob
+            if bloodrage and rotation_spell == 0:
+                pyautogui.press(config.hotkey_bloodrage)
+                sleep(0.05)
             pyautogui.press(config.rotation[rotation_spell])
             #print('aoe' + str(rotation_spell))
         else:
