@@ -113,7 +113,7 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
 
 
 def loop():
-    nextwp = 8
+    nextwp = 1
     iteration = 1
     while True:
         print()
