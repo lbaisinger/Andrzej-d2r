@@ -15,7 +15,7 @@ class Gracz:
         self.cave = cave.Cave()
         self.utils = utils.Utils()
         # Add pause after each pyautogui commands
-        pyautogui.PAUSE = 0.005
+        pyautogui.PAUSE = config.pa_pause
         print('loaded with config ', confname)
 
     def timing(f):
@@ -43,6 +43,7 @@ class Gracz:
 
     #@timing
     def pg_mode(self, exeta=config.exeta,
+                bloodrage=config.bloodrage,
                 rotation_spell=1,
                 iteration=1):
         # exeta every 2nd turn, change modulo divider (default '2') to change number of turns (e. g. % 3 == 0)
@@ -157,9 +158,9 @@ class Gracz:
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale)  # 1
         pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
-        pyautogui.rightClick(config.character[0] - 60 * config.scale, config.character[1])  # 4
+        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1])  # 4
         pyautogui.rightClick(config.character[0], config.character[1])  # C
-        pyautogui.rightClick(config.character[0] + 60 * config.scale, config.character[1])  # 6
+        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1])  # 6
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
         pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] + 75 * config.scale)  # 9

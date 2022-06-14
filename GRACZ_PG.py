@@ -4,7 +4,11 @@ player = Gracz()
 global rotation_iteration
 
 
-def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amulet):  # , rotation_iteration=1
+def go(player=player,
+       wp=1,
+       iter=1,
+       ring=config.use_ring,
+       amulet=config.use_amulet):  # , rotation_iteration=1
     # LOOP START #
     global rotation_iteration
     timestamp = datetime.datetime.now()
@@ -12,7 +16,9 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
         #print(rotation_iteration)
         rotation_iteration = 0
     # STATUS CHECK 1 #
-    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+    player.is_allright(hplow=config.hplow,
+                       hpmid=config.hpmid,
+                       manahigh=config.manahigh,
                        manalow=config.manalow)
     # ATTACKING? #
     if player.is_bije():
@@ -25,7 +31,9 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
             if looptime_3.total_seconds() < 0.6:
                 sleep(0.6 - looptime_3.total_seconds())
                 print('Sleeping {:.3f} seconds...'.format(0.6 - looptime_3.total_seconds(), ''))
-            player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+            player.pg_mode(exeta=config.exeta,
+                           rotation_spell=rotation_iteration,
+                           iteration=iter)
             rotation_iteration += 1
     else:
         # NOT ATTACKING #
@@ -51,7 +59,9 @@ def go(player=player, wp=1, iter=1, ring=config.use_ring, amulet=config.use_amul
                     if looptime_4.total_seconds() < 0.5:
                         sleep(0.5 - looptime_4.total_seconds())
                         print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_4.total_seconds(), ''))
-                    player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
+                    player.pg_mode(exeta=config.exeta,
+                                   rotation_spell=rotation_iteration,
+                                   iteration=iter)
                     rotation_iteration += 1
             else:
                 # NO MONSTERS #

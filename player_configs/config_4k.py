@@ -83,6 +83,7 @@ wp_center9 = wp_center
 use_ring = True
 use_amulet = False
 pg_mode = True
+bloodrage=False
 exeta = False
 
 
@@ -124,6 +125,7 @@ hotkey_exeta = 'f6'
 #           MISC        `      #
 ################################
 min_cap_to_cont_hunt = 15
+pa_pause = 0.005
 filename = '124ek_arena_Yalahar_2'
 ServerLog_path = r'/home/bajsi/.local/share/CipSoft GmbH/Tibia/packages/Tibia/log/Server Log.txt'
 cap_region = (4737, 510, 40, 20)
