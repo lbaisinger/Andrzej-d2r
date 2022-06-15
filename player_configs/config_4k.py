@@ -85,7 +85,9 @@ use_amulet = False
 pg_mode = True
 bloodrage=False
 exeta = False
-
+status_check = False
+paralyze_check = True
+poison_check = False
 
 ################################
 #           HEAL & MANA `      #
@@ -108,6 +110,7 @@ hotkey_amulet = 'f9'
 hotkey_shovel = 'f8'
 hotkey_rope = 'f8'
 hotkey_bloodrage = 'b'
+hotkey_antidote = ''
 hotkey_exura = '2'
 hotkey_manapot = 'f4'
 hotkey_manaburn = 'f7'

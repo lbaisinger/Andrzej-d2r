@@ -92,6 +92,8 @@ def go(player=player,
         else:
             # NOT ON WP #
             # GO TO WP #
+            if config.status_check:
+                player.status_control()
             player.cave.do_go_wp(wp)
             player.eat_food(loop_count=iter)
     # MID-TIMING CHECK #
@@ -123,7 +125,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 1
+    nextwp = 6
     iteration = 1
     while True:
         print()

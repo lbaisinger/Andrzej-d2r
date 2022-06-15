@@ -57,7 +57,11 @@ class Gracz:
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
             # Case bloodrage only when multiple targets, waste to bloodrage single mob
-            if bloodrage and rotation_spell == 0:
+            if bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                          image_path='./src/status/boosted.png',
+                                                          scale=False):
+            # todo test new condition (only use bloodrage when attacking 2+ monster and NOT boosted already!
+            # if bloodrage and rotation_spell == 0:
                 pyautogui.press(config.hotkey_bloodrage)
                 sleep(0.05)
             pyautogui.press(config.rotation[rotation_spell])
@@ -121,6 +125,16 @@ class Gracz:
                 pyautogui.press(config.hotkey_manaburn)
                 print('>>>Mana burned!')
         return True
+
+    def status_control(self):
+        if config.paralyze_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_paralyze)
+        if config.poison_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_antidote)
 
     #@timing
     def eat_food(self, loop_count=1):

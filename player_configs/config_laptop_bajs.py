@@ -26,9 +26,12 @@ amulet_cv = (1745, 155, 1790, 200)
 use_ring = False
 use_amulet = False
 pg_mode = False
-bloodrage=False
+bloodrage = False
 exeta = False
 rush = False
+status_check = False
+paralyze_check = True
+poison_check = False
 rotation = ['r', 'f', 'r', 'g']
 
 ################################
@@ -68,7 +71,6 @@ hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 hotkey_haste = 'v'
 hotkey_exeta = 'x'
-
 
 ################################
 #           MISC        `      #
