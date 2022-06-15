@@ -47,7 +47,7 @@ class Gracz:
                 rotation_spell=1,
                 iteration=1):
         # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
-        if exeta and (iteration == 1 or iteration == 3):
+        if exeta and (rotation_spell == 1 or rotation_spell == 3):
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png') is not False:
                 pyautogui.press(config.hotkey_exeta)
@@ -92,13 +92,18 @@ class Gracz:
                     manahigh=config.hpmid):
         # pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
+        pot_used = False
         if hplow:
             if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
                 sleep(.15)
                 # to be double sure that hp pot is used
-                pyautogui.press(config.hotkey_hppot)
+                if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
+                                            image_path="./src/status/empty-bar.png") is not False:
+                    pyautogui.press(config.hotkey_hppot)
+                    sleep(.15)
+                pot_used = True
                 print('>>>Healed!')
             # else:
                 # print('Low HP ok.')
@@ -113,7 +118,7 @@ class Gracz:
         # Check for mana
         if manalow:
             if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
-                                        image_path="./src/status/empty-bar.png") is not False:
+                                        image_path="./src/status/empty-bar.png") is not False and not pot_used:
                 pyautogui.press(config.hotkey_manapot)
                 sleep(.15)
                 print('>>>Mana potion!')

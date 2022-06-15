@@ -48,7 +48,7 @@ hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = True
+manahigh = False
 
 ################################
 #           HOTKEYS     `      #
