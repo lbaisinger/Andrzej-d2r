@@ -89,7 +89,7 @@ def go(player=player,
                 if wps[wp] in ['rope', 'shovel', 'ladder']:
                     # IF SO GO WP TO BE EXTRA SURE
                     player.cave.do_go_wp(wp)  # to be extra sure
-                    sleep(0.5)  # give some time to go
+                    # sleep(1)  # give some time to go
                     # DO CUSTOM ACTION
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
@@ -99,9 +99,19 @@ def go(player=player,
                     if config.rush:
                         pyautogui.press(config.hotkey_haste)
                 else:
-                    wp += 1
-                    if config.rush:
-                        pyautogui.press(config.hotkey_haste)
+                    # INCREMENT
+                    # But only if next is in range - why incerement otherwise?
+                    if player.cave.is_wp_in_range(wp + 1):
+                        wp += 1
+                        if config.rush:
+                            pyautogui.press(config.hotkey_haste)
+            else:
+                # NOT ON WP, CHECK IF SPECIAL, MAYBE ROPED AND NEED TO FIND NEXT WP?
+                if wps[wp] in ['rope', 'shovel', 'ladder']:
+                    if player.cave.is_wp_in_range(wp + 1):  # MANDATORY! otherwise will only try once to e.g. rope (even
+                        # if wait 1 sec, for 8lvl Andrew this is not enough,
+                        # better to increment only when see next wp!!!
+                        wp += 1
             # GO TO WP #
             player.cave.do_go_wp(wp)
             player.eat_food(loop_count=iter)
@@ -140,7 +150,7 @@ def go(player=player,
 
 
 def loop():
-    nextwp = 1
+    nextwp = 2
     iteration = 1
     while True:
         print()
