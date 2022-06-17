@@ -1,114 +1,157 @@
-import PIL
+# global pkgs
+from time import time, sleep
 import pyautogui
 import datetime
-from time import sleep
-from utils import Backpack
-from utils import Other
-from cave import Cave
+# andrew pkgs
+import utils
+import cave
 from config_picker import *
 
 
 class Gracz:
 
     def __init__(self):
-        self.gracz = {}
-        self.monsterlist = []
-        self.backpack = Backpack()
-        self.other = Other()
-        self.cave = Cave()
+        # self.backpack = utils.Backpack()
+        self.cave = cave.Cave()
+        self.utils = utils.Utils()
         # Add pause after each pyautogui commands
-        pyautogui.PAUSE = 0.05
+        pyautogui.PAUSE = config.pa_pause
         print('loaded with config ', confname)
 
-    def get_avialable_slots(self):
-        # podaje ile jest dostepynch slotow w regionie na bp
-        # dziala ok
-        return len(self.backpack.get_avial_slots())
+    def timing(f):
+        def wrap(*args, **kwargs):
+            time1 = time()
+            ret = f(*args, **kwargs)
+            time2 = time()
+            print('DURATION {:<20s} {:.1f} ms'.format(
+                f.__name__, (time2 - time1) * 1000.0))
 
+            return ret
+
+        return wrap
+
+    #@timing
     def is_bije(self):
-        # sprawdza czy jest cos zaznaczonego czerwona ramke na redbox region
-        # dziala ok
-        timestamp = datetime.datetime.now()
-
-        img = PIL.Image.open('src/status/attacking.png')
-        img_size = img.size
-        rescaled_img = img.resize((img_size[0] * config.scale,
-                                   img_size[1] * config.scale))
-        if pyautogui.locateOnScreen(rescaled_img, region=config.redbox, confidence=.3) is None:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_bije F', looptime)
-            return False
-        else:
-            timestamp2 = datetime.datetime.now()
-            looptime = timestamp2 - timestamp
-            print('TIME is_bije T', looptime)
+        if self.utils.andrzej_szuka(region=config.redbox_cv,
+                                    image_path="./src/status/attacking.png",
+                                    confidence=0.3) is not False:
+            # print('STATUS - Bije')
             return True
+        else:
+            # print('is_bije False')
+            return False
 
-    def is_co_bic(self, target_list):
-        # sprawdza czy jest ktorys z potworow z monsterlisty
-        # dziala ok / nie dziala ok na 4k
-        # mozna usprawnic szukajac a e i o u
-        timestamp = datetime.datetime.now()
-        # check if there is smth to figtht
-        self.monsterlist = []
-        for j in target_list:
-            # print(pyautogui.locateOnScreen(str(j) + ".png", region=bw, confidence=.5))
-            if pyautogui.locateOnScreen("src/monsters/" + str(j) + ".png", region=config.bw, confidence=.9) is not None:
-                pyautogui.press('Esc')  # co by sie nie wpierdalal w 20 mobow zanim zacznie atakowac
-                timestamp2 = datetime.datetime.now()
-                looptime = timestamp2 - timestamp
-                print('TIME is_co_bic T', looptime)
-                return True
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME is_co_bic F', looptime)
-        return False
+    #@timing
+    def pg_mode(self, exeta=config.exeta,
+                bloodrage=config.bloodrage,
+                rotation_spell=1,
+                iteration=1):
+        # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
+        if exeta and (rotation_spell == 1 or rotation_spell == 3):
+            if self.utils.andrzej_szuka(region=config.bw_full,
+                                        image_path='./src/monsters/any.png',
+                                        confidence=config.is_co_bic_custom_confidence,
+                                        scale=False) is not False:
+                pyautogui.press(config.hotkey_exeta)
+                sleep(0.05)
+        if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
+                                    image_path='./src/monsters/any.png',
+                                    confidence=config.is_co_bic_custom_confidence,
+                                    scale=False) is not False:
+            # Case bloodrage only when multiple targets, waste to bloodrage single mob
+            if bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                          image_path='./src/status/boosted.png',
+                                                          scale=True):
+            # todo test new condition (only use bloodrage when attacking 2+ monster and NOT boosted already!
+            # if bloodrage and rotation_spell == 0:
+                pyautogui.press(config.hotkey_bloodrage)
+                sleep(0.05)
+            pyautogui.press(config.rotation[rotation_spell])
+            #print('aoe' + str(rotation_spell))
+        else:
+            pyautogui.press(config.hotkey_pg_single_spell_1)
+            #print('single spell 1')
+            sleep(0.1)
+            pyautogui.press(config.hotkey_pg_single_spell_2)
+            #print('single spell 2')
 
+    #@timing
+    def is_co_bic(self):
+        if self.utils.andrzej_szuka(region=config.bw_cv,
+                                    image_path='./src/monsters/any.png',
+                                    confidence=config.is_co_bic_custom_confidence,
+                                    scale=False) is not False:
+            #print('is_co_bic')
+            return True
+        else:
+            #print('is_co_bic False')
+            return False
 
+    #@timing
     def is_allright(self, hplow=config.hplow,
                     hpmid=config.hpmid,
                     manalow=config.hpmid,
                     manahigh=config.hpmid):
-        # sprawdza czy pixel w odpowiednim miejscu jest szary
-        # jak tak to wykonuje odpowiednia akcje
-        # dziala ok ale wolno
-        timestamp = datetime.datetime.now()
-        # print("Status check")
-        # print('eatin')
-        pyautogui.press(config.hotkey_food)
+        # pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
+        pot_used = False
         if hplow:
-            if pyautogui.pixelMatchesColor(int(config.hp_pool_potek[0]), int(config.hp_pool_potek[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
+            if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
+                                        image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
-                print("~~~Fully healed!~~~")
+                sleep(.15)
+                # to be double sure that hp pot is used
+                if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
+                                            image_path="./src/status/empty-bar.png") is not False:
+                    pyautogui.press(config.hotkey_hppot)
+                    sleep(.15)
+                pot_used = True
+                print('>>>Healed!')
+            # else:
+                # print('Low HP ok.')
         # Check for lesser healing (exura)
         if hpmid:
-            if pyautogui.pixelMatchesColor(int(config.hp_pool_exura[0]), int(config.hp_pool_exura[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
+            if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv,
+                                        image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_exura)
-                print("~~~Healed!~~~")
+                print('>>>Exura')
+            # else:
+                # print('Mid HP ok.')
         # Check for mana
         if manalow:
-            if pyautogui.pixelMatchesColor(int(config.mana_pool_potek[0]), int(config.mana_pool_potek[1]),
-                                           (40, 40, 40),
-                                           tolerance=10):
+            if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
+                                        image_path="./src/status/empty-bar.png") is not False and not pot_used:
                 pyautogui.press(config.hotkey_manapot)
-                print("~~~Mana restored!~~~")
-        if manahigh:
-            if pyautogui.pixelMatchesColor(int(config.burn_mana[0]), int(config.burn_mana[1]),
-                                           (0, 52, 116),
-                                           tolerance=10):
+                sleep(.15)
+                print('>>>Mana potion!')
+            # else:
+                # print('MP ok.')
+        if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
+            if not self.utils.andrzej_szuka(region=config.burn_mana_cv,
+                                            image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_manaburn)
-                print("~~~Mana Burned!~~~")
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME is_allright', looptime)
+                print('>>>Mana burned!')
         return True
 
+    def status_control(self):
+        if config.paralyze_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_paralyze)
+        if config.poison_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_antidote)
+        return True
+
+    #@timing
+    def eat_food(self, loop_count=1):
+        if loop_count % 3 == 0:
+            pyautogui.press(config.hotkey_food)
+            print('munch')
+            return True
+
+    #@timing
     def do_bank_deposit(self):
         # naciska 3 hotkeye w celu zdeponowac zloto
         # dziala ok
@@ -119,12 +162,16 @@ class Gracz:
         pyautogui.press(config.hotkey_yes)
         return True
 
+    #@timing
     def do_ressuply(self):
+        # zagregowana funkcja ressuply
+        # mozna tu dolozyc wiecej akcji jak potrzeba
         if self.do_bank_deposit():
             return True
         else:
             return False
 
+    #@timing
     def do_loot(self):
         # naciska shift + prawym na pola obok gracza
         # 1 2 3
@@ -137,25 +184,44 @@ class Gracz:
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale)  # 1
         pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
-        pyautogui.rightClick(config.character[0] - 60 * config.scale, config.character[1])  # 4
+        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1])  # 4
         pyautogui.rightClick(config.character[0], config.character[1])  # C
-        pyautogui.rightClick(config.character[0] + 60 * config.scale, config.character[1])  # 6
+        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1])  # 6
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
         pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] + 75 * config.scale)  # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
-        print('TIME LOOTING', looptime)
+        print('{:<30} {:<20.2f}'.format('TIME LOOT:', looptime.total_seconds()))
         return True
 
+    #@timing
     def do_bij(self):
         # naciska spacje i atakuje nast z battle window
         # dziala ok
-        timestamp = datetime.datetime.now()
         # print('fight')
         pyautogui.press('space')
-        timestamp2 = datetime.datetime.now()
-        looptime = timestamp2 - timestamp
-        print('TIME do_bij', looptime)
         return True
+
+    #@timing
+    def ring_control(self, ring_hotkey=config.hotkey_ring):
+        if self.utils.andrzej_szuka(region=config.ring_cv,
+                                    image_path='./src/items/ring_empty.png') is not False:
+            print("No ring, equipping new one.")
+            pyautogui.press(ring_hotkey)
+            return False
+        else:
+            #print("Ring equipped.")
+            return True
+
+    #@timing
+    def amulet_control(self, amulet_hotkey=config.hotkey_amulet):
+        if self.utils.andrzej_szuka(region=config.amulet_cv,
+                                    image_path='./src/items/amulet_empty.png') is not False:
+            print("No Amulet, equipping new one.")
+            pyautogui.press(amulet_hotkey)
+            return False
+        else:
+            #print("Amulet equipped.")
+            return True

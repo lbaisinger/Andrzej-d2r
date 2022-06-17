@@ -19,12 +19,13 @@ character = (765, 480)
 wp_center = (1805, 83)
 wp_center2 = (1805, 83)
 wp_center3 = (1806, 84)
+wp_center4 = (1804, 83)
 cap_region = (1832, 274, 25, 12)
 
 # todo fix below
-mana_pool_potek = (1676, 35)
-hp_pool_exura = (800, 35)
-hp_pool_potek = (380, 35)
+mana_pool_potek = (1270, 35)
+hp_pool_exura = (574, 35)
+hp_pool_potek = (360, 35)
 burn_mana = (830, 35)
 
 # heal if hp low with poton
@@ -32,7 +33,7 @@ hplow=True
 # heal if hp moderate with exura (another hotkey)
 hpmid=False
 # see if low mana and drink potion
-manalow=False
+manalow=True
 # see if too much mana and burn
 manahigh=True
 
@@ -51,7 +52,9 @@ hotkey_chase = '/'
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
+hotkey_exeta = 'x'
 
+is_co_bic_custom_confidence = 0.75
 
 ### Regions puchal 4k
 #bw = (4738, 480, 150, 130)

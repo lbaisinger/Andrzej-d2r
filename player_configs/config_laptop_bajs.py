@@ -1,67 +1,84 @@
-# todo move config to file
-### Config
+### CONFIG###
 
-# Regions for battle window (bw),
-# default mouse position (default),
-# minimap,
-# center of the minimap for reached wp (wp_center),
-# ring slot
-# todo fill more
-bw = (1747, 355, 120, 100)
-redbox = (1740, 350, 40, 100)
-minimap = (1745, 35, 120, 120)
-minimapplus = (1750, 30, 110, 700)
-backpack = (1566, 26, 160, 700)
-ring = (1755, 250, 25, 25)
+################################
+#           REGIONS            #
+################################
+ring = (1745, 230, 45, 45)
+amulet = (1745, 155, 45, 45)
 default = (1550, 300)
-character = (870, 495)
+character = (870, 485)
+status_bar = (1750, 290, 1860, 310)
+hp_pool_potek_cv = (570, 30, 595, 50)
+hp_pool_exura_cv = (820, 30, 845, 50)
+# hp_pool_exura_cv = (700, 30, 730, 50)
+mana_pool_potek_cv = (980, 30, 1010, 50)
+# mana_pool_potek_cv = (1200, 30, 1230, 50)
+burn_mana_cv = (890, 30, 915, 50)
+bw_cv = (1770, 355, 1820, 365)
+bw_2nd_cv = (1770, 370, 1820, 400)
+bw_full = (1760, 345, 1820, 475)
+# redbox_cv = (1740, 350, 1780, 470)
+redbox_cv = (1740, 350, 1780, 380)
+minimap_center_cv = (1800, 83, 1812, 95)
+minimap_cv = (1745, 35, 1865, 155)
+ring_cv = (1745, 230, 1790, 275)
+amulet_cv = (1745, 155, 1790, 200)
 
-# # WP Center at zoom 2
-# wp_center = (1804, 92)
-# wp_center2 = (1805, 92)
-# wp_center3 = (1807, 93)
-# wp_center4 = (1806, 92)
+################################
+#           BATTLE             #
+################################
+use_ring = True
+use_amulet = False
+pg_mode = True
+bloodrage = True
+exeta = True
+rush = True
+status_check = False
+paralyze_check = False
+poison_check = False
+rotation = ['r', 'f', 'r', 'g']
 
-# # WP Center at zoom 3 (max)
-wp_center = (1806, 91)
-wp_center2 = (1805, 92)
-wp_center3 = (1806, 91)
-wp_center4 = (1806, 92)
-
-ServerLog_rightclick = (340, 1000)
-ServerLog_SaveWnd = (380, 1045)
-mana_pool_potek = (1320, 45)
-hp_pool_exura = (650, 45)
-hp_pool_potek = (450, 45)
-burn_mana = (910, 45)
-# is allright conf
-# less you turn off
-# faster it goes
-scale = 1
+################################
+#           HEAL & MANA        #
+################################
 # heal if hp low with poton
-hplow=True
-# heal if hp moderate with exura (another hotkey)
-hpmid=True
+hplow = True
+# heal if hp moderate with exura
+hpmid = True
 # see if low mana and drink potion
-manalow=True
+manalow = True
 # see if too much mana and burn
-manahigh=True
+manahigh = False
 
-min_cap_to_cont_hunt = 15
-
-ring_to_equip = 'sword_ring'
-# hotkeys
-# Rings
+################################
+#           HOTKEYS     `      #
+################################
 hotkey_ring = 'f3'
+hotkey_runemaker = 'f12'
+hotkey_bloodrage = 'b'
+hotkey_antidote = ''
+hotkey_paralyze = '1'
+hotkey_amulet = 'f5'
 hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'
 hotkey_manapot = 'f2'
-hotkey_manaburn = '2'
+hotkey_manaburn = 'v'
 hotkey_hppot = 'f1'
 hotkey_food = 'f4'
-hotkey_chase = '/'
+hotkey_pg_single_spell_1 = '3'
+hotkey_pg_single_spell_2 = '4'
+hotkey_pg_area_spell_1 = 'r'
+hotkey_pg_area_spell_2 = 'f'
 hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
+hotkey_haste = 'v'
+hotkey_exeta = 'x'
 
+################################
+#           MISC        `      #
+################################
+scale = 1
+pa_pause = 0.02
+is_co_bic_custom_confidence = 0.75
