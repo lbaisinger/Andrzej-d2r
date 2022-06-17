@@ -15,7 +15,7 @@ class Gracz:
         self.cave = cave.Cave()
         self.utils = utils.Utils()
         # Add pause after each pyautogui commands
-        pyautogui.PAUSE = 0.005
+        pyautogui.PAUSE = config.pa_pause
         print('loaded with config ', confname)
 
     def timing(f):
@@ -43,10 +43,11 @@ class Gracz:
 
     #@timing
     def pg_mode(self, exeta=config.exeta,
+                bloodrage=config.bloodrage,
                 rotation_spell=1,
                 iteration=1):
-        # exeta every 2nd turn, change modulo divider (default '2') to change number of turns (e. g. % 3 == 0)
-        if exeta and iteration % 2 == 0:
+        # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
+        if exeta and (rotation_spell == 1 or rotation_spell == 3):
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png') is not False:
                 pyautogui.press(config.hotkey_exeta)
@@ -55,6 +56,14 @@ class Gracz:
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
+            # Case bloodrage only when multiple targets, waste to bloodrage single mob
+            if bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                          image_path='./src/status/boosted.png',
+                                                          scale=False):
+            # todo test new condition (only use bloodrage when attacking 2+ monster and NOT boosted already!
+            # if bloodrage and rotation_spell == 0:
+                pyautogui.press(config.hotkey_bloodrage)
+                sleep(0.05)
             pyautogui.press(config.rotation[rotation_spell])
             #print('aoe' + str(rotation_spell))
         else:
@@ -83,13 +92,18 @@ class Gracz:
                     manahigh=config.hpmid):
         # pyautogui.press(config.hotkey_food)
         # Check for serious healing (potion)
+        pot_used = False
         if hplow:
             if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
                                         image_path="./src/status/empty-bar.png") is not False:
                 pyautogui.press(config.hotkey_hppot)
                 sleep(.15)
                 # to be double sure that hp pot is used
-                pyautogui.press(config.hotkey_hppot)
+                if self.utils.andrzej_szuka(region=config.hp_pool_potek_cv,
+                                            image_path="./src/status/empty-bar.png") is not False:
+                    pyautogui.press(config.hotkey_hppot)
+                    sleep(.15)
+                pot_used = True
                 print('>>>Healed!')
             # else:
                 # print('Low HP ok.')
@@ -104,7 +118,7 @@ class Gracz:
         # Check for mana
         if manalow:
             if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
-                                        image_path="./src/status/empty-bar.png") is not False:
+                                        image_path="./src/status/empty-bar.png") is not False and not pot_used:
                 pyautogui.press(config.hotkey_manapot)
                 sleep(.15)
                 print('>>>Mana potion!')
@@ -116,6 +130,16 @@ class Gracz:
                 pyautogui.press(config.hotkey_manaburn)
                 print('>>>Mana burned!')
         return True
+
+    def status_control(self):
+        if config.paralyze_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_paralyze)
+        if config.poison_check:
+            if self.utils.andrzej_szuka(region=config.status_bar,
+                                        image_path='./src/status/paralyze.png'):
+                pyautogui.press(config.hotkey_antidote)
 
     #@timing
     def eat_food(self, loop_count=1):
@@ -157,9 +181,9 @@ class Gracz:
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale)  # 1
         pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
-        pyautogui.rightClick(config.character[0] - 60 * config.scale, config.character[1])  # 4
+        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1])  # 4
         pyautogui.rightClick(config.character[0], config.character[1])  # C
-        pyautogui.rightClick(config.character[0] + 60 * config.scale, config.character[1])  # 6
+        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1])  # 6
         pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
         pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
         pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] + 75 * config.scale)  # 9
