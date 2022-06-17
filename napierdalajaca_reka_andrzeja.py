@@ -27,12 +27,6 @@ def go(player=player,
         # YES #
         # PG MODE #
         if config.pg_mode:
-            timestamp_3 = datetime.datetime.now()
-            looptime_3 = timestamp_3 - timestamp
-            print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
-            if looptime_3.total_seconds() < 0.6:
-                sleep(0.6 - looptime_3.total_seconds())
-                print('Sleeping {:.3f} seconds...'.format(0.6 - looptime_3.total_seconds(), ''))
             player.pg_mode(exeta=config.exeta,
                            rotation_spell=rotation_iteration,
                            iteration=iter)
