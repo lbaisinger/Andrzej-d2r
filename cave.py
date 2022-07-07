@@ -95,10 +95,12 @@ class Cave:
             return True
         if specials[wp] == 'shovel':
             self.use_shovel()
-            return True
+            if self.is_wp_in_range(wp+1):
+                return True
         if specials[wp] == 'ladder':
             self.use_ladder()
-            return True
+            if self.is_wp_in_range(wp+1):
+                return True
         if specials[wp] == 'turtle':
             pyautogui.press('s')
             return True

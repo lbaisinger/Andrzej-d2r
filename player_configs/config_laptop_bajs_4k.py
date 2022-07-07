@@ -7,10 +7,10 @@
 default = (1835, 300)
 character = (1000, 640)
 status_bar = (2030, 290, 2140, 310)
-mana_pool_potek_cv = (1200, 30, 1230, 50)
-# mana_pool_potek_cv = (1600, 30, 1625, 50)
-hp_pool_exura_cv = (960, 30, 980, 50)
-# hp_pool_exura_cv = (860, 30, 880, 50)
+# mana_pool_potek_cv = (1200, 30, 1230, 50)
+mana_pool_potek_cv = (1600, 30, 1625, 50)
+# hp_pool_exura_cv = (960, 30, 980, 50)
+hp_pool_exura_cv = (860, 30, 880, 50)
 hp_pool_potek_cv = (650, 30, 675, 50)
 burn_mana_cv = (1050, 30, 1075, 50)
 mana_runes = (1750, 30, 1775, 50)
@@ -36,7 +36,9 @@ rush = False
 status_check = False
 paralyze_check = False
 poison_check = False
-rotation = ['r', 'f', 'r', 'g']
+# rotation = ['r', 'f', 'r', 'g']
+rotation = ['3', '4']
+rotation_single = ['']
 
 ################################
 #           HEAL & MANA        #

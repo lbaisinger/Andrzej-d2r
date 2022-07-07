@@ -202,6 +202,7 @@ class Gracz:
         # dziala ok
         # print('fight')
         pyautogui.press('space')
+        sleep(0.1)
         return True
 
     #@timing

@@ -2,41 +2,35 @@ from gracz import *
 
 player = Gracz()
 global rotation_iteration
-
+global single_rotation_iteration
 
 def go(player=player,
        wp=1,
        iter=1,
        ring=config.use_ring,
        amulet=config.use_amulet):  # , rotation_iteration=1
+
     # LOOP START #
-    global rotation_iteration
     timestamp = datetime.datetime.now()
+
+    global rotation_iteration
+    global single_rotation_iteration
     if rotation_iteration >= len(config.rotation):
         #print(rotation_iteration)
         rotation_iteration = 0
+    if single_rotation_iteration >= len(config.rotation_single):
+        #print(rotation_iteration)
+        single_rotation_iteration = 0
+
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow,
                        hpmid=config.hpmid,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
-    # ATTACKING? #
-    if player.is_bije():
-        # YES #
-        # PG MODE #
-        if config.pg_mode:
-            timestamp_3 = datetime.datetime.now()
-            looptime_3 = timestamp_3 - timestamp
-            print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
-            if looptime_3.total_seconds() < 0.6:
-                sleep(0.6 - looptime_3.total_seconds())
-                print('Sleeping {:.3f} seconds...'.format(0.6 - looptime_3.total_seconds(), ''))
-            player.pg_mode(exeta=config.exeta,
-                           rotation_spell=rotation_iteration,
-                           iteration=iter)
-            rotation_iteration += 1
-    else:
+    # ATTACK OR WP ? #
+    if not player.is_bije():
         # NOT ATTACKING #
+        print('nie bije')
         # IF NOT ON2 WP CUZ ITS LVL CHANGER
         if wps[wp] == 'lvl_changing_wp':
             # CHEK IF NEXT ONE IS IN RANGE
@@ -46,28 +40,18 @@ def go(player=player,
         # IS ON WP? #
         if player.cave.is_on_wp(wp):
             # YES #
+            # print('is on wp')
             # ARE THERE MOSNTERS? #
             if player.is_co_bic():
                 # YES #
                 # ATTACK #
                 player.do_bij()
-                # PG MODE #
-                if config.pg_mode:
-                    timestamp_4 = datetime.datetime.now()
-                    looptime_4 = timestamp_4 - timestamp
-                    print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_4.total_seconds()))
-                    if looptime_4.total_seconds() < 0.5:
-                        sleep(0.5 - looptime_4.total_seconds())
-                        print('Sleeping {:.3f} seconds...'.format(0.5 - looptime_4.total_seconds(), ''))
-                    player.pg_mode(exeta=config.exeta,
-                                   rotation_spell=rotation_iteration,
-                                   iteration=iter)
-                    rotation_iteration += 1
             else:
                 # NO MONSTERS #
                 # LOOT #
                 player.do_loot()
                 rotation_iteration = 0
+                single_rotation_iteration = 0
                 # IS ON WP? #
                 if player.cave.is_on_wp(wp):
                     # DOES WP NEEDS EXTRA ACTION?
@@ -96,6 +80,7 @@ def go(player=player,
                 player.status_control()
             player.cave.do_go_wp(wp)
             player.eat_food(loop_count=iter)
+
     # MID-TIMING CHECK #
     timestamp_2 = datetime.datetime.now()
     looptime_2 = timestamp_2 - timestamp
@@ -104,8 +89,30 @@ def go(player=player,
         sleep(1.1 - looptime_2.total_seconds())
         print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_2.total_seconds(), ''))
     # STATUS CHECK 2 #
-    player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
+    player.is_allright(hplow=config.hplow,
+                       hpmid=config.hpmid,
+                       manahigh=config.manahigh,
                        manalow=config.manalow)
+
+    # ATTACKING? #
+    if player.is_bije():
+        # YES #
+        # PG MODE #
+        if config.pg_mode:
+            timestamp_3 = datetime.datetime.now()
+            looptime_3 = timestamp_3 - timestamp
+            print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
+            if looptime_3.total_seconds() < 1.5:
+                sleep(1.5 - looptime_3.total_seconds())
+                print('Sleeping {:.3f} seconds...'.format(1.5 - looptime_3.total_seconds(), ''))
+            player.pg_mode(exeta=config.exeta,
+                           rotation_spell=rotation_iteration,
+                           single_spell=single_rotation_iteration,
+                           iteration=iter)
+            rotation_iteration += 1
+            single_rotation_iteration += 1
+
+    # UTILS CHECK
     if ring:
         player.ring_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
@@ -136,5 +143,6 @@ def loop():
 
 
 rotation_iteration = 0
+single_rotation_iteration = 0
 pyautogui.click(config.default)
 loop()
