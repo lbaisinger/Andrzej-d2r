@@ -44,36 +44,37 @@ class Gracz:
     #@timing
     def pg_mode(self, exeta=config.exeta,
                 bloodrage=config.bloodrage,
-                rotation_spell=1,
+                rotation_spell=0,
+                single_spell=0,
                 iteration=1):
-        # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
-        if exeta and (rotation_spell == 1 or rotation_spell == 3):
+        # exeta on turn 1 and 3 (no point exeta at start, better start with bloodrage and exeta before exori gran,
+        # i.e. iteration == 1)
+        if exeta and (rotation_spell == 0 or rotation_spell == 2):
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png',
                                         confidence=config.is_co_bic_custom_confidence,
                                         scale=False) is not False:
                 pyautogui.press(config.hotkey_exeta)
-                sleep(0.05)
+                sleep(0.1)
+        elif bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                      image_path='./src/status/boosted.png',
+                                                      scale=True):
+            pyautogui.press(config.hotkey_bloodrage)
+            sleep(0.1)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
             # Case bloodrage only when multiple targets, waste to bloodrage single mob
-            if bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
-                                                          image_path='./src/status/boosted.png',
-                                                          scale=True):
-            # todo test new condition (only use bloodrage when attacking 2+ monster and NOT boosted already!
-            # if bloodrage and rotation_spell == 0:
-                pyautogui.press(config.hotkey_bloodrage)
-                sleep(0.05)
+            # sleep(0.1)
             pyautogui.press(config.rotation[rotation_spell])
+            # sleep(0.1)
             #print('aoe' + str(rotation_spell))
         else:
-            pyautogui.press(config.hotkey_pg_single_spell_1)
+            # sleep(0.1)
+            pyautogui.press(config.rotation_single[single_spell])
             #print('single spell 1')
-            sleep(0.1)
-            pyautogui.press(config.hotkey_pg_single_spell_2)
-            #print('single spell 2')
+            # sleep(0.1)
 
     #@timing
     def is_co_bic(self):

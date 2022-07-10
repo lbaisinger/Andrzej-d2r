@@ -66,10 +66,12 @@ def go(player=player,
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
                         if config.rush:
+                            sleep(1)
                             pyautogui.press(config.hotkey_haste)
                     else:
                         wp += 1
                         if config.rush:
+                            sleep(1)
                             pyautogui.press(config.hotkey_haste)
                 # GO TO NEXT WP #
                 player.cave.do_go_wp(wp)
@@ -115,7 +117,7 @@ def go(player=player,
     # UTILS CHECK
     if ring:
         player.ring_control()
-        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit
+        sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit2
     if amulet:
         player.amulet_control()
         sleep(0.2)  # bot is too fast for Frodo to put his ring on, need to sleep a bit

@@ -68,6 +68,7 @@ exeta = True
 status_check = False
 paralyze_check = False
 poison_check = False
+rotation_single = ['']
 
 ################################
 #           HEAL & MANA `      #
