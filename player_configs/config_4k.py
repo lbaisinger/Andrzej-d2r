@@ -11,6 +11,7 @@ ring = (4583, 424, 60, 60)
 amulet = (4598, 440, 35, 35)
 default = (3000, 870)
 character = (3000, 870)
+sqm_edge_length_px = 75
 
 
 mana_pool_potek = (3350, 13, 3350+32, 13+32)
@@ -18,7 +19,8 @@ hp_pool_exura = (2738, 13, 2738+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
 #rotation = ['3', 'r', '4', 'r']
-rotation = ['r', 'f', 'r', 'g']
+rotation_multiple = ['r', 'f', 'r', 'g']
+rotation_single = ['r']
 #rotation = ['3', '4', '3', '4']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
@@ -68,6 +70,7 @@ exeta = True
 status_check = False
 paralyze_check = False
 poison_check = False
+rotation_single = ['']
 
 ################################
 #           HEAL & MANA `      #

@@ -11,11 +11,15 @@ def go(player=player,
     # LOOP START #
     global tryb_walki
     global rotation_iteration
+    global single_rotation_iteration
     timestamp = datetime.datetime.now()
 
     if rotation_iteration >= len(config.rotation):
-        print(rotation_iteration)
+        #print(rotation_iteration)
         rotation_iteration = 0
+    if single_rotation_iteration >= len(config.rotation_single):
+        #print(rotation_iteration)
+        single_rotation_iteration = 0
 
     # STATUS CHECK 1 #
     player.is_allright(hplow=config.hplow,
@@ -24,6 +28,8 @@ def go(player=player,
                        manalow=config.manalow)
     global tryb_walki
 
+    if config.status_check:
+        player.status_control()
     # check if next wp even exists
     if wp + 1 in wps.keys():
         # if so check if next wp is turtle one and if standing on it
@@ -46,12 +52,6 @@ def go(player=player,
         # YES #
         if not tryb_walki:
             tryb_walki = True
-        # PG MODE #
-        if config.pg_mode:
-            player.pg_mode(exeta=config.exeta,
-                           rotation_spell=rotation_iteration,
-                           iteration=iter)
-            rotation_iteration += 1
     else:
         # NOT ATTACKING #
         # JUST FINISED ATTACKING?
@@ -65,17 +65,12 @@ def go(player=player,
             player.do_bij()
             if not tryb_walki:
                 tryb_walki = True
-            # PG MODE #
-            if config.pg_mode:
-                player.pg_mode(exeta=config.exeta,
-                               rotation_spell=rotation_iteration,
-                               iteration=iter)
-                rotation_iteration += 1
         else:
             # NO MONSTERS #
             # global tryb_walki
             tryb_walki = False
             rotation_iteration = 0
+            single_rotation_iteration = 0
 
             # IF NOT ON2 WP CUZ ITS LVL CHANGER
             if wps[wp] == 'lvl_changing_wp':
@@ -117,18 +112,38 @@ def go(player=player,
             player.eat_food(loop_count=iter)
 
     # MID-TIMING CHECK #
-    timestamp_4 = datetime.datetime.now()
-    looptime_4 = timestamp_4 - timestamp
-    print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_4.total_seconds()))
-    if looptime_4.total_seconds() < 1.1:
-        sleep(1.1 - looptime_4.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_4.total_seconds(), ''))
+    timestamp_2 = datetime.datetime.now()
+    looptime_2 = timestamp_2 - timestamp
+    print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_2.total_seconds()))
+    if looptime_2.total_seconds() <= 1.16:
+        sleep(1.16 - looptime_2.total_seconds())
+        print('Sleeping {:.3f} seconds...'.format(1.16 - looptime_2.total_seconds(), ''))
 
     # STATUS CHECK 2 #
     player.is_allright(hplow=config.hplow,
                        hpmid=config.hpmid,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
+    if player.is_bije():
+        # YES #
+        if not tryb_walki:
+            tryb_walki = True
+        # PG MODE #
+        if config.pg_mode:
+            timestamp_3 = datetime.datetime.now()
+            looptime_3 = timestamp_3 - timestamp
+            print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
+            if looptime_3.total_seconds() < 1.56:
+                sleep(1.56 - looptime_3.total_seconds())
+                print('Sleeping {:.3f} seconds...'.format(1.56 - looptime_3.total_seconds(), ''))
+            targets = player.pg_mode(exeta=config.exeta,
+                                     rotation_spell=multiple_rotation_iteration,
+                                     single_spell=single_rotation_iteration,
+                                     iteration=iter)
+            if targets == 'multiple':
+                multiple_rotation_iteration += 1
+            elif targets == 'single':
+                single_rotation_iteration += 1
 
     if ring:
         player.ring_control()
@@ -141,19 +156,20 @@ def go(player=player,
     timestamp_end = datetime.datetime.now()
     looptime_end = timestamp_end - timestamp
     print('{:<30} {:<20.2f}'.format('END-TIMING CHECK:', looptime_end.total_seconds()))
-    if looptime_end.total_seconds() < 2.16:
-        sleep(2.16 - looptime_end.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(2.16 - looptime_end.total_seconds()))
+    if looptime_end.total_seconds() < 2.2:
+        sleep(2.2 - looptime_end.total_seconds())
+        print('Sleeping {:.3f} seconds...'.format(2.2 - looptime_end.total_seconds()))
     print()
     # LOOP END #
     return wp
 
 
 def loop():
-    nextwp = 2
+    nextwp = 1
     iteration = 1
     while True:
         print()
+
         print('{:<30} {:<20d}'.format('Starting loop', iteration))
         print('{:<30} {:<20d}'.format('Going to wp:', nextwp))
         nextwp = go(wp=nextwp,
@@ -161,6 +177,7 @@ def loop():
         iteration += 1
 
 
+single_rotation_iteration = 0
 rotation_iteration = 0
 tryb_walki = False
 pyautogui.click(config.default)

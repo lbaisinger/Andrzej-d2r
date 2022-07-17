@@ -9,15 +9,15 @@ default = (1550, 300)
 character = (870, 485)
 status_bar = (1750, 290, 1860, 310)
 hp_pool_potek_cv = (570, 30, 595, 50)
-hp_pool_exura_cv = (820, 30, 845, 50)
-# hp_pool_exura_cv = (700, 30, 730, 50)
-mana_pool_potek_cv = (980, 30, 1010, 50)
-# mana_pool_potek_cv = (1200, 30, 1230, 50)
+# hp_pool_exura_cv = (820, 30, 845, 50)
+hp_pool_exura_cv = (700, 30, 730, 50)
+# mana_pool_potek_cv = (980, 30, 1010, 50)
+mana_pool_potek_cv = (1300, 30, 1330, 50)
 burn_mana_cv = (890, 30, 915, 50)
 bw_cv = (1770, 355, 1820, 365)
 bw_2nd_cv = (1770, 370, 1820, 400)
 bw_full = (1760, 345, 1820, 530)
-redbox_cv = (1740, 350, 1780, 520)
+redbox_cv = (1740, 350, 1780, 470)
 # redbox_cv = (1740, 350, 1780, 370)
 minimap_center_cv = (1800, 83, 1812, 95)
 minimap_cv = (1745, 35, 1865, 155)
@@ -28,17 +28,21 @@ sqm_edge_length_px = 75
 ################################
 #           BATTLE             #
 ################################
-use_ring = True
+use_ring = False
 use_amulet = False
-pg_mode = True
-bloodrage = True
+pg_mode = False
+bloodrage = False
 exeta = False
-rush = True
-status_check = True
+rush = False
+status_check = False
 paralyze_check = True
 poison_check = False
-rotation_multiple = ['r', 'f', 'r', 'g']
-rotation_single = ['3', '4', 'r']
+# EK #
+# rotation = ['r', 'f', 'r', 'g']
+# rotation_single = ['3', '4', 'r']
+# MS #
+rotation_multiple = ['3', '4']
+rotation_single = ['3', '4']
 
 ################################
 #           HEAL & MANA        #
@@ -50,7 +54,7 @@ hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = False
+manahigh = True
 
 ################################
 #           HOTKEYS     `      #
@@ -65,7 +69,7 @@ hotkey_shovel = 'f7'
 hotkey_rope = 'f8'
 hotkey_exura = '2'
 hotkey_manapot = 'f2'
-hotkey_manaburn = 'v'
+hotkey_manaburn = 'f12'
 hotkey_hppot = 'f1'
 hotkey_food = 'f4'
 hotkey_pg_single_spell_1 = '3'
@@ -83,4 +87,4 @@ hotkey_exeta = 'x'
 ################################
 scale = 1
 pa_pause = 0.02
-is_co_bic_custom_confidence = 0.7
+is_co_bic_custom_confidence = 0.75

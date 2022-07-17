@@ -34,7 +34,7 @@ class Gracz:
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
-                                    confidence=0.3) is not False:
+                                    confidence=0.25) is not False:
             # print('STATUS - Bije')
             return True
         else:
@@ -44,36 +44,36 @@ class Gracz:
     #@timing
     def pg_mode(self, exeta=config.exeta,
                 bloodrage=config.bloodrage,
-                rotation_spell=1,
+                rotation_spell=0,
+                single_spell=0,
                 iteration=1):
-        # exeta on turn 1 and 3 (no point exeta at start, better before exori gran, i.e. iteration == 1)
-        if exeta and (rotation_spell == 1 or rotation_spell == 3):
+        # exeta on turn 1 and 3 (no point exeta at start, better start with bloodrage and exeta before exori gran,
+        # i.e. iteration == 1)
+        if exeta and (rotation_spell == 0 or rotation_spell == 2):
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png',
                                         confidence=config.is_co_bic_custom_confidence,
                                         scale=False) is not False:
                 pyautogui.press(config.hotkey_exeta)
-                sleep(0.05)
+                sleep(0.1)
+        elif bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                      image_path='./src/status/boosted.png',
+                                                      scale=True):
+            pyautogui.press(config.hotkey_bloodrage)
+            sleep(0.1)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
-            # Case bloodrage only when multiple targets, waste to bloodrage single mob
-            if bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
-                                                          image_path='./src/status/boosted.png',
-                                                          scale=True):
-            # todo test new condition (only use bloodrage when attacking 2+ monster and NOT boosted already!
-            # if bloodrage and rotation_spell == 0:
-                pyautogui.press(config.hotkey_bloodrage)
-                sleep(0.05)
-            pyautogui.press(config.rotation[rotation_spell])
-            #print('aoe' + str(rotation_spell))
+             # MULTIPLE TARGETS #
+             pyautogui.press(config.rotation_multiple[rotation_spell])
+             #print('aoe' + str(rotation_spell))
+             return 'multiple'
         else:
-            pyautogui.press(config.hotkey_pg_single_spell_1)
+            # SINGLE TARGET #
+            pyautogui.press(config.rotation_single[single_spell])
             #print('single spell 1')
-            sleep(0.1)
-            pyautogui.press(config.hotkey_pg_single_spell_2)
-            #print('single spell 2')
+            return 'single'
 
     #@timing
     def is_co_bic(self):
@@ -181,15 +181,19 @@ class Gracz:
         timestamp = datetime.datetime.now()
         # print('looting')
         pyautogui.keyDown('Shift')
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale)  # 1
-        pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1])  # 4
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1] - 75 *
+                             config.scale)  # 1
+        pyautogui.rightClick(config.character[0], config.character[1] - config.sqm_edge_length_px * config.scale)  # 2
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1] -
+                             config.sqm_edge_length_px * config.scale)  # 3
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1])  # 4
         pyautogui.rightClick(config.character[0], config.character[1])  # C
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1])  # 6
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
-        pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] + 75 * config.scale)  # 9
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1])  # 6
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1] +
+                             config.sqm_edge_length_px * config.scale)  # 7
+        pyautogui.rightClick(config.character[0], config.character[1] + config.sqm_edge_length_px * config.scale)  # 8
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1] +
+                             config.sqm_edge_length_px * config.scale)  # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp
@@ -202,6 +206,7 @@ class Gracz:
         # dziala ok
         # print('fight')
         pyautogui.press('space')
+        sleep(0.1)
         return True
 
     #@timing
