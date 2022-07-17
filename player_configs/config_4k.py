@@ -20,7 +20,7 @@ hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
 #rotation = ['3', 'r', '4', 'r']
 rotation_multiple = ['r', 'f', 'r', 'g']
-rotation_single = ['r']
+#rotation_single = ['r']
 #rotation = ['3', '4', '3', '4']
 # openCV
 mana_pool_potek_cv = mana_pool_potek
@@ -70,7 +70,7 @@ exeta = True
 status_check = False
 paralyze_check = False
 poison_check = False
-rotation_single = ['']
+rotation_single = ['3', '4', 'r']
 
 ################################
 #           HEAL & MANA `      #
