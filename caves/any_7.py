@@ -1,13 +1,13 @@
 ##################
 ### Cavebot config
 ###
-### Any 5 wp
+### Any 7 wp
 ###
 ###
 ### Hall of fame:
 ###
 
-cave_name = "Any 5"
+cave_name = "Any 7"
 ### Waypoints
 
 # start waypoint
