@@ -4,6 +4,7 @@ player = Gracz()
 global rotation_iteration
 global single_rotation_iteration
 
+
 def go(player=player,
        wp=1,
        iter=1,
@@ -13,13 +14,13 @@ def go(player=player,
     # LOOP START #
     timestamp = datetime.datetime.now()
 
-    global rotation_iteration
+    global multiple_rotation_iteration
     global single_rotation_iteration
-    if rotation_iteration >= len(config.rotation):
-        #print(rotation_iteration)
-        rotation_iteration = 0
+    if multiple_rotation_iteration >= len(config.rotation_multiple):
+        # print(rotation_iteration)
+        multiple_rotation_iteration = 0
     if single_rotation_iteration >= len(config.rotation_single):
-        #print(rotation_iteration)
+        # print(rotation_iteration)
         single_rotation_iteration = 0
 
     # STATUS CHECK 1 #
@@ -87,9 +88,9 @@ def go(player=player,
     timestamp_2 = datetime.datetime.now()
     looptime_2 = timestamp_2 - timestamp
     print('{:<30} {:<20.2f}'.format('MID-TIMING CHECK:', looptime_2.total_seconds()))
-    if looptime_2.total_seconds() <= 1.1:
-        sleep(1.1 - looptime_2.total_seconds())
-        print('Sleeping {:.3f} seconds...'.format(1.1 - looptime_2.total_seconds(), ''))
+    if looptime_2.total_seconds() <= 1.16:
+        sleep(1.16 - looptime_2.total_seconds())
+        print('Sleeping {:.3f} seconds...'.format(1.16 - looptime_2.total_seconds(), ''))
     # STATUS CHECK 2 #
     player.is_allright(hplow=config.hplow,
                        hpmid=config.hpmid,
@@ -104,15 +105,17 @@ def go(player=player,
             timestamp_3 = datetime.datetime.now()
             looptime_3 = timestamp_3 - timestamp
             print('{:<30} {:<20.2f}'.format('PG-MODE CHECK:', looptime_3.total_seconds()))
-            if looptime_3.total_seconds() < 1.5:
-                sleep(1.5 - looptime_3.total_seconds())
-                print('Sleeping {:.3f} seconds...'.format(1.5 - looptime_3.total_seconds(), ''))
-            player.pg_mode(exeta=config.exeta,
-                           rotation_spell=rotation_iteration,
-                           single_spell=single_rotation_iteration,
-                           iteration=iter)
-            rotation_iteration += 1
-            single_rotation_iteration += 1
+            if looptime_3.total_seconds() < 1.56:
+                sleep(1.56 - looptime_3.total_seconds())
+                print('Sleeping {:.3f} seconds...'.format(1.56 - looptime_3.total_seconds(), ''))
+            targets = player.pg_mode(exeta=config.exeta,
+                                     rotation_spell=multiple_rotation_iteration,
+                                     single_spell=single_rotation_iteration,
+                                     iteration=iter)
+            if targets == 'multiple':
+                multiple_rotation_iteration += 1
+            elif targets == 'single':
+                single_rotation_iteration += 1
 
     # UTILS CHECK
     if ring:
@@ -144,7 +147,7 @@ def loop():
         iteration += 1
 
 
-rotation_iteration = 0
+multiple_rotation_iteration = 0
 single_rotation_iteration = 0
 pyautogui.click(config.default)
 loop()

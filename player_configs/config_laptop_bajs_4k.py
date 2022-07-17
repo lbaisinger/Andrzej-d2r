@@ -29,7 +29,7 @@ sqm_edge_length_px = 100
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = True
+pg_mode = False
 bloodrage = False
 exeta = False
 rush = False
@@ -37,7 +37,7 @@ status_check = True
 paralyze_check = True
 poison_check = False
 # rotation = ['r', 'f', 'r', 'g']
-rotation = ['3', '4']
+rotation_multiple = ['3', '4']
 rotation_single = ['3', '4']
 
 ################################

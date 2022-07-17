@@ -41,7 +41,7 @@ poison_check = False
 # rotation = ['r', 'f', 'r', 'g']
 # rotation_single = ['3', '4', 'r']
 # MS #
-rotation = ['3', '4']
+rotation_multiple = ['3', '4']
 rotation_single = ['3', '4']
 
 ################################

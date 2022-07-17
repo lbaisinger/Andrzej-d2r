@@ -65,16 +65,15 @@ class Gracz:
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
-            # Case bloodrage only when multiple targets, waste to bloodrage single mob
-            # sleep(0.1)
-            pyautogui.press(config.rotation[rotation_spell])
-            # sleep(0.1)
-            #print('aoe' + str(rotation_spell))
+             # MULTIPLE TARGETS #
+             pyautogui.press(config.rotation_multiple[rotation_spell])
+             #print('aoe' + str(rotation_spell))
+             return 'multiple'
         else:
-            # sleep(0.1)
+            # SINGLE TARGET #
             pyautogui.press(config.rotation_single[single_spell])
             #print('single spell 1')
-            # sleep(0.1)
+            return 'single'
 
     #@timing
     def is_co_bic(self):

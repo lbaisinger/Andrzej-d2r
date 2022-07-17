@@ -37,7 +37,7 @@ rush = True
 status_check = True
 paralyze_check = True
 poison_check = False
-rotation = ['r', 'f', 'r', 'g']
+rotation_multiple = ['r', 'f', 'r', 'g']
 rotation_single = ['3', '4', 'r']
 
 ################################
