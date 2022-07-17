@@ -11,6 +11,7 @@ ring = (4583, 424, 60, 60)
 amulet = (4598, 440, 35, 35)
 default = (3000, 870)
 character = (3000, 870)
+sqm_edge_length_px = 75
 
 
 mana_pool_potek = (3350, 13, 3350+32, 13+32)

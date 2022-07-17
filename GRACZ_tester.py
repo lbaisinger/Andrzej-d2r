@@ -2,7 +2,7 @@ from gracz import *
 
 player = Gracz()
 
-sleep(2)
+# sleep(2)
 pyautogui.click(config.default)
 rotation_iteration = 1
 
@@ -11,6 +11,7 @@ print('openCV')
 # player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
 #                                    manalow=config.manalow)
 # player.is_bije()
+player.do_loot()
 # player.is_co_bic()
 # player.pg_mode(exeta=config.exeta, rotation_spell=rotation_iteration)
 # while True:
@@ -20,9 +21,9 @@ print('openCV')
 # player.ring_control()
 # player.amulet_control()
 iter = 1
-player.eat_food(loop_count=iter)
+# player.eat_food(loop_count=iter)
 
-sleep(1)
+# sleep(1)
 
 
 print()

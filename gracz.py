@@ -34,7 +34,7 @@ class Gracz:
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
-                                    confidence=0.3) is not False:
+                                    confidence=0.25) is not False:
             # print('STATUS - Bije')
             return True
         else:
@@ -182,15 +182,19 @@ class Gracz:
         timestamp = datetime.datetime.now()
         # print('looting')
         pyautogui.keyDown('Shift')
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] - 75 * config.scale)  # 1
-        pyautogui.rightClick(config.character[0], config.character[1] - 75 * config.scale)  # 2
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] - 75 * config.scale)  # 3
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1])  # 4
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1] - 75 *
+                             config.scale)  # 1
+        pyautogui.rightClick(config.character[0], config.character[1] - config.sqm_edge_length_px * config.scale)  # 2
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1] -
+                             config.sqm_edge_length_px * config.scale)  # 3
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1])  # 4
         pyautogui.rightClick(config.character[0], config.character[1])  # C
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1])  # 6
-        pyautogui.rightClick(config.character[0] - 75 * config.scale, config.character[1] + 75 * config.scale)  # 7
-        pyautogui.rightClick(config.character[0], config.character[1] + 75 * config.scale)  # 8
-        pyautogui.rightClick(config.character[0] + 75 * config.scale, config.character[1] + 75 * config.scale)  # 9
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1])  # 6
+        pyautogui.rightClick(config.character[0] - config.sqm_edge_length_px * config.scale, config.character[1] +
+                             config.sqm_edge_length_px * config.scale)  # 7
+        pyautogui.rightClick(config.character[0], config.character[1] + config.sqm_edge_length_px * config.scale)  # 8
+        pyautogui.rightClick(config.character[0] + config.sqm_edge_length_px * config.scale, config.character[1] +
+                             config.sqm_edge_length_px * config.scale)  # 9
         pyautogui.keyUp('Shift')
         timestamp2 = datetime.datetime.now()
         looptime = timestamp2 - timestamp

@@ -9,8 +9,8 @@ default = (1550, 300)
 character = (870, 485)
 status_bar = (1750, 290, 1860, 310)
 hp_pool_potek_cv = (570, 30, 595, 50)
-hp_pool_exura_cv = (820, 30, 845, 50)
-# hp_pool_exura_cv = (700, 30, 730, 50)
+# hp_pool_exura_cv = (820, 30, 845, 50)
+hp_pool_exura_cv = (700, 30, 730, 50)
 # mana_pool_potek_cv = (980, 30, 1010, 50)
 mana_pool_potek_cv = (1300, 30, 1330, 50)
 burn_mana_cv = (890, 30, 915, 50)
@@ -23,17 +23,18 @@ minimap_center_cv = (1800, 83, 1812, 95)
 minimap_cv = (1745, 35, 1865, 155)
 ring_cv = (1745, 230, 1790, 275)
 amulet_cv = (1745, 155, 1790, 200)
+sqm_edge_length_px = 75
 
 ################################
 #           BATTLE             #
 ################################
-use_ring = True
+use_ring = False
 use_amulet = False
-pg_mode = True
+pg_mode = False
 bloodrage = False
 exeta = False
 rush = False
-status_check = True
+status_check = False
 paralyze_check = True
 poison_check = False
 # EK #

@@ -15,14 +15,20 @@ wp_index = 1
 
 # All waypoints to loop in that cave
 wps = {1: None,
-       2: None,
+       2: 'lvl_changing_wp',
        3: None,
-       4: 'lvl_changing_wp',
+       4: None,
        5: None,
-       6: None,
+       6: 'lvl_changing_wp',
        7: None,
-       8: 'ladder',
-       9: None}
+       8: None,
+       9: None,
+       10: 'lvl_changing_wp',
+       11: None,
+       12: None,
+       13: None,
+       14: 'lvl_changing_wp',
+       15: None}
 wp_val = list(wps.values())
 
 # Path to cave
