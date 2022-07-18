@@ -10,13 +10,13 @@ def go(player=player,
        iter=1):
     # LOOP START #
     global tryb_walki
-    global rotation_iteration
+    global multiple_rotation_iteration
     global single_rotation_iteration
     timestamp = datetime.datetime.now()
 
-    if rotation_iteration >= len(config.rotation):
+    if multiple_rotation_iteration >= len(config.rotation):
         #print(rotation_iteration)
-        rotation_iteration = 0
+        multiple_rotation_iteration = 0
     if single_rotation_iteration >= len(config.rotation_single):
         #print(rotation_iteration)
         single_rotation_iteration = 0
@@ -84,7 +84,7 @@ def go(player=player,
                 if wps[wp] in ['rope', 'shovel', 'ladder']:
                     # IF SO GO WP TO BE EXTRA SURE
                     player.cave.do_go_wp(wp)  # to be extra sure
-                    # sleep(1)  # give some time to go
+                    #sleep(1)  # give some time to go
                     # DO CUSTOM ACTION
                     player.cave.do_go_wp_plus(wp, wps)
                 # YES #
