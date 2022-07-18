@@ -1,7 +1,7 @@
 ##################
 ### Cavebot config
 ###
-### Any 16 wp
+### Any 15 wp
 ###
 ###
 ### Hall of fame:

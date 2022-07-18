@@ -18,6 +18,7 @@ Table of content:
 | [Forst dragons](#okolnir_west)                    |  Svargrond  | 100 |  400k |    > 0 | Profit       | [![Dragon Scale Mail](items_imgs/Dragon_Scale_Mail.gif)](https://tibia.fandom.com/wiki/Dragon_Scale_Mail) [![Royal Helmet](items_imgs/Royal_Helmet.gif)](https://tibia.fandom.com/wiki/Royal_Helmet) [![Dragon Slayer](items_imgs/Dragon_Slayer.gif)](https://tibia.fandom.com/wiki/Dragon_Slayer)                                                                                                                                                                                                                                                                                                                    |
 | [Vampire crypt](#vampire_crypt)                   |    Edron    | 120 |  600k |   150k | Full PG      | [![Vampire Teeth](items_imgs/Vampire_Teeth.gif)](https://tibia.fandom.com/wiki/Vampire_Teeth) ![BOH](items_imgs/Boots_of_Haste.gif) ![Vamp Shield](items_imgs/Vampire_Shield.gif) ![Leather Whip](items_imgs/Leather_Whip.gif) ![Blood Goblet](items_imgs/Blood_Goblet.gif)                                                                                                                                                                                                                                                                                                                                           |
 | [Sea Serpents](#sea_serpents)                     |  Svargrond  | 130 |  800k |      0 | Full PG      | [![Crystalline Armor](items_imgs/Crystalline_Armor.gif)](https://tibia.fandom.com/wiki/Crystalline_Armor) [![Glacier Kilt](items_imgs/Glacier_Kilt.gif)](https://tibia.fandom.com/wiki/Glacier_Kilt) [![Glacier Amulet](items_imgs/Glacier_Amulet.gif)](https://tibia.fandom.com/wiki/Glacier_Amulet) [![Leviathan's Amulet](items_imgs/Leviathan's_Amulet.gif)](https://tibia.fandom.com/wiki/Leviathan%27s_Amulet) [![Ring of Healing ](items_imgs/Ring_of_Healing.gif)](https://tibia.fandom.com/wiki/Ring_of_Healing) [![Stealth Ring ](items_imgs/Stealth_Ring.gif)](https://tibia.fandom.com/wiki/Stealth_Ring) |
+| [Hero fortress](#hero_fortress)                   |    Edron    | 150 |   1kk |   100k | Full PG      | csety                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 
 | [Putrid mummy](#putrid_mummies)                   |  Darashia   | 150 |  600k | 213.7k | Full PG      | [![Little Bowl of Myrrh](items_imgs/Little_Bowl_of_Myrrh.gif)](https://tibia.fandom.com/wiki/Little_Bowl_of_Myrrh)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 | [Elder Wyrms](#drefia_elder_wyrms)                |  Darashia   | 200 | 1.3kk |   >50k | PG+Bloodrage | ![Composite Hornbow](items_imgs/Composite_Hornbow.gif) ![Lightning Robe](items_imgs/Lightning_Robe.gif) ![Lightning Legs](items_imgs/Lightning_Legs.gif) ![Shadow Sceptre](items_imgs/Shadow_Sceptre.gif) ![Focus Cape](items_imgs/Focus_Cape.gif)                                                                                                                                                                                                                                                                                                                                                                    |
 
@@ -213,6 +214,21 @@ File: [any_15.py](any_15.py)
 
 
 File: [any_10.py](any_10.py)
+
+>Note: They hit like crazy.
+
+
+
+---
+[Back to Caves](#caves)
+
+<h3 id="hero_fortress"> Hero Fortress @ Edron</h3>
+
+<img src="maps/hero_fort.png" alt="hero_fort"/>
+
+
+
+File: [any_13.py](any_13.py)
 
 >Note: They hit like crazy.
 
