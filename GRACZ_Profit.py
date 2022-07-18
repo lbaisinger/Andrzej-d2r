@@ -69,7 +69,7 @@ def go(player=player,
             # NO MONSTERS #
             # global tryb_walki
             tryb_walki = False
-            rotation_iteration = 0
+            multiple_rotation_iteration = 0
             single_rotation_iteration = 0
 
             # IF NOT ON2 WP CUZ ITS LVL CHANGER
@@ -137,7 +137,7 @@ def go(player=player,
                 sleep(1.56 - looptime_3.total_seconds())
                 print('Sleeping {:.3f} seconds...'.format(1.56 - looptime_3.total_seconds(), ''))
             targets = player.pg_mode(exeta=config.exeta,
-                                     rotation_spell=multiple_rotation_iteration,
+                                     multiple_spell=multiple_rotation_iteration,
                                      single_spell=single_rotation_iteration,
                                      iteration=iter)
             if targets == 'multiple':
@@ -178,7 +178,7 @@ def loop():
 
 
 single_rotation_iteration = 0
-rotation_iteration = 0
+multiple_rotation_iteration = 0
 tryb_walki = False
 pyautogui.click(config.default)
 loop()

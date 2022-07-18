@@ -34,7 +34,7 @@ class Gracz:
     def is_bije(self):
         if self.utils.andrzej_szuka(region=config.redbox_cv,
                                     image_path="./src/status/attacking.png",
-                                    confidence=0.25) is not False:
+                                    confidence=config.is_bije_custom_confidence) is not False:
             # print('STATUS - Bije')
             return True
         else:
@@ -43,36 +43,35 @@ class Gracz:
 
     #@timing
     def pg_mode(self, exeta=config.exeta,
-                bloodrage=config.bloodrage,
-                rotation_spell=0,
+                skillboost=config.skillboost,
+                multiple_spell=0,
                 single_spell=0,
                 iteration=1):
-        # exeta on turn 1 and 3 (no point exeta at start, better start with bloodrage and exeta before exori gran,
-        # i.e. iteration == 1)
-        if exeta and (rotation_spell == 0 or rotation_spell == 2):
+        # exeta on even iterations, skillboost on odd
+        if exeta and iteration % 2 == 0:
             if self.utils.andrzej_szuka(region=config.bw_full,
                                         image_path='./src/monsters/any.png',
                                         confidence=config.is_co_bic_custom_confidence,
                                         scale=False) is not False:
                 pyautogui.press(config.hotkey_exeta)
                 sleep(0.1)
-        elif bloodrage and not self.utils.andrzej_szuka(region=config.status_bar,
-                                                      image_path='./src/status/boosted.png',
-                                                      scale=True):
+        elif skillboost and not self.utils.andrzej_szuka(region=config.status_bar,
+                                                         image_path='./src/status/boosted.png',
+                                                         scale=True):
             pyautogui.press(config.hotkey_bloodrage)
             sleep(0.1)
         if self.utils.andrzej_szuka(region=config.bw_2nd_cv,
                                     image_path='./src/monsters/any.png',
                                     confidence=config.is_co_bic_custom_confidence,
                                     scale=False) is not False:
-             # MULTIPLE TARGETS #
-             pyautogui.press(config.rotation_multiple[rotation_spell])
-             #print('aoe' + str(rotation_spell))
-             return 'multiple'
+            # MULTIPLE TARGETS #
+            pyautogui.press(config.rotation_multiple[multiple_spell])
+            #print('multiple spell')
+            return 'multiple'
         else:
             # SINGLE TARGET #
             pyautogui.press(config.rotation_single[single_spell])
-            #print('single spell 1')
+            #print('single spell')
             return 'single'
 
     #@timing
@@ -108,7 +107,7 @@ class Gracz:
                 pot_used = True
                 print('>>>Healed!')
             # else:
-                # print('Low HP ok.')
+            #print('Low HP ok.')
         # Check for lesser healing (exura)
         if hpmid:
             if self.utils.andrzej_szuka(region=config.hp_pool_exura_cv,
@@ -116,7 +115,7 @@ class Gracz:
                 pyautogui.press(config.hotkey_exura)
                 print('>>>Exura')
             # else:
-                # print('Mid HP ok.')
+                #print('Mid HP ok.')
         # Check for mana
         if manalow:
             if self.utils.andrzej_szuka(region=config.mana_pool_potek_cv,
@@ -125,7 +124,7 @@ class Gracz:
                 sleep(.15)
                 print('>>>Mana potion!')
             # else:
-                # print('MP ok.')
+            #print('MP ok.')
         if manahigh:  # szukamy szarego paska, jesli NIE jest szary to full mana - burn it
             if not self.utils.andrzej_szuka(region=config.burn_mana_cv,
                                             image_path="./src/status/empty-bar.png") is not False:

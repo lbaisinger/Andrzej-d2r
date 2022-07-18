@@ -1,7 +1,8 @@
 from gracz import *
+from utils import *
 
 player = Gracz()
-
+utils = Utils()
 sleep(2)
 pyautogui.click(config.default)
 rotation_iteration = 1
@@ -10,6 +11,11 @@ iter = 1
 
 
 print('openCV')
+# x = utils.andrzej_szuka(region=config.bw_2nd_cv,
+#                                     image_path='./src/monsters/any.png',
+#                                     confidence=config.is_co_bic_custom_confidence,
+#                                     scale=False)
+# print(x)
 # player.is_allright(hplow=config.hplow, hpmid=config.hpmid, manahigh=config.manahigh,
 #                                    manalow=config.manalow)
 # player.is_bije()
@@ -25,7 +31,7 @@ print('openCV')
 multiple_rotation_iteration = 0
 single_rotation_iteration = 0
 
-for x in range(0,4):
+for iter in range(1,5):
     if multiple_rotation_iteration >= len(config.rotation_multiple):
         # print(rotation_iteration)
         multiple_rotation_iteration = 0
@@ -33,7 +39,7 @@ for x in range(0,4):
         # print(rotation_iteration)
         single_rotation_iteration = 0
     targets = player.pg_mode(exeta=config.exeta,
-                             rotation_spell=multiple_rotation_iteration,
+                             multiple_spell=multiple_rotation_iteration,
                              single_spell=single_rotation_iteration,
                              iteration=iter)
     if targets == 'multiple':

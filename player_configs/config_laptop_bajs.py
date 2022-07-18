@@ -12,14 +12,14 @@ hp_pool_potek_cv = (570, 30, 595, 50)
 hp_pool_exura_cv = (820, 30, 845, 50)
 # hp_pool_exura_cv = (700, 30, 730, 50)
 mana_pool_potek_cv = (980, 30, 1010, 50)
-# mana_pool_potek_cv = (1200, 30, 1230, 50)
+# mana_pool_potek_cv = (1300, 30, 1330, 50)
 burn_mana_cv = (890, 30, 915, 50)
 bw_cv = (1770, 355, 1820, 365)
-bw_2nd_cv = (1770, 370, 1820, 400)
+bw_2nd_cv = (1770, 375, 1820, 385)
 bw_full = (1760, 345, 1820, 530)
 redbox_cv = (1740, 350, 1780, 520)
 # redbox_cv = (1740, 350, 1780, 370)
-minimap_center_cv = (1800, 83, 1812, 95)
+minimap_center_cv = (1792, 80, 1815, 100)
 minimap_cv = (1745, 35, 1865, 155)
 ring_cv = (1745, 230, 1790, 275)
 amulet_cv = (1745, 155, 1790, 200)
@@ -31,14 +31,16 @@ sqm_edge_length_px = 75
 use_ring = True
 use_amulet = False
 pg_mode = True
-bloodrage = True
-exeta = False
+skillboost = True
+exeta = True
 rush = True
 status_check = True
 paralyze_check = True
 poison_check = False
 rotation_multiple = ['r', 'f', 'r', 'g']
 rotation_single = ['3', '4', 'r']
+# rotation_multiple = ['t', 'r', 'r', 'r']
+# rotation_single = ['t', 'r', 'r', 'r']
 
 ################################
 #           HEAL & MANA        #
@@ -83,4 +85,5 @@ hotkey_exeta = 'x'
 ################################
 scale = 1
 pa_pause = 0.02
-is_co_bic_custom_confidence = 0.7
+is_co_bic_custom_confidence = 0.75
+is_bije_custom_confidence = 0.25

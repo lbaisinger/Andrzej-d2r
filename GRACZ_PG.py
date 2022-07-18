@@ -1,7 +1,7 @@
 from gracz import *
 
 player = Gracz()
-global rotation_iteration
+global multiple_rotation_iteration
 global single_rotation_iteration
 
 
@@ -51,7 +51,7 @@ def go(player=player,
                 # NO MONSTERS #
                 # LOOT #
                 player.do_loot()
-                rotation_iteration = 0
+                multiple_rotation_iteration = 0
                 single_rotation_iteration = 0
                 # IS ON WP? #
                 if player.cave.is_on_wp(wp):
@@ -66,12 +66,16 @@ def go(player=player,
                     # GO TO NEXT WP #
                     if wp == list(wps.keys())[-1]:
                         wp = list(wps.keys())[0]
-                        if config.rush:
+                        if config.rush and not player.utils.andrzej_szuka(region=config.status_bar,
+                                                                          image_path='./src/status/hasted.png',
+                                                                          scale=True):
                             sleep(1)
                             pyautogui.press(config.hotkey_haste)
                     else:
                         wp += 1
-                        if config.rush:
+                        if config.rush and not player.utils.andrzej_szuka(region=config.status_bar,
+                                                                          image_path='./src/status/hasted.png',
+                                                                          scale=True):
                             sleep(1)
                             pyautogui.press(config.hotkey_haste)
                 # GO TO NEXT WP #
@@ -109,7 +113,7 @@ def go(player=player,
                 sleep(1.56 - looptime_3.total_seconds())
                 print('Sleeping {:.3f} seconds...'.format(1.56 - looptime_3.total_seconds(), ''))
             targets = player.pg_mode(exeta=config.exeta,
-                                     rotation_spell=multiple_rotation_iteration,
+                                     multiple_spell=multiple_rotation_iteration,
                                      single_spell=single_rotation_iteration,
                                      iteration=iter)
             if targets == 'multiple':
