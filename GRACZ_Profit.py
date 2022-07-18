@@ -14,7 +14,7 @@ def go(player=player,
     global single_rotation_iteration
     timestamp = datetime.datetime.now()
 
-    if multiple_rotation_iteration >= len(config.rotation):
+    if multiple_rotation_iteration >= len(config.rotation_multiple):
         #print(rotation_iteration)
         multiple_rotation_iteration = 0
     if single_rotation_iteration >= len(config.rotation_single):
