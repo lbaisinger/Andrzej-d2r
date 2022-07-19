@@ -120,3 +120,5 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 is_co_bic_custom_confidence = 0.999
+is_bije_custom_confidence = 0.25
+
