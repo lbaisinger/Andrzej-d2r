@@ -29,16 +29,15 @@ sqm_edge_length_px = 100
 ################################
 use_ring = True
 use_amulet = False
-pg_mode = False
-bloodrage = False
-exeta = False
+pg_mode = True
+skillboost = True
+exeta = True
 rush = False
 status_check = True
 paralyze_check = True
 poison_check = False
-# rotation = ['r', 'f', 'r', 'g']
-rotation_multiple = ['3', '4']
-rotation_single = ['3', '4']
+rotation_multiple = ['r']
+rotation_single = ['r']
 
 ################################
 #           HEAL & MANA        #
@@ -84,3 +83,4 @@ hotkey_exeta = 'x'
 scale = 1
 pa_pause = 0.02
 is_co_bic_custom_confidence = 0.75
+is_bije_custom_confidence = 0.25

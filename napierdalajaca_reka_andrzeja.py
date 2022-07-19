@@ -28,7 +28,7 @@ def go(player=player,
         # PG MODE #
         if config.pg_mode:
             player.pg_mode(exeta=config.exeta,
-                           rotation_spell=rotation_iteration,
+                           multiple_spell=rotation_iteration,
                            iteration=iter)
             rotation_iteration += 1
     else:

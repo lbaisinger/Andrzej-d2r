@@ -65,7 +65,7 @@ wp_center9 = wp_center
 use_ring = True
 use_amulet = False
 pg_mode = True
-bloodrage = True
+skillboost = True
 exeta = True
 status_check = False
 paralyze_check = False
@@ -120,3 +120,5 @@ hotkey_hi = 'f10'
 hotkey_deposit_all = 'f11'
 hotkey_yes = 'f12'
 is_co_bic_custom_confidence = 0.999
+is_bije_custom_confidence = 0.25
+
