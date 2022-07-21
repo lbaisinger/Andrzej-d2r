@@ -7,18 +7,18 @@
 character = (1010, 660)
 default = (1835, 300)
 status_bar = (2030, 290, 2140, 310)
-# mana_pool_potek_cv = (1200, 30, 1230, 50)
-mana_pool_potek_cv = (1600, 30, 1625, 50)
-# hp_pool_exura_cv = (960, 30, 980, 50)
-hp_pool_exura_cv = (860, 30, 880, 50)
+mana_pool_potek_cv = (1200, 30, 1230, 50)
+# mana_pool_potek_cv = (1600, 30, 1625, 50)
+hp_pool_exura_cv = (960, 30, 980, 50)
+# hp_pool_exura_cv = (860, 30, 880, 50)
 hp_pool_potek_cv = (650, 30, 675, 50)
 burn_mana_cv = (1050, 30, 1075, 50)
 mana_runes = (1750, 30, 1775, 50)
 bw_cv = (2055, 355, 2105, 365)
 bw_2nd_cv = (2055, 370, 2105, 400)
 bw_full = (2045, 350, 2175, 480)
-redbox_cv = (2020, 340, 2060, 480)
-# redbox_cv = (2020, 340, 2060, 390)
+redbox_cv = (2000, 340, 2030, 520)
+redbox_cv_1st = (2020, 340, 2060, 370)
 minimap_center_cv = (2079, 82, 2094, 97)
 minimap_cv = (2020, 30, 2140, 145)
 ring_cv = (2030, 230, 2070, 270)
@@ -36,8 +36,8 @@ rush = False
 status_check = True
 paralyze_check = True
 poison_check = False
-rotation_multiple = ['r']
-rotation_single = ['r']
+rotation_multiple = ['r', 'f', 'r', 'g']
+rotation_single = ['3', '4', 'r']
 
 ################################
 #           HEAL & MANA        #
