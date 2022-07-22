@@ -31,6 +31,7 @@ bw_cv = (4572, 887, 4572+150, 887+130)
 bw_2nd_cv = (4572, 928, 4572+150, 928+130)
 bw_full = (4572, 887, 4572+150, 887+130) # 130
 redbox_cv = (4567, 882, 4567+50, 882+150)
+redbox_cv_1st = (4567, 882, 4567+20, 882+20)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 #minimap_center_cv = (4675, 115, 4675+20, 120+20)
 minimap_center_cv = (4675, 115, 4675+20, 120+15)

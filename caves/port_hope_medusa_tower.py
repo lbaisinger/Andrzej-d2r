@@ -7,16 +7,16 @@
 ### Hall of fame:
 ### Worril:
 
-cave_name = "Any 16"
+cave_name = "port_hope_medusa_cave"
 ### Waypoints
 
 # start waypoint
 wp_index = 1
 
 # All waypoints to loop in that cave
-wps = {1: 'lvl_changing_wp',
-       2: None,
-       3: 'lvl_changing_wp',
+wps = {1: None,
+       2: 'lvl_changing_wp',
+       3: None,
        4: None,
        5: 'lvl_changing_wp',
        6: None,
@@ -24,11 +24,8 @@ wps = {1: 'lvl_changing_wp',
        8: None,
        9: 'lvl_changing_wp',
        10: 'lvl_changing_wp',
-       11: None,
-       12: 'lvl_changing_wp',
-       13: None,
-       14: 'lvl_changing_wp',
-       15: None}
+       11: 'lvl_changing_wp',
+       12: None}
 wp_val = list(wps.values())
 
 # Path to cave

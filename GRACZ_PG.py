@@ -29,7 +29,7 @@ def go(player=player,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
     # ATTACK OR WP ? #
-    if not player.is_bije():
+    if not player.is_bije(region_bije=config.redbox_cv_1st):
         # NOT ATTACKING #
         print('nie bije')
         # IF NOT ON2 WP CUZ ITS LVL CHANGER
@@ -102,7 +102,7 @@ def go(player=player,
                        manalow=config.manalow)
 
     # ATTACKING? #
-    if player.is_bije():
+    if player.is_bije(region_bije=config.redbox_cv):
         # YES #
         # PG MODE #
         if config.pg_mode:

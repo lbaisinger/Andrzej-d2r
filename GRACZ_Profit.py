@@ -48,7 +48,7 @@ def go(player=player,
             wp += 1
 
     # ATTACKING? #
-    if player.is_bije():
+    if player.is_bije(region_bije=config.redbox_cv):
         # YES #
         if not tryb_walki:
             tryb_walki = True
@@ -124,7 +124,7 @@ def go(player=player,
                        hpmid=config.hpmid,
                        manahigh=config.manahigh,
                        manalow=config.manalow)
-    if player.is_bije():
+    if player.is_bije(region_bije=config.redbox_cv):
         # YES #
         if not tryb_walki:
             tryb_walki = True

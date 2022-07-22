@@ -31,8 +31,8 @@ class Gracz:
         return wrap
 
     #@timing
-    def is_bije(self):
-        if self.utils.andrzej_szuka(region=config.redbox_cv,
+    def is_bije(self, region_bije=config.redbox_cv):
+        if self.utils.andrzej_szuka(region=region_bije,
                                     image_path="./src/status/attacking.png",
                                     confidence=config.is_bije_custom_confidence) is not False:
             # print('STATUS - Bije')
