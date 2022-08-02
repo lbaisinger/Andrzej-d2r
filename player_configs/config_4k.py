@@ -14,8 +14,8 @@ character = (3000, 870)
 sqm_edge_length_px = 75
 
 
-mana_pool_potek = (3350, 13, 3350+32, 13+32)
-hp_pool_exura = (2738, 13, 2738+32, 13+32)
+mana_pool_potek = (3125, 13, 3125+32, 13+32)
+hp_pool_exura = (2875, 13, 2875+32, 13+32)
 hp_pool_potek = (2477, 13, 2477+32, 13+32)
 burn_mana = (3016, 13, 3018+32, 13+32)
 #rotation = ['3', 'r', '4', 'r']
@@ -31,7 +31,7 @@ bw_cv = (4572, 887, 4572+150, 887+130)
 bw_2nd_cv = (4572, 928, 4572+150, 928+130)
 bw_full = (4572, 887, 4572+150, 887+130) # 130
 redbox_cv = (4567, 882, 4567+50, 882+150)
-redbox_cv_1st = (4567, 882, 4567+20, 882+20)
+redbox_cv_1st = (4567, 882, 4567+50, 882+50)
 # wp in minimap center +/- 2 SQM for zoom 2 (zoom 1 - max zoom in, zoom 4 - max zoom out)
 #minimap_center_cv = (4675, 115, 4675+20, 120+20)
 minimap_center_cv = (4675, 115, 4675+20, 120+15)
@@ -67,7 +67,7 @@ use_ring = True
 use_amulet = False
 pg_mode = True
 skillboost = True
-exeta = True
+exeta = False
 status_check = False
 paralyze_check = False
 poison_check = False
