@@ -67,7 +67,8 @@ use_ring = True
 use_amulet = False
 pg_mode = True
 skillboost = True
-exeta = False
+#exeta = False
+exeta = True
 status_check = False
 paralyze_check = False
 poison_check = False
@@ -84,7 +85,7 @@ hpmid = True
 # see if low mana and drink potion
 manalow = True
 # see if too much mana and burn
-manahigh = True
+manahigh = False
 
 ################################
 #           HOTKEYS     `      #
