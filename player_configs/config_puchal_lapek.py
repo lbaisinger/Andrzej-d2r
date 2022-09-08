@@ -2,48 +2,57 @@
 #           REGIONS            #
 ################################
 # char
-default = (3000, 870)
-character = (3000, 870)
-sqm_edge_length_px = 75
+default = (960, 457)
+character = (960, 457)
+sqm_edge_length_px = 36
 
 # ( x - 1080 ) / 2
-# (y + 28 )
+# (y /2 ) + 24
 
-mana_pool_potek = (3125, 13, 3125+32, 13+32)
-hp_pool_exura = (2875, 13, 2875+32, 13+32)
-hp_pool_potek = (2477, 13, 2477+32, 13+32)
-burn_mana = (3016, 13, 3018+32, 13+32)
 # hp/mana bar
-mana_pool_potek_cv =
-hp_pool_exura_cv =
-hp_pool_potek_cv =
-burn_mana_cv =
+mana_pool_potek_cv = (1022, 30, 1022+32, 30+32)
+hp_pool_exura_cv = (898, 30, 898+32, 30+32)
+hp_pool_potek_cv = (699, 30, 699+32, 30+32)
+burn_mana_cv = (968, 30, 968,+32, 30+32)
 
 # battle window
-bw_cv = (4572, 887, 4572+150, 887+130)
-bw_2nd_cv = (4572, 928, 4572+150, 928+130)
-bw_full = (4572, 887, 4572+150, 887+130) # 130
-redbox_cv = (4567, 882, 4567+50, 882+150)
-redbox_cv_1st = (4567, 882, 4567+50, 882+50)
+#bw_cv = (4572, 887, 4572+150, 887+130)
+bw_cv = (1746, 468, 1746+75, 468+65)
+#bw_2nd_cv = (4572, 928, 4572+150, 928+130)
+bw_2nd_cv = (1746, 488, 1746+75, 488+65)
+#bw_full = (4572, 887, 4572+150, 887+130) # 130
+bw_full = (1746, 468, 1746+75, 468+65) # 130
+#redbox_cv = (4567, 882, 4567+50, 882+150)
+redbox_cv = (1744, 465, 1744+25, 465+75)
+#redbox_cv_1st = (4567, 882, 4567+50, 882+50)
+redbox_cv_1st = (1744, 465, 1744+25, 465+75)
 
 # minimap
-minimap_center_cv = (4675, 115, 4675+20, 120+15)
+#minimap_center_cv = (4675, 115, 4675+20, 120+15)
+minimap_center_cv = (1798, 82, 1798+20, 82+20)
 
 # char items
-status_bar = (4580, 535, 4580+110, 535+25)
-minimap_cv = (4580, 21, 4580+225, 21+210)
-ring_cv = (4583, 424, 4583+70, 424+70) # 40 35
-amulet_cv = (4598, 440, 4598+70, 440+70) # 40 40
+#status_bar = (4580, 535, 4580+110, 535+25)
+status_bar = (1750, 292, 1750+110, 292+25)
+
+#minimap_cv = (4580, 21, 4580+225, 21+210)
+minimap_cv = (1750, 35, 1750+120, 35+120)
+
+#ring_cv = (4583, 424, 4583+70, 424+70) # 40 35
+ring_cv = (1752, 236, 1752+40, 236+35)
+#amulet_cv = (4598, 440, 4598+70, 440+70) # 40 40
+amulet_cv = (1759, 244, 1759+40, 244+40)
+
 
 ################################
 #           WP CENTERS         #
 ################################
-wp_center = (4686, 124)
-wp_center2 = (4686, 125) #todo
-wp_center3 = (4685, 125) #todo
-wp_center4 = (4685, 126)
+wp_center = (1803, 86)
+wp_center2 = (1803, 87) #todo
+wp_center3 = (1802, 86) #todo
+wp_center4 = (1802, 87)
 
-wp_center5 = (4686, 126)
+wp_center5 = wp_center
 wp_center6 = wp_center
 wp_center7 = wp_center
 wp_center8 = wp_center
