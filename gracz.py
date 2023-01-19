@@ -11,10 +11,8 @@ from config_picker import *
 class Gracz:
 
     def __init__(self):
-        # self.backpack = utils.Backpack()
         self.cave = cave.Cave()
         self.utils = utils.Utils()
-        # Add pause after each pyautogui commands
         pyautogui.PAUSE = config.pa_pause
         print('loaded with config ', confname)
 
