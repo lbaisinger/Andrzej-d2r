@@ -25,7 +25,8 @@ class Utils:
         return wrap
 
     #@timing
-    def andrzej_szuka(self, region,
+    def andrzej_szuka(self, d2_wnd,
+                      region,
                       image_path,
                       confidence=0.75,
                       scale=True,
@@ -41,10 +42,10 @@ class Utils:
         else:
             template = template_tmp
         # template = cv2.cvtColor(np.array(image))#, cv2.COLOR_RGB2BGR)
-        img = ImageGrab.grab(bbox=region)
+        img = ImageGrab.grab(bbox=(d2_wnd[0]+region[0], d2_wnd[1]+region[1], d2_wnd[0]+region[2], d2_wnd[1]+region[3]))
         img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
         # openCV possible methods: ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR', 'cv.TM_CCORR_NORMED',
-        # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+        # 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED', 'cv.COLOR_RGB2BGR']
         method = eval("cv.TM_CCOEFF_NORMED")
         res = cv.matchTemplate(img_cv, template, method)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
@@ -61,7 +62,7 @@ class Utils:
         if max_val >= confidence:
             # print('True')
             #return True
-            return config.minimap_cv[0]+max_loc[0], config.minimap_cv[1]+max_loc[1]
+            return d2_wnd[0]+region[0]+max_loc[0], d2_wnd[1]+region[1]+max_loc[1]
         else:
             # print('False')  # in case of manahigh this means there is no manahigh (no mana to burn)
             return False

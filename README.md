@@ -14,5 +14,10 @@ Dla przykładu centrum miasta akt4:
 ![](src/img/akt4_start.png)
 
 ### To-do
+- położenie i rozmiary okna
 - Bieganie (np srzkynka --> Jamelia)
 - Depozyt golda do skrzynki
+
+#### changelog
+**23/01**
+- koronetkowanie na hazardzie 

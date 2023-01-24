@@ -1,16 +1,19 @@
 ### CONFIG###
-
-#            REGIONS            #
-#  RESOLUTION = 1280x800        #
-#
-
-#
+################################
+#            REGIONS           #
+#  RESOLUTION = 1280x800       #
+# this time regions are added  #
+# to d2 window coords          #
+# regions=offsets from d2_wnd  #
+################################
+single_slot = (36, 36)
+shop = (130, 195, 130+10*single_slot[0], 195+10*single_slot[1])
+gamble_refresh = (410, 580, 480, 660)
 
 
 ################################
 #           BATTLE             #
 ################################
-
 
 
 ################################
@@ -22,8 +25,6 @@ hplow = True
 hpmid = True
 # use mana potion on low MP
 manalow = False
-
-
 
 ################################
 #           HOTKEYS            #
@@ -41,7 +42,6 @@ potion_hp = '1'
 potion_mp = '2'
 potion_rv = '3'
 potion_rv2 = '4'
-
 
 ################################
 #           MISC        `      #
