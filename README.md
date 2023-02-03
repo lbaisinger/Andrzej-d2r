@@ -16,9 +16,6 @@ Do czasu lepszego rozwiazania, poruszanie sie po grze bedzie dzialac na zasadzie
     - gargulce muszą się znajdować w pomarańczowym prostokącie
 
 
-![](src/img/akt4_start.png)
-
-
 ### To-do
 - [x] game_start()
 - [ ] stash
