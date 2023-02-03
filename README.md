@@ -25,7 +25,10 @@ Do czasu lepszego rozwiazania, poruszanie sie po grze bedzie dzialac na zasadzie
 - [ ] aha
 - [ ] Bieganie (np srzkynka --> Jamelia)
 - [ ] Depozyt golda do skrzynki
+- [ ] PODARNIK - jak ustawic bota (python/pycharm)
 
 #### changelog
+**03/02**
+- podstawowe funkcje
 **23/01**
 - koronetkowanie na hazardzie 
