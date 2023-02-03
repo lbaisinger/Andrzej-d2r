@@ -25,7 +25,8 @@ class Utils:
         return wrap
 
     #@timing
-    def andrzej_szuka(self, d2_wnd,
+    def andrzej_szuka(self,
+                      d2_wnd,
                       region,
                       image_path,
                       confidence=0.75,

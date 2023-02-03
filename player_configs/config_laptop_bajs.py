@@ -1,14 +1,22 @@
 ### CONFIG###
-################################
-#            REGIONS           #
-#  RESOLUTION = 1280x800       #
-# this time regions are added  #
-# to d2 window coords          #
-# regions=offsets from d2_wnd  #
-################################
+#################################################
+#               WINDOW PROPERTIES               #
+#################################################
+#   RESOLUTION = 1280x800                       #
+#   Screen split in 16 sub-regions, see README  #
+#################################################
+
+
+
+
+#########################################################
+#                        UI                             #
+# wspolrzedne sa liczone relatywnie do poczatku okna!!! #
+#########################################################
 single_slot = (36, 36)
-shop = (130, 195, 130+10*single_slot[0], 195+10*single_slot[1])
+shop_region = (130, 195, 130+10*single_slot[0], 195+10*single_slot[1])
 gamble_refresh = (410, 580, 480, 660)
+
 
 
 ################################
