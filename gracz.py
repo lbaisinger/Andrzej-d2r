@@ -5,6 +5,7 @@ import win32gui
 import datetime
 # andrew pkgs
 import utils
+import math
 import cave
 from config_picker import *
 
@@ -42,14 +43,33 @@ class Gracz:
 
     # @timing
     def find_d2_window(self):
-        window_handle = win32gui.FindWindow(None, "Diablo II: Resurrected")
-        window_rect = win32gui.GetWindowRect(window_handle)
-        return window_rect
+        hwnd = win32gui.FindWindow(None, "Diablo II: Resurrected")
+        # window_rect = win32gui.GetClientRect(window_handle)
+        rect = win32gui.GetWindowRect(hwnd)
+        clientRect = win32gui.GetClientRect(hwnd)
+        windowOffset = math.floor(((rect[2] - rect[0]) - clientRect[2]) / 2)
+        titleOffset = ((rect[3] - rect[1]) - clientRect[3]) - windowOffset
+        newRect = (rect[0] + windowOffset, rect[1] + titleOffset, rect[2] - windowOffset, rect[3] - windowOffset)
+        return newRect
 
     # @timing
-    def start_game(self, d2_wnd):
-        self.utils.andrzej_szuka(d2_wnd, )
-
+    def start_game(self, d2_wnd, difficulty="HELL"):
+        img_coords = self.utils.andrzej_szuka(d2_wnd=d2_wnd, region=d2_wnd, image_path="./src/buttons/play.png")
+        # print(img_coords)
+        pyautogui.click(img_coords)
+        sleep(1)
+        if difficulty == "HELL":
+            img_coords2 = self.utils.andrzej_szuka(d2_wnd, d2_wnd, image_path="./src/buttons/dificulty_hell.png")
+            # print(img_coords2)
+            pyautogui.click(img_coords2)
+        elif difficulty == "NM":
+            img_coords2 = self.utils.andrzej_szuka(d2_wnd, d2_wnd, image_path="./src/buttons/difficulty_nightmare.png")
+            # print(img_coords2)
+            pyautogui.click(img_coords2)
+        if difficulty == "NORM":
+            img_coords2 = self.utils.andrzej_szuka(d2_wnd, d2_wnd, image_path="./src/buttons/dificulty_normal.png")
+            # print(img_coords2)
+            pyautogui.click(img_coords2)
 
     def find_item(self, d2_wnd, jakie_itemy, gdzie_szukac_itemu, czy_podniesc):
         for item in jakie_itemy:
@@ -60,6 +80,22 @@ class Gracz:
                     print("Kupilem koronetke!")
                 else:
                     print("Nie znalazlem ", item, ", szukam dalej...")
+            else:
+                print("nie chce pan podniesc to pokaze gdzie")
+                #todo obrysowac item ramka
+                #import math
+                # from PIL import Image, ImageDraw
+                #
+                # w, h = 220, 190
+                # shape = [(40, 40), (w - 10, h - 10)]
+                #
+                # # creating new Image object
+                # img = Image.new("RGB", (w, h))
+                #
+                # # create rectangle image
+                # img1 = ImageDraw.Draw(img)
+                # img1.rectangle(shape, fill ="# ffff33", outline ="red")
+                # img.show()
 
 
     def kopnij_beczke(self, jak_wyglada_beczka, gdzie_szukac_beczki):

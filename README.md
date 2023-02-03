@@ -5,6 +5,7 @@ Do czasu lepszego rozwiazania, poruszanie sie po grze bedzie dzialac na zasadzie
 - **WYMIARY OKNA / ROZDZIELCZOSC - 1200x800 px** (niezbedna do prawidlowego dzialania!!!)
 - Ekran podzielony na **16 regionów**, kazdy o rozdzielczosci **300x200 px**
 - W celu umozliwienia andrzejowi szybkiej pracy, podczas projektowania skryptow (waypointy/sklep/itemy/leczenie) nalezy uwzglednic w jakim regionie (1-16) andrzej ma szukac
+- Szczegolnie pomocne bedzie przy projektowaniu waypointow, zeby szukal okreslonego punkut (np kamienia) w okreslonym rewgionie a nie znajdowal wszystkie kamienie na ekrenie
 
  
 ![](src/img/setup_16regions.png)

@@ -1,6 +1,8 @@
 import pyautogui
 
 from gracz import *
+from PIL import Image, ImageDraw
+
 
 player = Gracz()
 d2_window = player.find_d2_window()
@@ -16,18 +18,8 @@ def go(d2_wnd=d2_window,
     timestamp = datetime.datetime.now()
 
     # TESTING MODULES #
-
-    koronetka = player.utils.andrzej_szuka(d2_wnd, config.shop, image_path='./src/items/coronet.png')
-    refresh = player.utils.andrzej_szuka(d2_wnd, config.gamble_refresh, image_path='./src/items/gamble_refresh.png')
-    # print(refresh)
-    # pyautogui.moveTo(refresh)
-    print(koronetka)
-    if koronetka:
-        pyautogui.rightClick(koronetka)
-        print("Kupilem koronetke!")
-    else:
-        pyautogui.click(refresh)
-        print("Szukam dalej...")
+    print(d2_wnd)
+    player.start_game(d2_wnd, difficulty="NM")
 
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()

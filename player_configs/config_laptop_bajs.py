@@ -3,8 +3,11 @@
 #               WINDOW PROPERTIES               #
 #################################################
 #   RESOLUTION = 1280x800                       #
-#   Screen split in 16 sub-regions, see README  #
+#   Screen split in 16 regions, see README      #
 #################################################
+region1 = (0, 0, 300, 200)
+region2 = (300, 0, 600, 200)
+region3 = (600, 0, 900, 200)
 
 
 
