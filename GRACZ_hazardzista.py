@@ -21,8 +21,10 @@ def go(d2_wnd=d2_window,
     print(koronetka)
     if koronetka:
         pyautogui.rightClick(koronetka)
+        print("Kupilem koronetke!")
     else:
         pyautogui.click(refresh)
+        print("Szukam dalej...")
 
     # END-TIMING CHECK #
     timestamp_end = datetime.datetime.now()
